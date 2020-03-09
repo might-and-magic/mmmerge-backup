@@ -125,7 +125,3 @@ function events.MonsterKilled(mon)
 
 	end
 end
-
--- Tweak monsters' spells
-
-

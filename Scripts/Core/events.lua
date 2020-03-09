@@ -113,6 +113,10 @@ end
 
 HookWaitMessage(mmv(0x4B9228, 0x4D8270, 0x4E8290))  -- WaitMessage
 if mmver > 6 then
+	-- Rod:
+	-- I need original Sleep ptr for pathfinder.
+	debug.KernelSleep = u4[mm78(0x4D80B8, 0x4E8158)]
+	-- Rod.
 	HookWaitMessage(mm78(0x4D80B8, 0x4E8158))  -- Sleep
 end
 do

@@ -359,6 +359,12 @@ function events.GetSkill(t)
 end
 
 ---------------------------------------
+-- BeforeLeaveGame
+-- called before LeaveGame event, at the moment, when player click "Quit" button second time.
+-- Supposed to be used, when player leaving game, but map data still necessary.
+mem.autohook2(0x433b0d, function() events.call("BeforeLeaveGame") end)
+
+---------------------------------------
 -- MonsterCastSpell
 --
 --
