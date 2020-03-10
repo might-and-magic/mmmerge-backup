@@ -64,7 +64,7 @@
 	@end:
 	]])
 
-    -- fix flickering during crossing portals in indoor maps
+	-- fix flickering during crossing portals in indoor maps
 	mem.nop(0x4af43a, 6)
 	mem.nop(0x4af44d, 6)
 	mem.nop(0x4af505, 6)
