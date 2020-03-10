@@ -1,4 +1,3 @@
-
 	local NewCode
 
 	-- Change main menu soundtrack.
@@ -64,6 +63,11 @@
 
 	@end:
 	]])
+
+    -- fix flickering during crossing portals in indoor maps
+	mem.nop(0x4af43a, 6)
+	mem.nop(0x4af44d, 6)
+	mem.nop(0x4af505, 6)
 
 	-- make "spirit lash" work correctly and damage few party members
 	mem.asmpatch(0x40548d, "jle 0x40546f - 0x40548d")
