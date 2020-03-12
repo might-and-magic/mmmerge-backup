@@ -33,244 +33,6 @@ Pathfinder.MonsterWays = MonsterWays
 --					Base functions				--
 --------------------------------------------------
 
-function ScalarMul(V1, V2)
-	return V1.X*V2.X + V1.Y*V2.Y + V1.Z*V2.Z
-end
-
-function VectorModule(V)
-	return math.sqrt(V.X^2 + V.Y^2 + V.Z^2)
-end
-
-function VectorMul(V1, V2)
-	return {X = V1.Y*V2.Z - V1.Z*V2.Y, Y = V1.Z*V2.X - V1.X*V2.Z, Z = V1.X*V2.Y - V1.Y*V2.X}
-end
-
-function GetAngleVec(V1, V2)
-	return math.acos(ScalarMul(V1, V2)/(VectorModule(V1)*VectorModule(V2)))
-end
-
-function MakeVec3D(FromV, ToV)
-	return {X = ToV.X - FromV.X, Y = ToV.Y - FromV.Y, Z = ToV.Z - FromV.Z}
-end
-
-function PlaneDefVector(V1, V2, V3) -- points of plane
-	local a, b, c
-	a = MakeVec3D(V1, V2)
-	b = MakeVec3D(V1, V3)
-	c = VectorMul(a, b)
-	return c
-end
-
-function PlaneDefiners(V1, V2, V3)
-	local A, B, C, D
-
-	-- x - V1.X	V2.X - V1.X	V3.X - V1.X
-	-- y - V1.Y	V2.Y - V1.Y	V3.Y - V1.Y
-	-- z - V1.Z	V2.Z - V1.Z	V3.Z - V1.Z
-
-	--(x - V1.X)*((V2.Y - V1.Y)*(V3.Z - V1.Z) - (V2.Z - V1.Z)*(V3.Y - V1.Y)) ...
-
-	local VV = PlaneDefVector(V1, V2, V3)
-	-- (x - V1.X)*VV.X - (y - V1.Y)*VV.Y + (z - V1.Z)*VV.Z = 0
-	-- - V1.X*VV.X + V1.Y*VV.Y - V1.Z*VV.Z
-
-	A = VV.X
-	B = VV.Y
-	C = VV.Z
-	D = - V1.X*VV.X - V1.Y*VV.Y - V1.Z*VV.Z
-
-	return {X = A, Y = B, Z = C, D = D}
-end
-
-function PlaneLineIntersection(PlaneV, lV0, lV)
-	-- x = lv.X * t + lV0.X -- (x - lv0.X)/lv.X = t
-	-- y = lv.Y * t + lV0.Y
-	-- z = lv.Z * t + lV0.Z
-	-- 0 = PlaneV.X*x + PlaneV.Y*y + PlaneV.Z*z + PlaneV.D
-
-	-- 0 = PlaneV.X*(lv.X*t + lV0.X) + PlaneV.Y*(lv.Y*t + lV0.Y) + PlaneV.X*(lv.Z*t + lV0.Z) + PlaneV.D
-	-- 0 = PlaneV.X*lv.X*t + PlaneV.X*lV0.X + PlaneV.Y*lv.Y*t + PlaneV.Y*lV0.Y + PlaneV.Z*lv.Z*t + PlaneV.Z*lV0.Z + PlaneV.D
-	-- PlaneV.X*lv.X*t + PlaneV.Y*lv.Y*t + PlaneV.X*lv.Z*t = - PlaneV.X*lV0.X - PlaneV.Y*lV0.Y - PlaneV.Z*lV0.Z - PlaneV.D
-	-- t*(PlaneV.X*lv.X + PlaneV.Y*lv.Y + PlaneV.Z*lv.Z) = - PlaneV.X*lV0.X - PlaneV.Y*lV0.Y - PlaneV.Z*lV0.Z
-	-- t = -1*(PlaneV.X*lV0.X + PlaneV.Y*lV0.Y + PlaneV.Z*lV0.Z + PlaneV.D) / (PlaneV.X*lv.X + PlaneV.Y*lv.Y + PlaneV.Z*lv.Z)
-	local div = (PlaneV.X*lV.X + PlaneV.Y*lV.Y + PlaneV.Z*lV.Z)
-	if div == 0 then
-		return {X = -30000, Y = -30000, Z = -30000}
-	end
-
-	local t = -1*(PlaneV.X*lV0.X + PlaneV.Y*lV0.Y + PlaneV.Z*lV0.Z + PlaneV.D) / div
-	return {X = lV.X * t + lV0.X, Y = lV.Y * t + lV0.Y, Z = lV.Z * t + lV0.Z}
-end
-
-function InProjection(V0, List)
-	local V1 = Map.Vertexes[List[List.count-1]]
-	local V2
-	local Sum = 0
-	local Angle
-	local nV1, nV2
-	local Mul
-	for i = 0, List.count-1 do
-		V2 = Map.Vertexes[List[i]]
-		if V1.X == V2.X and V1.Y == V2.Y and V1.Z == V2.Z then
-			-- angle = 0
-		else
-			nV1, nV2 = MakeVec3D(V0, V1), MakeVec3D(V0, V2)
-			Angle = GetAngleVec(nV1, nV2)
-			if math.round((Angle - math.pi)*10000) == 0 then
-				return 361
-			end
-			Mul = VectorMul(nV1, nV2)
-			if Mul.Z > 0 then
-				Sum = Sum + Angle
-			else
-				Sum = Sum - Angle
-			end
-		end
-		V1 = V2
-	end
-	return ceil(math.deg(abs(Sum)))-- >= 360
-end
-
-function TraceWayTEST(From, To)
-	local Dist = GetDist2(From, To)
-	local lv = MakeVec3D(From, To)
-
-	for i,v in Map.Facets do
-		pV1 = Map.Vertexes[v.VertexIds[0]]
-		pV2 = Map.Vertexes[v.VertexIds[ceil(v.VertexesCount/2)]]
-		pV3 = Map.Vertexes[v.VertexIds[v.VertexesCount-1]]
-		PlaneV = PlaneDefiners(pV1, pV2, pV3)
-
-		V0 = PlaneLineIntersection(PlaneV, From, lv)
-		if not (GetDist2(V0, From) > Dist or GetDist2(V0, To) > Dist) and InProjection(V0, v.VertexIds) then
-			return false
-		end
-	end
-	return true
-end
-
-function TraceWayTEST2(From, To)
-	local Dist = GetDist2(From, To)
-	local lv = MakeVec3D(From, To)
-
-	local MinX, MaxX = min(From.X, To.X), max(From.X, To.X)
-	local MinY, MaxY = min(From.Y, To.Y), max(From.Y, To.Y)
-	local MinZ, MaxZ = min(From.Z, To.Z), max(From.Z, To.Z)
-
-	for i,v in Map.Facets do
-		if v.Invisible and v.Untouchable or v.IsPortal or v.MinX > MaxX or v.MaxX < MinX or v.MinY > MaxY or v.MaxY < MinY or v.MinZ > MaxZ or v.MaxZ < MinZ then
-			-- skip
-		else
-			pV1 = Map.Vertexes[v.VertexIds[0]]
-			pV2 = Map.Vertexes[v.VertexIds[ceil(v.VertexesCount/2)]]
-			pV3 = Map.Vertexes[v.VertexIds[v.VertexesCount-1]]
-			PlaneV = PlaneDefiners(pV1, pV2, pV3)
-
-			V0 = PlaneLineIntersection(PlaneV, From, lv)
-			if not (GetDist2(V0, From) > Dist or GetDist2(V0, To) > Dist) and InProjection(V0, v.VertexIds) then
-				return false
-			end
-		end
-	end
-	return true
-end
-
-function TraceWayTEST3(From, To)
-	local Dist = GetDist2(From, To)
-	local lv = MakeVec3D(From, To)
-
-	local MinX, MaxX = min(From.X, To.X), max(From.X, To.X)
-	local MinY, MaxY = min(From.Y, To.Y), max(From.Y, To.Y)
-	local MinZ, MaxZ = min(From.Z, To.Z), max(From.Z, To.Z)
-
-	local Room = Map.RoomFromPoint(XYZ(From))
-	local Walls = Map.Rooms[Room].Walls
-
-	local v
-	for _,i in Walls do
-		v = Map.Facets[i]
-		if v.Invisible and v.Untouchable or v.IsPortal or v.MinX > MaxX or v.MaxX < MinX or v.MinY > MaxY or v.MaxY < MinY or v.MinZ > MaxZ or v.MaxZ < MinZ then
-			-- skip
-		else
-			pV1 = Map.Vertexes[v.VertexIds[0]]
-			pV2 = Map.Vertexes[v.VertexIds[ceil(v.VertexesCount/2)]]
-			pV3 = Map.Vertexes[v.VertexIds[v.VertexesCount-1]]
-			PlaneV = PlaneDefiners(pV1, pV2, pV3) -- 1
-
-			V0 = PlaneLineIntersection(PlaneV, From, lv) -- 2
-			if GetDist2(V0, From) < Dist and GetDist2(V0, To) < Dist and InProjection(V0, v.VertexIds) then -- 3
-				return false
-			end
-		end
-	end
-	return true
-end
-
-function testIntersect()
-	lV0 = {X = Party.X, Y = Party.Y, Z = Party.Z}
-	lV1 = {X = Party.X, Y = Party.Y, Z = Party.Z + 20}
-	lV = MakeVec3D(lV0, lV1)
-
-	_, F = Map.GetFloorLevel(XYZ(Party))
-
-	pV1 = Map.Vertexes[Map.Facets[F].VertexIds[0]]
-	pV2 = Map.Vertexes[Map.Facets[F].VertexIds[ceil(Map.Facets[F].VertexesCount/2)]]
-	pV3 = Map.Vertexes[Map.Facets[F].VertexIds[Map.Facets[F].VertexesCount-1]]
-
-	PlaneV = PlaneDefiners(pV1, pV2, pV3)
-
-	result = PlaneLineIntersection(PlaneV, lV0, lV)
-	print(dump(result))
-end
-
-function testIntersect2(F)
-	lV0 = {X = Party.X, Y = Party.Y, Z = Party.Z}
-	lV1 = {X = Party.X, Y = Party.Y, Z = Party.Z + 20}
-	lV = MakeVec3D(lV0, lV1)
-
-	pV1 = Map.Vertexes[Map.Facets[F].VertexIds[0]]
-	pV2 = Map.Vertexes[Map.Facets[F].VertexIds[ceil(Map.Facets[F].VertexesCount/2)]]
-	pV3 = Map.Vertexes[Map.Facets[F].VertexIds[Map.Facets[F].VertexesCount-1]]
-
-	PlaneV = PlaneDefiners(pV1, pV2, pV3)
-
-	result = PlaneLineIntersection(PlaneV, lV0, lV)
-	print(dump(result) .. "\n" .. tostring(InProjection(result, Map.Facets[F].VertexIds)))
-end
-
-function testIntersect3()
-	lV0 = {X = Party.X, Y = Party.Y, Z = Party.Z}
-	lV1 = {X = Party.X, Y = Party.Y + 20, Z = Party.Z}
-	lV = MakeVec3D(lV0, lV1)
-
-	for i,v in Map.Facets do
-		pV1 = Map.Vertexes[v.VertexIds[0]]
-		pV2 = Map.Vertexes[v.VertexIds[ceil(v.VertexesCount/2)]]
-		pV3 = Map.Vertexes[v.VertexIds[v.VertexesCount-1]]
-
-		PlaneV = PlaneDefiners(pV1, pV2, pV3)
-		result = PlaneLineIntersection(PlaneV, lV0, lV)
-		if InProjection(result, v.VertexIds) then
-			print(i, dump(result))
-		end
-	end
-end
-
-function testIntersect4(F, lV0, lV1)
-	lV = MakeVec3D(lV0, lV1)
-
-	pV1 = Map.Vertexes[Map.Facets[F].VertexIds[0]]
-	pV2 = Map.Vertexes[Map.Facets[F].VertexIds[ceil(Map.Facets[F].VertexesCount/2)]]
-	pV3 = Map.Vertexes[Map.Facets[F].VertexIds[Map.Facets[F].VertexesCount-1]]
-
-	PlaneV = PlaneDefiners(pV1, pV2, pV3)
-
-	result = PlaneLineIntersection(PlaneV, lV0, lV)
-	print(dump(result) .. "\n" .. tostring(InProjection(result, Map.Facets[F].VertexIds)))
-end
-
---------------------------------------------------
-
 local function EqualCoords(a, b, Precision)
 	if not Precision then
 		return a.X == b.X and a.Y == b.Y and a.Z == b.Z
@@ -285,7 +47,7 @@ local function GetDist(px, py, pz, x, y, z)
 	return sqrt((px-x)^2 + (py-y)^2 + (pz-z)^2)
 end
 
-function GetDist2(p1, p2)
+local function GetDist2(p1, p2)
 	local px, py, pz = XYZ(p1)
 	local x, y, z = XYZ(p2)
 	return sqrt((px-x)^2 + (py-y)^2 + (pz-z)^2)
@@ -315,7 +77,7 @@ local function DirectionToPoint(From, To)
 end
 
 local function FacetToPoint(Facet)
-	return {X = (Facet.MinX + Facet.MaxX)/2, Y = (Facet.MinY + Facet.MaxY)/2, Z = (Facet.MinZ + Facet.MaxZ)/2}
+	return {X = ceil((Facet.MinX + Facet.MaxX)/2), Y = ceil((Facet.MinY + Facet.MaxY)/2), Z = ceil((Facet.MinZ + Facet.MaxZ)/2)}
 end
 
 local function DistanceBetweenFacets(f1, f2) -- Approx
@@ -651,21 +413,21 @@ local function ImportAreasInfo(Path)
 	local Floors, Areas, NWays = {}, {}, {}
 	local LineIt = File:lines()
 	local Words, Items, Area, Ways, Val
+	local AllPoints = {}
 	for line in LineIt do
 		Words = string.split(line, "\9")
-		if Words[1] == "*" then
+		if Words[1] == "." then
+			AllPoints[tonumber(Words[2])] = {
+				X = tonumber(Words[3]),
+				Y = tonumber(Words[4]),
+				Z = tonumber(Words[5]),
+				StableZ = tonumber(Words[5]),
+				NeedJump = string.lower(Words[2]) == "x"}
+
+		elseif Words[1] == "*" then
 			Area = Areas[tonumber(Words[2])]
-			Way = Area.Ways[tonumber(Words[3])]
-			if not Way then
-				Way = {}
-				Area.Ways[tonumber(Words[3])] = Way
-			end
-			tinsert(Way, {
-				X = tonumber(Words[4]),
-				Y = tonumber(Words[5]),
-				Z = tonumber(Words[6]),
-				StableZ = tonumber(Words[7]),
-				NeedJump = Words[8] == "X"})
+			Area.Ways[tonumber(Words[3])] = string.split(Words[6], "|")
+
 		elseif Words[1] == ">" then
 			Area = tonumber(Words[2])
 			Val = tonumber(Words[3])
@@ -715,6 +477,14 @@ local function ImportAreasInfo(Path)
 		end
 	end
 
+	for AId, A in pairs(Areas) do
+		for A2Id, Way in pairs(A.Ways) do
+			for WId, WayPoint in pairs(Way) do
+				Way[WId] = AllPoints[tonumber(WayPoint)]
+			end
+		end
+	end
+
 	io.close(File)
 	MapFloors, MapAreas, NeighboursWays = Floors, Areas, NWays
 	HaveMapData = true
@@ -722,8 +492,24 @@ local function ImportAreasInfo(Path)
 end
 
 local function ExportAreasInfo(Areas, NWays, Path)
+	local AllPoints = {}
+	local CurId = 1
+	for AId, A in pairs(Areas) do
+		for A2Id, Way in pairs(A.Ways) do
+			for WId, WayPoint in pairs(Way) do
+				AllPoints[CurId] = WayPoint
+				Way[WId] = tostring(CurId)
+				CurId = CurId + 1
+			end
+		end
+	end
+
 	Path = Path or "Data/BlockMaps/" .. Map.Name .. ".txt"
 	File = io.open(Path, "w")
+
+	for i, P in ipairs(AllPoints) do
+		File:write(".\9" .. i .. "\9" .. P.X .. "\9" .. P.Y .. "\9" .. P.Z .. "\9" .. (P.NeedJump and "X" or "-") .. "\n")
+	end
 
 	local cNeighbours
 	for _, Area in pairs(Areas) do
@@ -742,48 +528,66 @@ local function ExportAreasInfo(Areas, NWays, Path)
 			table.concat(cNeighbours, "|") .. "\n")
 
 		for AreaId, Way in pairs(Area.Ways) do
-			for __, P in ipairs(Way) do
-				File:write(
-					"*\9" ..
-					Area.Id .. "\9" ..
-					AreaId .. "\9" ..
-					P.X .. "\9" ..
-					P.Y .. "\9" ..
-					P.Z .. "\9" ..
-					(P.StableZ or P.Z) .. "\9" ..
-					(P.NeedJump and "X" or "-") .. "\n")
-			end
+			File:write("*\9" ..	Area.Id .. "\9" .. AreaId .. "\9" ..  "\9" .. "\9" .. table.concat(Way,"|") .. "\n")
+
 		end
 	end
+
 	for FromA, Ways in pairs(NWays) do
 		for ToA, Way in pairs(Ways) do
-			File:write(">\9" .. FromA .. "\9" .. ToA .. "\9" .. table.concat(Way, "|") .. "\n")
+			File:write(">\9" .. FromA .. "\9" .. ToA .. "\9" .. "\9" .. "\9" .. table.concat(Way, "|") .. "\n")
 		end
 	end
 	io.close(File)
-end
 
-local function MakeWayPoints()
-
-	local Floors, Areas, NWays = ImportAreasInfo(Path)
-	if Floors then
-		MapFloors, MapAreas = Floors, Areas
-		if Pathfinder then
-			Pathfinder.BakeFloors(Floors)
+	for AId, A in pairs(Areas) do
+		for A2Id, Way in pairs(A.Ways) do
+			for WId, WayPoint in pairs(Way) do
+				Way[WId] = AllPoints[tonumber(WayPoint)]
+			end
 		end
-		return Floors, Areas, NWays
 	end
 
-	Floors, Areas, NWays = {}, {}, {}
+	AllPoints = nil
+	collectgarbage("collect")
+end
+
+local function MakeAreasFromRooms(Floors, Areas, NWays, StartTime, Log)
+	local CurArea
+
+	-- Make areas
+	for RoomId, Room in Map.Rooms do
+		if Room.Portals.count > 0 then
+			CurArea = {Id = RoomId, Floors = {}, Neighbours = {}, Ways = {}, WayPoint = {X = 0, Y = 0, Z = 0}, S = 0}
+			Areas[RoomId] = CurArea
+
+			-- Assign floors
+			for _, FId in Room.Floors do
+				Floors[FId] = RoomId
+				table.insert(CurArea.Floors, FId)
+			end
+		end
+	end
+
+	-- Set neighbours
+	local Facet
+	for RoomId, Room in Map.Rooms do
+		for _, PId in Room.Portals do
+			Facet = Map.Facets[PId]
+			Areas[Facet.RoomBehind].Neighbours[Facet.Room] = true
+			Areas[Facet.Room].Neighbours[Facet.RoomBehind] = true
+		end
+	end
+end
+
+local function MakeAreasFromFacets(Floors, Areas, NWays, StartTime, Log)
+
 	local MaxAreaSize = 6000000
 	local MinAreaSize = 500000
-	local StartTime = os.time()
-	local Log = {}
-	local counter = 0
 
 	-- Init facets (FacetId = AreaId)
 	for i,v in Map.Facets do
-		if v.PolygonType == 3 or v.PolygonType == 4 or v.IsPortal then -- and not (v.IsPortal or v.Invisible or v.Untouchable)
+		if v.PolygonType == 3 or v.PolygonType == 4 or v.IsPortal then
 			Floors[i] = 0
 		end
 	end
@@ -924,8 +728,32 @@ local function MakeWayPoints()
 		end
 	end
 
+end
+
+local function MakeWayPoints()
+
+	local Floors, Areas, NWays = ImportAreasInfo(Path)
+	if Floors then
+		MapFloors, MapAreas = Floors, Areas
+		if Pathfinder then
+			Pathfinder.BakeFloors(Floors)
+		end
+		return Floors, Areas, NWays
+	end
+
+	Floors, Areas, NWays = {}, {}, {}
+	local StartTime = os.time()
+	local Log = {}
+	local counter = 0
+
+	if Map.Rooms.count > 2 then
+		MakeAreasFromRooms(Floors, Areas, NWays, StartTime, Log)
+	else
+		MakeAreasFromFacets(Floors, Areas, NWays, StartTime, Log)
+	end
+
 	-- Set way points
-	local S, LastS
+	local S, LastS, f1
 	for AreaId, Area in pairs(Areas) do
 		LastS = 0
 		for _, F in pairs(Area.Floors) do
@@ -939,7 +767,7 @@ local function MakeWayPoints()
 	end
 	tinsert(Log, "Merging areas, step 2: " .. os.time() - StartTime)
 
-	-- Build ways
+	-- Prepare for building ways
 	MapAreas, MapFloors, NeighboursWays = Areas, Floors, NWays
 	if Pathfinder then
 		Pathfinder.BakeFloors(Floors)
@@ -948,63 +776,57 @@ local function MakeWayPoints()
 	local MapInTxt = Game.MapStats[Map.MapStatsIndex]
 	Mon.AIState = const.AIState.Removed
 
-	local function tmoTargetArea(target)
+	local function tmpTargetArea(target)
 		local _, F = Map.GetFloorLevel(XYZ(target))
 		return Floors[F] or 0
 	end
 
-	local Way, NextV, A1, A2
-	for AreaId, Area in pairs(Areas) do
-		for AId, A in pairs(Areas) do
-			if AreaId ~= AId and not Area.Neighbours[AId] and not Area.Ways[AId] then
-				Way = AStarWay(MonId, Mon, A.WayPoint, nil, false, Area.WayPoint)
-				if #Way > 0 then
-					while tmoTargetArea(Way[2]) == AreaId do
-						tremove(Way, 1)
-					end
-					for i,v in ipairs(Way) do
-						NextV = Way[i+1] or v
-						A1 = tmoTargetArea(v)
-						A2 = tmoTargetArea(NextV)
-						if A1 ~= A2 and Areas[A1] and Areas[A2] then
-							counter = counter + 1
-							Areas[A1].Neighbours[A2] = true
-							Areas[A2].Neighbours[A1] = true
-						end
-					end
-					if not Area.Neighbours[AId] then
-						ShrinkMonWay(Way, MonId, 3, false)
-						Area.Ways[AId] = Way
-						A.Ways[AreaId] = Way
-					end
-				end
-			end
+	local function CutWay(WayMap, StartArea, EndArea)
+		while #WayMap >= 2 and tmpTargetArea(WayMap[1]) ~= StartArea do
+			tremove(WayMap, 1)
 		end
-		collectgarbage("collect")
+		while #WayMap >= 2 and tmpTargetArea(WayMap[2]) == StartArea do
+			tremove(WayMap, 1)
+		end
+		while #WayMap >= 2 and tmpTargetArea(WayMap[#WayMap]) ~= EndArea do
+			tremove(WayMap, #WayMap)
+		end
+		while #WayMap >= 2 and tmpTargetArea(WayMap[#WayMap-1]) == EndArea do
+			tremove(WayMap, #WayMap)
+		end
 	end
-	tinsert(Log, "Building ways: " .. os.time() - StartTime .. ", neighbours found: " .. counter)
-	counter = 0
 
-	-- Find rest neighbours
-	for AreaId, Area in pairs(Areas) do
-		for AId, A in pairs(Areas) do
-			if not (AreaId == AId or Area.Neighbours[AId] or Area.Ways[AId]) then
-				for _, F1 in pairs(Area.Floors) do
-					for __, F2 in pairs(A.Floors) do
-						if SharedVertexes(Map.Facets[F1], Map.Facets[F2]) > 1 then
-							Area.Neighbours[AId] = true
-							A.Neighbours[AreaId] = true
-							break
+	-- Build ways
+	if Map.Rooms.count <= 2 then
+		local Way, NextV, A1, A2
+		for AreaId, Area in pairs(Areas) do
+			for AId, A in pairs(Areas) do
+				if AreaId ~= AId and not Area.Neighbours[AId] and not Area.Ways[AId] then
+					Way = AStarWay(MonId, Mon, A.WayPoint, nil, false, Area.WayPoint)
+					if #Way > 0 then
+						CutWay(Way, AreaId, AId)
+						for i,v in ipairs(Way) do
+							NextV = Way[i+1] or v
+							A1 = tmpTargetArea(v)
+							A2 = tmpTargetArea(NextV)
+							if A1 ~= A2 and Areas[A1] and Areas[A2] then
+								counter = counter + 1
+								Areas[A1].Neighbours[A2] = true
+								Areas[A2].Neighbours[A1] = true
+							end
 						end
-					end
-					if Area.Neighbours[AId] then
-						break
+						if not Area.Neighbours[AId] then
+							ShrinkMonWay(Way, MonId, 20, false)
+							Area.Ways[AId] = Way
+						end
 					end
 				end
 			end
+			collectgarbage("collect")
 		end
 	end
-	tinsert(Log, "Seeking neighbours: " .. os.time() - StartTime)
+	--tinsert(Log, "Building ways: " .. os.time() - StartTime .. ", neighbours found: " .. counter)
+	--counter = 0
 
 	-- Bake neighbour ways
 	for AreaId, Area in pairs(Areas) do
@@ -1019,6 +841,54 @@ local function MakeWayPoints()
 	end
 	NeighboursWays = NWays
 	tinsert(Log, "Baking neighbour ways: " .. os.time() - StartTime)
+
+	-- Build ways by rooms
+	if Map.Rooms.count > 2 then
+		local function MakeSubWays(WayMap, NMap, FromAreaId)
+			local CurWay
+			local CurNMap = table.copy(NMap)
+			tinsert(CurNMap, 1, FromAreaId)
+
+			for id1, a in pairs(CurNMap) do
+				for id2, b in pairs(CurNMap) do
+					if abs(id1 - id2) > 1 then
+						CurWay = table.copy(WayMap)
+						CutWay(CurWay, a, b)
+						if #CurWay > 2 then
+							Areas[a].Ways[b] = CurWay
+						end
+					end
+				end
+			end
+		end
+
+		local FromArea, ToArea, StartArea, StartPoint, CurWay
+		counter = 0
+		for FromAreaId, NAreas in pairs(NWays) do
+			counter = counter + 1
+			FromArea = Areas[FromAreaId]
+			for ToAreaId, Way in pairs(NAreas) do
+				ToArea = Areas[ToAreaId]
+				if #Way > 1 and FromArea.Ways[ToAreaId] == nil then
+					StartPoint = FromArea.WayPoint
+					StartArea = FromAreaId
+					for _, WayArea in pairs(Way) do
+						if FromArea.Ways[WayArea] then
+							CurWay = FromArea.Ways[WayArea]
+							StartPoint = CurWay[#CurWay]
+							StartArea = WayArea
+						else
+							break
+						end
+					end
+					CurWay = AStarWay(MonId, Mon, ToArea.WayPoint, nil, false, StartPoint)
+					CutWay(CurWay, StartArea, ToAreaId)
+					ShrinkMonWay(CurWay, MonId, 20, false)
+					MakeSubWays(CurWay, Way, StartArea)
+				end
+			end
+		end
+	end
 
 	-- TEST: Display areas
 	--for AId,Area in pairs(Areas) do
@@ -1158,11 +1028,9 @@ local function MakeMonWay(cMonWay, cMonId, cTarget)
 	WayMap = BuildWayUsingMapData(FromArea, ToArea, cMonId, Monster, cTarget, true)
 
 	if #WayMap > 0 then
-		test3 = true
 		cMonWay.GenTime = Game.Time
 		cMonWay.FailCount = 0
 	else
-		test3 = false
 		 -- delay next generation if previous one failed
 		cMonWay.FailCount = cMonWay.FailCount + 1
 		cMonWay.GenTime = Game.Time + const.Minute*4
@@ -1334,8 +1202,15 @@ local function PositionCheck()
 	end
 end
 
+local function PathfinderTick()
+	ProcessNextMon()
+	ProcessThreads()
+	PositionCheck()
+end
+
 function events.AfterLoadMap()
 	if not Game.ImprovedPathfinding or Map.IsOutdoor() then -- does not support outdoor maps yet.
+		events.Remove("Tick", PathfinderTick)
 		return
 	end
 	MapFloors, MapAreas, NeighboursWays = {}, {}, {}
@@ -1345,11 +1220,8 @@ function events.AfterLoadMap()
 	Pathfinder.MapAreas = MapAreas
 	Pathfinder.NWays = NeighboursWays
 
-	function events.Tick()
-		ProcessNextMon()
-		ProcessThreads()
-		PositionCheck()
-	end
+	events.Tick = PathfinderTick
+
 	if Pathfinder.BakeFloors then
 		Pathfinder.BakeFloors(MapFloors)
 	end
@@ -1369,20 +1241,20 @@ end
 --~ 	return timeGetTime() - Start
 --~ end
 
---~ function ShowWay(WayMap, Pause)
---~ 	Pause = Pause or 300
---~ 	local Step = 1
---~ 	local PrevCell, NextCell = WayMap[Step], WayMap[Step + 1]
---~ 	while NextCell do
---~ 		Party.X = NextCell.X
---~ 		Party.Y = NextCell.Y
---~ 		Party.Z = NextCell.Z + 5
---~ 		Sleep(Pause,Pause)
+function ShowWay(WayMap, Pause)
+	Pause = Pause or 300
+	local Step = 1
+	local PrevCell, NextCell = WayMap[Step], WayMap[Step + 1]
+	while NextCell do
+		Party.X = NextCell.X
+		Party.Y = NextCell.Y
+		Party.Z = NextCell.Z + 5
+		Sleep(Pause,Pause)
 
---~ 		Step = Step + 1
---~ 		PrevCell, NextCell = WayMap[Step], WayMap[Step + 1]
---~ 	end
---~ end
+		Step = Step + 1
+		PrevCell, NextCell = WayMap[Step], WayMap[Step + 1]
+	end
+end
 
 --~ function ClosestMonster()
 --~ 	local MinDist, Mon = 30000, 123
@@ -1410,18 +1282,20 @@ end
 --~ 	return {X = t.X, Y = t.Y, Z = t.Z} -- -1215 -1206
 --~ end
 
---~ function events.AfterLoadMap()
---~ 	function CreateTESTWidget()
---~ 		TESTWidget = CustomUI.CreateText{Text = "", Key = "TESTWidget", X = 200, Y = 240, Width = 400, Height = 100}
+WidgetText = ""
+function events.AfterLoadMap()
+	function CreateTESTWidget()
+		TESTWidget = CustomUI.CreateText{Text = "", Key = "TESTWidget", X = 200, Y = 240, Width = 400, Height = 100}
 
---~ 		local function WidgetTimer()
---~ 			TESTWidget.Text = Party.X .. " : " .. Party.Y .. " : " .. Party.Z .. " - " .. mem.call(Pathfinder.AltGetFloorLevelAsm, 0, Party.X, Party.Y, Party.Z)
---~ 			TESTWidget.Text = TESTWidget.Text .. " q: " .. #AStarQueue .. " r: " .. tostring(test3)
---~ 			Game.NeedRedraw = true
---~ 		end
+		local function WidgetTimer()
+			TESTWidget.Text = Party.X .. " : " .. Party.Y .. " : " .. Party.Z .. " - " .. mem.call(Pathfinder.AltGetFloorLevelAsm, 0, Party.X, Party.Y, Party.Z)
+			TESTWidget.Text = TESTWidget.Text .. " q: " .. #AStarQueue .. " r: " .. tostring(test3)
 
---~ 		Timer(WidgetTimer, const.Minute/64)
---~ 	end
---~ 	CreateTESTWidget()
---~ end
+			Game.NeedRedraw = true
+		end
+
+		Timer(WidgetTimer, const.Minute/64)
+	end
+	CreateTESTWidget()
+end
 
