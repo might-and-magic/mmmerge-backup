@@ -48,7 +48,7 @@ mem.autohook2(0x437751, function(d)
 	local mon = GetMonster(d.ecx)
 
 	local Buff = mon.SpellBuffs[const.MonsterBuff.Paralyze]
-	Buff.ExpireTime = Game.Time + const.Minute + Skill*Mas
+	Buff.ExpireTime = math.max(Game.Time + const.Minute + Skill*Mas, Buff.ExpireTime)
 end)
 
 -- Change chance of monster being stunned
