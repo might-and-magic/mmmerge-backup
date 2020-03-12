@@ -1241,20 +1241,20 @@ end
 --~ 	return timeGetTime() - Start
 --~ end
 
-function ShowWay(WayMap, Pause)
-	Pause = Pause or 300
-	local Step = 1
-	local PrevCell, NextCell = WayMap[Step], WayMap[Step + 1]
-	while NextCell do
-		Party.X = NextCell.X
-		Party.Y = NextCell.Y
-		Party.Z = NextCell.Z + 5
-		Sleep(Pause,Pause)
+--~ function ShowWay(WayMap, Pause)
+--~ 	Pause = Pause or 300
+--~ 	local Step = 1
+--~ 	local PrevCell, NextCell = WayMap[Step], WayMap[Step + 1]
+--~ 	while NextCell do
+--~ 		Party.X = NextCell.X
+--~ 		Party.Y = NextCell.Y
+--~ 		Party.Z = NextCell.Z + 5
+--~ 		Sleep(Pause,Pause)
 
-		Step = Step + 1
-		PrevCell, NextCell = WayMap[Step], WayMap[Step + 1]
-	end
-end
+--~ 		Step = Step + 1
+--~ 		PrevCell, NextCell = WayMap[Step], WayMap[Step + 1]
+--~ 	end
+--~ end
 
 --~ function ClosestMonster()
 --~ 	local MinDist, Mon = 30000, 123
@@ -1282,20 +1282,20 @@ end
 --~ 	return {X = t.X, Y = t.Y, Z = t.Z} -- -1215 -1206
 --~ end
 
-WidgetText = ""
-function events.AfterLoadMap()
-	function CreateTESTWidget()
-		TESTWidget = CustomUI.CreateText{Text = "", Key = "TESTWidget", X = 200, Y = 240, Width = 400, Height = 100}
+--~ WidgetText = ""
+--~ function events.AfterLoadMap()
+--~ 	function CreateTESTWidget()
+--~ 		TESTWidget = CustomUI.CreateText{Text = "", Key = "TESTWidget", X = 200, Y = 240, Width = 400, Height = 100}
 
-		local function WidgetTimer()
-			TESTWidget.Text = Party.X .. " : " .. Party.Y .. " : " .. Party.Z .. " - " .. mem.call(Pathfinder.AltGetFloorLevelAsm, 0, Party.X, Party.Y, Party.Z)
-			TESTWidget.Text = TESTWidget.Text .. " q: " .. #AStarQueue .. " r: " .. tostring(test3)
+--~ 		local function WidgetTimer()
+--~ 			TESTWidget.Text = Party.X .. " : " .. Party.Y .. " : " .. Party.Z .. " - " .. mem.call(Pathfinder.AltGetFloorLevelAsm, 0, Party.X, Party.Y, Party.Z)
+--~ 			TESTWidget.Text = TESTWidget.Text .. " q: " .. #AStarQueue .. " r: " .. tostring(test3)
 
-			Game.NeedRedraw = true
-		end
+--~ 			Game.NeedRedraw = true
+--~ 		end
 
-		Timer(WidgetTimer, const.Minute/64)
-	end
-	CreateTESTWidget()
-end
+--~ 		Timer(WidgetTimer, const.Minute/64)
+--~ 	end
+--~ 	CreateTESTWidget()
+--~ end
 
