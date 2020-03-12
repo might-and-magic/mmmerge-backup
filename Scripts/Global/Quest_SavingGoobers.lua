@@ -234,20 +234,14 @@ local GemsNeedStr
 local GemsNeed = {	Game.ItemsTxt[177].Name, Game.ItemsTxt[178].Name, Game.ItemsTxt[179].Name, Game.ItemsTxt[180].Name, Game.ItemsTxt[181].Name,
 					Game.ItemsTxt[182].Name, Game.ItemsTxt[183].Name, Game.ItemsTxt[184].Name, Game.ItemsTxt[185].Name, Game.ItemsTxt[186].Name}
 
-TXT.EnchantTheGem	= TXT.EnchantTheGem:format(table.concat(GemsNeed, ", "))
-TXT.EnGemQuest		= TXT.EnGemQuest:format(table.concat(GemsNeed, ", "))
+TXT.EnchantTheGem	= TXT.EnchantTheGem:format(table.concat(GemsNeed, Game.NPCText[2704])) -- ", "
+TXT.EnGemQuest		= TXT.EnGemQuest:format(table.concat(GemsNeed, Game.NPCText[2704])) -- ", "
 
 QSet.GemsLeftNums = QSet.GemsLeftNums or {[1]=true,[2]=true,[3]=true,[4]=true,[5]=true,[6]=true,[7]=true,[8]=true,[9]=true,[10]=true}
 
 local function CheckGems()
 
-	local Done = true
-	for k,v in pairs(QSet.GemsLeftNums) do
-		if v then
-			Done = false
-			break
-		end
-	end
+	local Done = table.find(QSet.GemsLeftNums, true) == nil
 
 	if Done then
 		Message(TXT.EnGemDone)
@@ -262,7 +256,7 @@ local function CheckGems()
 				table.insert(tmpT, GemsNeed[k])
 			end
 		end
-		GemsNeedStr = table.concat(tmpT, ", ")
+		GemsNeedStr = table.concat(tmpT, Game.NPCText[2704]) -- ", "
 		return GemsNeedStr
 	end
 
@@ -274,14 +268,19 @@ local function CheckGems()
 				if Gem and QSet.GemsLeftNums[Gem] then
 					QSet.GemsLeftNums[Gem] = false
 					evt[iP].Subtract{"Inventory", v.Number}
-					Message(TXT.EnGemBringOne:format(ItemTxt.Name, MakeGemStr()))
+
+					if table.find(QSet.GemsLeftNums, true) then
+						Message(TXT.EnGemBringOne:format(ItemTxt.Name, MakeGemStr()))
+					else
+						Message(string.format(Game.NPCText[2707], ItemTxt.Name)) -- "Well, this is %s."
+					end
 					return false
 				end
 			end
 		end
 	end
 
-	Message(TXT.EnGemGiven .. "\n" .. "(" .. MakeGemStr() .. ")")
+	Message(TXT.EnGemGiven .. "\n" .. Game.NPCText[2705] .. MakeGemStr() .. Game.NPCText[2706]) -- "(" .. MakeGemStr() .. ")"
 	return false
 end
 
@@ -356,7 +355,7 @@ Quest{
 
 QSet.Attuned = QSet.Attuned or {[6] = true}
 local StatsToCheck	= {"Might", "Intellect", "Personality", "Endurance", "Accuracy", "Luck"}
-local AttuneEffects	= {"Weak", "Insane", "Cursed", "Unconscious", "Asleep", "Paralysed", "Drunk"} -- Might, Intellect, Personality, Endurance, Accuracy, Speed, Luck
+local AttuneEffects	= {"Weak", "Insane", "Cursed", "Disease1", "Asleep", "Afraid", "Drunk"} -- Might, Intellect, Personality, Endurance, Accuracy, Speed, Luck
 
 local function AttuneStat(Stat)
 	local PlayerStat = Party[Game.CurrentPlayer].Stats[Stat]
@@ -412,16 +411,17 @@ Quest{
 		TopicGiven = Topics[10], --"Attune the Telelocator"
 		Undone	= TXT.Attunement,
 
- 		Done	= "Done!",
+ 		Done	= Game.NPCText[2708],
  		Quest	= TXT.AttuneQuest
 	},
 	Exp	= 10000
 }
 
+local statNameGlobalTxtNumbers = {144, 116, 163, 75, 1, 136} -- "Might", "Intellect", "Personality", "Endurance", "Accuracy", "Luck"
 for i,v in ipairs(StatsToCheck) do
 
 	NPCTopic{
-		Topic	= Topics[11] .. v, --"Attune "
+		Topic	= Topics[11] .. Game.GlobalTxt[statNameGlobalTxtNumbers[i]], --"Attune "
 		Name	= "SG_Attune_" .. v,
 		NPC		= VerdantNPC,
 		Slot	= i < 4 and i-1 or i-4,
