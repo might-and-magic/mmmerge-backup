@@ -1937,6 +1937,41 @@ local GetCheapestCell = mem.asmproc([[
 	pop esi
 	retn]])
 
+-- takes facet id in eax, returns 1 in eax if facet is in allowed room, otherwise - 0.
+local FacetInAllowedRoom = mem.asmproc([[
+	cmp eax, 0
+	jl @nequ
+	mov ecx, dword [ss:esp+0x4]
+	test ecx, ecx
+	je @end
+	cmp word [ds:ecx], 0; if no AvAreas defined, just return 1
+	je @end
+
+	; get facet
+	imul eax, eax, 96; Facet size
+	add eax, dword [ds:0x6f3c84]; MapFacets ptr
+	movsx eax, word [ds:eax+0x4c]
+
+	; check if area is in AvAreas
+	@rep2:
+	cmp word [ds:ecx], 0
+	je @nequ
+	cmp word [ds:ecx], ax
+	je @end
+	add ecx, 2
+	jmp @rep2
+
+	@nequ:
+	xor eax, eax
+	jmp @exit
+
+	@end:
+	xor eax, eax
+	inc eax
+
+	@exit:
+	retn]])
+
 -- takes facet id in eax, returns 1 in eax if facet is in allowed area, otherwise - 0.
 local FacetInAllowedArea = mem.asmproc([[
 	cmp eax, 0
@@ -2129,7 +2164,7 @@ local AStarWayAsm = mem.asmproc([[
 			; check if area is allowed for tracing
 			mov eax, ecx
 			push dword [ss:ebp+0x28]
-			call absolute ]] .. FacetInAllowedArea .. [[;
+			call absolute ]] .. FacetInAllowedRoom .. [[;
 			pop ecx
 			test eax, eax
 			je @repdirs
