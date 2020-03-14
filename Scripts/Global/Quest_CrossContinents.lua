@@ -549,7 +549,14 @@ if not QSet.QuestFinished then
 		}
 
 	local ChaosPortraits = {354, 358, 66, 167, 257, 273}
-	local ChaosNames = {"Anya Charo","Wan Ruchos","Noah Charo","Chan Os Wy","R.C. Wosch","Runaway Chaos"}
+	local ChaosNames = {
+		Game.NPCText[2709], -- "Anya Charo"
+		Game.NPCText[2710], -- "Wan Ruchos"
+		Game.NPCText[2711], -- "Noah Charo"
+		Game.NPCText[2712], -- "Chan Os Wy"
+		Game.NPCText[2713], -- "R.C. Wosch"
+		Game.NPCDataTxt[RunChaosNPC].Name} -- "Runaway Chaos"
+
 	local ChaosProfs = {24,33,77,42,65,0}
 	local NPC = Game.NPC[RunChaosNPC]
 	QSet.RiddlesAnswered = QSet.RiddlesAnswered or 0
@@ -667,7 +674,7 @@ if not QSet.QuestFinished then
 				else
 					t.Texts.Topic = Game.NPCTopic[1792]
 					Message(Game.NPCText[2262])
-					Game.NPC[t.NPC].Name = "Runaway Chaos"
+					Game.NPC[t.NPC].Name = Game.NPCDataTxt[RunChaosNPC].Name
 				end
 			else
 				local Seed = math.random(1,3)
@@ -688,13 +695,13 @@ if not QSet.QuestFinished then
 
 	QSet.RiddlesLeft = QSet.RiddlesLeft or {1,2,3,4,5,6,7,8,9,10,11}
 
-	local CurrentRiddle
+	--local CurrentRiddle
 
-	function events.EnterNPC(NpcId)
-		if NpcId == RunChaosNPC and #QSet.RiddlesLeft > 0 then
-			CurrentRiddle = math.random(1,#QSet.RiddlesLeft)
-		end
-	end
+	--function events.EnterNPC(NpcId)
+	--	if NpcId == RunChaosNPC and #QSet.RiddlesLeft > 0 then
+	--		CurrentRiddle = math.random(1,#QSet.RiddlesLeft)
+	--	end
+	--end
 
 	NPCTopic{
 		Topic	= Game.NPCTopic[1790],
@@ -709,6 +716,7 @@ if not QSet.QuestFinished then
 				return
 			end
 
+			local CurrentRiddle = math.random(1,#QSet.RiddlesLeft)
 			local riddle = Riddles[QSet.RiddlesLeft[CurrentRiddle]]
 			local Answer = Question(FQRiddleStart[math.random(1, #FQRiddleStart)] .. "\n\n" .. riddle.text)
 
