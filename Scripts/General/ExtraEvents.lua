@@ -403,7 +403,7 @@ function events.GameInitialized2()
 	mov word [ds:]] .. TargetBuf+2 .. [[+eax*4], ax;
 	mov word [ds:]] .. TargetBuf   .. [[+eax*4], 3; -- target is monster (const.ObjectRefKind) ]])
 
-	local function GetMonsterTarget(i)
+	function GetMonsterTarget(i)
 		return u2[TargetBuf+i*4], u2[TargetBuf+i*4+2]
 	end
 
