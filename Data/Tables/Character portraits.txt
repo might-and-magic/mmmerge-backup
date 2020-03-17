@@ -71,5 +71,5 @@
 69	2	45	59	0	-	48	54	0	0	backdol3	LMinbod	none	LMinLhd	LMinlhu	LMinlho	LMinrhb	none	LMinlhu	LMinrhd	LMinrhu	LMin-	0	0	7030	6	Minotaur Lich
 70	2	16	59	0	-	48	54	0	0	backdol3	ZMinbod	none	ZMinLhd	ZMinlhu	ZMinlho	ZMinrhb	none	ZMinlhu	ZMinrhd	ZMinrhu	ZMin-	0	0	7029	10	Minotaur zombie (conditional portrait)
 71	5	10	25	0	-	0	0	0	0	pc39bod	pc39bod	none	none	none	none	none	none	none	none	none	pc39-	0	137	7031	5	Black dragon
-72	4	16	59	0	-	43	43	0	0	7backdoll	7pc24bod	none	dzmalLHo	dzmalLHu	dzmalLHd	dzmalrhb	none	dzmallhu	dzmalrhd	dzmalrhu	7pc24-	0	0	7025	10	Dwarf zombie (conditional portrait)
+72	4	16	59	0	-	31	46	0	0	7backdoll	dzmalbod	none	dzmalLHo	dzmalLHu	dzmalLHd	dzmalrhb	none	dzmallhu	dzmalrhd	dzmalrhu	7pc24-	0	0	7025	10	Dwarf zombie (conditional portrait)
 73	4	16	60	1	-	43	43	0	0	7backdoll	dzfembod	none	dzfemLHd	dzfemLHu	dzfemLHo	dzfemRHb	none	dzfemlhu	dzfemRHd	dzfemRHu	7pc25-	0	0	7026	10	Dwarf zombie (conditional portrait)

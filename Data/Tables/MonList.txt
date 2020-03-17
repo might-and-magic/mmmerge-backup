@@ -560,9 +560,9 @@
 558	233	121	140	0	999	999	999	0	2810	2811	2812	2813	BHydra A	hydfid	hydwal	Hydatk	Hydatk	hydwin	hyddyi	hydded	hydfid
 559	233	121	140	0	999	999	999	0	2810	2811	2812	2813	BHydra B	hy2fid	hy2wal	Hy2atk	Hy2atk	hy2win	hy2dyi	hy2ded	hy2fid
 560	233	121	140	0	999	999	999	0	2810	2811	2812	2813	BHydra C	hy3fid	hy3wal	Hy3atk	Hy3atk	hy3win	hy3dyi	hy3ded	hy3fid
-561	196	84	140	0	999	999	999	0	2820	2821	2822	2823	Jackalman A	jak1sta	jak1wka	jak1ata0	jak1ata0	jak1wia0	jak1dya0	jak1dyf0	jak1fia
-562	196	84	140	0	999	999	999	0	2820	2821	2822	2823	Jackalman B	jak2sta	jak2wka	jak2ata0	jak2ata0	jak2wia0	jak2dya0	jak2dyf0	jak2fia
-563	196	84	140	0	999	999	999	0	2820	2821	2822	2823	Jackalman C	jak3sta	jak3wka	jak3ata0	jak3ata0	jak3wia0	jak3dya0	jak3dyf0	jak3fia
+561	140	60	140	0	999	999	999	0	2820	2821	2822	2823	Jackalman A	jak1sta	jak1wka	jak1ata0	jak1ata0	jak1wia0	jak1dya0	jak1dyf0	jak1fia
+562	140	60	140	0	999	999	999	0	2820	2821	2822	2823	Jackalman B	jak2sta	jak2wka	jak2ata0	jak2ata0	jak2wia0	jak2dya0	jak2dyf0	jak2fia
+563	140	60	140	0	999	999	999	0	2820	2821	2822	2823	Jackalman C	jak3sta	jak3wka	jak3ata0	jak3ata0	jak3wia0	jak3dya0	jak3dyf0	jak3fia
 564	152	51	140	0	999	999	999	0	2830	2831	2832	2833	KnightPlate A	knista	kniwalk	Kniatk	Kniatk	kniwin	knidet	knided	knifid
 565	152	51	140	0	999	999	999	0	2830	2831	2832	2833	KnightPlate B	knBsta	knBwalk	KnBatk	KnBatk	knBwin	knBdet	knBded	knBfid
 566	152	51	140	0	999	999	999	0	2830	2831	2832	2833	KnightPlate C	knCsta	knCwalk	KnCatk	KnCatk	knCwin	knCdet	knCded	knCfid
