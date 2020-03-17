@@ -66,9 +66,10 @@
 	]])
 
 	-- fix flickering during crossing portals in indoor maps
-	mem.nop(0x4af43a, 6)
-	mem.nop(0x4af44d, 6)
-	mem.nop(0x4af505, 6)
+	-- Use party Z instead of camera Z, when checking portals:
+	mem.asmpatch(0x4af29c, "mov edx, dword [ds:0xB2155C]")
+	-- Increase offset for MaxZ
+	mem.asmpatch(0x4af2ae, "add edi, 0x7f")
 
 	-- make "spirit lash" work correctly and damage few party members
 	mem.asmpatch(0x40548d, "jle 0x40546f - 0x40548d")
