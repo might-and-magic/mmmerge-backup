@@ -21,7 +21,6 @@ local AllowedDirections = {
 }
 
 local TickEndTime = 0 -- end time for coroutines in current tick.
-local MAXTracingPrecision, MINTracingPrecision = 1500, 100 -- more = faster tracing, less = accurate result
 local HaveMapData = false
 local MapFloors, MapAreas, NeighboursWays = {}, {}, {}
 local TimerPeriod = ceil(const.Minute/4)
@@ -85,6 +84,10 @@ local function DistanceBetweenFacets(f1, f2) -- Approx
 end
 
 local function AreaOfTarget(Target)
+	if Map.Rooms.count > 2 then -- assuming areas were created using rooms.
+		return Map.RoomFromPoint(Target)
+	end
+
 	local _, FacetId = Map.GetFloorLevel(XYZ(Target))
 	if not HaveMapData then
 		return FacetId
@@ -141,10 +144,12 @@ end
 local function TraceSight(From, To)
 	return mem.call(Pathfinder.TraceLineAsm, 0, 0, 0, From.X, From.Y, From.Z+5, To.X, To.Y, To.Z+5) == 1
 end
+Pathfinder.TraceSight = TraceSight
 
-function TraceMonWayAsm(MonId, Monster, From, To, Radius)
+local function TraceMonWayAsm(MonId, Monster, From, To, Radius)
 	return mem.call(Pathfinder.TraceAsm, 0, MonId, Radius, From.X, From.Y, From.Z, To.X, To.Y, To.Z) == 1
 end
+Pathfinder.TraceMonWayAsm = TraceMonWayAsm
 
 --------------------------------------------------
 --				Way generation					--
@@ -431,7 +436,7 @@ local function ImportAreasInfo(Path)
 		elseif Words[1] == ">" then
 			Area = tonumber(Words[2])
 			Val = tonumber(Words[3])
-			Items = string.split(Words[4] or "", "|")
+			Items = string.split(Words[6] or "", "|")
 			if Area and Val and #Items > 0 then
 				for i,v in pairs(Items) do
 					Items[i] = tonumber(v)
@@ -731,17 +736,7 @@ local function MakeAreasFromFacets(Floors, Areas, NWays, StartTime, Log)
 end
 
 local function MakeWayPoints()
-
-	local Floors, Areas, NWays = ImportAreasInfo(Path)
-	if Floors then
-		MapFloors, MapAreas = Floors, Areas
-		if Pathfinder then
-			Pathfinder.BakeFloors(Floors)
-		end
-		return Floors, Areas, NWays
-	end
-
-	Floors, Areas, NWays = {}, {}, {}
+	local Floors, Areas, NWays = {}, {}, {}
 	local StartTime = os.time()
 	local Log = {}
 	local counter = 0
@@ -772,61 +767,30 @@ local function MakeWayPoints()
 	if Pathfinder then
 		Pathfinder.BakeFloors(Floors)
 	end
-	local Mon, MonId = SummonMonster(1, XYZ(Party))
-	local MapInTxt = Game.MapStats[Map.MapStatsIndex]
-	Mon.AIState = const.AIState.Removed
+	--local Mon, MonId = SummonMonster(1, XYZ(Party))
+	--local MapInTxt = Game.MapStats[Map.MapStatsIndex]
+	--Mon.AIState = const.AIState.Removed
 
-	local function tmpTargetArea(target)
-		local _, F = Map.GetFloorLevel(XYZ(target))
-		return Floors[F] or 0
-	end
+	--local function tmpTargetArea(target)
+	--	local _, F = Map.GetFloorLevel(XYZ(target))
+	--	return Floors[F] or 0
+	--end
 
-	local function CutWay(WayMap, StartArea, EndArea)
-		while #WayMap >= 2 and tmpTargetArea(WayMap[1]) ~= StartArea do
-			tremove(WayMap, 1)
-		end
-		while #WayMap >= 2 and tmpTargetArea(WayMap[2]) == StartArea do
-			tremove(WayMap, 1)
-		end
-		while #WayMap >= 2 and tmpTargetArea(WayMap[#WayMap]) ~= EndArea do
-			tremove(WayMap, #WayMap)
-		end
-		while #WayMap >= 2 and tmpTargetArea(WayMap[#WayMap-1]) == EndArea do
-			tremove(WayMap, #WayMap)
-		end
-	end
+	--local function CutWay(WayMap, StartArea, EndArea)
+	--	while #WayMap >= 2 and tmpTargetArea(WayMap[1]) ~= StartArea do
+	--		tremove(WayMap, 1)
+	--	end
+	--	while #WayMap >= 2 and tmpTargetArea(WayMap[2]) == StartArea do
+	--		tremove(WayMap, 1)
+	--	end
+	--	while #WayMap >= 2 and tmpTargetArea(WayMap[#WayMap]) ~= EndArea do
+	--		tremove(WayMap, #WayMap)
+	--	end
+	--	while #WayMap >= 2 and tmpTargetArea(WayMap[#WayMap-1]) == EndArea do
+	--		tremove(WayMap, #WayMap)
+	--	end
+	--end
 
-	-- Build ways
-	if Map.Rooms.count <= 2 then
-		local Way, NextV, A1, A2
-		for AreaId, Area in pairs(Areas) do
-			for AId, A in pairs(Areas) do
-				if AreaId ~= AId and not Area.Neighbours[AId] and not Area.Ways[AId] then
-					Way = AStarWay(MonId, Mon, A.WayPoint, nil, false, Area.WayPoint)
-					if #Way > 0 then
-						CutWay(Way, AreaId, AId)
-						for i,v in ipairs(Way) do
-							NextV = Way[i+1] or v
-							A1 = tmpTargetArea(v)
-							A2 = tmpTargetArea(NextV)
-							if A1 ~= A2 and Areas[A1] and Areas[A2] then
-								counter = counter + 1
-								Areas[A1].Neighbours[A2] = true
-								Areas[A2].Neighbours[A1] = true
-							end
-						end
-						if not Area.Neighbours[AId] then
-							ShrinkMonWay(Way, MonId, 20, false)
-							Area.Ways[AId] = Way
-						end
-					end
-				end
-			end
-			collectgarbage("collect")
-		end
-	end
-	--tinsert(Log, "Building ways: " .. os.time() - StartTime .. ", neighbours found: " .. counter)
-	--counter = 0
 
 	-- Bake neighbour ways
 	for AreaId, Area in pairs(Areas) do
@@ -842,54 +806,6 @@ local function MakeWayPoints()
 	NeighboursWays = NWays
 	tinsert(Log, "Baking neighbour ways: " .. os.time() - StartTime)
 
-	-- Build ways by rooms
-	if Map.Rooms.count > 2 then
-		local function MakeSubWays(WayMap, NMap, FromAreaId)
-			local CurWay
-			local CurNMap = table.copy(NMap)
-			tinsert(CurNMap, 1, FromAreaId)
-
-			for id1, a in pairs(CurNMap) do
-				for id2, b in pairs(CurNMap) do
-					if abs(id1 - id2) > 1 then
-						CurWay = table.copy(WayMap)
-						CutWay(CurWay, a, b)
-						if #CurWay > 2 then
-							Areas[a].Ways[b] = CurWay
-						end
-					end
-				end
-			end
-		end
-
-		local FromArea, ToArea, StartArea, StartPoint, CurWay
-		counter = 0
-		for FromAreaId, NAreas in pairs(NWays) do
-			counter = counter + 1
-			FromArea = Areas[FromAreaId]
-			for ToAreaId, Way in pairs(NAreas) do
-				ToArea = Areas[ToAreaId]
-				if #Way > 1 and FromArea.Ways[ToAreaId] == nil then
-					StartPoint = FromArea.WayPoint
-					StartArea = FromAreaId
-					for _, WayArea in pairs(Way) do
-						if FromArea.Ways[WayArea] then
-							CurWay = FromArea.Ways[WayArea]
-							StartPoint = CurWay[#CurWay]
-							StartArea = WayArea
-						else
-							break
-						end
-					end
-					CurWay = AStarWay(MonId, Mon, ToArea.WayPoint, nil, false, StartPoint)
-					CutWay(CurWay, StartArea, ToAreaId)
-					ShrinkMonWay(CurWay, MonId, 20, false)
-					MakeSubWays(CurWay, Way, StartArea)
-				end
-			end
-		end
-	end
-
 	-- TEST: Display areas
 	--for AId,Area in pairs(Areas) do
 	--	for k,v in pairs(Area.Floors) do
@@ -899,7 +815,7 @@ local function MakeWayPoints()
 
 	ExportAreasInfo(Areas, NWays)
 	HaveMapData = true
-	return table.concat(Log, "\n")
+	return Areas, Floors, NWays, table.concat(Log, "\n")
 end
 Pathfinder.MakeWayPoints = MakeWayPoints
 
@@ -952,9 +868,9 @@ local function ProcessThreads()
 			tremove(AStarQueue, 1)
 			co = AStarQueue[1] and AStarQueue[1].co
 		else
-			testResult, testError = coresume(co)
-			if type(testError) == "string" then
-				debug.Message(testError)
+			local err, res = coresume(co)
+			if type(res) == "string" then
+				debug.Message(res)
 			end
 		end
 	end
@@ -962,7 +878,7 @@ end
 
 local function BuildWayUsingMapData(FromArea, ToArea, MonId, Monster, Target, Async)
 	local WayMap
-	if not HaveMapData or Monster.Fly == 1 or ToArea == 0 then
+	if not HaveMapData or ToArea == 0 then
 		WayMap = AStarWay(MonId, Monster, Target, nil, Async)
 
 	elseif FromArea == ToArea then
@@ -972,43 +888,26 @@ local function BuildWayUsingMapData(FromArea, ToArea, MonId, Monster, Target, As
 		WayMap = AStarWay(MonId, Monster, Target, {[FromArea] = true, [ToArea] = true}, Async)
 
 	else
-		local ExistingWay = MapAreas[FromArea].Ways[ToArea]
-		local AreaWay = NeighboursWays[FromArea][ToArea]
-
-		if #AreaWay > 10 then
-			TooFar = true
-
-		elseif ExistingWay and #ExistingWay > 0 then
-			WayMap = AStarWay(MonId, Monster, ExistingWay[1], {[FromArea] = true, [AreaOfTarget(ExistingWay[1])] = true}, Async)
-			for i,v in ipairs(ExistingWay) do
-				tinsert(WayMap, v)
+		WayMap = NeighboursWays[FromArea][ToArea]
+		if WayMap and #WayMap > 0 then
+			local AvAreas = {}
+			AvAreas[FromArea] = true
+			for k,v in pairs(WayMap) do
+				AvAreas[v] = true
 			end
-
-		elseif #AreaWay > 0 then
-			local CurWay
-			for i,v in ipairs(AreaWay) do
-				CurWay = MapAreas[FromArea].Ways[v]
-				if CurWay and #CurWay > 0 then
-					WayMap = CurWay
-				else
-					break
-				end
-			end
-			if WayMap then
-				CurWay = AStarWay(MonId, Monster, WayMap[1], {[FromArea] = true}, Async)
-				for i,v in ipairs(WayMap) do
-					tinsert(CurWay, v)
-				end
-				WayMap = CurWay
-			else
-				WayMap = AStarWay(MonId, Monster, MapAreas[AreaWay[1]].WayPoint, {[FromArea] = true, [AreaWay[1]] = true}, Async)
-			end
-
+			WayMap = AStarWay(MonId, Monster, Target, AvAreas, Async)
 		else
 			WayMap = AStarWay(MonId, Monster, Target, nil, Async)
 		end
 	end
 	return WayMap
+end
+Pathfinder.BuildWayUsingMapData = BuildWayUsingMapData
+
+testbuild = function(MonId, To)
+	local Mon = Map.Monsters[MonId]
+	local rfp = Map.RoomFromPoint
+	return BuildWayUsingMapData(rfp(Mon), rfp(Party), MonId, Mon, Party, false)
 end
 
 local function MakeMonWay(cMonWay, cMonId, cTarget)
@@ -1074,6 +973,16 @@ local function StuckCheck(MonId, Monster)
 	return false
 end
 
+local function MonsterNeedProcessing(Mon)
+	local result = true
+	if Mon.Fly == 1 then
+		result = GetDist2(Mon, Party) < 4000
+	else
+		result = GetDist2(Mon, Party) < 9000
+	end
+	return Mon.Active and Mon.HP >= 0 and (Mon.AIState == 6 or (Mon.ShowAsHostile and (Mon.AIState == 1 or Mon.AIState == 0)))
+end
+
 local NextMon = 0
 local function ProcessNextMon()
 	if Game.TurnBased == 1 then
@@ -1095,7 +1004,7 @@ local function ProcessNextMon()
 		NextMon = MonId + 1
 		Monster = Map.Monsters[MonId]
 
-		if Monster.Active and Monster.HP >= 0 and Monster.AIState == 6 then
+		if MonsterNeedProcessing(Monster) then
 			Target = Party -- Only Party at the moment
 			MonWay = MonsterWays[MonId] or {
 				WayMap = {},
@@ -1160,7 +1069,7 @@ local function ProcessNextMon()
 			elseif MonWay.InProcess then
 				-- let it roam
 			else
-				if Game.Time - MonWay.GenTime > const.Minute*4 then
+				if Game.Time - MonWay.GenTime > const.Minute*2 then
 					MonWay.NeedRebuild = true
 				end
 			end
@@ -1180,7 +1089,7 @@ local function PositionCheck()
 			return
 		end
 		Monster = Map.Monsters[k]
-		if not v.TargetInSight and Monster.AIState == 6 and v.WayMap and v.Size > 0 then
+		if not v.TargetInSight and v.WayMap and v.Size > 0 and MonsterNeedProcessing(Monster) then
 			local WayPoint = v.WayMap[v.Step]
 			if WayPoint then
 				Monster.Direction = DirectionToPoint(WayPoint, Monster)
@@ -1282,14 +1191,13 @@ end
 --~ 	return {X = t.X, Y = t.Y, Z = t.Z} -- -1215 -1206
 --~ end
 
---~ WidgetText = ""
 --~ function events.AfterLoadMap()
 --~ 	function CreateTESTWidget()
 --~ 		TESTWidget = CustomUI.CreateText{Text = "", Key = "TESTWidget", X = 200, Y = 240, Width = 400, Height = 100}
 
 --~ 		local function WidgetTimer()
 --~ 			TESTWidget.Text = Party.X .. " : " .. Party.Y .. " : " .. Party.Z .. " - " .. mem.call(Pathfinder.AltGetFloorLevelAsm, 0, Party.X, Party.Y, Party.Z)
---~ 			TESTWidget.Text = TESTWidget.Text .. " q: " .. #AStarQueue .. " r: " .. tostring(test3)
+--~ 			TESTWidget.Text = TESTWidget.Text .. " q: " .. #AStarQueue .. " r: " .. Map.RoomFromPoint(Party)
 
 --~ 			Game.NeedRedraw = true
 --~ 		end

@@ -1,6 +1,7 @@
 
 Pathfinder = {}
 
+local u1, i1, u2, i2, u4 = mem.u1, mem.i1, mem.u2, mem.i2, mem.u4
 local CellItemSize = 20
 local CellsAmount = 8000
 local AllCellsPtr = mem.StaticAlloc(CellItemSize*(CellsAmount+2))
@@ -41,44 +42,34 @@ local AllowedDirections = {
 -- {X =  0, 	Y =  0,		Z =  1}
 }
 
+local AllowedDirsAsm = mem.StaticAlloc(#AllowedDirections*3)
+for i,v in ipairs(AllowedDirections) do
+	i1[AllowedDirsAsm+(i-1)*3]	 = v.X
+	i1[AllowedDirsAsm+(i-1)*3+1] = v.Y
+	i1[AllowedDirsAsm+(i-1)*3+2] = v.Z
+end
+
 local function cdataPtr(obj)
 	return tonumber(string.sub(tostring(obj), -10))
 end
 
-local AvAreasAsm = mem.StaticAlloc(20)
 local Floors = 0
-local FloorsPtr = mem.StaticAlloc(8)
-local EndOfFloors = FloorsPtr + 4
+local FloorsPtr = mem.StaticAlloc(4)
 local function BakeFloors(MapFloors)
 	-- Causes random crashes. Disabled for now.
---~ 	if not MapFloors then
---~ 		return
---~ 	end
---~ 	local n = 0
---~ 	for k,v in pairs(MapFloors) do
---~ 		n = n + 1
---~ 	end
---~ 	if n == 0 then
---~ 		return
---~ 	end
---~ 	n = math.max(n, 1)
-
---~ 	Floors = mem.malloc(Map.Facets.count*2)
---~ 	for k,v in pairs(MapFloors) do
---~ 		mem.u2[Floors + k*2] = v
---~ 	end
-
---~ 	mem.u4[FloorsPtr] = Floors
---~ 	mem.u4[EndOfFloors] = Floors + n*2
+	--Floors = mem.malloc(Map.Facets.count*4)
+	--mem.u4[FloorsPtr] = Floors
+	--for k,v in pairs(MapFloors) do
+	--	u4[Floors+k*4] = v
+	--end
 end
 Pathfinder.BakeFloors = BakeFloors
 
-function events.BeforeLoadMap()
+function events.LoadMap()
 	if Floors > 0 then
 		mem.free(Floors)
 	end
 	mem.u4[FloorsPtr] = 0
-	mem.u4[EndOfFloors] = 0
 end
 
 mem.hookalloc(0x1000)
@@ -336,6 +327,158 @@ local GetAngleVec = mem.asmproc([[
 	pop ebp
 	retn]])
 
+-- takes amount of nums, num1, [num2], [num3] ... returns greatest common divisor in eax.
+local GetGCD = mem.asmproc([[
+	push ebp
+	mov ebp, esp
+	push edi
+	push esi
+	sub esp, 0x4
+
+	mov dword [ss:esp], 1;
+	mov edi, dword [ss:ebp+0x8]; amount of input
+	lea esi, dword [ss:ebp+0xC]; input ptr
+
+	xor ecx, ecx
+	@abs_input:
+	mov eax, dword [ds:esi+ecx]
+	call absolute ]] .. absAsm .. [[;
+	mov dword [ds:esi+ecx], eax
+	add ecx, 0x4
+	dec edi
+	jne @abs_input
+
+	@loop_start:
+
+	mov edi, dword [ss:ebp+0x8]; amount of input
+	xor ecx, ecx
+	xor eax, eax
+	@sum_input:
+	add eax, dword [ds:esi+ecx]
+	add ecx, 0x4
+	dec edi
+	jne @sum_input
+
+	test eax, eax
+	je @one
+
+	; check input for 1 anywhere and for zeros everywhere, except one value
+	mov edi, dword [ss:ebp+0x8]; amount of input
+	xor ecx, ecx
+
+	@find_zeros:
+	cmp eax, dword [ds:esi+ecx]
+	je @end
+	cmp dword [ds:esi+ecx], 1
+	je @one
+	add ecx, 0x4
+	dec edi
+	jne @find_zeros
+
+	; check if entire input became equal
+	mov edi, dword [ss:ebp+0x8]; amount of input
+	xor ecx, ecx
+
+	@equality_check:
+	dec edi
+	je @end; all equal
+	mov eax, dword [ds:esi+ecx]
+	add ecx, 0x4
+	cmp eax, dword [ds:esi+ecx]
+	je @equality_check
+
+	; check if all are even
+	mov edi, dword [ss:ebp+0x8]; amount of input
+	xor ecx, ecx
+	xor edx, edx; count even numbers
+
+	@all_even:
+	mov eax, dword [ds:esi+ecx]
+	add ecx, 0x4
+	test eax, eax
+	je @con_all_even
+	and eax, 1
+	test eax, eax
+	jne @con_all_even
+	inc edx
+	@con_all_even:
+	dec edi
+	jne @all_even
+
+	test edx, edx
+	je @process_uneven
+	cmp edx, dword [ss:ebp+0x8]
+	jl @process_even
+
+	shl dword [ss:esp], 1; increase multiplier if all numbers are even
+
+	@process_even:
+
+	; halfen ever even input
+	mov edi, dword [ss:ebp+0x8]; amount of input
+	xor ecx, ecx
+	sub ecx, 4
+
+	@halfen_even:
+	add ecx, 0x4
+	dec edi
+	jl @loop_start
+	mov eax, dword [ds:esi+ecx]
+	and eax, 1
+	test eax, eax
+	jne @halfen_even
+	shr dword [ds:esi+ecx], 1
+	jmp @halfen_even
+
+	; if all numbers are uneven
+
+	; find MinNum, MaxNum, MaxOffset
+	; calculate (MaxNum - MinNum)/2
+	; update value by MaxOffset
+
+	@process_uneven:
+	mov edi, dword [ss:ebp+0x8]; amount of input
+	xor ecx, ecx
+	mov eax, 0xfffffff
+
+	@find_max_min:
+	dec edi
+	jl @update_max_num
+	cmp dword [esi+edi*4], 0
+	je @find_max_min
+	cmp eax, dword [esi+edi*4]
+	jl @con_seek1
+	mov eax, dword [esi+edi*4]
+	@con_seek1:
+	cmp ecx, dword [esi+edi*4]
+	jg @find_max_min
+	mov ecx, dword [esi+edi*4]
+	lea edx, dword [esi+edi*4]
+	jmp @find_max_min
+
+	@update_max_num:
+	sub ecx, eax
+	shr ecx, 1
+	mov dword [edx], ecx
+	jmp @loop_start
+
+	@one:
+	xor eax, eax
+	inc eax
+	jmp @end
+
+	@end:
+	mov ecx, dword [ss:esp]
+	imul eax, ecx
+	add esp, 0x4
+	pop esi
+	pop edi
+	mov esp, ebp
+	pop ebp
+	retn]])
+
+Pathfinder.GetGCD = GetGCD
+
 -- Takes two points, returns vector from first to second
 local MakeVec3D = mem.asmproc([[
 	push ecx
@@ -433,6 +576,30 @@ local VectorMul = mem.asmproc([[
 	sub edx, eax
 
 	mov dword [ds:edi+0x8], edx
+
+	; simplify vector to avoid integer overflow
+	push dword [ds:edi+0x8]
+	push dword [ds:edi+0x4]
+	push dword [ds:edi]
+	push 3
+	call absolute ]] .. GetGCD .. [[;
+	add esp, 0x10
+	mov ecx, eax
+
+	mov eax, dword [ds:edi]
+	cdq
+	idiv ecx
+	mov dword [ds:edi], eax
+
+	mov eax, dword [ds:edi+0x4]
+	cdq
+	idiv ecx
+	mov dword [ds:edi+0x4], eax
+
+	mov eax, dword [ds:edi+0x8]
+	cdq
+	idiv ecx
+	mov dword [ds:edi+0x8], eax
 
 	pop ebx
 	pop esi
@@ -1939,27 +2106,20 @@ local GetCheapestCell = mem.asmproc([[
 
 -- takes facet id in eax, returns 1 in eax if facet is in allowed room, otherwise - 0.
 local FacetInAllowedRoom = mem.asmproc([[
-	cmp eax, 0
-	jl @nequ
 	mov ecx, dword [ss:esp+0x4]
 	test ecx, ecx
 	je @end
-	cmp word [ds:ecx], 0; if no AvAreas defined, just return 1
-	je @end
 
+	; get facet area/room
+	;shl eax, 2
+	;add eax, dword [ds:]] .. FloorsPtr .. [[]
+	;mov eax, dword [eax]; Room/AreaId
 	; get facet
 	imul eax, eax, 96; Facet size
 	add eax, dword [ds:0x6f3c84]; MapFacets ptr
 	movsx eax, word [ds:eax+0x4c]
-
-	; check if area is in AvAreas
-	@rep2:
-	cmp word [ds:ecx], 0
-	je @nequ
-	cmp word [ds:ecx], ax
+	cmp byte [ecx+eax], 1
 	je @end
-	add ecx, 2
-	jmp @rep2
 
 	@nequ:
 	xor eax, eax
@@ -1971,51 +2131,6 @@ local FacetInAllowedRoom = mem.asmproc([[
 
 	@exit:
 	retn]])
-
--- takes facet id in eax, returns 1 in eax if facet is in allowed area, otherwise - 0.
-local FacetInAllowedArea = mem.asmproc([[
-	cmp eax, 0
-	jl @nequ
-	mov ecx, dword [ss:esp+0x4]
-	test ecx, ecx
-	je @end
-	cmp word [ds:ecx], 0; if no AvAreas defined, just return 1
-	je @end
-	cmp dword [ds:]] .. FloorsPtr .. [[], 0; if floors have not been backed, just return 1
-	je @end
-
-	; get area
-	imul eax, eax, 0x8
-	add eax, dword [ds:]] .. FloorsPtr .. [[]
-	mov eax, dword [ds:eax]
-	mov ecx, dword [ss:esp+0x4]
-
-	; check if area is in AvAreas
-	@rep2:
-	cmp word [ds:ecx], 0
-	je @nequ
-	cmp word [ds:ecx], ax
-	je @end
-	add ecx, 2
-	jmp @rep2
-
-	@nequ:
-	xor eax, eax
-	jmp @exit
-
-	@end:
-	xor eax, eax
-	inc eax
-
-	@exit:
-	retn]])
-
-local AllowedDirsAsm = mem.StaticAlloc(#AllowedDirections*3)
-for i,v in ipairs(AllowedDirections) do
-	mem.i1[AllowedDirsAsm+(i-1)*3]	 = v.X
-	mem.i1[AllowedDirsAsm+(i-1)*3+1] = v.Y
-	mem.i1[AllowedDirsAsm+(i-1)*3+2] = v.Z
-end
 
 local AStarWayParams = mem.StaticAlloc(48)
 
@@ -2081,12 +2196,30 @@ local AStarWayAsm = mem.asmproc([[
 		push ecx; X,Y,Z of cell
 		call absolute ]] .. GetDistAsm .. [[;
 		movzx ecx, word [ds:edi+0x90]; monster body radius
-		imul ecx, ecx, 0x2
-		;add ecx, 0xc8
+		shl ecx, 1
+		add ecx, 0x64
 		cmp eax, ecx
-		mov eax, 1
-		jle @endloop
+		jg @monster_far_or_not_in_sight
 
+		mov eax, dword [ds:]] .. AStarWayParams + 4 .. [[]
+		movsx ecx, word [ds:eax+0x6]; Z of cell
+		add ecx, 0x28
+		push ecx
+		movsx ecx, word [ds:eax+0x4]; Y
+		push ecx
+		movsx ecx, word [ds:eax+0x2]; X
+		push ecx
+		push dword [ss:ebp+0x14];	Z of target
+		add dword [ss:esp], 0x28
+		push dword [ss:ebp+0x10];	Y
+		push dword [ss:ebp+0xC];	X
+		push 0
+		push 0
+		call absolute ]] .. TraceLineAsm .. [[;
+		test eax, eax
+		jne @endloop
+
+		@monster_far_or_not_in_sight:
 		; insert neighbour cells into AllCells and Reachable:
 		; 1. bake current cell coords
 		mov eax, dword [ds:]] .. AStarWayParams + 4 .. [[]
@@ -2120,21 +2253,21 @@ local AStarWayAsm = mem.asmproc([[
 
 			@CanFly:
 			movzx eax, word [ds:edi+0x90]; monster body radius
-			imul eax, 0x2
+			shl eax, 1
 			movsx edx, byte [ds:ecx]
 			imul eax, edx
 			add eax, dword []] .. AStarWayParams + 8 .. [[]
 			mov dword [ds:]] .. AStarWayParams + 20 .. [[], eax; Neighbour X
 
 			movzx eax, word [ds:edi+0x90]; monster body radius
-			imul eax, 0x2
+			shl eax, 1
 			movsx edx, byte [ds:ecx+0x1]
 			imul eax, edx
 			add eax, dword []] .. AStarWayParams + 12 .. [[]
 			mov dword [ds:]] .. AStarWayParams + 24  .. [[], eax; Neighbour Y
 
 			movzx eax, word [ds:edi+0x90]; monster body radius
-			imul eax, 0x2
+			shl eax, 1
 			movsx edx, byte [ds:ecx+0x2]
 			imul eax, edx
 			add eax, dword []] .. AStarWayParams + 16 .. [[]
@@ -2142,7 +2275,6 @@ local AStarWayAsm = mem.asmproc([[
 
 			; fix Z level
 			push dword [ds:]] .. AStarWayParams + 28  .. [[]
-			;movzx eax, word [ds:edi+0x92]; monster body height
 			add dword [ss:esp], 0x64
 			push dword [ds:]] .. AStarWayParams + 24  .. [[]
 			push dword [ds:]] .. AStarWayParams + 20  .. [[]
@@ -2153,6 +2285,16 @@ local AStarWayAsm = mem.asmproc([[
 			mov dword [ds:]] .. AStarWayParams + 28  .. [[], eax
 			@fixZfault:
 
+			; check if area is allowed for tracing
+			mov eax, ecx
+			push ecx
+			push dword [ss:ebp+0x28]
+			call absolute ]] .. FacetInAllowedRoom .. [[;
+			pop ecx
+			pop ecx
+			test eax, eax
+			je @repdirs
+
 			; make monsters prefer horizontal facets
 			imul ecx, ecx, 96; Facet size
 			add ecx, dword [ds:0x6f3c84]; MapFacets ptr
@@ -2160,14 +2302,6 @@ local AStarWayAsm = mem.asmproc([[
 			movsx ecx, word [ds:ecx+0x5A]; MaxZ
 			sub ecx, eax
 			mov dword [ds:]] .. AStarWayParams + 40  .. [[], ecx
-
-			; check if area is allowed for tracing
-			mov eax, ecx
-			push dword [ss:ebp+0x28]
-			call absolute ]] .. FacetInAllowedRoom .. [[;
-			pop ecx
-			test eax, eax
-			je @repdirs
 
 			; 3. check if cell was explored before
 			push dword [ds:]] .. AStarWayParams + 28  .. [[]
@@ -2197,7 +2331,7 @@ local AStarWayAsm = mem.asmproc([[
 			push dword [ds:]] .. AStarWayParams + 12  .. [[]; FromY
 			push dword [ds:]] .. AStarWayParams + 8   .. [[]; FromX
 			movzx eax, word [ds:edi+0x90]; monster body radius
-			shr eax, 0x2
+			shr eax, 1
 			push eax; Radius
 			push dword [ss:ebp+0x8]; Mon Id
 			call absolute ]] .. TraceAsm .. [[;
@@ -2208,7 +2342,21 @@ local AStarWayAsm = mem.asmproc([[
 			; calculate length (distance from current cell to neighbour)
 			mov eax, esi
 			call absolute ]] .. GetCellAsm .. [[;
+
+			cmp byte [ds:edi+0x3a], 1
+			je @dont_ground_flying_monsters
 			mov word [eax+0x6], cx
+			jmp @con_cell_setup
+
+			@dont_ground_flying_monsters:
+			movsx edx, word [eax+0x6]
+			mov word [eax+0x6], cx
+			sub edx, 0x32
+			cmp edx, ecx
+			jl @con_cell_setup
+			mov word [eax+0x6], dx
+
+			@con_cell_setup:
 			movsx ecx, word [ds:eax+0x2]
 			push ecx
 			movsx ecx, word [ds:eax+0x4]
@@ -2223,6 +2371,7 @@ local AStarWayAsm = mem.asmproc([[
 			movsx ecx, word [ds:eax+0x6]
 			push ecx
 			call absolute ]] .. GetDistAsm .. [[;
+			shr eax, 4
 			mov ecx, eax
 			mov eax, dword [ds:]] .. AStarWayParams + 4 .. [[]
 			add ecx, dword [ds:eax+0x10]
@@ -2363,7 +2512,6 @@ ffi.cdef([[typedef struct {
 
 local AStarQueueC = ffi.new("AStarQueue[?]", 50)
 
-local u2, i2 = mem.u2, mem.i2
 local function GetResult(ptr)
 	local result = {}
 	if ptr > 0 then
@@ -2425,16 +2573,9 @@ local function AStarWay(t)
 
 	local AvAreasPtr = 0
 	if AvAreas then
-		AvAreasPtr = mem.malloc(20)
-		local count = 1
-		for k,v in pairs(AvAreas) do
-			if v then
-				u2[AvAreasPtr+(count-1)*2] = k
-			end
-			count = count + 1
-			if count > 10 then
-				break
-			end
+		AvAreasPtr = mem.malloc(Map.Rooms.count)
+		for i,v in Map.Rooms do
+			u1[AvAreasPtr+i] = AvAreas[i] and 1 or 0
 		end
 	end
 
@@ -2484,6 +2625,14 @@ const.AStarQueueItemStatus.DonePathFound = 3
 const.AStarQueueItemStatus.DonePathNotFound = 4
 const.AStarQueueItemStatus.Error = 5
 
+const.AStarQueueStatus = {}
+const.AStarQueueStatus.NoHandler = 0
+const.AStarQueueStatus.Working = 1
+const.AStarQueueStatus.Stopped = 2
+const.AStarQueueStatus.StopRequested = 3
+const.AStarQueueStatus.PauseRequested = 4
+const.AStarQueueStatus.Paused = 5
+
 local QueuePtr = cdataPtr(AStarQueueC)
 local HandlerAsm = mem.asmproc([[
 	push ebp
@@ -2495,8 +2644,15 @@ local HandlerAsm = mem.asmproc([[
 	xor edx, edx
 
 	@rep:
-	cmp dword [ds:]] .. QueueFlag .. [[], 1
-	jne @exit
+	mov eax, dword [ds:]] .. QueueFlag .. [[]
+	cmp eax, 3
+	je @exit
+
+	cmp eax, 4
+	je @PauseRequest
+
+	cmp eax, 5
+	je @Sleep
 
 	mov eax, ecx
 	imul eax, eax, 0x2C
@@ -2544,13 +2700,12 @@ local HandlerAsm = mem.asmproc([[
 	inc edx
 	jmp @rep
 
-	@Sleep:]]
-	.. (debug.KernelSleep and ([[;
+	@PauseRequest:
+	mov dword [ds:]] .. QueueFlag .. [[], 5
+
+	@Sleep:
 	push 0x20
-	call absolute ]] .. debug.KernelSleep .. [[;]])
-	or [[nop]])
-	.. [[;
-	;call dword [ds:0x4e8158]
+	call absolute ]] .. mem.GetProcAddress(mem.dll["kernel32"]["?ptr"], "Sleep") .. [[;
 	xor ecx, ecx
 	xor edx, edx
 	jmp @rep
@@ -2568,6 +2723,18 @@ local function StartQueueHandler()
 		ThreadHandler = mem.dll["kernel32"].CreateThread(nil, 0, HandlerAsm, QueueFlag, 0, nil)
 	end
 	return ThreadHandler
+end
+
+local function PauseQueueHandler()
+	if ThreadHandler ~= 0 then
+		if mem.u4[QueueFlag] == const.AStarQueueStatus.Working then
+			mem.u4[QueueFlag] = const.AStarQueueStatus.PauseRequested
+			mem.dll["kernel32"].ResumeThread(ThreadHandler)
+			while mem.u4[QueueFlag] ~= const.AStarQueueStatus.Paused do
+				-- hold main thread, while handler finishes it's job
+			end
+		end
+	end
 end
 
 local function StopQueueHandler()
@@ -2594,23 +2761,24 @@ end
 
 function events.LeaveMap()
 	if ThreadHandler ~= 0 then
-		StopQueueHandler()
+		PauseQueueHandler()
 	end
 end
 
 function events.BeforeLeaveGame()
 	if ThreadHandler ~= 0 then
-		StopQueueHandler()
+		PauseQueueHandler()
 	end
 end
 
 function events.LeaveGame()
 	if ThreadHandler ~= 0 then
-		StopQueueHandler()
+		PauseQueueHandler()
 	end
 end
 
 Pathfinder.HandlerAsm = HandlerAsm
 Pathfinder.StartQueueHandler = StartQueueHandler
 Pathfinder.StopQueueHandler = StopQueueHandler
+Pathfinder.PauseQueueHandler = PauseQueueHandler
 Pathfinder.AStarQueueC = AStarQueueC
