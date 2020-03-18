@@ -989,7 +989,7 @@ local function ProcessNextMon()
 		return
 	end
 
-	local Target, Monster, MonWay
+	local Target, TargetRef, Monster, MonWay
 	local count = 0
 	if NextMon >= Map.Monsters.count then
 		NextMon = 0
@@ -1005,7 +1005,16 @@ local function ProcessNextMon()
 		Monster = Map.Monsters[MonId]
 
 		if MonsterNeedProcessing(Monster) then
-			Target = Party -- Only Party at the moment
+			
+			TargetRef, Target = GetMonsterTarget(MonId)
+			if TargetRef == 4 then
+				Target = Party
+			elseif TargetRef == 3 then
+				Target = Map.Monsters[Target]
+			else
+				Target = false
+			end
+
 			MonWay = MonsterWays[MonId] or {
 				WayMap = {},
 				NeedRebuild = true,
@@ -1019,7 +1028,9 @@ local function ProcessNextMon()
 				FailCount = 0}
 
 			MonsterWays[MonId] = MonWay
-			MonWay.TargetInSight = GetDist2(Target, Monster) < 1000 and TraceSight(Monster, Target) and TraceSight(Target, Monster)
+			if Target then
+				MonWay.TargetInSight = GetDist2(Target, Monster) < 1000 and TraceSight(Monster, Target) and TraceSight(Target, Monster)
+			end
 
 			if StuckCheck(MonId, Monster) then
 				if #MonWay.WayMap > 0 and MonWay.Step > 1 and MonWay.Step <= #MonWay.WayMap then
