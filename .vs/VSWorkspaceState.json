@@ -3,7 +3,10 @@
     "",
     "\\Data",
     "\\DataFiles",
-    "\\Scripts"
+    "\\Scripts",
+    "\\Scripts\\General",
+    "\\Scripts\\Global"
   ],
+  "SelectedNode": "\\Scripts\\General\\ExtraEvents.lua",
   "PreviewInSolutionExplorer": false
 }

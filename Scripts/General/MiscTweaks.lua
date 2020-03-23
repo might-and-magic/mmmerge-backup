@@ -68,6 +68,8 @@
 	-- fix flickering during crossing portals in indoor maps
 	-- Use party Z instead of camera Z, when checking portals:
 	mem.asmpatch(0x4af29c, "mov edx, dword [ds:0xB2155C]")
+	-- Increase offset for MinX, MaxX, MinY, MaxY, MinZ
+	mem.asmpatch(0x4af257, "push 0x7f")
 	-- Increase offset for MaxZ
 	mem.asmpatch(0x4af2ae, "add edi, 0x7f")
 
@@ -124,6 +126,16 @@
 
 		fix("RoomSpritesFix", "Sprites")
 		fix("RoomLightsFix", "Lights")
+
+		-- fix portals Z bounds
+		local F
+		for RoomId, Room in Map.Rooms do
+			for _, FId in Room.Portals do
+				F = Map.Facets[FId]
+				F.MinZ = Room.MinZ
+				F.MaxZ = Room.MaxZ
+			end
+		end
 
 	end
 
