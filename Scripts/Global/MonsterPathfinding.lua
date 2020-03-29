@@ -1,4 +1,4 @@
-local abs, max, min, sqrt, ceil, floor = math.abs, math.max, math.min, math.sqrt, math.ceil, math.floor
+local abs, max, min, sqrt, ceil, floor, random = math.abs, math.max, math.min, math.sqrt, math.ceil, math.floor, math.random
 local deg, asin, sin, rad = math.deg, math.asin, math.sin, math.rad
 local tinsert, tremove = table.insert, table.remove
 local costatus, coresume, coyield, cocreate = coroutine.status, coroutine.resume, coroutine.yield, coroutine.create
@@ -7,7 +7,6 @@ if not Pathfinder then
 	require "PathfinderAsm"
 end
 Pathfinder = Pathfinder or {}
-Pathfinder.DEBUG = Pathfinder.DEBUG or {}
 
 local AllowedDirections = {
 {X =  0, 	Y =  1,		Z = 0},
@@ -26,7 +25,6 @@ local MapFloors, MapAreas, NeighboursWays = {}, {}, {}
 local TimerPeriod = ceil(const.Minute/4)
 local MonsterWays = {}
 local MonStuck = {}
-Pathfinder.MonsterWays = MonsterWays
 
 --------------------------------------------------
 --					Base functions				--
@@ -84,7 +82,7 @@ local function DistanceBetweenFacets(f1, f2) -- Approx
 end
 
 local function AreaOfTarget(Target)
-	if Map.Rooms.count > 2 then -- assuming areas were created using rooms.
+	if Map.Rooms.count > 2 then
 		return Map.RoomFromPoint(Target)
 	end
 
@@ -146,13 +144,49 @@ local function TraceSight(From, To)
 end
 Pathfinder.TraceSight = TraceSight
 
+--Pathfinder.TraceMonWayAsm(1, Map.Monsters[1], Map.Monsters[1], Party, 30)
 local function TraceMonWayAsm(MonId, Monster, From, To, Radius)
 	return mem.call(Pathfinder.TraceAsm, 0, MonId, Radius, From.X, From.Y, From.Z, To.X, To.Y, To.Z) == 1
 end
 Pathfinder.TraceMonWayAsm = TraceMonWayAsm
 
+-- Takes Map.Monsters[0] as default
+local function TraceMonWayOutdoor(mon, From, To)
+	local mcall = mem.call
+
+	XYZ(mon, XYZ(From))
+
+	local dir = DirectionToPoint(To, mon)
+
+	mon.Direction = DirectionToPoint(To, mon)
+	mon.CurrentActionLength = 512
+	mon.CurrentActionStep = 1
+	mon.GraphicState = 1
+	mon.AIState = 1
+
+	local Dist, LastDist, count
+	Dist = GetDistXY(From.X, From.Y, To.X, To.Y)
+	LastDist = Dist + 1
+	count = Dist
+	while mon.Direction == dir and count >= 0 do
+		if Dist > LastDist then
+			break
+		end
+		mcall(0x46F190)
+		count = count - 1
+		LastDist = Dist
+		Dist = GetDistXY(mon.X, mon.Y, To.X, To.Y)
+	end
+
+	if GetDistXY(mon.X, mon.Y, To.X, To.Y) <= mon.BodyRadius then
+		return true
+	end
+	return false
+end
+Pathfinder.TraceMonWayOutdoor = TraceMonWayOutdoor
+
 --------------------------------------------------
---				Way generation					--
+--				Way generation indoor			--
 --------------------------------------------------
 local function ShrinkMonWay(WayMap, MonId, StepSize, Async)
 	MonId = MonId or 1
@@ -404,7 +438,7 @@ end
 Pathfinder.NWay = NeighboursWay
 
 --------------------------------------------------
---				Import/Export					--
+--				Import/Export indoor			--
 --------------------------------------------------
 local function ImportAreasInfo(Path)
 	HaveMapData = false
@@ -791,7 +825,6 @@ local function MakeWayPoints()
 	--	end
 	--end
 
-
 	-- Bake neighbour ways
 	for AreaId, Area in pairs(Areas) do
 		NWays[AreaId] = {}
@@ -820,7 +853,232 @@ end
 Pathfinder.MakeWayPoints = MakeWayPoints
 
 --------------------------------------------------
---				Game handler					--
+--				Import/Export outdoor			--
+--------------------------------------------------
+local function TileAbsoluteId(X, Y)
+	X = (64 + X / 0x200):floor()
+	Y = (64 - Y / 0x200):floor()
+
+	local TileId = Map.TileMap[Y][X]
+	if TileId >= 90 then
+		TileId = TileId - 90
+		TileId = Map.Tilesets[(TileId/36):floor()].Offset + TileId % 36
+	end
+	return TileId
+end
+
+local CubeSize = 192
+local BlockMap, BlockMapMinK
+local LeeMap
+
+local function ExportLeeOutdoor(BlockMap, Path)
+	-- assuming map is always square
+	local t = {}
+	local CurVal
+	for X, tY in pairs(BlockMap) do
+		CurVal = {}
+		t[X] = CurVal
+		for Y, val in pairs(tY) do
+			CurVal[Y] = val and "X" or ""
+		end
+	end
+
+	Path = Path or ("Data/BlockMaps/" .. Map.Name .. ".txt")
+	local File = io.open(Path, "w")
+	for k, v in pairs(t) do
+		File:write(table.concat(v, "\9") .. "\n")
+	end
+	io.close(File)
+end
+
+local function ImportLeeOutdoor(Path)
+	Path = Path or ("Data/BlockMaps/" .. Map.Name .. ".txt")
+	BlockMapMinK = floor(-30000/CubeSize)
+
+	local result
+	local File = io.open(Path, "r")
+	if File then
+		result = {}
+		local LineIt = File:lines()
+		local Words, val
+
+		for line in LineIt do
+			Words = string.split(line, "\9")
+			for k,v in pairs(Words) do
+				Words[k] = v == "X"
+			end
+			result[#result+1] = Words
+		end
+
+		io.close(File)
+	end
+	return result
+end
+
+local function MakeBlockMap()
+	local WMinX, WMaxX, WMinY, WMaxY = -30000, 30000, -30000, 30000
+	local BlockMap = {}
+	local Cube, Mon, MonId
+	local FromPoint	= {X = 0, Y = 0, Z = 0}
+	local ToPoint	= {X = 0, Y = 0, Z = 0}
+
+	WMinX, WMaxX, WMinY, WMaxY = floor(WMinX/CubeSize), floor(WMaxX/CubeSize), floor(WMinY/CubeSize), floor(WMaxY/CubeSize)
+	local TileId, aX, aY, Z1, Z2, F
+	for X = WMinX, WMaxX do
+		BlockMap[X] = {}
+		for Y = WMinY, WMaxY do
+			aX, aY = X*CubeSize, Y*CubeSize
+
+			TileId = TileAbsoluteId(aX, aY)
+			Z1 = Map.GetGroundLevel(aX, aY)
+			Z2, F = Map.GetFloorLevel(aX, aY, Z1+1000)
+
+			BlockMap[X][Y] = F > 0 or Game.CurrentTileBin[TileId].Water
+		end
+	end
+
+	for ModelId, Model in Map.Models do
+		for _, Facet in Model.Facets do
+			if Facet.PolygonType == 1 then -- wall
+				for X = Facet.MinX, Facet.MaxX, CubeSize do
+					for Y = Facet.MinY, Facet.MaxY, CubeSize do
+						BlockMap[floor(X/CubeSize)][floor(Y/CubeSize)] = true
+					end
+				end
+			end
+		end
+	end
+
+	-- assuming map is always square
+	local minK, maxK = 1/0, -1/0
+	for k,v in pairs(BlockMap) do
+		minK = min(minK, k)
+		maxK = max(maxK, k)
+	end
+	BlockMapMinK = minK
+
+	local Rebased = {}
+	local CurVal
+	for X, tY in pairs(BlockMap) do
+		CurVal = {}
+		Rebased[X-minK] = CurVal
+		for Y, val in pairs(tY) do
+			CurVal[Y-minK] = val
+		end
+	end
+
+	return Rebased
+end
+Pathfinder.MakeBlockMap = MakeBlockMap
+Pathfinder.ImportLeeOutdoor = ImportLeeOutdoor
+Pathfinder.ExportLeeOutdoor = ExportLeeOutdoor
+
+local function TargetInSightOutdoor(From, To)
+	local X, Y
+	local fX, fY = From.X, From.Y
+	local tX, tY = To.X, To.Y
+	local Dist = GetDistXY(From.X, From.Y, To.X, To.Y)
+	tX, tY = (tX - fX)/Dist, (tY - fY)/Dist
+
+	for i = 0, Dist, 100 do
+		X = floor((tX*i + fX)/CubeSize)
+		Y = floor((tY*i + fY)/CubeSize)
+		if BlockMap[X][Y] then
+			return false
+		end
+	end
+	return true
+end
+Pathfinder.TargetInSightOutdoor = TargetInSightOutdoor
+
+local function LeeWay(ToX, ToY, BlockMap, Async)
+	local SimpleBlocks = BlockMap
+	local Unexplored = 500000
+	local WayMap = {}
+	local minX, maxX, minY, maxY = 1/0, -1/0, 1/0, -1/0
+	for X, tY in pairs(SimpleBlocks) do
+		minX = min(X, minX)
+		maxX = max(X, maxX)
+		WayMap[X] = {}
+		for Y, ways in pairs(tY) do
+			WayMap[X][Y] = Unexplored
+			minY = min(Y, minY)
+			maxY = max(Y, maxY)
+		end
+	end
+
+	local CellX, CellY = floor(ToX/CubeSize)-BlockMapMinK, floor(ToY/CubeSize)-BlockMapMinK
+	local CellsToCheck = {{CellX, CellY}}
+	local Store = {}
+	local CurVal, cX, cY
+	WayMap[CellX][CellY] = 0
+
+	local count = 0
+	while #CellsToCheck > 0 do
+		for k,v in pairs(CellsToCheck) do
+			cX, cY = v[1], v[2]
+			CurVal = WayMap[cX][cY]
+
+			for X = max(cX - 1, minX), min(cX + 1, maxX) do
+				for Y = max(cY - 1, minY), min(cY + 1, maxY) do
+					if WayMap[X][Y] == Unexplored and not SimpleBlocks[X][Y] then
+						WayMap[X][Y] = CurVal + 1
+						tinsert(Store, {X, Y})
+					end
+				end
+			end
+
+		end
+
+		CellsToCheck = Store
+		Store = {}
+		count = count + 1
+		if Async and count > 6 then
+			count = 0
+			coyield()
+		end
+	end
+
+	if Async then
+		LeeMap = WayMap
+	end
+
+	return WayMap
+end
+
+local function ShowLeeMap(LeeMap)
+	-- assuming map is always square
+	local minK, maxK = 1/0, -1/0
+	for k,v in pairs(LeeMap) do
+		minK = min(minK, k)
+		maxK = max(maxK, k)
+	end
+
+	local Rebased = {}
+	local CurVal
+	for X, tY in pairs(LeeMap) do
+		CurVal = {}
+		Rebased[X-minK] = CurVal
+		for Y, val in pairs(tY) do
+			CurVal[Y-minK] = val < 500000 and tostring(val) or "Z"
+		end
+	end
+
+	local Path = "Data/BlockMaps/LeeMap_Display.txt"
+	local File = io.open(Path, "w")
+	for k, v in pairs(Rebased) do
+		File:write(table.concat(v, "\9") .. "\n")
+	end
+	io.close(File)
+
+	return Path
+end
+
+Pathfinder.LeeWay = LeeWay
+Pathfinder.ShowLeeMap = ShowLeeMap
+
+--------------------------------------------------
+--				Indoor handler					--
 --------------------------------------------------
 local AStarQueue = {}
 Pathfinder.AStarQueue = AStarQueue
@@ -903,12 +1161,6 @@ local function BuildWayUsingMapData(FromArea, ToArea, MonId, Monster, Target, As
 	return WayMap
 end
 Pathfinder.BuildWayUsingMapData = BuildWayUsingMapData
-
-testbuild = function(MonId, To)
-	local Mon = Map.Monsters[MonId]
-	local rfp = Map.RoomFromPoint
-	return BuildWayUsingMapData(rfp(Mon), rfp(Party), MonId, Mon, Party, false)
-end
 
 local function MakeMonWay(cMonWay, cMonId, cTarget)
 	cMonWay.InProcess = true
@@ -1005,9 +1257,10 @@ local function ProcessNextMon()
 		Monster = Map.Monsters[MonId]
 
 		if MonsterNeedProcessing(Monster) then
-			
+
 			TargetRef, Target = GetMonsterTarget(MonId)
-			if TargetRef == 4 then
+			-- 11 is const.PartyBuff.Invisibility
+			if TargetRef == 4 and Party.SpellBuffs[11].ExpireTime < Game.Time then
 				Target = Party
 			elseif TargetRef == 3 then
 				Target = Map.Monsters[Target]
@@ -1028,8 +1281,11 @@ local function ProcessNextMon()
 				FailCount = 0}
 
 			MonsterWays[MonId] = MonWay
+
 			if Target then
 				MonWay.TargetInSight = GetDist2(Target, Monster) < 1000 and TraceSight(Monster, Target) and TraceSight(Target, Monster)
+			else
+				MonWay.TargetInSight = true
 			end
 
 			if StuckCheck(MonId, Monster) then
@@ -1128,22 +1384,142 @@ local function PathfinderTick()
 	PositionCheck()
 end
 
-function events.AfterLoadMap()
-	if not Game.ImprovedPathfinding or Map.IsOutdoor() then -- does not support outdoor maps yet.
-		events.Remove("Tick", PathfinderTick)
+--------------------------------------------------
+--				Outdoor handler					--
+--------------------------------------------------
+
+local LeeCo
+local OutdoorMonstersToProcess = {}
+local function MonsterNeedProcessingOutdoor(Mon)
+	return Mon.Active and Mon.ShowAsHostile and OutdoorMonstersToProcess[Mon.Id] and Mon.HP > 0 and (Mon.AIState == 0 or Mon.AIState == 1 or Mon.AIState == 6)-- and not TargetInSightOutdoor(Party, Mon)
+end
+
+local function UpdateMonsToProcessList()
+	for i,v in Game.MonstersTxt do
+		OutdoorMonstersToProcess[i] = v.Fly == 0 and v.Attack1.Missile == 0 and v.Attack2.Missile == 0
+	end
+end
+
+local function UpdateLeeMap()
+	if not LeeCo or costatus(LeeCo) == "dead" then
+		LeeCo = cocreate(LeeWay)
+		Pathfinder.LeeMap = LeeMap
+	else
+		coresume(LeeCo, Party.X, Party.Y, BlockMap, true)
+	end
+end
+
+local function ProcessNextMonOutdoor()
+	if Game.TurnBased == 1 or not LeeMap then
 		return
 	end
-	MapFloors, MapAreas, NeighboursWays = {}, {}, {}
-	ImportAreasInfo()
-	Pathfinder.HaveMapData = HaveMapData
-	Pathfinder.MapFloors = MapFloors
-	Pathfinder.MapAreas = MapAreas
-	Pathfinder.NWays = NeighboursWays
 
-	events.Tick = PathfinderTick
+	local Target, TargetRef, Monster, MonWay
+	local count = 0
+	if NextMon >= Map.Monsters.count then
+		NextMon = 0
+	end
 
-	if Pathfinder.BakeFloors then
-		Pathfinder.BakeFloors(MapFloors)
+	for MonId = NextMon, Map.Monsters.count - 1 do
+		if count > 20 then
+			break
+		end
+
+		count = count + 1
+		NextMon = MonId + 1
+		Monster = Map.Monsters[MonId]
+
+		if MonsterNeedProcessingOutdoor(Monster) then
+			TargetRef, Target = GetMonsterTarget(MonId)
+			-- 11 is const.PartyBuff.Invisibility
+			if TargetRef == 4 and Party.SpellBuffs[11].ExpireTime < Game.Time then
+				Target = Party
+			else
+				Target = false
+			end
+
+			if Target then
+				local YList
+				local X, Y = (Monster.X/CubeSize):floor(), (Monster.Y/CubeSize):floor()
+				YList = LeeMap[X - BlockMapMinK]
+
+				if YList then
+					local Cost = YList[Y - BlockMapMinK]
+					local ToPoint = {X = X*CubeSize, Y = Y*CubeSize, Z = Monster.Z}
+
+
+					for cX = X-1, X+1 do
+						for cY = Y-1, Y+1 do
+							YList = LeeMap[cX - BlockMapMinK]
+							if YList and Cost > YList[cY - BlockMapMinK] then
+								Cost = LeeMap[cX - BlockMapMinK][cY - BlockMapMinK]
+								ToPoint.X = cX*CubeSize
+								ToPoint.Y = cY*CubeSize
+							end
+						end
+					end
+
+					if Cost < 500000 then
+						Monster.Direction = DirectionToPoint(ToPoint, Monster) + random(-256, 256)
+						Monster.CurrentActionLength = 128
+						Monster.CurrentActionStep = 1
+						Monster.AIState = 6
+						Monster.GraphicState = 1
+					end
+				end
+			end
+		end
+	end
+end
+
+local function PathfinderTickOutdoor()
+	UpdateLeeMap()
+	ProcessNextMonOutdoor()
+end
+
+--------------------------------------------------
+--					Events						--
+--------------------------------------------------
+
+function events.AfterLoadMap()
+	MonsterWays = {}
+	MonStuck = {}
+	Pathfinder.MonsterWays = MonsterWays
+	Pathfinder.MonStuck = MonStuck
+
+	if not Game.ImprovedPathfinding then
+		events.Remove("Tick", PathfinderTick)
+		events.Remove("Tick", PathfinderTickOutdoor)
+		return
+	end
+
+	if Map.IsOutdoor() then
+		events.Remove("Tick", PathfinderTick)
+
+		--LeeMap = nil
+		--BlockMap = ImportLeeOutdoor()
+		--Pathfinder.LeeMap = nil
+		--Pathfinder.BlockMap = BlockMap
+
+		--if BlockMap then
+		--	UpdateMonsToProcessList()
+		--	events.Tick = PathfinderTickOutdoor
+		--end
+	else
+		events.Remove("Tick", PathfinderTickOutdoor)
+
+		MapFloors, MapAreas, NeighboursWays = {}, {}, {}
+		ImportAreasInfo()
+		Pathfinder.HaveMapData = HaveMapData
+		Pathfinder.MapFloors = MapFloors
+		Pathfinder.MapAreas = MapAreas
+		Pathfinder.NWays = NeighboursWays
+
+		events.Tick = PathfinderTick
+
+		if Pathfinder.BakeFloors then
+			Pathfinder.BakeFloors(MapFloors)
+		end
 	end
 end
 
@@ -1151,7 +1527,7 @@ end
 --					SERVICE					--
 ----------------------------------------------
 
---TestPerfomance(AStarWay, 10, 2, Map.Monsters[2], Party, nil, false, MapAreas[16].WayPoint)
+--~ --TestPerfomance(AStarWay, 10, 2, Map.Monsters[2], Party, nil, false, MapAreas[16].WayPoint)
 --~ function TestPerfomance(f, loopamount, ...)
 --~ 	loopamount = loopamount or 100
 --~ 	local Start = timeGetTime()
@@ -1207,10 +1583,10 @@ end
 --~ 		TESTWidget = CustomUI.CreateText{Text = "", Key = "TESTWidget", X = 200, Y = 240, Width = 400, Height = 100}
 
 --~ 		local function WidgetTimer()
---~ 			TESTWidget.Text = Party.X .. " : " .. Party.Y .. " : " .. Party.Z .. " - " .. mem.call(Pathfinder.AltGetFloorLevelAsm, 0, Party.X, Party.Y, Party.Z)
---~ 			TESTWidget.Text = TESTWidget.Text .. " q: " .. #AStarQueue .. " r: " .. Map.RoomFromPoint(Party)
-
---~ 			Game.NeedRedraw = true
+--~ 			if LeeMap then
+--~ 				TESTWidget.Text = tostring(LeeMap[floor(Party.X/CubeSize)-BlockMapMinK][floor(Party.Y/CubeSize)-BlockMapMinK])
+--~ 				Game.NeedRedraw = true
+--~ 			end
 --~ 		end
 
 --~ 		Timer(WidgetTimer, const.Minute/64)
