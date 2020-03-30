@@ -2,6 +2,7 @@
 Pathfinder = {}
 
 local u1, i1, u2, i2, u4 = mem.u1, mem.i1, mem.u2, mem.i2, mem.u4
+local QueueSize = 50
 local CellItemSize = 20
 local CellsAmount = 8000
 local AllCellsPtr = mem.StaticAlloc(CellItemSize*(CellsAmount+2))
@@ -36,10 +37,8 @@ local AllowedDirections = {
 {X =  0, 	Y = -1,		Z = -1},
 {X =  1, 	Y = -1,		Z = -1},
 {X =  1, 	Y =  0,		Z = -1},
-{X =  1, 	Y =  1,		Z = -1},
+{X =  1, 	Y =  1,		Z = -1}
 
--- {X =  0, 	Y =  0,		Z = -1},
--- {X =  0, 	Y =  0,		Z =  1}
 }
 
 local AllowedDirsAsm = mem.StaticAlloc(#AllowedDirections*3)
@@ -327,7 +326,7 @@ local GetAngleVec = mem.asmproc([[
 	pop ebp
 	retn]])
 
--- takes amount of nums, num1, [num2], [num3] ... returns greatest common divisor in eax.
+-- takes ..., simplifies it
 local GetGCD = mem.asmproc([[
 	push ebp
 	mov ebp, esp
@@ -1094,50 +1093,6 @@ local PlaneLineIntersect = mem.asmproc([[
 
 Pathfinder.PlaneLineIntersect = PlaneLineIntersect
 
---~ F = Map.Facets[123]
---~ V1 = Map.Vertexes[F.VertexIds[0]]
---~ V2 = Map.Vertexes[F.VertexIds[2]]
---~ V3 = Map.Vertexes[F.VertexIds[3]]
---~ print(dump(PlaneDefiners(V1, V2, V3)))
-
---~ TESTPTR = mem.StaticAlloc(52)
-
---~ mem.i4[TESTPTR] = V1.X
---~ mem.i4[TESTPTR+4] = V1.Y
---~ mem.i4[TESTPTR+8] = V1.Z
-
---~ mem.i4[TESTPTR+12] = V2.X
---~ mem.i4[TESTPTR+16] = V2.Y
---~ mem.i4[TESTPTR+20] = V2.Z
-
---~ mem.i4[TESTPTR+24] = V3.X
---~ mem.i4[TESTPTR+28] = V3.Y
---~ mem.i4[TESTPTR+32] = V3.Z
-
---~ mem.call(Pathfinder.GetPlaneDefiners, 0, TESTPTR, TESTPTR+12, TESTPTR+24, TESTPTR+36)
---~ print(mem.i4[TESTPTR+36],mem.i4[TESTPTR+40],mem.i4[TESTPTR+44],mem.i4[TESTPTR+48])
-
---~ lv0 = {X = Party.X, Y = Party.Y, Z = Party.Z + 35}
---~ lv1 = {X = Party.X + 20, Y = Party.Y, Z = Party.Z + 35}
---~ lv = MakeVec3D(lv0, lv1)
---~ print(dump(PlaneLineIntersection(PlaneDefiners(V1, V2, V3), lv0, lv)))
-
---~ TESTPTR2 = mem.StaticAlloc(52)
---~ for i = 0, 51 do
---~ 	mem.u1[TESTPTR2+i] = mem.u1[TESTPTR+i]
---~ end
-
---~ mem.i4[TESTPTR2] = lv0.X
---~ mem.i4[TESTPTR2+4] = lv0.Y
---~ mem.i4[TESTPTR2+8] = lv0.Z
-
---~ mem.i4[TESTPTR2+12] = lv.X
---~ mem.i4[TESTPTR2+16] = lv.Y
---~ mem.i4[TESTPTR2+20] = lv.Z
-
---~ mem.call(Pathfinder.PlaneLineIntersect, 0, TESTPTR2, TESTPTR2+12, TESTPTR+36, TESTPTR2+24)
---~ print(mem.i4[TESTPTR2+24],mem.i4[TESTPTR2+28],mem.i4[TESTPTR2+32])
-
 ------------------------------------------------------
 --					Trace line  					--
 ------------------------------------------------------
@@ -1173,7 +1128,7 @@ local TraceLineAsm = mem.asmproc([[
 	call absolute ]] .. GetDistAsm .. [[;
 	mov dword [ss:edi+0x4], eax
 
-	; calc bounding box
+	; calc line bounding box
 	mov eax, dword [ss:ebp+0x10]
 	mov ecx, dword [ss:ebp+0x1c]
 	cmp eax, ecx
@@ -1933,6 +1888,112 @@ local TraceAsm = mem.asmproc([[
 	pop ebp
 	retn]])
 
+
+-- Takes X, Y, returns absolute TileId
+local GetTileIdAsm = mem.asmproc([[
+	push ebp
+	mov ebp, esp
+
+	; calc Tile X
+	mov eax, dword [ss:ebp+0x8]
+	sar eax, 9
+	add eax, 0x40
+
+	; calc Tile Y
+	mov ecx, dword [ss:ebp+0xC]
+	sar ecx, 9
+	mov edx, 0x40
+	sub edx, ecx
+	mov ecx, edx
+	dec ecx
+
+	; get relative TileId
+	xchg eax, ecx
+	shl eax, 7
+	add eax, ecx
+	mov ecx, 0x6CEBD0
+	mov ecx, dword [ds:ecx+0xBC]
+	movzx eax, byte [ds:eax+ecx]
+
+	cmp eax, 0x5a
+	jl @end
+
+	; calc tileset id and offset
+	sub eax, 0x5a
+	cdq
+	mov ecx, 0x24
+	idiv ecx
+
+	; get tileset offset
+	mov ecx, 0x6CEBD0
+	add ecx, 0xa2
+	movsx eax, word [ecx+eax*4]
+	add eax, edx
+
+	@end:
+	mov esp, ebp
+	pop ebp
+	retn 0x8]])
+
+Pathfinder.GetTileIdAsm = GetTileIdAsm
+
+--~ -- Takes MonId, Radius, FromX, FromY, FromZ, ToX, ToY, ToZ
+--~ -- returns 1 in eax, if monster can reach point, 0 - otherwise
+--~ local TraceAsmOutdoor = mem.asmproc([[
+--~ 	push ebp
+--~ 	mov ebp, esp
+--~ 	push edi
+--~ 	sub esp, 0x8
+
+--~ 	; 1. if mon cant fly - check tile, if it is water - block way
+--~ 	mov eax, dword [ss:ebp+0x8]
+--~ 	imul eax, 0x3cc
+--~ 	add eax, ]] .. Map.Monsters["?ptr"] .. [[;
+--~ 	mov edi, eax
+--~ 	cmp byte [ds:edi+0x3a], 1
+--~ 	je @CanFly
+
+--~ 	push dword [ss:ebp+0x24]
+--~ 	push dword [ss:ebp+0x20]
+--~ 	call absolute ]] .. GetTileIdAsm .. [[;
+
+--~ 	movzx ecx, byte [ds:0x6CEC2F]; Tile sets file id
+--~ 	test ecx, ecx
+--~ 	jne @Tile2
+--~ 	mov ecx, ]] .. Game.TileBin["?ptr"] .. [[;
+--~ 	jmp @TileCon
+
+--~ 	@Tile2:
+--~ 	cmp ecx, 1
+--~ 	jne @Tile3
+--~ 	mov ecx, ]] .. Game.Tile2Bin["?ptr"] .. [[;
+--~ 	jmp @TileCon
+
+--~ 	@Tile3:
+--~ 	mov ecx, ]] .. Game.Tile3Bin["?ptr"] .. [[;
+--~ 	@TileCon:
+
+--~ 	; get tile item
+--~ 	imul eax, ]] .. Game.TileBin[1]["?size"] .. [[;
+--~ 	add eax, ecx
+--~ 	mov ecx, dword [ds:eax+0x18]; Tile bits
+--~ 	bt cx, 2; is water flag
+--~ 	mov eax, 0
+--~ 	je @end
+
+
+--~ 	@CanFly:
+--~ 	; 2. find models near, for ones closer than radius - check it's facets
+--~ 	xor eax, eax
+--~ 	inc eax
+
+--~ 	@end:
+--~ 	add esp, 0x8
+--~ 	pop edi
+--~ 	mov esp, ebp
+--~ 	pop ebp
+--~ 	retn]])
+
 -- Takes id in eax, returns ptr in eax
 local GetCellAsm = mem.asmproc([[
 	imul eax, ]] .. CellItemSize .. [[;
@@ -2151,11 +2212,6 @@ local AStarWayAsm = mem.asmproc([[
 	add eax, ]] .. Map.Monsters["?ptr"] .. [[;
 	mov edi, eax
 	xor eax, eax
-
-	; save monster props
-	;push dword [ds:edi+0x94]; Velocity, X
-	;push dword [ds:edi+0x98]; Y, Z
-	;push dword [ds:edi+0xa2]; Direction, LookAngle
 
 	; write first cell
 	push eax; Length
@@ -2470,9 +2526,6 @@ local AStarWayAsm = mem.asmproc([[
 	xor eax, eax
 
 	@end:
-	;pop dword [ds:edi+0xa2]
-	;pop dword [ds:edi+0x98]
-	;pop dword [ds:edi+0x94]
 	pop esi
 	pop edi
 	mov esp, ebp
@@ -2510,7 +2563,7 @@ ffi.cdef([[typedef struct {
 	int ResultPtr;
 	int AvAreasPtr;} AStarQueue]])
 
-local AStarQueueC = ffi.new("AStarQueue[?]", 50)
+local AStarQueueC = ffi.new("AStarQueue[?]", QueueSize)
 
 local function GetResult(ptr)
 	local result = {}
@@ -2661,7 +2714,7 @@ local HandlerAsm = mem.asmproc([[
 	je @start
 
 	inc ecx
-	cmp ecx, 0x32
+	cmp ecx, ]] .. QueueSize  .. [[;
 	jl @rep
 	xor ecx, ecx
 	test edx, edx
@@ -2717,6 +2770,13 @@ local HandlerAsm = mem.asmproc([[
 	pop ebp
 	retn]])
 
+local function ClearQueue()
+	for i = 0, QueueSize  do
+		AStarQueueC[i].Status = 0
+	end
+end
+Pathfinder.ClearQueue = ClearQueue
+
 local function StartQueueHandler()
 	mem.u4[QueueFlag] = 1
 	if ThreadHandler == 0 then
@@ -2751,6 +2811,7 @@ local function StopQueueHandler()
 		end
 		ThreadHandler = 0
 	end
+	ClearQueue()
 end
 
 function events.AfterLoadMap()
@@ -2761,6 +2822,7 @@ end
 
 function events.LeaveMap()
 	if ThreadHandler ~= 0 then
+		ClearQueue()
 		PauseQueueHandler()
 	end
 end
@@ -2781,4 +2843,4 @@ Pathfinder.HandlerAsm = HandlerAsm
 Pathfinder.StartQueueHandler = StartQueueHandler
 Pathfinder.StopQueueHandler = StopQueueHandler
 Pathfinder.PauseQueueHandler = PauseQueueHandler
-Pathfinder.AStarQueueC = AStarQueueC
+Pathfinder.AStarQueueC = AStarQueueC
