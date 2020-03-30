@@ -71,6 +71,7 @@ function events.GameInitialized2()
 			Game.NewGameMap = StartMap
 			TownPortalControls.SwitchTo(Continent)
 			if FromScreen == 0 then -- Main menu
+				Game.CurrentScreen = 0
 				evt.ShowMovie{1, 0, Intros[Continent]}
 				mem.u4[0x6ceb24] = 1 -- new game menu action
 				mem.u4[0x51e330] = 1 -- action in queue flag
