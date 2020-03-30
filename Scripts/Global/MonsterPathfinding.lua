@@ -140,7 +140,7 @@ end
 --------------------------------------------------
 
 local function TraceSight(From, To)
-	return mem.call(Pathfinder.TraceLineAsm, 0, 0, 0, From.X, From.Y, From.Z+5, To.X, To.Y, To.Z+5) == 1
+	return mem.call(Pathfinder.TraceLineAsm, 0, 0, 0, From.X, From.Y, From.Z+50, To.X, To.Y, To.Z+50) == 1
 end
 Pathfinder.TraceSight = TraceSight
 
@@ -1283,7 +1283,7 @@ local function ProcessNextMon()
 			MonsterWays[MonId] = MonWay
 
 			if Target then
-				MonWay.TargetInSight = GetDist2(Target, Monster) < 1000 and TraceSight(Monster, Target) and TraceSight(Target, Monster)
+				MonWay.TargetInSight = GetDist2(Target, Monster) < 2500 and TraceSight(Monster, Target) and TraceSight(Target, Monster)
 			else
 				MonWay.TargetInSight = true
 			end
