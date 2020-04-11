@@ -5,8 +5,10 @@
     "\\DataFiles",
     "\\Scripts",
     "\\Scripts\\General",
-    "\\Scripts\\Global"
+    "\\Scripts\\Global",
+    "\\Scripts\\Modules",
+    "\\Scripts\\Structs"
   ],
-  "SelectedNode": "\\Scripts\\General\\MenuChooseContinent.lua",
+  "SelectedNode": "\\Scripts\\Global\\MonsterPathfinding.lua",
   "PreviewInSolutionExplorer": false
 }
