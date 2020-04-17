@@ -109,7 +109,7 @@ end
 --------------------------------------------------
 
 local function TraceSight(From, To)
-	return mem.call(Pathfinder.TraceLineAsm, 0, 0, 0, From.X, From.Y, From.Z+50, To.X, To.Y, To.Z+50) == 1
+	return mem.call(Pathfinder.TraceLineAsm, 0, 0, 0, From.X, From.Y, From.Z+35, To.X, To.Y, To.Z+35) == 1
 end
 Pathfinder.TraceSight = TraceSight
 
@@ -142,9 +142,6 @@ local function ShrinkMonWay(WayMap, MonId, StepSize, Async)
 	local Monster = Map.Monsters[MonId]
 	local TraceRadius = ceil(Monster.BodyRadius/3)
 
-	local ptr = Monster["?ptr"] + 0x92
-	local Buf = mem.string(ptr, 0x32, true)
-
 	while Current < #WayMap do
 		for i = min(Current + StepSize, #WayMap), Current + 1, -1 do
 			if TraceMonWayAsm(MonId, Monster, WayMap[Current], WayMap[i], TraceRadius) then
@@ -156,13 +153,10 @@ local function ShrinkMonWay(WayMap, MonId, StepSize, Async)
 		end
 		Current = Current + 1
 		if Async and timeGetTime() > TickEndTime then
-			mem.copy(ptr, Buf)
 			coyield()
-			Buf = mem.string(ptr, 0x32, true)
 		end
 	end
 
-	mem.copy(ptr, Buf)
 	return WayMap
 end
 Pathfinder.ShrinkWay = ShrinkMonWay
@@ -838,11 +832,13 @@ local function ProcessNextMon()
 			-- 11 is const.PartyBuff.Invisibility
 			if TargetRef == 4 and Party.SpellBuffs[11].ExpireTime < Game.Time then
 				Target = Party
-			elseif TargetRef == 3 and not IsOutdoor then
+			elseif TargetRef == 3 and Target < Map.Monsters.count then
 				Target = Map.Monsters[Target]
 			else
 				Target = false
 			end
+
+			--Target = Party
 
 			MonWay = MonsterWays[MonId] or {
 				WayMap = {},
@@ -880,10 +876,9 @@ local function ProcessNextMon()
 				-- skip
 
 			elseif MonWay.HoldMonster then
-				Monster.MoveType = 1
 				Monster.GraphicState = 0
 				Monster.AIState = 0
-				Monster.CurrentActionLength = 20
+				Monster.CurrentActionLength = 100
 				Monster.CurrentActionStep = 0
 
 			elseif MonWay.NeedRebuild then
@@ -896,10 +891,9 @@ local function ProcessNextMon()
 			elseif #MonWay.WayMap > 0 then
 				local Way = MonWay.WayMap[MonWay.Step]
 
-				Monster.MoveType = 1
 				Monster.GraphicState = 1
 				Monster.AIState = 6
-				Monster.CurrentActionLength = 20
+				Monster.CurrentActionLength = 100
 				Monster.CurrentActionStep = 0
 
 				if not IsOutdoor and Way.Z < Monster.Z - 35 then
@@ -961,6 +955,7 @@ end
 local function PathfinderTick()
 	ProcessNextMon()
 	ProcessThreads()
+	--PositionCheck()
 end
 
 --------------------------------------------------
@@ -1041,6 +1036,8 @@ end
 --~ 	end
 --~ 	return Mon
 --~ end
+
+--~ DisableOutdoorHandler = DisableOutdoorHandler or mem.asmpatch(0x401ab1, "retn")
 
 --~ function ClosestItem(t)
 --~ 	local MinDist, Mon = 1/0, nil

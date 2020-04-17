@@ -1570,7 +1570,71 @@ local DirectionToPointAsm = mem.asmproc([[
 	retn]])
 
 -- takes X, Y, Z, Radius, FromX, FromY, returns side shifts in eax and ecx
+-- gives correct shifts only for 45 degrees based angles.
 local CheckNeighboursAsm = mem.asmproc([[
+	push ebp
+	mov ebp, esp
+	push edi
+	sub esp, 0x24
+	mov edi, esp
+
+	mov eax, dword [ss:ebp+0x8]
+	mov dword [ds:edi], eax
+	mov eax, dword [ss:ebp+0xC]
+	mov dword [ds:edi+0x4], eax
+	mov dword [ds:edi+0x8], 0
+
+	mov eax, dword [ss:ebp+0x18]
+	mov dword [ds:edi+0xC], eax
+	mov eax, dword [ss:ebp+0x1C]
+	mov dword [ds:edi+0x10], eax
+	mov dword [ds:edi+0x14], 0
+
+	push edi
+	push edi
+	lea eax, dword [ds:edi+0xC]
+	push eax
+	call absolute ]] .. MakeVec2D .. [[;
+	add esp, 0xC
+
+	mov eax, dword [ds:edi]
+	mov dword [ds:edi+0xC], eax
+	mov eax, dword [ds:edi+0x4]
+	mov dword [ds:edi+0x10], eax
+	mov dword [ds:edi+0x14], 1
+
+	push edi
+	lea eax, dword [ds:edi+0xC]
+	push eax
+	lea eax, dword [ds:edi+0x18]
+	push eax
+	call absolute ]] .. VectorMul .. [[;
+
+	mov eax, dword [ds:edi+0x18]
+	mov ecx, dword [ds:edi+0x1C]
+
+	test eax, eax
+	je @SetY
+	mov eax, dword [ss:ebp+0x14]
+	jg @SetY
+	neg eax
+
+	@SetY:
+	test ecx, ecx
+	je @end
+	mov ecx, dword [ss:ebp+0x14]
+	jg @end
+	neg ecx
+
+	@end:
+	add esp, 0x24
+	pop edi
+	mov esp, ebp
+	pop ebp
+	retn 0x18]])
+
+-- takes X, Y, Z, Radius, FromX, FromY, returns side shifts in eax and ecx
+local CheckNeighboursAsm2 = mem.asmproc([[
 	push ebp
 	mov ebp, esp
 	push edi
@@ -2393,7 +2457,12 @@ local AStarWayAsm = mem.asmproc([[
 			movsx ecx, word [ds:eax+0x6]
 			push ecx
 			call absolute ]] .. GetDistAsm .. [[;
-			shr eax, 4
+
+			cmp dword [ds:0x6F39A0], 2
+			je @OutdoorLength
+			shr eax, 1
+			@OutdoorLength:
+
 			mov ecx, eax
 			mov eax, dword [ds:]] .. AStarWayParams + 4 .. [[]
 			add ecx, dword [ds:eax+0x10]
@@ -2753,12 +2822,16 @@ end
 Pathfinder.ClearQueue = ClearQueue
 
 local function StartQueueHandler()
+	if u4[QueueFlag] == 1 and ThreadHandler ~= 0 then -- handler already working
+		return ThreadHandler
+	end
+
 	UpdatePointers()
 	if Map.IsOutdoor() and u4[MapVertexesPtr] == 0 then
 		return 0
 	end
 
-	mem.u4[QueueFlag] = 1
+	u4[QueueFlag] = 1
 	if ThreadHandler == 0 then
 		ThreadHandler = mem.dll["kernel32"].CreateThread(nil, 0, HandlerAsm, QueueFlag, 0, nil)
 	end
@@ -2995,7 +3068,7 @@ local function ConvertOutdoorData()
 		for FacetId, Facet in Model.Facets do
 			Val = {
 				VertexIds = {},
-				Room = ModelId,
+				Room = 0,
 				MinX = Facet.MinX,
 				MaxX = Facet.MaxX,
 				MinY = Facet.MinY,
@@ -3004,10 +3077,79 @@ local function ConvertOutdoorData()
 				MaxZ = Facet.MaxZ,
 				PolygonType = Facet.PolygonType}
 
+			if Val.PolygonType ~= 3 then -- horizontal floor
+				-- increase Z bounds to force small facets detection.
+				Val.MinZ = Val.MinZ - 50
+				Val.MaxZ = Val.MaxZ + 50
+			end
+
 			for _, VertexId in Facet.VertexIds do
 				table.insert(Val.VertexIds, CurVertexList[VertexId])
 			end
 			MapFacets[#MapFacets + 1] = Val
+		end
+	end
+
+	-- Interpret sprites as X facets pairs
+	local DecListItem
+	local GrowBoundsVal = 50
+	local SpriteFacets, SpriteVertexes = {}, {}
+	local SminX, SmaxX, SminY, SmaxY, Radius, BaseId
+	for SpriteId, Sprite in Map.Sprites do
+		DecListItem = Game.DecListBin[Sprite.DecListId]
+		if not DecListItem.NoBlockMovement and not DecListItem.NoDraw
+			and DecListItem.Radius > 30 and DecListItem.Height > 30 then -- sprites with sizes less than 30 do not block movement
+
+			Radius = DecListItem.Radius + GrowBoundsVal
+			BaseId = #MapVertexes
+
+			SpriteVertexes[1] = {Id = BaseId + 1, X = Sprite.X + Radius, Y = Sprite.Y + Radius, Z = Sprite.Z} -- >^
+			SpriteVertexes[2] = {Id = BaseId + 2, X = Sprite.X - Radius, Y = Sprite.Y + Radius, Z = Sprite.Z} -- <^
+			SpriteVertexes[3] = {Id = BaseId + 3, X = Sprite.X + Radius, Y = Sprite.Y - Radius, Z = Sprite.Z} -- >
+			SpriteVertexes[4] = {Id = BaseId + 4, X = Sprite.X - Radius, Y = Sprite.Y - Radius, Z = Sprite.Z} -- <
+
+			SpriteVertexes[5] = {Id = BaseId + 5, X = Sprite.X + Radius, Y = Sprite.Y + Radius, Z = Sprite.Z + DecListItem.Height}
+			SpriteVertexes[6] = {Id = BaseId + 6, X = Sprite.X - Radius, Y = Sprite.Y + Radius, Z = Sprite.Z + DecListItem.Height}
+			SpriteVertexes[7] = {Id = BaseId + 7, X = Sprite.X + Radius, Y = Sprite.Y - Radius, Z = Sprite.Z + DecListItem.Height}
+			SpriteVertexes[8] = {Id = BaseId + 8, X = Sprite.X - Radius, Y = Sprite.Y - Radius, Z = Sprite.Z + DecListItem.Height}
+
+			-- register vertexes
+			for _, Vertex in ipairs(SpriteVertexes) do
+				MapVertexes[Vertex.Id] = Vertex
+			end
+
+			SminX, SmaxX, SminY, SmaxY = Sprite.X - Radius, Sprite.X + Radius, Sprite.Y - Radius, Sprite.Y + Radius
+
+			-- X
+
+			SpriteFacets[1] = {VertexIds = {SpriteVertexes[1].Id, SpriteVertexes[5].Id, SpriteVertexes[8].Id, SpriteVertexes[4].Id},
+				MinX = SminX, MaxX = SmaxX, MinY = SminY, MaxY = SmaxY}
+
+			SpriteFacets[2] = {VertexIds = {SpriteVertexes[2].Id, SpriteVertexes[6].Id, SpriteVertexes[7].Id, SpriteVertexes[3].Id},
+				MinX = SminX, MaxX = SmaxX, MinY = SminY, MaxY = SmaxY}
+
+			-- Cube
+
+			SpriteFacets[3] = {VertexIds = {SpriteVertexes[1].Id, SpriteVertexes[5].Id, SpriteVertexes[6].Id, SpriteVertexes[2].Id},
+				MinX = SminX, MaxX = SmaxX, MinY = SminY, MaxY = SmaxY}
+
+			SpriteFacets[4] = {VertexIds = {SpriteVertexes[3].Id, SpriteVertexes[7].Id, SpriteVertexes[8].Id, SpriteVertexes[4].Id},
+				MinX = SminX, MaxX = SmaxX, MinY = SminY, MaxY = SmaxY}
+
+			SpriteFacets[5] = {VertexIds = {SpriteVertexes[1].Id, SpriteVertexes[5].Id, SpriteVertexes[7].Id, SpriteVertexes[3].Id},
+				MinX = SminX, MaxX = SmaxX, MinY = SminY, MaxY = SmaxY}
+
+			SpriteFacets[6] = {VertexIds = {SpriteVertexes[3].Id, SpriteVertexes[7].Id, SpriteVertexes[8].Id, SpriteVertexes[6].Id},
+				MinX = SminX, MaxX = SmaxX, MinY = SminY, MaxY = SmaxY}
+
+			-- set rest facet props and register facets
+			for _, Facet in pairs(SpriteFacets) do
+				MapFacets[#MapFacets+1] = Facet
+				Facet.Room = 0
+				Facet.PolygonType = 1 -- wall
+				Facet.MinZ = Sprite.Z - DecListItem.Height - GrowBoundsVal
+				Facet.MaxZ = Sprite.Z + DecListItem.Height + GrowBoundsVal
+			end
 		end
 	end
 
