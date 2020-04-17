@@ -1,14 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Data",
-    "\\DataFiles",
-    "\\Scripts",
+    "\\Scripts\\Core",
     "\\Scripts\\General",
     "\\Scripts\\Global",
     "\\Scripts\\Modules",
-    "\\Scripts\\Structs"
+    "\\Scripts\\Structs",
+    "\\Scripts\\Structs\\After"
   ],
-  "SelectedNode": "\\Scripts\\Global\\MonsterPathfinding.lua",
+  "SelectedNode": "\\Scripts",
   "PreviewInSolutionExplorer": false
 }
