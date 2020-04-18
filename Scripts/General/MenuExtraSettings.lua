@@ -1,42 +1,71 @@
+local Pages = {}
+local CurrentPage = 1
+
+-- Setup special screen for interface manager
+local function NewSettingsPage(ScreenId, ScreenName)
+	const.Screens[ScreenName] = ScreenId
+	CustomUI.NewScreen(ScreenId)
+	table.insert(Pages, ScreenId)
+end
+CustomUI.NewSettingsPage = NewSettingsPage
+
+local function ExitExtSetScreen()
+	Editor.UpdateVisibility(Game.InfinityView)
+	if not Game.ShowWeatherEffects then
+		CustomUI.ShowSFTAnim() -- stop current animation
+	end
+	events.call("ExitExtraSettingsMenu")
+
+	Game.CurrentScreen = 2
+end
+CustomUI.ExitExtraSettingsMenu = ExitExtSetScreen
 
 function events.GameInitialized2()
 
+	local ExSetScr = 98
 	local VarsToStore = {"UseMonsterBolster", "BolsterAmount", "ShowWeatherEffects", "InfinityView", "ImprovedPathfinding"}
 	local RETURN = const.Keys.RETURN
 	local ESCAPE = const.Keys.ESCAPE
-	local KeyLabels = {}
-	local QucikSpellsSlots = {}
-	local ActiveText
-	local SelectionStarted = false
+	NewSettingsPage(ExSetScr, "ExtraSettings")
 
-	-- Setup special screens for interface manager
-	local ExSetScr = 98
-	const.Screens.ExtraSettings = ExSetScr
-	CustomUI.NewScreen(ExSetScr)
-
-	local ExSetScrKeys = 96
-	const.Screens.ExtraKeybinds = ExSetScrKeys
-	CustomUI.NewScreen(ExSetScrKeys)
-
-	local function ExitExtSetScreen()
-		Editor.UpdateVisibility(Game.InfinityView)
-		if not Game.ShowWeatherEffects then
-			CustomUI.ShowSFTAnim() -- stop current animation
-		end
-
-		SelectionStarted = false
-		ActiveText = nil
-		ExtraQuickSpells.KeyBinds = {}
-		for k,v in pairs(QucikSpellsSlots) do
-			v.Label.CStd = 0xFFFF -- white
-			local Key = const.Keys[v.Key.Text]
-			if Key then
-				ExtraQuickSpells.KeyBinds[Key] = k
+	---- Switch extra screen ----
+	local RightSwitch = CustomUI.CreateButton{
+		IconUp 			= "ar_rt_up",
+		IconDown 		= "ar_rt_dn",
+		IconMouseOver 	= "ar_rt_ht",
+		Action = function(t)
+			Game.PlaySound(23)
+			if CurrentPage < #Pages then
+				CurrentPage = CurrentPage + 1
+			else
+				CurrentPage = 1
 			end
-		end
+			Game.CurrentScreen = Pages[CurrentPage]
+		end,
+		Condition = function() return #Pages > 1 end,
+		Layer 	= 0,
+		Screen 	= {ExSetScr},
+		X = 554, Y = 422}
 
-		Game.CurrentScreen = 2
-	end
+	local LeftSwitch = CustomUI.CreateButton{
+		IconUp 			= "ar_lt_up",
+		IconDown 		= "ar_lt_dn",
+		IconMouseOver 	= "ar_lt_ht",
+		Action = function(t)
+			Game.PlaySound(24)
+			if CurrentPage > 1 then
+				CurrentPage = CurrentPage - 1
+			else
+				CurrentPage = #Pages
+			end
+			Game.CurrentScreen = Pages[CurrentPage]
+		end,
+		Condition = function() return #Pages > 1 end,
+		Layer 	= 0,
+		Screen 	= {ExSetScr},
+		X = 69, Y = 422}
+
+	---- first page creation ----
 
 	-- simplify tumbler creation
 	local Tumblers = {}
@@ -64,7 +93,8 @@ function events.GameInitialized2()
 	end
 
 	-- Create elements
-	CustomUI.CreateButton{
+	local ExSetBtn
+	ExSetBtn = CustomUI.CreateButton{
 		IconUp	 	  = "ExtSetDw",
 		IconDown	  = "ExtSetUp",
 		IconMouseOver = "ExtSetUp",
@@ -83,7 +113,12 @@ function events.GameInitialized2()
 						v.IDwSrc = "TmblrOn"
 					end
 				end
-
+				for k,v in pairs(Pages) do
+					CustomUI.ActiveElements[v].Buttons[0][RightSwitch.Key] = RightSwitch
+					CustomUI.ActiveElements[v].Buttons[0][LeftSwitch.Key] = LeftSwitch
+					CustomUI.ActiveElements[v].Buttons[0][ExSetBtn.Key] = ExSetBtn
+				end
+				CurrentPage = table.find(Pages, ExSetScr)
 				Game.CurrentScreen = ExSetScr
 			else
 				ExitExtSetScreen()
@@ -91,20 +126,18 @@ function events.GameInitialized2()
 			Game.PlaySound(412)
 		end}
 
-	local function BGOnESCAPE()
-		if Keys.IsPressed(ESCAPE) then
-			ExitExtSetScreen()
-		end
-		Game.Paused = true
-		return true
-	end
-
 	CustomUI.CreateIcon{
 		Icon = "ExSetScr",
 		X = 0,
 		Y = 0,
 		Layer = 1,
-		Condition = BGOnESCAPE,
+		Condition = function()
+			if Keys.IsPressed(ESCAPE) then
+				ExitExtSetScreen()
+			end
+			Game.Paused = true
+			return true
+		end,
 		BlockBG = true,
 		Screen = ExSetScr}
 
@@ -156,128 +189,7 @@ function events.GameInitialized2()
 		Screen 	= ExSetScr,
 		X = BolsterCX + 20, Y = BolsterCY}
 
-	---- Extra keybinds ----
-	local NOKEY = "-NO KEY-"
-	local function TextChooseKey(t, Key)
-		if SelectionStarted then
-			if ActiveText == t then
-				t.CStd = 0xFFFF
-				SelectionStarted = false
-				ActiveText = nil
-				KeyLabels[t].Text = Key and table.find(const.Keys, Key) or NOKEY
-			elseif ActiveText then
-				Game.PlaySound(27)
-			end
-		elseif t then
-			SelectionStarted = true
-			ActiveText = t
-			t.CStd = 0xe664
-		end
-	end
-
-	CustomUI.CreateIcon{
-		Icon = "ExSetScrK",
-		X = 0,
-		Y = 0,
-		Layer = 1,
-		Condition = function()
-				if Keys.IsPressed(RETURN) then
-					if SelectionStarted then
-						SelectionStarted = false
-						ActiveText.CStd = 0xFFFF
-						ActiveText = nil
-					end
-				elseif Keys.IsPressed(ESCAPE) and not SelectionStarted then
-					ExitExtSetScreen()
-				end
-				return true
-			end,
-		BlockBG = true,
-		Screen = ExSetScrKeys}
-
-	for i = 1, 4 do
-		local Label, Key
-
-		Label = CustomUI.CreateText{Text = "Q. SPELL " .. i,
-			X = 107, Y = 221 + (i-1)*28,
-			AlignLeft = true,
-			Action = TextChooseKey,
-			Layer = 0,
-			Screen = ExSetScrKeys,
-			Font = Game.Lucida_fnt}
-
-		Key = CustomUI.CreateText{Text = NOKEY,
-			X = 227, Y = 221 + (i-1)*28,
-			AlignLeft = true,
-			Layer = 0,
-			Screen = ExSetScrKeys,
-			Font = Game.Lucida_fnt}
-
-		KeyLabels[Label] = Key
-		QucikSpellsSlots[i] = {Key = Key, Label = Label}
-	end
-
-	function events.KeyDown(t)
-		if Game.CurrentScreen == ExSetScrKeys and SelectionStarted then
-			TextChooseKey(ActiveText, t.Key)
-		end
-	end
-
-	---- Switch extra screen ----
-	CustomUI.CreateButton{
-		IconUp 			= "ar_rt_up",
-		IconDown 		= "ar_rt_dn",
-		IconMouseOver 	= "ar_rt_ht",
-		Action = function(t)
-			Game.PlaySound(23)
-			if Game.CurrentScreen == ExSetScr then
-				Game.CurrentScreen = ExSetScrKeys
-			else
-				Game.CurrentScreen = ExSetScr
-			end
-		end,
-		Layer 	= 0,
-		Screen 	= {ExSetScr, ExSetScrKeys},
-		X = 554, Y = 422}
-
-	CustomUI.CreateButton{
-		IconUp 			= "ar_lt_up",
-		IconDown 		= "ar_lt_dn",
-		IconMouseOver 	= "ar_lt_ht",
-		Action = function(t)
-			Game.PlaySound(24)
-			if Game.CurrentScreen == ExSetScr then
-				Game.CurrentScreen = ExSetScrKeys
-			else
-				Game.CurrentScreen = ExSetScr
-			end
-		end,
-		Layer 	= 0,
-		Screen 	= {ExSetScr, ExSetScrKeys},
-		X = 69, Y = 422}
-
 	-- events
-	local function SaveQSKeybinds()
-		vars.ExtraSettings.SpellSlots = ExtraQuickSpells.SpellSlots
-		vars.ExtraSettings.QSKeybinds = ExtraQuickSpells.KeyBinds
-	end
-
-	local function LoadQSKeybinds()
-		ExtraQuickSpells.SpellSlots = vars.ExtraSettings.SpellSlots or ExtraQuickSpells.NewSpellSlots()
-		ExtraQuickSpells.KeyBinds = vars.ExtraSettings.QSKeybinds or ExtraQuickSpells.DefaultKeybinds()
-		for k,v in pairs(QucikSpellsSlots) do
-			local Key = table.find(ExtraQuickSpells.KeyBinds, k)
-			if Key then
-				v.Key.Text = table.find(const.Keys, Key) or NOKEY
-			else
-				v.Key.Text = NOKEY
-			end
-		end
-
-		for k,v in pairs(ExtraQuickSpells.KeyBinds) do
-			QucikSpellsSlots[v].Key.Text = table.find(const.Keys, k) or NOKEY
-		end
-	end
 
 	function events.BeforeSaveGame()
 		vars.ExtraSettings = vars.ExtraSettings or {}
@@ -285,7 +197,6 @@ function events.GameInitialized2()
 		for k,v in pairs(VarsToStore) do
 			ExSet[v] = Game[v]
 		end
-		SaveQSKeybinds()
 	end
 
 	function events.LoadMap(WasInGame)
@@ -298,7 +209,6 @@ function events.GameInitialized2()
 			for k,v in pairs(VarsToStore) do
 				Game[v] = (ExSet[v] == nil) and true or ExSet[v]
 			end
-			LoadQSKeybinds()
 		end
 	end
 
