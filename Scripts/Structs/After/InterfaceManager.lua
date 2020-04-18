@@ -453,7 +453,7 @@ local function CreateText(t)
 
 	local Settings = {Text = t.Text, X = t.X or 0, Y = t.Y or 0,
 						Wt = t.Width or math.floor(string.len(t.Text)*10/LinesCount),
-						Ht = t.Height or 10*LinesCount,
+						Ht = t.Height or 16*LinesCount,
 						Layer = t.Layer or 0, Cond = t.Condition,
 						CStd = t.ColorStd or 0xFFFF, CMo = t.ColorMouseOver or 0, Act = t.Action,
 						AlignLeft = t.AlignLeft or false,

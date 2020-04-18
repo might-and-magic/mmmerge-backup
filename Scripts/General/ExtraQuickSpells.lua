@@ -1,9 +1,13 @@
 ExtraQuickSpells = {}
+ExtraQuickSpells.SlotsAmount = 4
 
 local function NewSpellSlots()
 	local SpellSlots = {}
 	for PlayerId, Player in Party.PlayersArray do
-		SpellSlots[PlayerId] = {0, 0, 0, 0}
+		SpellSlots[PlayerId] = {}
+		for i = 1, ExtraQuickSpells.SlotsAmount do
+			SpellSlots[PlayerId][i] = 0
+		end
 	end
 	return SpellSlots
 end
@@ -18,7 +22,7 @@ local function CastSlotSpell(SlotNumber)
 	local SpellSlots = ExtraQuickSpells.SpellSlots
 	local Player = Party[Game.CurrentPlayer]
 	local PlayerId = Party.PlayersIndexes[Game.CurrentPlayer]
-	local SpellId = SpellSlots[PlayerId][SlotNumber]
+	local SpellId = SpellSlots[PlayerId][SlotNumber] or 0
 
 	if SpellId == 0 then
 		-- perform standart attack
@@ -68,7 +72,7 @@ function ShowSlotSpellName(SlotNumber)
 		SpellId = Party[Game.CurrentPlayer].QuickSpell
 	else
 		local PlayerId = Party.PlayersIndexes[Game.CurrentPlayer]
-		SpellId = ExtraQuickSpells.SpellSlots[PlayerId][SlotNumber]
+		SpellId = ExtraQuickSpells.SpellSlots[PlayerId][SlotNumber] or 0
 	end
 
 	if SpellId == 0 then
@@ -81,7 +85,7 @@ end
 function events.GameInitialized2()
 
 	-- new quick spell buttons
-	for i = 1, 4 do
+	for i = 1, ExtraQuickSpells.SlotsAmount do
 		CustomUI.CreateButton{
 			IconUp = "stssu",
 			IconDown = "stssd",
@@ -128,4 +132,147 @@ function events.KeyDown(t)
 	end
 end
 
--- save/load algorythm is in "MenuExtraSettings.lua"
+---- Extra settings menu ----
+
+function events.GameInitialized2()
+
+	local KeyLabels = {}
+	local QuickSpellsSlots = {}
+	local ActiveText
+	local SelectionStarted = false
+	local ExSetScrKeys = 96
+	CustomUI.NewSettingsPage(ExSetScrKeys, "ExtraKeybinds")
+
+	function events.ExitExtraSettingsMenu()
+		SelectionStarted = false
+		ActiveText = nil
+		ExtraQuickSpells.KeyBinds = {}
+		for k,v in pairs(QuickSpellsSlots) do
+			v.Label.CStd = 0xFFFF -- white
+			ExtraQuickSpells.KeyBinds[v.KeyId] = k
+		end
+	end
+
+	local NOKEY = "-NO KEY-"
+	local function TextChooseKey(t, Key)
+		if SelectionStarted then
+			if ActiveText == t then
+				local KeyName = table.find(const.Keys, Key)
+				if KeyName then
+					for k,v in pairs(QuickSpellsSlots) do
+						if v.KeyId == Key then
+							v.Key.Text = NOKEY
+						end
+						if v.Label == t then
+							v.KeyId = Key
+						end
+					end
+				else
+					KeyName = NOKEY
+				end
+
+				t.CStd = 0xFFFF
+				SelectionStarted = false
+				ActiveText = nil
+				KeyLabels[t].Text = KeyName
+			elseif ActiveText then
+				Game.PlaySound(27)
+			end
+		elseif t then
+			SelectionStarted = true
+			ActiveText = t
+			t.CStd = 0xe664
+		end
+	end
+
+	CustomUI.CreateIcon{
+		Icon = "ExSetScrK",
+		X = 0,
+		Y = 0,
+		Layer = 1,
+		Condition = function()
+				if Keys.IsPressed(const.Keys.RETURN) then
+					if SelectionStarted then
+						SelectionStarted = false
+						ActiveText.CStd = 0xFFFF
+						ActiveText = nil
+					end
+				elseif Keys.IsPressed(const.Keys.ESCAPE) and not SelectionStarted then
+					CustomUI.ExitExtraSettingsMenu()
+				end
+				return true
+			end,
+		BlockBG = true,
+		Screen = ExSetScrKeys}
+
+	for i = 1, ExtraQuickSpells.SlotsAmount do
+		local Label, Key, X, Y
+		if i < 6 then
+			X = 107
+			Y = i
+		else
+			X = 334
+			Y = i-5
+		end
+
+		Label = CustomUI.CreateText{Text = "Q. SPELL " .. i,
+			X = X, Y = 193 + Y*28,
+			AlignLeft = true,
+			Action = TextChooseKey,
+			Layer = 0,
+			Screen = ExSetScrKeys,
+			Font = Game.Lucida_fnt}
+
+		Key = CustomUI.CreateText{Text = NOKEY,
+			X = X + 120, Y = 193 + Y*28,
+			AlignLeft = true,
+			Action = function() TextChooseKey(QuickSpellsSlots[i].Label) end,
+			Layer = 0,
+			Screen = ExSetScrKeys,
+			Font = Game.Lucida_fnt}
+
+		KeyLabels[Label] = Key
+		QuickSpellsSlots[i] = {Key = Key, Label = Label, KeyId = 0}
+	end
+
+	function events.KeyDown(t)
+		if Game.CurrentScreen == ExSetScrKeys and SelectionStarted then
+			TextChooseKey(ActiveText, t.Key)
+		end
+	end
+
+	local function SaveQSKeybinds()
+		vars.ExtraSettings.SpellSlots = ExtraQuickSpells.SpellSlots
+		vars.ExtraSettings.QSKeybinds = ExtraQuickSpells.KeyBinds
+	end
+
+	local function LoadQSKeybinds()
+		ExtraQuickSpells.SpellSlots = vars.ExtraSettings.SpellSlots or ExtraQuickSpells.NewSpellSlots()
+		ExtraQuickSpells.KeyBinds = vars.ExtraSettings.QSKeybinds or ExtraQuickSpells.DefaultKeybinds()
+		for k,v in pairs(QuickSpellsSlots) do
+			local Key = table.find(ExtraQuickSpells.KeyBinds, k)
+			if Key then
+				v.KeyId = Key
+				v.Key.Text = table.find(const.Keys, Key) or NOKEY
+			else
+				v.KeyId = 0
+				v.Key.Text = NOKEY
+			end
+		end
+
+		for k,v in pairs(ExtraQuickSpells.KeyBinds) do
+			QuickSpellsSlots[v].Key.Text = table.find(const.Keys, k) or NOKEY
+		end
+	end
+
+	function events.BeforeSaveGame()
+		SaveQSKeybinds()
+	end
+
+	function events.LoadMap(WasInGame)
+		if not WasInGame then
+			LoadQSKeybinds()
+		end
+	end
+end
+
