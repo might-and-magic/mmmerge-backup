@@ -63,9 +63,14 @@ function GetSelectedSpellId()
 end
 
 function ShowSlotSpellName(SlotNumber)
-	local PlayerId = Party.PlayersIndexes[Game.CurrentPlayer]
-	local SpellSlots = ExtraQuickSpells.SpellSlots
-	local SpellId = SpellSlots[PlayerId][SlotNumber]
+	local SpellId
+	if SlotNumber == 0 then -- original quick spell
+		SpellId = Party[Game.CurrentPlayer].QuickSpell
+	else
+		local PlayerId = Party.PlayersIndexes[Game.CurrentPlayer]
+		SpellId = ExtraQuickSpells.SpellSlots[PlayerId][SlotNumber]
+	end
+
 	if SpellId == 0 then
 		Game.ShowStatusText(Game.GlobalTxt[72])
 	else
@@ -74,6 +79,8 @@ function ShowSlotSpellName(SlotNumber)
 end
 
 function events.GameInitialized2()
+
+	-- new quick spell buttons
 	for i = 1, 4 do
 		CustomUI.CreateButton{
 			IconUp = "stssu",
@@ -84,19 +91,29 @@ function events.GameInitialized2()
 			Y =	380 - i*50,
 			Masked = true,
 			Action = function() SetSlotSpell(Game.CurrentPlayer, i, GetSelectedSpellId()) end,
-			MouseOverAction = function() ShowSlotSpellName(i, 1) end
+			MouseOverAction = function() ShowSlotSpellName(i) end
 		}
 	end
+
+	-- overlay for original button
+	CustomUI.CreateButton{
+			IconUp = "stssu",
+			Screen = 8,
+			Layer = 3,
+			X =	0,
+			Y =	380,
+			Action = function() return true end,
+			MouseOverAction = function() ShowSlotSpellName(0) end
+		}
 end
 
 -- default values:
 local function DefaultKeybinds()
-	local t = {}
-	t[const.Keys.F5] = 1
-	t[const.Keys.F6] = 2
-	t[const.Keys.F7] = 3
-	t[const.Keys.F8] = 4
-	return t
+	return {
+		[const.Keys.F5] = 1,
+		[const.Keys.F6] = 2,
+		[const.Keys.F7] = 3,
+		[const.Keys.F8] = 4}
 end
 ExtraQuickSpells.DefaultKeybinds = DefaultKeybinds
 ExtraQuickSpells.KeyBinds = DefaultKeybinds()
