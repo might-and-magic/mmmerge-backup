@@ -90,13 +90,26 @@ function events.GameInitialized2()
 			IconUp = "stssu",
 			IconDown = "stssd",
 			Screen = 8,
-			Layer = 0,
+			Layer = 1,
 			X =	0,
 			Y =	380 - i*50,
 			Masked = true,
 			Action = function() SetSlotSpell(Game.CurrentPlayer, i, GetSelectedSpellId()) end,
 			MouseOverAction = function() ShowSlotSpellName(i) end
 		}
+
+		-- slot number
+		CustomUI.CreateText{
+			Key = "QSSlotNum_" .. i,
+			AlignLeft = true,
+			Font =  Game.Smallnum_fnt,
+			ColorStd = 0xAAAA, -- brown
+			Screen = 8,
+			Layer = 0,
+			X = 17,
+			Y = 382 - i*50,
+			Text = " " .. tostring(i)}
+
 	end
 
 	-- overlay for original button
@@ -171,7 +184,7 @@ function events.GameInitialized2()
 					KeyName = NOKEY
 				end
 
-				t.CStd = 0xFFFF
+				t.CStd = 0xFFFF -- white
 				SelectionStarted = false
 				ActiveText = nil
 				KeyLabels[t].Text = KeyName
@@ -181,10 +194,11 @@ function events.GameInitialized2()
 		elseif t then
 			SelectionStarted = true
 			ActiveText = t
-			t.CStd = 0xe664
+			t.CStd = 0xe664 -- gold
 		end
 	end
 
+	-- background
 	CustomUI.CreateIcon{
 		Icon = "ExSetScrK",
 		X = 0,
@@ -205,6 +219,7 @@ function events.GameInitialized2()
 		BlockBG = true,
 		Screen = ExSetScrKeys}
 
+	-- keybinds GUI
 	for i = 1, ExtraQuickSpells.SlotsAmount do
 		local Label, Key, X, Y
 		if i < 6 then
@@ -235,12 +250,14 @@ function events.GameInitialized2()
 		QuickSpellsSlots[i] = {Key = Key, Label = Label, KeyId = 0}
 	end
 
+	-- register new keybinds
 	function events.KeyDown(t)
 		if Game.CurrentScreen == ExSetScrKeys and SelectionStarted then
 			TextChooseKey(ActiveText, t.Key)
 		end
 	end
 
+	-- save/load
 	local function SaveQSKeybinds()
 		vars.ExtraSettings.SpellSlots = ExtraQuickSpells.SpellSlots
 		vars.ExtraSettings.QSKeybinds = ExtraQuickSpells.KeyBinds

@@ -790,7 +790,7 @@ local function MonsterNeedsProcessing(Mon)
 	end
 
 	if IsOutdoor then
-		result = Mon.ShowAsHostile and Mon.Fly == 0 and GetDist2(Mon, Party) < 12000
+		result = Mon.Fly == 0 and GetDist2(Mon, Party) < 12000
 	else
 		if Mon.Fly == 1 then
 			result = GetDist2(Mon, Party) < 6000
