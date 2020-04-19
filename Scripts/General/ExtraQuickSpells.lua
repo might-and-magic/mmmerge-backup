@@ -259,11 +259,13 @@ function events.GameInitialized2()
 
 	-- save/load
 	local function SaveQSKeybinds()
+		vars.ExtraSettings = vars.ExtraSettings or {}
 		vars.ExtraSettings.SpellSlots = ExtraQuickSpells.SpellSlots
 		vars.ExtraSettings.QSKeybinds = ExtraQuickSpells.KeyBinds
 	end
 
 	local function LoadQSKeybinds()
+		vars.ExtraSettings = vars.ExtraSettings or {}
 		ExtraQuickSpells.SpellSlots = vars.ExtraSettings.SpellSlots or ExtraQuickSpells.NewSpellSlots()
 		ExtraQuickSpells.KeyBinds = vars.ExtraSettings.QSKeybinds or ExtraQuickSpells.DefaultKeybinds()
 		for k,v in pairs(QuickSpellsSlots) do
