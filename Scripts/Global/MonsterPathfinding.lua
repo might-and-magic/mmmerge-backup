@@ -785,7 +785,7 @@ end
 
 local function MonsterNeedsProcessing(Mon)
 	local result = true
-	if not (Mon.Active and Mon.HP >= 0) then
+	if not (Mon.Active and Mon.HP > 0) then
 		return false
 	end
 
