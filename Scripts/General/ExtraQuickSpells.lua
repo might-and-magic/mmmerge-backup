@@ -24,7 +24,8 @@ local function CastSlotSpell(SlotNumber)
 	local PlayerId = Party.PlayersIndexes[Game.CurrentPlayer]
 	local SpellId = SpellSlots[PlayerId][SlotNumber] or 0
 
-	if SpellId == 0 then
+	-- check for basic spell cost, despite player's mastery, because only spell with different cost by mastery is wizard eye, rest have same.
+	if SpellId == 0 or Player.SP < Game.Spells[SpellId].SpellPoints[1] then
 		-- perform standart attack
 		DoGameAction(23,0,0)
 	elseif Player.RecoveryDelay > 0 then
