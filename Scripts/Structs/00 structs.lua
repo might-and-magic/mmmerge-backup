@@ -789,7 +789,10 @@ function structs.f.Player(define)
 	.i4  'ItemRing4'
 	.i4  'ItemRing5'
 	.i4  'ItemRing6'
-	[mmv(0x1468, 0x1988, 0x1C44)].i4  'SpellBookPage'
+	-- Rod: wrong size
+	--[mmv(0x1468, 0x1988, 0x1C44)].i4  'SpellBookPage'
+	[mmv(0x1468, 0x1988, 0x1C44)].u1  'SpellBookPage'
+	-- Rod.
 	[mmv(0x152F, 0x1A4F, 0x1C45)].u1  'QuickSpell'
 	[mmv(0x1530, 0x1A50, 0x1C46)].array(512).abit  'PlayerBits'
 	if mmver < 8 then
