@@ -38,10 +38,10 @@ local function CastSlotSpell(SlotNumber)
 		-- perform standart attack
 		DoGameAction(23,0,0)
 	elseif Player.RecoveryDelay > 0 then
-		if PlayerId >= Party.count-1 then
+		if Game.CurrentPlayer >= Party.count-1 then
 			Game.CurrentPlayer = 0
 		else
-			Game.CurrentPlayer = PlayerId + 1
+			Game.CurrentPlayer = Game.CurrentPlayer + 1
 		end
 	else
 		CastQuickSpell(Game.CurrentPlayer, SpellId) -- from HardcodedTopicFunctions.lua
@@ -304,4 +304,3 @@ function events.GameInitialized2()
 		end
 	end
 end
-
