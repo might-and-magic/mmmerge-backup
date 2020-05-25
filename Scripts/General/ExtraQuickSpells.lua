@@ -15,7 +15,16 @@ ExtraQuickSpells.NewSpellSlots = NewSpellSlots
 ExtraQuickSpells.SpellSlots = NewSpellSlots()
 
 local function CastSlotSpell(SlotNumber)
-	if Game.CurrentPlayer < 0 or Game.CurrentScreen ~= 0 then
+	if Game.CurrentScreen ~= 0 then
+		return
+	end
+
+	if Game.TurnBasedPhase == 3 then
+		Game.TurnBasedPhase = 1
+		return
+	end
+
+	if Game.CurrentPlayer < 0 then
 		return
 	end
 
