@@ -14,6 +14,11 @@ local function ExitExtSetScreen()
 	if not Game.ShowWeatherEffects then
 		CustomUI.ShowSFTAnim() -- stop current animation
 	end
+
+	if Game.ImprovedPathfinding and Pathfinder and not Pathfinder.WinVersionCompatible() then
+		Game.ImprovedPathfinding = false
+		ErrorMessage(Pathfinder.UncompatibilityMessage)
+	end
 	events.call("ExitExtraSettingsMenu")
 
 	Game.CurrentScreen = 2
@@ -206,6 +211,16 @@ function events.GameInitialized2()
 
 			ExSet.BolsterAmount = ExSet.BolsterAmount or 100
 			ExSet.InfinityView	= ExSet.InfinityView  or false
+
+			if ExSet.ImprovedPathfinding == nil then
+				if Pathfinder.WinVersionCompatible() then
+					ExSet.ImprovedPathfinding = true
+				else
+					ExSet.ImprovedPathfinding = false
+					ErrorMessage(Pathfinder.UncompatibilityMessage)
+				end
+			end
+
 			for k,v in pairs(VarsToStore) do
 				Game[v] = (ExSet[v] == nil) and true or ExSet[v]
 			end
