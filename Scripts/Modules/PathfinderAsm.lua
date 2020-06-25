@@ -1,9 +1,8 @@
 
 Pathfinder = {}
 Pathfinder.UncompatibilityMessage = [[
-
-		Improved pathfinding does not work in windows 95, 98, ME, 2000.
-		Set compatibility mode of mm8.exe to win XP or higher.]]
+Improved pathfinding does not work in windows 95, 98, ME, 2000.
+Set compatibility mode of mm8.exe to win XP or higher.]]
 
 local u1, i1, u2, i2, u4, i4 = mem.u1, mem.i1, mem.u2, mem.i2, mem.u4, mem.i4
 local QueueSize = 50
