@@ -34,6 +34,46 @@ local function ParseTNTable()
 
 end
 
+local function GetTeacherNoteText(SkillId, Mastery)
+	local MasteryNames = {Game.GlobalTxt[433], Game.GlobalTxt[432], Game.GlobalTxt[225]}
+	return Game.SkillNames[SkillId] .. " - " .. MasteryNames[Mastery]
+end
+
+local function GenerateTeacherNoteId(SkillId, Mastery)
+	local CurCont = TownPortalControls.MapOfContinent(Map)
+	return CurCont * 1000 + Mastery * 100 + SkillId
+end
+
+local function SetMapNote(X, Y, Text, Id)
+	local Note
+	for i,v in Map.Notes do
+		if v.Id == Id then
+			v.Active = true
+			return Note
+		end
+	end
+
+	for i,v in Map.Notes do
+		if not v.Active and v.Id == 0 then
+			Note = v
+			break
+		end
+	end
+
+	if not Note then
+		return
+	end
+
+	Note.X = X
+	Note.Y = Y
+	Note.Text = Text or ""
+	Note.Active = true
+	Note.Id = Id or 0
+
+	return Note
+end
+Game.SetMapNote = SetMapNote
+
 function events.GameInitialized2()
 
 	if not ParseTNTable() then
@@ -47,6 +87,7 @@ function events.GameInitialized2()
 		for i = 0, 5 do
 			local CurEvent = Game.NPC[NPCid].Events[i]
 			local CurNote = TeacherNotesTable[CurEvent]
+			local TopicProps = Game.TeacherTopics[CurEvent]
 
 			if CurNote then
 				CurNote = CurNote[NPCid]
@@ -55,6 +96,9 @@ function events.GameInitialized2()
 					mem.u2[CurTeacherTopicsPtr+Counter*4 + 2] = CurNote
 					Counter = Counter + 1
 				end
+
+			elseif TopicProps then
+				SetMapNote(Party.X, Party.Y, GetTeacherNoteText(TopicProps.SId, TopicProps.Mas), GenerateTeacherNoteId(TopicProps.SId, TopicProps.Mas))
 			end
 		end
 	end

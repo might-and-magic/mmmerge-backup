@@ -166,13 +166,13 @@ if isMM then
 		return new
 	end
 	local reallocMM = mem.reallocMM
-	
+
 	function mem.resizeArrayMM(t, n)
 		local old = t.size
 		t.count = n
 		return reallocMM(t, old, t.size)
 	end
-	
+
 elseif offsets.MainWindow then
 	u4[internal.MainWindowPtrPtr] = offsets.MainWindow
 else
@@ -182,13 +182,28 @@ end
 --------- general
 
 if isMM then
+	-- Rod:
+	-- add time-flow fix from upcoming version of MMExt
+	local function SetPause(p, b)
+		local last = u4[p + 4] ~= 0
+		if b ~= last then
+			call(offsets[b and 'PauseTime' or 'ResumeTime'], 1, p)
+		end
+	end
+	-- Rod.
+
 	function internal.PauseGame()
 		local Game = _G.Game
 		if Game then
 			local state = {Game.Paused, Game.Paused2, u4[offsets.GameStateFlags]}
 			if internal.InGame then
-				call(offsets.PauseTime, 1, offsets.TimeStruct1)
-				call(offsets.PauseTime, 1, offsets.TimeStruct2)
+				-- Rod:
+				-- add time-flow fix from upcoming version of MMExt
+				--call(offsets.PauseTime, 1, offsets.TimeStruct1)
+				--call(offsets.PauseTime, 1, offsets.TimeStruct2)
+				SetPause(offsets.TimeStruct1, true)
+				SetPause(offsets.TimeStruct2, true)
+				-- Rod.
 			end
 			u4[offsets.GameStateFlags] = u4[offsets.GameStateFlags]:Or(0x100)  -- idle flag
 			return state
@@ -198,19 +213,26 @@ if isMM then
 	function internal.ResumeGame(state)
 		if state then
 			local old1, old2, old3 = unpack(state)
-			if internal.InGame and not old1 then
-				call(offsets.ResumeTime, 1, offsets.TimeStruct1)
+			-- Rod:
+			-- add time-flow fix from upcoming version of MMExt
+			--if internal.InGame and not old1 then
+			--	call(offsets.ResumeTime, 1, offsets.TimeStruct1)
+			--end
+			--if internal.InGame and not old2 then
+			--	call(offsets.ResumeTime, 1, offsets.TimeStruct2)
+			--end
+			if internal.InGame then
+				SetPause(offsets.TimeStruct1, old1)
+				SetPause(offsets.TimeStruct2, old2)
 			end
-			if internal.InGame and not old2 then
-				call(offsets.ResumeTime, 1, offsets.TimeStruct2)
-			end
+			-- Rod.
 			u4[offsets.GameStateFlags] = old3
 		end
 		if _G.Game and _G.Keys then
 			_G.Game.CtrlPressed = _G.Keys and _G.const and _G.Keys.IsPressed(_G.const.Keys.CTRL)
 		end
 	end
-	
+
 	_G.PauseGame = internal.PauseGame
 	_G.ResumeGame = internal.ResumeGame
 end

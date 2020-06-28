@@ -1,5 +1,8 @@
 
 Pathfinder = {}
+Pathfinder.UncompatibilityMessage = [[
+Improved pathfinding does not work in windows 95, 98, ME, 2000.
+Set compatibility mode of mm8.exe to win XP or higher.]]
 
 local u1, i1, u2, i2, u4, i4 = mem.u1, mem.i1, mem.u2, mem.i2, mem.u4, mem.i4
 local QueueSize = 50
@@ -51,6 +54,33 @@ local function cdataPtr(obj)
 	return tonumber(string.sub(tostring(obj), -10))
 end
 mem.hookalloc(0x1000)
+
+local function GetWinVersion()
+	if Pathfinder.WinVersion then
+		return Pathfinder.WinVersion
+	end
+
+	local GetVersionExA = mem.dll["Kernel32.dll"].GetVersionExA
+	if not GetVersionExA then
+		-- This method is deprecated in win 8 and higher, which is enough for pathfider.
+		return 8
+	end
+
+	local VerStruct = mem.StaticAlloc(148)
+	u4[VerStruct] = 148
+
+	GetVersionExA(VerStruct)
+	local VerNum = u4[VerStruct + 4]
+
+	Pathfinder.WinVersion = VerNum
+	return VerNum
+end
+Pathfinder.GetWinVersion = GetWinVersion
+
+local function WinVersionCompatible()
+	return GetWinVersion() > 4
+end
+Pathfinder.WinVersionCompatible = WinVersionCompatible
 
 ------------------------------------------------------
 --					Base funcions					--
@@ -2822,6 +2852,10 @@ end
 Pathfinder.ClearQueue = ClearQueue
 
 local function StartQueueHandler()
+	if not WinVersionCompatible() then
+		return 0
+	end
+
 	if u4[QueueFlag] == 1 and ThreadHandler ~= 0 then -- handler already working
 		return ThreadHandler
 	end
@@ -3437,3 +3471,5 @@ Pathfinder.TileAbsoluteId		= TileAbsoluteId
 Pathfinder.ConvertOutdoorData	= ConvertOutdoorData
 Pathfinder.ExportMapDataBin		= ExportMapDataBin
 Pathfinder.LoadMapDataBin		= LoadMapDataBin
+-- Pathfinder.ExportMapDataBin(Pathfinder.ConvertOutdoorData())
+
