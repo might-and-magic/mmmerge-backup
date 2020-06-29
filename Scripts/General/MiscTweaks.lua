@@ -794,3 +794,38 @@
 		BountyText = BountyHuntFunctions.SetCurrentHunt()
 		mem.u4[0xffd410] = mem.topointer(BountyText)
 	end)
+
+-- Add ReputationIs support (MM6 events)
+-- evt.Add
+mem.asmpatch(0x448B80, [[
+cmp eax, 0xEB
+jnz @none
+neg dword [ebp+0xC]
+jmp absolute 0x448CCF
+@none:
+cmp eax, 0xE9]])
+-- lower bound check
+mem.asmpatch(0x448CF2, [[
+jg absolute 0x448CF8
+neg ecx
+cmp edx, ecx
+jge absolute 0x448E29
+mov [eax+8], ecx
+jmp absolute 0x448E29]])
+
+--evt.Subtract
+mem.asmpatch(0x44943E, [[
+cmp eax, 0xEB
+jnz @none
+neg dword [ebp+0xC]
+jmp absolute 0x4494DE
+@none:
+cmp eax, 0xE9]])
+-- upper bound check
+mem.asmpatch(0x449501, [[
+jl absolute 0x449507
+neg ecx
+cmp edx, ecx
+jle absolute 0x4490C3
+mov [eax+8], ecx
+jmp absolute 0x4490C3]])
