@@ -2890,15 +2890,17 @@ end
 
 local function StopQueueHandler()
 	if ThreadHandler ~= 0 then
-		if mem.u4[QueueFlag] == 1 then
-			mem.u4[QueueFlag] = 0
+		if u1[QueueFlag] == const.AStarQueueStatus.Stopped then
+			mem.dll["kernel32"].CloseHandle(ThreadHandler)
+
+		else
+			u1[QueueFlag] = 3
 			mem.dll["kernel32"].ResumeThread(ThreadHandler)
-			while mem.u4[QueueFlag] ~= 2 do
+			while u1[QueueFlag] ~= const.AStarQueueStatus.Stopped do
 				-- hold main thread, while handler finishes it's job
 			end
 			mem.dll["kernel32"].CloseHandle(ThreadHandler)
-		elseif mem.u4[QueueFlag] == 2 then
-			mem.dll["kernel32"].CloseHandle(ThreadHandler)
+
 		end
 		ThreadHandler = 0
 	end
@@ -2935,7 +2937,7 @@ end
 
 function events.LeaveGame()
 	if ThreadHandler ~= 0 then
-		PauseQueueHandler()
+		StopQueueHandler()
 	end
 end
 
