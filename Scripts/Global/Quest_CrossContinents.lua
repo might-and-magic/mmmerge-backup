@@ -121,7 +121,7 @@ if not QSet.MetVerdant then
 
 	function events.AfterLoadMap()
 
-		if not QSet.MetVerdant then
+		if not QSet.MetVerdant and not TownPortalControls.IsArena() then
 
 			if not QSet.MeetTime then
 				QSet.MeetTime = Game.Time + const.Month*8

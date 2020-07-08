@@ -68,12 +68,16 @@ end
 
 function events.CanCastLloyd(t)
 	if TownPortalControls.IsArena() then
-		t.Result = 0
+		t.Result = false
 	end
 end
 
 function events.CanSaveGame(t)
 	if TownPortalControls.IsArena() then
-		t.Result = 0
+		t.Result = false
 	end
 end
+
+
+
+
