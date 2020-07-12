@@ -863,3 +863,15 @@ evt.Global[1434] = function()
 	MM6TradeItem(469, 2102, {Gold = 500}, 2098, 2097)
 end
 
+----------------------------------------
+-- Make MM7 topics work with 5th character
+--
+
+local function KillParty()
+	evt.All.Set{"Dead", 1}
+end
+
+evt.Global[876] = KillParty
+evt.Global[879] = KillParty
+evt.Global[883] = KillParty
+evt.Global[886] = KillParty
