@@ -207,7 +207,7 @@ if not QSet.GotConnectorStone then
 						and not (Party.EnemyDetectorRed or Party.EnemyDetectorYellow)
 						and not Party.Flying
 						and Game.Time > StartTime
-						and and not TownPortalControls.IsArena() then
+						and not TownPortalControls.IsArena() then
 
 						RemoveTimer(CCTimers.ConnStone)
 						QSet.GotConnectorStone = true
