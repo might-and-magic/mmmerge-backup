@@ -561,7 +561,7 @@ const.ItemType = {
 	Book       = 17,
 	MScroll    = 18, -- always creates item 001
 	Gold       = 19,
-	
+
 	Weapon_    = 20,
 	Armor_     = 21,
 	Misc       = 22,
@@ -885,9 +885,9 @@ const.FaceAnimation = {
 	BegFail = 54,
 
 	ThreatFail = 56,
-	
+
 	SmileHuge = 57,
-	
+
 	BribeFail = 58,
 	NPCDontTalk = 59,
 	SmileRandom2 = 60,
@@ -904,7 +904,7 @@ const.FaceAnimation = {
 
 	ShopIdentify = 73,
 	ShopRepair = 74,
-	
+
 	ShopAlreadyIdentified = 76,
 
 	ShopWrongShop = 79,
@@ -915,9 +915,9 @@ const.FaceAnimation = {
 	HelloHouse = 84,
 
 	AfraidSilent = 98,
-	
+
 	InPrison = 100,
-	
+
 	ChooseMe = 102,
 	Awaken = 103,
 	IdMonsterWeak = 104,
@@ -945,11 +945,11 @@ if mmver == 6 then
 		WaterWalk = 6,
 		Fly = 7,
 		GuardianAngel = 8,
-	
+
 		WizardEye = 10,
 		TorchLight = 11,
 	}
-	
+
 	const.PlayerBuff = {
 		Bless = 0,
 		Heroism = 1,
@@ -976,7 +976,7 @@ if mmver == 6 then
 		Slow = 7,
 		Feeblemind = 8,
 		-- unknown: 9 - 13
-	}	
+	}
 elseif mmver == 7 then
 
 	const.PartyBuff = {
@@ -1001,7 +1001,7 @@ elseif mmver == 7 then
 		WaterWalk = 18,
 		WizardEye = 19,
 	}
-	
+
 	const.PlayerBuff = {
 		AirResistance = 0,
 		Bless = 1,
@@ -1028,7 +1028,7 @@ elseif mmver == 7 then
 		WaterResistance = 22,
 		WaterBreathing = 23,
 	}
-	
+
 	const.MonsterBuff = {
 		Null = 0,
 		Charm = 1,
@@ -1053,7 +1053,7 @@ elseif mmver == 7 then
 		PainReflection = 20,
 		Hammerhands = 21,
 	}
-	
+
 else
 
 	const.PartyBuff = {
@@ -1078,7 +1078,7 @@ else
 		WaterWalk = 18,
 		WizardEye = 19,
 	}
-	
+
 	const.PlayerBuff = {
 		AirResistance = 0,
 		Bless = 1,
@@ -1193,7 +1193,7 @@ const.HouseType["Castle Ent"] = 24  -- consistancy
 const.HouseType["Dungeon Entrance"] = 25  -- consistancy
 
 if mmver == 6 then
-	
+
 	const.NPCProfession = {
 		Smith = 1,
 		Armorer = 2,
@@ -1273,7 +1273,7 @@ if mmver == 6 then
 		Gambler = 76,
 		Child = 77,
 	}
-	
+
 elseif mmver == 7 then
 
 	const.NPCProfession = {

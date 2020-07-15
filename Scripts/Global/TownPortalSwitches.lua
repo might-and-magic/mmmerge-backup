@@ -58,8 +58,26 @@ function TownPortalControls.CheckSwitch()
 
 end
 
+function TownPortalControls.IsArena()
+	return Map.Name == "d42.blv" or Map.Name == "7d05.blv" or Map.Name == "zarena.blv"
+end
+
 function events.BeforeLoadMap()
 	TownPortalControls.CheckSwitch()
 end
+
+function events.CanCastLloyd(t)
+	if TownPortalControls.IsArena() then
+		t.Result = false
+	end
+end
+
+function events.CanSaveGame(t)
+	if TownPortalControls.IsArena() then
+		t.Result = false
+	end
+end
+
+
 
 

@@ -1,5 +1,5 @@
 #	Professions	Prof name (Global.txt)	Rarity	Cost/w	Personality	Action Topic	Joins	Recruit	Join Text	Description
-0			100	50	Adventurer				2267	
+0			100	0	Adventurer				2267	
 1	Smith	308	10	200	Merchant		x		2268	2321
 2	Armorer	309	10	200	Merchant		x		2269	2322
 3	Alchemist	7	10	400	Sorcerer		x		2270	2323

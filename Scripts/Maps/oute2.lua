@@ -3,8 +3,16 @@ function events.AfterLoadMap()
 	LocalHostileTxt()
 	Game.HostileTxt[211][0] = 0
 	Game.HostileTxt[204][0] = 0
+
 	Game.HostileTxt[211][205] = 2
 	Game.HostileTxt[205][211] = 1
+
+	Game.HostileTxt[211][201] = 2
+	Game.HostileTxt[201][211] = 1
+
+	Game.HostileTxt[211][202] = 2
+	Game.HostileTxt[202][211] = 1
+
 	Party.QBits[184] = true -- Town portal
 end
 

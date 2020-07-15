@@ -44,7 +44,7 @@ local function GenerateTeacherNoteId(SkillId, Mastery)
 	return CurCont * 1000 + Mastery * 100 + SkillId
 end
 
-local function SetMapNote(X, Y, Text, Id)
+local function SetMapNote(X, Y, Text, Id, ShowEffect)
 	local Note
 	for i,v in Map.Notes do
 		if v.Id == Id then
@@ -69,6 +69,10 @@ local function SetMapNote(X, Y, Text, Id)
 	Note.Text = Text or ""
 	Note.Active = true
 	Note.Id = Id or 0
+
+	if ShowEffect then
+		evt.Set{"Food", Party.Food} -- Show quest effect
+	end
 
 	return Note
 end
@@ -98,7 +102,7 @@ function events.GameInitialized2()
 				end
 
 			elseif TopicProps then
-				SetMapNote(Party.X, Party.Y, GetTeacherNoteText(TopicProps.SId, TopicProps.Mas), GenerateTeacherNoteId(TopicProps.SId, TopicProps.Mas))
+				SetMapNote(Party.X, Party.Y, GetTeacherNoteText(TopicProps.SId, TopicProps.Mas), GenerateTeacherNoteId(TopicProps.SId, TopicProps.Mas), true)
 			end
 		end
 	end

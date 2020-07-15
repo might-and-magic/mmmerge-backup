@@ -63,7 +63,7 @@ function structs.f.GameStructure(define)
 	[0].struct(structs.HouseRules)  'HouseRules'
 	[0].array(1, OldHousesCount).struct(structs.HousesExtra)  'HousesExtra'
 	[SBFillStatePtr].array(0, OldSpBCount).i8  'GuildNextRefill'
-	[RepPtr2].array(OldHousesCount).struct(structs.ShopRep) 'ShopReputation'
+	[RepPtr2].array(OldHousesCount).i8 'ShopBanExpiration'
 end
 
 function structs.f.HouseRules(define)
@@ -465,7 +465,7 @@ local function RemoveLimits()
 	ChangeGameArray("ShopNextRefill", 	FillStatePtr1, WepCount + ArmCount + MagCount + AlcCount)
 	ChangeGameArray("GuildNextRefill",	SBFillStatePtr, SpBCount)
 
-	ChangeGameArray("ShopReputation", RepPtr2, (WepCount+ArmCount+MagCount+AlcCount+SpBCount)*8)
+	ChangeGameArray("ShopBanExpiration", RepPtr2, (WepCount+ArmCount+MagCount+AlcCount+SpBCount)*8)
 
 	internal.SetArrayUpval(Game.HouseRules["ArcomageTexts"], "low", 1)
 

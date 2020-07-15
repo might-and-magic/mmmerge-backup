@@ -28,7 +28,7 @@ Id	Item id	Notes		X	Y	X	Y	X	Y	X	Y	X	Y	X	Y	X	Y	X	Y	X	Y	X	Y	X	Y	X	Y
 26	874	Steel Chain Mail		31	81	60	96	46	111	0	0	41	107		
 27	875	Fine Chain Mail		44	75	59	97	40	105	38	94	47	110		
 28	876	Resplendent Chain Mail		0	0	0	0	0	0	0	0	0	0		
-29	877	Golden Chain Mail		0	0	0	0	0	0	0	0	0	0		
+29	877	Golden Chain Mail		39	75	53	93	41	103	35	96	45	110		
 30	878	Plate Armor		0	0	0	0	0	0	0	0	0	0		
 31	879	Splendid Plate Armor		0	0	0	0	0	0	0	0	0	0		
 32	880	Noble Plate Armor		0	0	0	0	0	0	0	0	0	0		

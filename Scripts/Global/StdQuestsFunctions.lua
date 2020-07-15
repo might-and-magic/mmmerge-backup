@@ -95,15 +95,36 @@ local Piligrimage = {
 [11] = {Month = 426, Stat = 138,Map = 141}
 }
 
-Game.GlobalEvtLines:RemoveEvent(1354)
-evt.Global[1354] = function()
-	if Party.QBits[TmpBit] then
-		evt.Add{"Experience", 0}
-		Party.QBits[TmpBit] = false
+local function GetPartyPiligrimage()
+	if not vars.LastPiligrimage or vars.LastPiligrimage.Year ~= Game.Year then
+		local LastPiligrimage = {}
+		LastPiligrimage.Year = Game.Year
+		LastPiligrimage.MonthlyQuestTaken = {}
+
+		vars.LastPiligrimage = LastPiligrimage
 	end
 
+	return vars.LastPiligrimage
+end
+
+Game.GlobalEvtLines:RemoveEvent(1354)
+evt.Global[1354] = function()
+	local MonthlyPiligrimage = GetPartyPiligrimage().MonthlyQuestTaken
 	local Set = Piligrimage[Game.Month]
-	Message(string.format(Game.NPCText[1746], Game.GlobalTxt[Set.Month], Game.GlobalTxt[Set.Stat], Game.MapStats[Set.Map].Name))
+	local Hint = string.format(Game.NPCText[1746], Game.GlobalTxt[Set.Month], Game.GlobalTxt[Set.Stat], Game.MapStats[Set.Map].Name)
+
+	if Party.QBits[TmpBit] then
+		Party.QBits[TmpBit] = MonthlyPiligrimage[Game.Month] or false
+		if Party.QBits[TmpBit] then
+			Message(Game.NPCText[1747])
+		else
+			Message(Hint)
+			evt.Add{"Experience", 0}
+		end
+		MonthlyPiligrimage[Game.Month] = true
+	else
+		Message(Hint)
+	end
 end
 
 ----------------------------------------
@@ -842,3 +863,15 @@ evt.Global[1434] = function()
 	MM6TradeItem(469, 2102, {Gold = 500}, 2098, 2097)
 end
 
+----------------------------------------
+-- Make MM7 topics work with 5th character
+--
+
+local function KillParty()
+	evt.All.Set{"Dead", 1}
+end
+
+evt.Global[876] = KillParty
+evt.Global[879] = KillParty
+evt.Global[883] = KillParty
+evt.Global[886] = KillParty

@@ -222,13 +222,13 @@ function events.GameInitialized2()
 
 			if ExSet.ImprovedPathfinding and not Pathfinder.WinVersionCompatible() then
 				ExSet.ImprovedPathfinding = false
-				DelayedEscMessage(Pathfinder.UncompatibilityMessage)
+				--DelayedEscMessage(Pathfinder.UncompatibilityMessage)
 			elseif ExSet.ImprovedPathfinding == nil then
 				if Pathfinder.WinVersionCompatible() then
 					ExSet.ImprovedPathfinding = true
 				else
 					ExSet.ImprovedPathfinding = false
-					DelayedEscMessage(Pathfinder.UncompatibilityMessage)
+					--DelayedEscMessage(Pathfinder.UncompatibilityMessage)
 				end
 			end
 

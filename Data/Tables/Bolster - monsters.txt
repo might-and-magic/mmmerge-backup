@@ -450,9 +450,9 @@
 448	Swamp Troll	0		Neutral		Strength	0	-	-	-	-	-	-			300
 449	River Troll	0		Neutral		Strength	0	-	-	-	-	-	-			300
 450	Mountain Troll	0		Neutral		Strength	0	-	-	-	-	-	-			300
-451	Tree	0		Neutral		Endurance	0	-	x	-	-	-	x	226		300
-452	Tree	0		Neutral		Endurance	0	-	x	-	-	-	x	226		300
-453	Tree	0		Neutral		Endurance	0	-	x	-	-	-	x	226		300
+451	Tree	Immobile		Neutral		Endurance	0	-	x	-	-	-	x	226		300
+452	Tree	Immobile		Neutral		Endurance	0	-	x	-	-	-	x	226		300
+453	Tree	Immobile		Neutral		Endurance	0	-	x	-	-	-	x	226		300
 454	Ghast	Undead		Dark		Strength	0	-	-	-	-	-	-			300
 455	Ghoul 	Undead		Dark		Strength	0	-	-	-	-	-	-			300
 456	Revenant	Undead		Dark		Strength	0	-	-	-	-	-	-			300
@@ -645,9 +645,9 @@
 643	Wolfman	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
 644	Werewolf	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
 645	Greater Werewolf	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
-646	Demon Queen	Demon	NoArena	Dark		Endurance	0	x	x	-	-	-	-			300
-647	Reactor	Construct	NoArena	Neutral		Endurance	0	x	x	-	-	-	-			300
-648	Reactor	Construct	NoArena	Neutral		Endurance	0	x	x	-	-	-	-			300
+646	Demon Queen	Immobile	NoArena	Dark		Endurance	0	x	x	-	-	-	-			300
+647	Reactor	Immobile	NoArena	Neutral		Endurance	0	x	x	-	-	-	-			300
+648	Reactor	Immobile	NoArena	Neutral		Endurance	0	x	x	-	-	-	-			300
 649	Cactus	Demon		Neutral		Speed	0	x	-	-	-	-	-			300
 650	Cactus	Demon		Neutral		Speed	0	x	-	-	-	-	-			300
 651	Cactus	Demon		Neutral		Speed	0	x	-	-	-	-	-			300
