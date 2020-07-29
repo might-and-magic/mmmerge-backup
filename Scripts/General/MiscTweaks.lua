@@ -842,6 +842,10 @@
 	imul eax, eax, 0x3cc]])
 
 	mem.hook(NewCode, function(d)
+		if Game.TurnBased then
+			return
+		end
+
 		local TargetRef, Target = GetLastAttackedMonsterTarget(d.eax)
 		if TargetRef ~= 4 then
 			--debug.ErrorMessage("Wrong attempt to attack party, actual target: " .. TargetRef .. " - " .. Target)
