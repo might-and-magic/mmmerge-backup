@@ -1810,7 +1810,14 @@ function events.EnterNPC(i)
 		return
 	end
 
-	if evt.ForPlayer("All").Cmp{"ClassIs", 48} then
+	local peasant_present = false
+	for _, pl in Party do
+		if pl.Class == const.Class.Peasant then
+			peasant_present = true
+			break
+		end
+	end
+	if peasant_present then
 
 		local ClassId
 		local cEvent
