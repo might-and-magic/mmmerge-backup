@@ -1817,8 +1817,8 @@ function events.EnterNPC(i)
 			break
 		end
 	end
-	if peasant_present then
 
+	if peasant_present then
 		local ClassId
 		local cEvent
 		for Eid = 0, 5 do
@@ -1848,7 +1848,6 @@ function events.EnterNPC(i)
 
 		cNPC.Events[cEvent] = PeasantPromoteTopic
 		Game.NPCTopic[PeasantPromoteTopic] = string.format(Game.NPCText[1676], Game.ClassNames[ClassId])
-
 	end
 
 end
