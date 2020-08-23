@@ -204,7 +204,7 @@ end
 
 local function GetCurrentSwitch()
 	for i = 1, #TPSets do
-		if evt.Cmp{"QBits", TPSets[i].SwitchBit} then
+		if Party.QBits[TPSets[i].SwitchBit] then
 			CurrentSwitch = i
 			return CurrentSwitch
 		end
