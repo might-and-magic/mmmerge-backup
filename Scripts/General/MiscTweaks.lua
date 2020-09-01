@@ -171,6 +171,9 @@
 	local IceBolt = "IceBolt"
 	mem.autohook2(0x4522e9, function(d) d.ebx = mem.topointer(IceBolt) end)
 
+	mem.asmpatch(0x4522F6, "jmp absolute 0x4520EB")
+	mem.asmpatch(0x452387, "jmp absolute 0x4520EB")
+
 	-- Show correct transition texts for mm6/7 maps.
 	local TransTexts = {
 	["7d18.blv"] = 9,
