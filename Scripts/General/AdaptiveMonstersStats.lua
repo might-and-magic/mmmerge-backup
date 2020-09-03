@@ -139,7 +139,9 @@ local function ProcessBolsterTxt()
 			local types = string.split(Words[4], ",")
 			for _, v in pairs(types) do
 				local mon_type = GetProp(v, "MonsterType", CurId)
-				table.insert(Bolster[CurId].ExtraType, mon_type)
+				if mon_type and mon_type > 0 then
+					table.insert(Bolster[CurId].ExtraType, mon_type)
+				end
 			end
 		end
 
