@@ -1,35 +1,35 @@
 #	Note	Type	ExtraType	Creed	Gender	Style	Pref magic	No bounty hunt	New ranged attacks	New spells	Size affects HP	Replicate	New summons	Summon Id	Extra points	Max HP Boost (%)
 0		0		0		0	0	-	-	-	-	-	-			
-1	Lizardman Peasant	Lizardman	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-2	Lizardman Farmer	Lizardman	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-3	Lizardman Villager	Lizardman	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+1	Lizardman Peasant	Lizardman	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+2	Lizardman Farmer	Lizardman	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+3	Lizardman Villager	Lizardman	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
 4	Lizardman Soldier	Lizardman		Neutral		Strength	0	-	x	-	-	-	-		-5	2500
 5	Lizardman Sergeant	Lizardman		Neutral		Strength	0	-	x	-	-	-	-		-3	2500
 6	Lizardman Captain	Lizardman		Neutral		Strength	0	-	x	-	-	-	-			2500
 7	Young Couatl	Creature		Neutral		Speed	Water	-	x	-	x	-	-		-5	600
 8	Couatl	Creature		Neutral		Speed	Water	-	x	-	x	-	-		-3	600
 9	Winged Serpent	Creature		Neutral		Speed	Water	-	x	x	x	-	-			600
-10	Regnan Bandit	0		Neutral		Strength	0	-	-	-	-	-	-		-5	500
-11	Regnan Pirate	0		Neutral		Strength	0	-	-	-	-	-	-		-3	400
-12	Regnan Brigadier	0		Neutral		Strength	0	-	x	-	-	-	-			300
-13	Regnan Crossbowman	0		Neutral		Strength	Air	-	-	-	-	-	-		-5	500
-14	Regnan Arbalester	0		Neutral		Strength	Air	-	-	-	-	-	-		-3	400
-15	Regnan Lieutenant	0		Neutral		Strength	Air	-	-	x	-	-	-			300
-16	Regnan Sorcerer	0		Dark		Magic	Fire	-	x	x	-	-	-		-5	300
-17	Regnan Battlemage	0		Dark		Magic	Fire	-	x	x	-	-	-		-3	200
-18	Regnan Archmage	0		Dark		Magic	Fire	-	x	x	-	-	-			100
-19	Dark Elf Peasant	DarkElf	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-20	Dark Elf Peasant	DarkElf	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-21	Dark Elf Peasant	DarkElf	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-22	Dark Elf Peasant	DarkElf	NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
-23	Dark Elf Peasant	DarkElf	NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
-24	Dark Elf Peasant	DarkElf	NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+10	Regnan Bandit	Human		Neutral		Strength	0	-	-	-	-	-	-		-5	500
+11	Regnan Pirate	Human		Neutral		Strength	0	-	-	-	-	-	-		-3	400
+12	Regnan Brigadier	Human		Neutral		Strength	0	-	x	-	-	-	-			300
+13	Regnan Crossbowman	Human		Neutral		Strength	Air	-	-	-	-	-	-		-5	500
+14	Regnan Arbalester	Human		Neutral		Strength	Air	-	-	-	-	-	-		-3	400
+15	Regnan Lieutenant	Human		Neutral		Strength	Air	-	-	x	-	-	-			300
+16	Regnan Sorcerer	Human		Dark		Magic	Fire	-	x	x	-	-	-		-5	300
+17	Regnan Battlemage	Human		Dark		Magic	Fire	-	x	x	-	-	-		-3	200
+18	Regnan Archmage	Human		Dark		Magic	Fire	-	x	x	-	-	-			100
+19	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+20	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+21	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+22	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+23	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+24	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
 25	Dark Elven Warrior	DarkElf		Neutral		Strength	0	-	-	-	-	-	-			100
 26	Dark Elven Defender	DarkElf		Neutral		Strength	0	-	-	-	-	-	-			100
 27	Dark Elven Crusader	DarkElf		Neutral		Strength	Self	-	-	x	-	-	-			100
-28	Ogre Peasant	Ogre	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-29	Ogre Peasant	Ogre	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-30	Ogre Peasant	Ogre	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+28	Ogre Peasant	Ogre	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+29	Ogre Peasant	Ogre	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+30	Ogre Peasant	Ogre	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
 31	Ogre Brawler	Ogre		Neutral		Strength	0	-	-	-	-	-	-			400
 32	Ogre Warrior	Ogre		Neutral		Strength	0	-	-	-	-	-	-			400
 33	Ogre Warleader	Ogre		Neutral		Strength	Body	-	-	x	-	-	-			400
@@ -42,42 +42,42 @@
 40	Bestial Animalist	Creature		Neutral		Speed	0	-	-	-	x	-	-			300
 41	Bestial Shapeshifter	Creature		Neutral		Speed	0	-	-	-	x	-	-			300
 42	Bestial Lycanthrope	Creature		Neutral		Speed	0	-	-	-	x	-	-			300
-43	Dragon Hunter	0		Neutral		Strength	0	-	-	-	-	-	-			500
-44	Crusader	0		Neutral		Strength	0	-	-	-	-	-	-			400
-45	Dragonslayer	0		Neutral		Strength	0	-	-	-	-	-	-			300
-46	Acolyte of the Sun	0		Light		Magic	Light	-	x	x	-	-	-		-5	500
-47	Cleric of the Sun	0		Light		Magic	Light	-	x	x	-	-	-		-3	400
-48	Priest of the Sun	0		Light		Magic	Light	-	x	x	-	x	x	98		300
-49	Peasant	Undead	NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
-50	Peasant	Undead	NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
-51	Peasant	Undead	NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+43	Dragon Hunter	Human		Neutral		Strength	0	-	-	-	-	-	-			500
+44	Crusader	Human		Neutral		Strength	0	-	-	-	-	-	-			400
+45	Dragonslayer	Human		Neutral		Strength	0	-	-	-	-	-	-			300
+46	Acolyte of the Sun	Human		Light		Magic	Light	-	x	x	-	-	-		-5	500
+47	Cleric of the Sun	Human		Light		Magic	Light	-	x	x	-	-	-		-3	400
+48	Priest of the Sun	Human		Light		Magic	Light	-	x	x	-	x	x	98		300
+49	Peasant	Undead	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+50	Peasant	Undead	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+51	Peasant	Undead	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
 52	Vampire Minion	Undead		Dark		Strength	Self	-	-	x	-	-	-		-5	350
 53	Vampire	Undead		Dark		Strength	Self	-	-	x	-	-	-		-3	350
 54	Greater Vampire	Undead		Dark		Strength	Self	-	-	x	-	-	-			300
-55	Dark Path Journeyman	0		Dark		Magic	Dark	-	x	x	-	-	-		-5	300
-56	Necromancer	0		Dark		Magic	Dark	-	x	x	-	-	-		-3	300
-57	Master Necromancer	0		Dark		Magic	Dark	-	x	x	-	x	x	269		300
-58	Troll Clubman	0		Neutral		Endurance	0	-	-	-	-	-	-			300
-59	Troll Warrior	0		Neutral		Endurance	0	-	-	-	-	-	-			300
-60	Troll Chieftain	0		Neutral		Endurance	0	-	-	-	-	-	-			300
-61	Troll Peasant	0	NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
-62	Troll Peasant	0	NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
-63	Troll Peasant	0	NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
+55	Dark Path Journeyman	Human		Dark		Magic	Dark	-	x	x	-	-	-		-5	300
+56	Necromancer	Human		Dark		Magic	Dark	-	x	x	-	-	-		-3	300
+57	Master Necromancer	Human		Dark		Magic	Dark	-	x	x	-	x	x	269		300
+58	Troll Clubman	Troll	Ogre	Neutral		Endurance	0	-	-	-	-	-	-			300
+59	Troll Warrior	Troll	Ogre	Neutral		Endurance	0	-	-	-	-	-	-			300
+60	Troll Chieftain	Troll	Ogre	Neutral		Endurance	0	-	-	-	-	-	-			300
+61	Troll Peasant	Troll	Ogre,Peasant,NoArena	Peasant		Wimpy	0	x	-	-	-	-	-			100
+62	Troll Peasant	Troll	Ogre,Peasant,NoArena	Peasant		Wimpy	0	x	-	-	-	-	-			100
+63	Troll Peasant	Troll	Ogre,Peasant,NoArena	Peasant		Wimpy	0	x	-	-	-	-	-			100
 64	Minotaur Guard	Minotaur		Neutral		Strength	Body	-	-	x	-	-	-			300
 65	Minotaur Warrior	Minotaur		Neutral		Strength	Body	-	-	x	-	-	-			300
 66	Minotaur Battleleader	Minotaur		Neutral		Strength	Body	-	-	x	-	-	-			300
-67	Minotaur Peasant	Minotaur	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-68	Minotaur Peasant	Minotaur	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-69	Minotaur Peasant	Minotaur	NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+67	Minotaur Peasant	Minotaur	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+68	Minotaur Peasant	Minotaur	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+69	Minotaur Peasant	Minotaur	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
 70	Dragon	Dragon		Neutral		Strength	Fire	-	x	-	x	-	-			300
 71	Dragon Flightleader	Dragon		Neutral		Strength	Fire	-	x	-	x	-	-			200
 72	Great Wyrm	Dragon		Neutral		Strength	Fire	-	x	x	x	-	-			200
 73	Lesser Fire Elemental	Elemental		Neutral		Strength	Fire	-	x	-	-	-	-			100
 74	Fire Elemental	Elemental		Neutral		Strength	Fire	-	x	-	-	-	-			100
 75	Greater Fire Elemental	Elemental		Neutral		Strength	Fire	-	x	x	-	-	-			100
-76	Lesser Water Elemental	Elemental		Neutral		Magic	Water	-	x	-	-	-	-			100
-77	Water Elemental	Elemental		Neutral		Magic	Water	-	x	-	-	-	-			100
-78	Greater Water Elemental	Elemental		Neutral		Magic	Water	-	x	x	-	-	-			100
+76	Lesser Water Elemental	Elemental	Swimmer	Neutral		Magic	Water	-	x	-	-	-	-			100
+77	Water Elemental	Elemental	Swimmer	Neutral		Magic	Water	-	x	-	-	-	-			100
+78	Greater Water Elemental	Elemental	Swimmer	Neutral		Magic	Water	-	x	x	-	-	-			100
 79	Lesser Earth Elemental	Elemental		Neutral		Endurance	Earth	-	x	-	-	-	-			100
 80	Earth Elemental	Elemental		Neutral		Endurance	Earth	-	x	-	-	-	-			100
 81	Greater Earth Elemental	Elemental		Neutral		Endurance	Earth	-	x	x	-	-	-			100
@@ -90,9 +90,9 @@
 88	Young Basilisk	Creature		Neutral		Strength	0	-	-	-	-	-	-			200
 89	Basilisk	Creature		Neutral		Strength	0	-	-	-	-	-	-			200
 90	Elder Basilisk	Creature		Neutral		Strength	0	-	-	-	-	-	-			200
-91	Cyclops	0		Neutral		Strength	0	-	-	-	-	-	-			300
-92	Cyclops Hunter	0		Neutral		Strength	Earth	-	-	x	-	-	-			300
-93	Cyclops Warrior	0		Neutral		Strength	Earth	-	-	x	-	-	-			300
+91	Cyclops	0	Ogre	Neutral		Strength	0	-	-	-	-	-	-			300
+92	Cyclops Hunter	0	Ogre	Neutral		Strength	Earth	-	-	x	-	-	-			300
+93	Cyclops Warrior	0	Ogre	Neutral		Strength	Earth	-	-	x	-	-	-			300
 94	Serpentman	Creature		Neutral		Speed	Fire	-	-	x	-	-	-			500
 95	Serpentman Elder	Creature		Neutral		Speed	Fire	-	-	x	-	-	-			400
 96	Serpentman Warrior	Creature		Neutral		Speed	Fire	-	-	x	-	-	-			300
@@ -105,18 +105,18 @@
 103	Efreeti Soldier	Elemental		Neutral		Strength	Fire	-	x	-	-	-	-			300
 104	Efreeti Knight	Elemental		Neutral		Strength	Fire	-	x	-	-	-	-			300
 105	Efreeti Lord	Elemental		Neutral		Strength	Fire	-	x	x	-	-	x	73		300
-106	Ogre Mage Apprentice	0		Neutral		Magic	Elemental	-	x	x	-	-	-			300
-107	Ogre Mage 	0		Neutral		Magic	Elemental	-	x	x	-	-	-			300
-108	Ogre Magi	0		Neutral		Magic	Elemental	-	x	x	-	-	-			300
+106	Ogre Mage Apprentice	Ogre		Neutral		Magic	Elemental	-	x	x	-	-	-			300
+107	Ogre Mage 	Ogre		Neutral		Magic	Elemental	-	x	x	-	-	-			300
+108	Ogre Magi	Ogre		Neutral		Magic	Elemental	-	x	x	-	-	-			300
 109	Unicorn Foal	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
 110	Unicorn	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
 111	Unicorn Herd Leader	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
-112	Emerald Dragon	Construct		Neutral		Strength	0	-	-	-	-	-	-			100
-113	Sapphire Dragon	Construct		Neutral		Strength	0	-	-	-	-	-	-			100
-114	Ruby Dragon	Construct		Neutral		Strength	0	-	-	-	-	-	-			100
-115	Mist Hawk	Creature		Neutral		Speed	0	-	-	-	-	-	-			200
-116	Storm Eagle	Creature		Neutral		Speed	0	-	x	-	-	-	-			200
-117	Thunderbird	Creature		Neutral		Speed	Air	-	x	x	-	-	-			200
+112	Emerald Dragon	Construct	Dragon	Neutral		Strength	0	-	-	-	-	-	-			100
+113	Sapphire Dragon	Construct	Dragon	Neutral		Strength	0	-	-	-	-	-	-			100
+114	Ruby Dragon	Construct	Dragon	Neutral		Strength	0	-	-	-	-	-	-			100
+115	Mist Hawk	Creature	Elemental	Neutral		Speed	0	-	-	-	-	-	-			200
+116	Storm Eagle	Creature	Elemental	Neutral		Speed	0	-	x	-	-	-	-			200
+117	Thunderbird	Creature	Elemental	Neutral		Speed	Air	-	x	x	-	-	-			200
 118	Wasp Worker	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
 119	Wasp Sentry	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
 120	Wasp Warrior	Creature		Neutral		Speed	0	-	x	-	-	-	-			300
@@ -126,24 +126,24 @@
 124	Brass Gorgon	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
 125	Bronze Gorgon	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
 126	Iron Gorgon	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
-127	Fire Newt	Creature		Neutral		Speed	0	-	x	-	-	-	-			300
-128	Fire Lizard	Creature		Neutral		Speed	0	-	x	-	-	-	-			300
-129	Salamander 	Creature		Neutral		Speed	0	-	x	-	-	-	-			300
-130	Fire Bird	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
-131	Phoenix	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
-132	Grand Phoenix	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
+127	Fire Newt	Creature	Elemental	Neutral		Speed	0	-	x	-	-	-	-			300
+128	Fire Lizard	Creature	Elemental	Neutral		Speed	0	-	x	-	-	-	-			300
+129	Salamander 	Creature	Elemental	Neutral		Speed	0	-	x	-	-	-	-			300
+130	Fire Bird	Creature	Elemental	Neutral		Speed	0	-	-	-	-	-	-			300
+131	Phoenix	Creature	Elemental	Neutral		Speed	0	-	-	-	-	-	-			300
+132	Grand Phoenix	Creature	Elemental	Neutral		Speed	0	-	-	-	-	-	-			300
 133	Triton 	Creature		Neutral		Strength	Air	-	x	-	-	-	-			300
 134	Triton Warrior	Creature		Neutral		Strength	Air	-	x	-	-	-	-			300
 135	Triton Crusader	Creature		Neutral		Strength	Air	-	x	x	-	-	-			300
-136	Young Dragon Turtle	Creature		Neutral		Strength	0	-	-	-	x	-	-			300
-137	Dragon Turtle	Creature		Neutral		Strength	0	-	-	-	x	-	-			300
-138	Elder Tortoise	Creature		Neutral		Strength	0	-	-	-	x	-	-			300
+136	Young Dragon Turtle	Creature	Swimmer	Neutral		Strength	0	-	-	-	x	-	-			300
+137	Dragon Turtle	Creature	Swimmer	Neutral		Strength	0	-	-	-	x	-	-			300
+138	Elder Tortoise	Creature	Swimmer	Neutral		Strength	0	-	-	-	x	-	-			300
 139	Rook	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
 140	Corbie	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
 141	Raven	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
-142	Boulder	Construct		Neutral		Endurance	Earth	-	-	-	-	-	-			300
-143	Boulder	Construct		Neutral		Endurance	Earth	-	-	-	-	x	-			300
-144	Boulder	Construct		Neutral		Endurance	Earth	-	-	x	-	x	-			300
+142	Boulder	Construct	Immobile	Neutral		Endurance	Earth	-	-	-	-	-	-			300
+143	Boulder	Construct	Immobile	Neutral		Endurance	Earth	-	-	-	-	x	-			300
+144	Boulder	Construct	Immobile	Neutral		Endurance	Earth	-	-	x	-	x	-			300
 145	Plane Guardian	0		Neutral		Strength	0	-	-	-	-	-	-			300
 146	Plane Protector	0		Neutral		Strength	0	-	-	-	-	-	-			300
 147	Plane Overlord	0		Neutral		Strength	0	-	-	-	-	-	-			300
@@ -156,18 +156,18 @@
 154	Ether Knight	0		Neutral		Strength	0	-	-	-	-	-	-			300
 155	Ether Champion	0		Neutral		Strength	0	-	-	-	-	-	-			300
 156	Ether Lord	0		Neutral		Strength	0	-	-	-	-	-	-			300
-157	Charger	Construct		Neutral		Strength	0	-	-	-	-	-	-			300
-158	Juggernaut	Construct		Neutral		Strength	0	-	-	-	-	-	-			300
-159	Demolisher	Construct		Neutral		Strength	0	-	-	-	-	-	-			300
+157	Charger	Construct	Elemental	Neutral		Strength	0	-	-	-	-	-	-			300
+158	Juggernaut	Construct	Elemental	Neutral		Strength	0	-	-	-	-	-	-			300
+159	Demolisher	Construct	Elemental	Neutral		Strength	0	-	-	-	-	-	-			300
 160	Smoke Gog	Demon		Dark		Magic	Fire	-	x	-	-	-	-			300
 161	Ember Gog	Demon		Dark		Magic	Fire	-	x	x	-	-	-			300
 162	Fire Gog	Demon		Dark		Magic	Fire	-	x	x	-	-	-			300
-163	Skeletal Dragon	Undead		Dark		Strength	0	-	-	-	x	-	-			300
-164	Bone Dragon	Undead		Dark		Strength	0	-	-	-	x	-	-			300
-165	Undead Dragon	Undead		Dark		Strength	0	-	-	-	x	-	-			300
-166	Human Peasant	0	NoArena	Peasant	M	Wimpy	0	-	-	-	-	-	-			300
-167	Human Peasant	0	NoArena	Peasant	M	Wimpy	0	-	-	-	-	-	-			300
-168	Human Peasant	0	NoArena	Peasant	M	Wimpy	0	-	-	-	-	-	-			300
+163	Skeletal Dragon	Undead	Dragon	Dark		Strength	0	-	-	-	x	-	-			300
+164	Bone Dragon	Undead	Dragon	Dark		Strength	0	-	-	-	x	-	-			300
+165	Undead Dragon	Undead	Dragon	Dark		Strength	0	-	-	-	x	-	-			300
+166	Human Peasant	Human	Peasant,NoArena	Peasant	M	Wimpy	0	-	-	-	-	-	-			300
+167	Human Peasant	Human	Peasant,NoArena	Peasant	M	Wimpy	0	-	-	-	-	-	-			300
+168	Human Peasant	Human	Peasant,NoArena	Peasant	M	Wimpy	0	-	-	-	-	-	-			300
 169	Naga 	Creature		Neutral		Strength	0	-	x	-	-	-	-			300
 170	Naga Warrior	Creature		Neutral		Strength	0	-	x	-	-	-	-			300
 171	Naga Queen	Creature		Neutral		Strength	0	-	x	-	-	-	-			300
@@ -177,24 +177,24 @@
 175	Dark Dwarf Grunt	0		Neutral		Strength	0	-	x	-	-	-	-			300
 176	Dark Dwarf Pounder	0		Neutral		Strength	0	-	x	-	-	-	-			300
 177	Dark Dwarf Berserker	0		Neutral		Strength	0	-	x	-	-	-	-			300
-178	Fish	Creature	NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
-179	Fish	Creature	NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
-180	Fish	Creature	NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
-181	Pirate	0		Neutral		Strength	0	-	-	-	-	-	-			300
-182	Buccaneer	0		Neutral		Strength	0	-	-	-	-	-	-			300
-183	Corsair	0		Neutral		Strength	0	-	x	-	-	-	-			300
-184	Regnan Crossbowman	0		Neutral		Strength	0	-	x	-	-	-	-			300
-185	Regnan Arbalester	0		Neutral		Strength	0	-	x	-	-	-	-			300
-186	Regnan Lieutenant	0		Neutral		Strength	0	-	x	-	-	-	-			300
-187	Pirate Seer	0		Dark		Magic	Elemental	-	x	x	-	-	-			300
-188	Pirate Magi	0		Dark		Magic	Elemental	-	x	x	-	-	-			300
-189	Pirate Wizard	0		Dark		Magic	Elemental	-	x	x	-	-	x	73		300
+178	Fish	Creature	Swimmer,NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
+179	Fish	Creature	Swimmer,NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
+180	Fish	Creature	Swimmer,NoArena	Neutral		Wimpy	0	x	-	-	-	-	-			100
+181	Pirate	Human		Neutral		Strength	0	-	-	-	-	-	-			300
+182	Buccaneer	Human		Neutral		Strength	0	-	-	-	-	-	-			300
+183	Corsair	Human		Neutral		Strength	0	-	x	-	-	-	-			300
+184	Regnan Crossbowman	Human		Neutral		Strength	0	-	x	-	-	-	-			300
+185	Regnan Arbalester	Human		Neutral		Strength	0	-	x	-	-	-	-			300
+186	Regnan Lieutenant	Human		Neutral		Strength	0	-	x	-	-	-	-			300
+187	Pirate Seer	Human		Dark		Magic	Elemental	-	x	x	-	-	-			300
+188	Pirate Magi	Human		Dark		Magic	Elemental	-	x	x	-	-	-			300
+189	Pirate Wizard	Human		Dark		Magic	Elemental	-	x	x	-	-	x	73		300
 190	Hatchling	Dragon		Neutral		Strength	Fire	-	x	-	x	-	-			300
 191	Dragonette	Dragon		Neutral		Strength	Fire	-	x	-	x	-	-			300
 192	Young Dragon	Dragon		Neutral		Strength	Fire	-	x	x	x	-	-			300
-193	Soldier of Fortune	0		Neutral		Strength	0	-	-	-	-	-	-			300
-194	Mercenary	0		Neutral		Strength	0	-	-	-	-	-	-			300
-195	Mercenary Captain	0		Neutral		Strength	Spirit	-	-	x	-	-	-			300
+193	Soldier of Fortune	Human		Neutral		Strength	0	-	-	-	-	-	-			300
+194	Mercenary	Human		Neutral		Strength	0	-	-	-	-	-	-			300
+195	Mercenary Captain	Human		Neutral		Strength	Spirit	-	-	x	-	-	-			300
 196	Chaos Guardian	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
 197	Chaos Protector	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
 198	Chaos Overlord	Creature		Neutral		Strength	0	-	-	-	-	-	-			300
@@ -213,12 +213,12 @@
 211	Floating Eye	Demon		Neutral		Magic	Elemental	-	x	x	-	-	-			300
 212	Gazer	Demon		Neutral		Magic	Elemental	-	x	x	-	-	-			300
 213	Evil Eye	Demon		Neutral		Magic	Elemental	-	x	x	-	-	-			300
-214	Acolyte of the Moon	0		Dark		Magic	Dark	-	x	x	-	-	-			300
-215	Cleric of the Moon	0		Dark		Magic	Dark	-	x	x	-	-	-			300
-216	Priest of the Moon	0		Dark		Magic	Dark	-	x	x	-	-	x	269		300
-217	Acolyte of the Sun	0		Light		Magic	Light	-	x	x	-	-	-			300
-218	Cleric of the Sun	0		Light		Magic	Light	-	x	x	-	-	-			300
-219	Priest of the Sun	0		Light		Magic	Light	-	x	x	-	-	x	242		300
+214	Acolyte of the Moon	Human		Dark		Magic	Dark	-	x	x	-	-	-			300
+215	Cleric of the Moon	Human		Dark		Magic	Dark	-	x	x	-	-	-			300
+216	Priest of the Moon	Human		Dark		Magic	Dark	-	x	x	-	-	x	269		300
+217	Acolyte of the Sun	Human		Light		Magic	Light	-	x	x	-	-	-			300
+218	Cleric of the Sun	Human		Light		Magic	Light	-	x	x	-	-	-			300
+219	Priest of the Sun	Human		Light		Magic	Light	-	x	x	-	-	x	242		300
 220	Devil Worker	Demon		Dark		Strength	0	-	-	-	-	-	-			300
 221	Devil Warrior	Demon		Dark		Strength	0	-	-	-	-	-	-			300
 222	Devil Captain	Demon		Dark		Strength	0	-	-	-	-	-	-			300
@@ -456,9 +456,9 @@
 454	Ghast	Undead		Dark		Strength	0	-	-	-	-	-	-			300
 455	Ghoul 	Undead		Dark		Strength	0	-	-	-	-	-	-			300
 456	Revenant	Undead		Dark		Strength	0	-	-	-	-	-	-			300
-457	Tolberti	0	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
-458	Robert the Wise	0	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
-459	Blaster Guy C	0	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
+457	Tolberti	Human	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
+458	Robert the Wise	Human	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
+459	Blaster Guy C	Human	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
 460	Mega-Dragon	Dragon	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
 461	Mega-Dragon	Dragon	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
 462	Mega-Dragon	Dragon	NoArena	Neutral		Strength	0	x	-	-	-	-	-			300
