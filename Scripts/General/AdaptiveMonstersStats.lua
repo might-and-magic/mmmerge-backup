@@ -13,30 +13,42 @@ const.Bolster.Types = {
 	AllToEqual		= 3
 }
 
+-- Fix const.MonsterKind
+const.MonsterKind = {
+	Undead = 1,
+	Dragon = 2,
+	Swimmer = 3,
+	Immobile = 4,
+	Peasant = 5,
+	NoArena = 6,
+	Ogre = 7,
+	Elemental = 8,
+	Demon = 9,
+	Titan = 10,
+	Elf = 11,
+}
+
 const.Bolster.MonsterType = {
 	Human		= 0,
 	Undead 		= 1,
-	Demon 		= 2,
-	Dragon 		= 3,
-	Elf 		= 6,
-	Swimmer		= 5,
+	Dragon 		= 2,
+	Swimmer		= 3,
 	Immobile	= 4,
-	Titan 		= 7,
-	NoArena		= 8,
-	Creature	= 9,
-	Construct	= 10,
-	Elemental	= 11,
+	Peasant		= 5,
+	NoArena		= 6,
+	Ogre		= 7,
+	Elemental	= 8,
+	Demon 		= 9,
+	Titan 		= 10,
+	Elf 		= 11,
 	Goblin		= 12,
 	Dwarf		= 13,
 	DarkElf		= 14,
 	Lizardman	= 15,
-	Ogre		= 16,
-	Minotaur	= 17
+	Minotaur	= 16,
+	Creature	= 17,
+	Construct	= 18
 	}
-
--- Fix const.MonsterKind
-const.MonsterKind.Elf = 6
-const.MonsterKind.Immobile = 4
 
 const.Bolster.Creed = {
 	Neutral	= 0,
