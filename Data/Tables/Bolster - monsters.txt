@@ -18,15 +18,15 @@
 16	Regnan Sorcerer	Human		Dark	M	Magic	Fire	-	x	x	-	-	-		-5	300
 17	Regnan Battlemage	Human		Dark	M	Magic	Fire	-	x	x	-	-	-		-3	200
 18	Regnan Archmage	Human		Dark	M	Magic	Fire	-	x	x	-	-	-			100
-19	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-20	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-21	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
-22	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
-23	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
-24	Dark Elf Peasant	DarkElf	Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
-25	Dark Elven Warrior	DarkElf		Neutral		Strength	0	-	-	-	-	-	-			100
-26	Dark Elven Defender	DarkElf		Neutral		Strength	0	-	-	-	-	-	-			100
-27	Dark Elven Crusader	DarkElf		Neutral		Strength	Self	-	-	x	-	-	-			100
+19	Dark Elf Peasant	DarkElf	Elf,Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+20	Dark Elf Peasant	DarkElf	Elf,Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+21	Dark Elf Peasant	DarkElf	Elf,Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
+22	Dark Elf Peasant	DarkElf	Elf,Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+23	Dark Elf Peasant	DarkElf	Elf,Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+24	Dark Elf Peasant	DarkElf	Elf,Peasant,NoArena	Peasant	F	Wimpy	0	x	-	-	-	-	-			100
+25	Dark Elven Warrior	DarkElf	Elf	Neutral		Strength	0	-	-	-	-	-	-			100
+26	Dark Elven Defender	DarkElf	Elf	Neutral		Strength	0	-	-	-	-	-	-			100
+27	Dark Elven Crusader	DarkElf	Elf	Neutral		Strength	Self	-	-	x	-	-	-			100
 28	Ogre Peasant	Ogre	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
 29	Ogre Peasant	Ogre	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
 30	Ogre Peasant	Ogre	Peasant,NoArena	Peasant	M	Wimpy	0	x	-	-	-	-	-			100
@@ -393,9 +393,9 @@
 391	Roc	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
 392	Greater Roc	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
 393	Thunderbird	Creature		Neutral		Speed	Air	-	x	x	-	-	-			300
-394	Giant Shark	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
-395	Piranha Shark	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
-396	Dragon Shark	Creature		Neutral		Speed	0	-	-	-	-	-	-			300
+394	Giant Shark	Creature		Neutral		Speed	0	x	-	-	-	-	-			300
+395	Piranha Shark	Creature		Neutral		Speed	0	x	-	-	-	-	-			300
+396	Dragon Shark	Creature		Neutral		Speed	0	x	-	-	-	-	-			300
 397	Skeleton	Undead		Dark		Strength	0	-	-	-	-	-	-			300
 398	Skeleton Warrior	Undead		Dark		Strength	0	-	-	-	-	-	-			300
 399	Skeleton Lord	Undead		Dark		Strength	0	-	-	-	-	-	-			300
@@ -624,9 +624,9 @@
 622	Patrol Unit	Construct	NoArena	Neutral		Speed	0	-	x	-	-	-	-			300
 623	Enforcer Unit	Construct	NoArena	Neutral		Speed	0	-	x	-	-	-	-			300
 624	Terminator Unit	Construct	NoArena	Neutral		Speed	0	-	x	-	-	-	-			300
-625	Sea Serpent	Swimmer		Neutral		Strength	Water	-	x	x	-	-	-			300
-626	Sea Monster	Swimmer		Neutral		Strength	Water	-	x	x	-	-	-			300
-627	Sea Terror	Swimmer		Neutral		Strength	Water	-	x	x	-	-	-			300
+625	Sea Serpent	0	Swimmer	Neutral		Strength	Water	-	x	x	-	-	-			300
+626	Sea Monster	0	Swimmer	Neutral		Strength	Water	-	x	x	-	-	-			300
+627	Sea Terror	0	Swimmer	Neutral		Strength	Water	-	x	x	-	-	-			300
 628	Skeleton	Undead		Dark		Strength	0	-	-	-	-	-	-			300
 629	Skeleton Knight	Undead		Dark		Strength	0	-	-	-	-	-	-			300
 630	Skeleton Lord	Undead		Dark		Strength	0	-	-	-	-	-	-			300
