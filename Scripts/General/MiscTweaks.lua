@@ -174,6 +174,46 @@
 	mem.asmpatch(0x4522F6, "jmp absolute 0x4520EB")
 	mem.asmpatch(0x452387, "jmp absolute 0x4520EB")
 
+	-- Fix Day of the Gods, Deadly Swarm and Flying Fist spell selection for monsters.
+	-- Note: if string variables are declared as local, only the last one will contain
+	--   proper characters.
+	DayGods, DeadlySwarm, FlyingFist = "Day-o-Gods", "Deadly", "Flying"
+	mem.asmpatch(0x4524B3, [[
+	jnz short @daygods
+	push 0x44
+	jmp absolute 0x4520EB
+	@daygods:
+	push ]] .. mem.topointer(DayGods) .. [[;
+	push dword ptr [edi+4]
+	call absolute 0x4DA920
+	test eax, eax
+	pop ecx
+	pop ecx
+	jnz @swarm
+	push 0x53
+	jmp absolute 0x4520EB
+	@swarm:
+	push ]] .. mem.topointer(DeadlySwarm) .. [[;
+	push dword ptr [edi+4]
+	call absolute 0x4DA920
+	test eax, eax
+	pop ecx
+	pop ecx
+	jnz @fist
+	push 0x25
+	jmp absolute 0x452485
+	@fist:
+	push ]] .. mem.topointer(FlyingFist) .. [[;
+	push dword ptr [edi+4]
+	call absolute 0x4DA920
+	test eax, eax
+	pop ecx
+	pop ecx
+	jnz absolute 0x4524BC
+	push 0x4C
+	jmp absolute 0x452485
+	]])
+
 	-- Show correct transition texts for mm6/7 maps.
 	local TransTexts = {
 	["7d18.blv"] = 9,
