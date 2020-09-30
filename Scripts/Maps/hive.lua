@@ -36,35 +36,18 @@ function events.MonsterKilled(mon)
 		if evt.ForPlayer("All").Cmp{"Inventory", 2164} then
 			mapvars.ReactorKilled = true
 
-			evt.SummonMonsters(2, 3, 1, 4352, 20096, -2256)
-			evt.SummonMonsters(2, 3, 1, 6016, 21504, -2256)
-			evt.SummonMonsters(2, 3, 1, 2816, 22016, -2256)
-			evt.SummonMonsters(1, 3, 1, 4352, 24704, -2256)
-			evt.SummonMonsters(1, 3, 1, 2944, 23552, -2256)
-			evt.SummonMonsters(1, 3, 1, 6144, 23424, -2256)
-			evt.SummonMonsters(2, 3, 1, 2688, 19840, -2256)
-			evt.SummonMonsters(2, 3, 1, 1920, 21760, -2256)
-			evt.SummonMonsters(2, 3, 1, 6144, 19840, -2256)
-			evt.SummonMonsters(2, 3, 1, 7168, 21760, -2256)
-			evt.SummonMonsters(1, 3, 1, 2584, 25728, -2256)
-			evt.SummonMonsters(1, 3, 1, 5248, 25728, -2256)
-			evt.SummonMonsters(1, 3, 1, 1792, 23168, -2256)
-			evt.SummonMonsters(1, 3, 1, 2688, 25216, -2256)
-			evt.SummonMonsters(1, 3, 1, 7296, 23040, -2256)
-			evt.SummonMonsters(1, 3, 1, 6144, 25088, -2256)
-			evt.SetDoorState(28, 0)
-			evt.SetDoorState(30, 1)
-			evt.SetDoorState(51, 0)
-			evt.SetDoorState(52, 0)
-			evt.SetDoorState(53, 1)
-			Party.X = 3328
-			Party.Y = 25920
-			Party.Direction = 512
+			evt.SetDoorState{30, 1}
+			evt.SetDoorState{51, 0}
+			evt.SetDoorState{52, 0}
+			evt.SetDoorState{53, 1}
 
-			for _, v in pairs(evt.VarNum.Conditions) do
-				evt.All.Sub(v, 0)
-			end
-			Party.RestAndHeal()
+			evt.SummonMonsters{1, 1, 5, 6044, 21380, -2255, 0, 0}
+			evt.SummonMonsters{1, 2, 5, 2780, 22390, -2255, 0, 0}
+			evt.SummonMonsters{2, 1, 5, 4462, 24698, -2255, 0, 0}
+
+			evt.ForPlayer("All").Set{"MainCondition", 0}
+			evt.ForPlayer("All").Add{"HasFullHP", 0}
+			evt.ForPlayer("All").Add{"HasFullSP", 0}
 
 		else
 			BadEnd()
