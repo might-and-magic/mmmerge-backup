@@ -2536,7 +2536,10 @@ do
 	add("IsAccuracyMoreThanBase")    -- D3/E5
 	add("IsLuckMoreThanBase")        -- D4/E6
 	add("PlayerBits")                -- D5/E7/E9
-	add(mmver ~= 8 and "NPCs" or nil)-- D6/E8
+	-- cthscr: Add NPCs to MM8
+	--add(mmver ~= 8 and "NPCs" or nil)-- D6/E8
+	add("NPCs")                      -- D6/E8/EA
+	-- ~cthscr
 	add("ReputationIs")              -- D7/E9
 	for i = 0, 5 do  add(nil)  end   -- D8-DD/... : something time-related in 0x90E85C/...
 	add("Flying")                    -- DE/F0/F2

@@ -13,30 +13,47 @@ const.Bolster.Types = {
 	AllToEqual		= 3
 }
 
+-- Fix const.MonsterKind
+const.MonsterKind = {
+	Undead = 1,
+	Dragon = 2,
+	Swimmer = 3,
+	Immobile = 4,
+	Peasant = 5,
+	NoArena = 6,
+	Ogre = 7,
+	Elemental = 8,
+	Demon = 9,
+	Titan = 10,
+	Elf = 11,
+	Goblin = 12,
+	Dwarf = 13,
+	Human = 14
+}
+
 const.Bolster.MonsterType = {
-	Human		= 0,
+	Unknown		= 0,
 	Undead 		= 1,
-	Demon 		= 2,
-	Dragon 		= 3,
-	Elf 		= 6,
-	Swimmer		= 5,
+	Dragon 		= 2,
+	Swimmer		= 3,
 	Immobile	= 4,
-	Titan 		= 7,
-	NoArena		= 8,
-	Creature	= 9,
-	Construct	= 10,
-	Elemental	= 11,
+	Peasant		= 5,
+	NoArena		= 6,
+	Ogre		= 7,
+	Elemental	= 8,
+	Demon 		= 9,
+	Titan 		= 10,
+	Elf 		= 11,
 	Goblin		= 12,
 	Dwarf		= 13,
-	DarkElf		= 14,
-	Lizardman	= 15,
-	Ogre		= 16,
-	Minotaur	= 17
+	Human		= 14,
+	DarkElf		= 15,
+	Lizardman	= 16,
+	Minotaur	= 17,
+	Troll		= 18,
+	Creature	= 19,
+	Construct	= 20
 	}
-
--- Fix const.MonsterKind
-const.MonsterKind.Elf = 6
-const.MonsterKind.Immobile = 4
 
 const.Bolster.Creed = {
 	Neutral	= 0,
@@ -105,7 +122,7 @@ local function ProcessBolsterTxt()
 			local CurId = tonumber(Words[1]) or 0
 			Bolster[CurId] = {
 				Type 		= GetProp(Words[3], "MonsterType", CurId),
-				ExtraType 	= GetProp(Words[4], "MonsterType", CurId),
+				ExtraType 	= {},
 				Creed 		= GetProp(Words[5], "Creed", CurId),
 				Gender 		= Words[6] == "F" and "F" or "M",
 				Style	 	= GetProp(Words[7], "Style", CurId),
@@ -119,6 +136,13 @@ local function ProcessBolsterTxt()
 				SummonId 	= tonumber(Words[15]) or 0,
 				LevelShift 	= tonumber(Words[16]) or 0,
 				MaxHPBoost	= (tonumber(Words[17]) or 300)/100}
+			local types = string.split(Words[4], ",")
+			for _, v in pairs(types) do
+				local mon_type = GetProp(v, "MonsterType", CurId)
+				if mon_type and mon_type > 0 then
+					table.insert(Bolster[CurId].ExtraType, mon_type)
+				end
+			end
 		end
 
 		if string.len(Warning) > 0 then
@@ -639,7 +663,7 @@ local function Init()
 
 	function events.IsMonsterOfKind(t)
 		local MonExtra = Game.Bolster.MonstersSource[t.Id]
-		if t.Kind == MonExtra.Type or t.Kind == MonExtra.ExtraType then
+		if t.Kind == MonExtra.Type or table.find(MonExtra.ExtraType, t.Kind) then
 			t.Result = 1
 		end
 	end

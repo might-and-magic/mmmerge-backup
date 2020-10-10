@@ -171,6 +171,49 @@
 	local IceBolt = "IceBolt"
 	mem.autohook2(0x4522e9, function(d) d.ebx = mem.topointer(IceBolt) end)
 
+	mem.asmpatch(0x4522F6, "jmp absolute 0x4520EB")
+	mem.asmpatch(0x452387, "jmp absolute 0x4520EB")
+
+	-- Fix Day of the Gods, Deadly Swarm and Flying Fist spell selection for monsters.
+	-- Note: if string variables are declared as local, only the last one will contain
+	--   proper characters.
+	DayGods, DeadlySwarm, FlyingFist = "Day-o-Gods", "Deadly", "Flying"
+	mem.asmpatch(0x4524B3, [[
+	jnz short @daygods
+	push 0x44
+	jmp absolute 0x4520EB
+	@daygods:
+	push ]] .. mem.topointer(DayGods) .. [[;
+	push dword ptr [edi+4]
+	call absolute 0x4DA920
+	test eax, eax
+	pop ecx
+	pop ecx
+	jnz @swarm
+	push 0x53
+	jmp absolute 0x4520EB
+	@swarm:
+	push ]] .. mem.topointer(DeadlySwarm) .. [[;
+	push dword ptr [edi+4]
+	call absolute 0x4DA920
+	test eax, eax
+	pop ecx
+	pop ecx
+	jnz @fist
+	push 0x25
+	jmp absolute 0x452485
+	@fist:
+	push ]] .. mem.topointer(FlyingFist) .. [[;
+	push dword ptr [edi+4]
+	call absolute 0x4DA920
+	test eax, eax
+	pop ecx
+	pop ecx
+	jnz absolute 0x4524BC
+	push 0x4C
+	jmp absolute 0x452485
+	]])
+
 	-- Show correct transition texts for mm6/7 maps.
 	local TransTexts = {
 	["7d18.blv"] = 9,
@@ -794,38 +837,3 @@
 		BountyText = BountyHuntFunctions.SetCurrentHunt()
 		mem.u4[0xffd410] = mem.topointer(BountyText)
 	end)
-
-	-- Add ReputationIs support (MM6 events)
-	-- evt.Add
-	mem.asmpatch(0x448B80, [[
-	cmp eax, 0xEB
-	jnz @none
-	neg dword [ebp+0xC]
-	jmp absolute 0x448CCF
-	@none:
-	cmp eax, 0xE9]])
-	-- lower bound check
-	mem.asmpatch(0x448CF2, [[
-	jg absolute 0x448CF8
-	neg ecx
-	cmp edx, ecx
-	jge absolute 0x448E29
-	mov [eax+8], ecx
-	jmp absolute 0x448E29]])
-
-	--evt.Subtract
-	mem.asmpatch(0x44943E, [[
-	cmp eax, 0xEB
-	jnz @none
-	neg dword [ebp+0xC]
-	jmp absolute 0x4494DE
-	@none:
-	cmp eax, 0xE9]])
-	-- upper bound check
-	mem.asmpatch(0x449501, [[
-	jl absolute 0x449507
-	neg ecx
-	cmp edx, ecx
-	jle absolute 0x4490C3
-	mov [eax+8], ecx
-	jmp absolute 0x4490C3]])

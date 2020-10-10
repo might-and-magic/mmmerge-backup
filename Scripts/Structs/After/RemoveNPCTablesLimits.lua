@@ -383,6 +383,7 @@ if mmver == 8 then
 
 	end
 
+
 	local function RemoveGlobalEvtLimits()
 
 			--Global events module:
@@ -393,7 +394,7 @@ if mmver == 8 then
 
 		local LinesInGlobalEvtNewSize = NewGlEvtLinesCount*12 + 0x10 + 0x100
 
-		local GlobalModuleNewSpace = mem.StaticAlloc(NewGlobalEvtSize + 0x10 + LinesInGlobalEvtNewSize*4)			--0x5bb440
+		local GlobalModuleNewSpace = mem.StaticAlloc(NewGlobalEvtSize + 0x10 + LinesInGlobalEvtNewSize*4)				--0x5bb440
 		local GlobalModuleOffsetsNewSpace1 = GlobalModuleNewSpace + NewGlobalEvtSize + 0x10								--mem.StaticAlloc(LinesInGlobalEvtNewSize)	--005ac9e0
 		local GlobalModuleOffsetsNewSpace2 = GlobalModuleNewSpace + NewGlobalEvtSize + 0x10 + LinesInGlobalEvtNewSize	--mem.StaticAlloc(LinesInGlobalEvtNewSize) 	--0x587e6c
 		local GlobalModuleOffsetsNewSpace3 = GlobalModuleNewSpace + NewGlobalEvtSize + 0x10 + LinesInGlobalEvtNewSize*2	--mem.StaticAlloc(LinesInGlobalEvtNewSize) 	--0x596908
@@ -468,6 +469,7 @@ if mmver == 8 then
 		return GlobalModuleNewSpace + 0x8
 
 	end
+
 
 	local TablesPtrs = mem.StaticAlloc(0x18)
 
