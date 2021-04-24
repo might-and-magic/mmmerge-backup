@@ -1,4 +1,6 @@
 
+local strformat, strgsub = string.format, string.gsub
+
 NPCFollowers = {}
 
 local OpenFlwPnlBtn, FollowersBG, ShiftFollowersUp, ShiftFollowersDw
@@ -825,6 +827,8 @@ function events.GameInitialized2()
 
 	-- Show amoutn of gold taken by followers
 	local GoldTakenLine = Game.GlobalTxt[467]
+	local gold_taken_followers_str =
+		strgsub(strgsub(Game.GlobalTxt[466], "%%lu", "%%%%lu", 1), "([^%%])%%lu", "%1%%d")
 	local NewCode = mem.asmproc([[
 	nop
 	nop
@@ -841,8 +845,7 @@ function events.GameInitialized2()
 	mem.hook(NewCode, function(d)
 		local Fee = NPCFollowers.LastGoldTaken
 		if Fee > 0 then
-			GoldTakenLine = Game.GlobalTxt[466]
-			GoldTakenLine = string.replace(GoldTakenLine, "%lu)!", tostring(Fee) .. ")!")
+			GoldTakenLine = strformat(gold_taken_followers_str, Fee)
 		else
 			GoldTakenLine = Game.GlobalTxt[467]
 		end
