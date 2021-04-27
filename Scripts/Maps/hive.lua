@@ -61,8 +61,11 @@ function events.MonsterKilled(mon)
 			Party.Y = 25920
 			Party.Direction = 512
 
-			for _, v in pairs(evt.VarNum.Conditions) do
-				evt.All.Sub(v, 0)
+			for _, pl in Party do
+				for i = 0, 13 do
+					pl.Conditions[i] = 0
+				end
+				pl.Conditions[15] = 0
 			end
 			Party.RestAndHeal()
 

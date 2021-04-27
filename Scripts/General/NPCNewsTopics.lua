@@ -52,7 +52,7 @@ local function FindMonApp(i)
 			Counter = Counter + 1
 		end
 
-		return {Mid = i, Gender = T.Gender, Pid = Pid, Race = TypeRaceCons[T.Type]}
+		return {Mid = i, Gender = T.Gender, Pid = Pid, Race = TypeRaceCons[T.Type] or -1}
 	end
 
 	return nil

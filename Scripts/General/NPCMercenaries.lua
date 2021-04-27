@@ -155,11 +155,7 @@ function GenerateMercenary(t) --RosterId, Class, Level, Skills, Items, Face, Joi
 	end
 
 	local function CountExp(Level)
-		local A = 0
-		for i = 1, Level - 1 do
-			A = A + i
-		end
-		return A * 1000
+		return Level * (Level - 1) * 500
 	end
 
 	---- Character stats:
