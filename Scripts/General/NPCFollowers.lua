@@ -798,7 +798,7 @@ function events.GameInitialized2()
 					v.Race = cMonApp.Race
 				end
 
-				if v.Race > -1 then
+				if v.Race and v.Race > -1 then
 					v.Face = v.Face or GenerateFace(v.Gender, v.Race)
 					if v.Face then
 						Game.NPC[k].Pic = Game.CharacterPortraits[v.Face].NPCPic
