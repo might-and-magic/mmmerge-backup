@@ -167,8 +167,10 @@ local function make_events(evt)
 		if v then
 			local f = t[a]
 			if f then
-				t.from = t.from - 1
-				t[t.from] = v
+				-- cthscr: fix from GrayFace's repo
+				f.from = f.from - 1
+				f[f.from] = v
+				-- ~cthscr
 			else
 				t[a] = {v, from = 1, to = 1}
 			end

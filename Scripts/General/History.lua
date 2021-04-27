@@ -97,9 +97,20 @@ end
 ----------------------------------
 
 local ObeliskAutonotes = {
-[1] = {8,9,10,11,12,13,14,15,16},
-[2] = {309,310,311,312,313,314,315,316,317,318,319,320,321,322},
-[3] = {442,443,444,445,446,447,448,449,450,451,452,453,454,455,456}
+	[1] = {
+		[8] = 190, [9] = 194, [10] = 189, [11] = 193, [12] = 188,
+		[13] = 192, [14] = 187, [15] = 191, [16] = 186
+	},
+	[2] = {
+		[309] = 676, [310] = 677, [311] = 678, [312] = 679, [313] = 680,
+		[314] = 681, [315] = 682, [316] = 683, [317] = 684, [318] = 685,
+		[319] = 686, [320] = 687, [321] = 688, [322] = 689
+	},
+	[3] = {
+		[442] = 1384, [443] = 1385, [444] = 1386, [445] = 1386, [446] = 1388,
+		[447] = 1389, [448] = 1390, [449] = 1391, [450] = 1392, [451] = 1393,
+		[452] = 1394, [453] = 1395, [454] = 1396, [455] = 1397, [456] = 1398
+	}
 }
 
 function events.LoadMap()
@@ -109,19 +120,16 @@ function events.LoadMap()
 		return
 	end
 
-	local Obelisks = ObeliskAutonotes[CurCont]
-
-	vars.ObeliskBits = vars.ObeliskBits or {}
-	for _,v in pairs(ObeliskAutonotes) do
-		for __,bit in pairs(v) do
-			vars.ObeliskBits[bit] = vars.ObeliskBits[bit] or Party.AutonotesBits[bit]
-			Party.AutonotesBits[bit] = false
-		end
-	end
-
-	if Obelisks then
-		for k,v in pairs(Obelisks) do
-			Party.AutonotesBits[v] = vars.ObeliskBits[v]
+	for continent_id, bits in pairs(ObeliskAutonotes) do
+		if continent_id == CurCont then
+			for obit, qbit in pairs(bits) do
+				Party.AutonotesBits[obit] = Party.QBits[qbit]
+			end
+		else
+			for obit, qbit in pairs(bits) do
+				Party.AutonotesBits[obit] = false
+			end
 		end
 	end
 end
+

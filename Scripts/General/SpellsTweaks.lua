@@ -134,8 +134,15 @@ function events.MonsterCanCastSpell(t)
 	end
 end
 
--- Monsters can cast neither flying fist or paralyze, replace these spells:
-local SpellReplace = {[76] = 70, [81] = 87}
+-- Monsters cannot cast paralyze, replace this spell:
+local SpellReplace = {[81] = 87}
 function events.MonsterCastSpell(t)
 	t.Spell = SpellReplace[t.Spell] or t.Spell
 end
+
+-- Enable several disabled monster spells
+mem.IgnoreProtection(true)
+mem.u1[0x40603A] = 0	-- Deadly Swarm
+mem.u1[0x406061] = 0	-- Flying Fist
+mem.u1[0x406072] = 4	-- Make Shrapmetal to use Sparks processing instead of broken own one
+mem.IgnoreProtection(false)
