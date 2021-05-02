@@ -1,5 +1,5 @@
-
-local sqrt = math.sqrt
+local u2 = mem.u2
+local random, sqrt = math.random, math.sqrt
 
 local OldVoiceCount, NewVoiceCount = 30, nil
 local ItemSize = 2
@@ -265,25 +265,27 @@ local function ProcessVoicesTable()
 	mem.asmpatch(0x492c71, "inc edi")
 
 	local CurPtr = mem.asmpatch(0x492c8c, [[
-	cmp edx, 0x2
-	jge @nrnd
-	nop
-	nop
-	nop
-	nop
-	nop
-
-	@nrnd:
 	mov eax, dword [ds:ebp-0x8]
 	mov eax, dword [ds:eax+0x1be4]
 	imul eax, eax, ]] .. VoiceSetSize .. [[;
 	lea eax, dword [ds:eax+esi*2]
-	lea eax, dword [ds:eax+edx-2]
+	lea eax, dword [ds:eax-2]
 	imul eax, eax, ]] .. ItemSize .. [[;
+	nop
+	nop
+	nop
+	nop
+	nop
 	movzx esi, word [ds:eax+]] .. VoiceTablePtr .. [[];]])
 
-	mem.hook(CurPtr + 5, function(d)
-		d.edx = math.random(0,1)
+	mem.hook(CurPtr + 19 + (VoiceSetSize < 128 and 3 or 6), function(d)
+		if d.edx < 2 then
+			d.edx = random(0,1)
+			if u2[VoiceTablePtr + d.eax + d.edx * ItemSize] == 0 then
+				d.edx = 1 - d.edx
+			end
+		end
+		d.eax = d.eax + d.edx * ItemSize
 	end)
 
 	mem.asmpatch(0x490a71, [[
