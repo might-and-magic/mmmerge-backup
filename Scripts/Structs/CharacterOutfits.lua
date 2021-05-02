@@ -4,6 +4,7 @@ local random, sqrt = math.random, math.sqrt
 local OldVoiceCount, NewVoiceCount = 30, nil
 local ItemSize = 2
 local VoiceSetSize = 100
+local VoiceTypes = 3
 
 local OldGame = structs.f.GameStructure
 function structs.f.GameStructure(define)
@@ -17,7 +18,7 @@ end
 function structs.f.CharacterVoices(define)
 	define
 	[0x4fcb78].array(0).array(100).u2 'Sounds'
-	[0x4fcb78].array(0).array(3).u1 'Avail'
+	[0x4fcb78].array(0).array(VoiceTypes).u1 'Avail'
 end
 
 function structs.f.CharacterPortrait(define)
@@ -175,7 +176,7 @@ local function ProcessVoicesTable()
 	end
 
 	local VoiceTableSize = VoiceSetSize*(NewVoiceCount+1)*ItemSize
-	local VoiceTablePtr = mem.StaticAlloc(VoiceTableSize + (NewVoiceCount+1)*3)
+	local VoiceTablePtr = mem.StaticAlloc(VoiceTableSize + (NewVoiceCount+1)*VoiceTypes)
 	local CurSoundType = 0
 
 	-- Voice sets
@@ -202,7 +203,7 @@ local function ProcessVoicesTable()
 
 		if table.maxn(RowSet) > NewVoiceCount and RowSet[1] ~= "" and RowSet[1] ~= "Notes" then
 			for i = 0, NewVoiceCount do
-				mem.u1[VoiceTablePtr+VoiceTableSize+i*3+CurSoundType] = RowSet[i+2] == "x" and 1 or 0
+				mem.u1[VoiceTablePtr+VoiceTableSize+i*VoiceTypes+CurSoundType] = RowSet[i+2] == "x" and 1 or 0
 			end
 			CurSoundType = CurSoundType + 1
 		end
