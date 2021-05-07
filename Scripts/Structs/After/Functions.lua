@@ -60,7 +60,7 @@ end
 
 local function LastMessage(text, forceGlobal)
 	local t, i
-	if evt.InGlobal() then
+	if forceGlobal or forceGlobal ~= false and evt.InGlobal() then
 		t = Game.NPCText
 		i = t.high
 	else
@@ -96,7 +96,7 @@ function Question(text, qtext)
 	elseif Game.CurrentScreen == 0 then
 		local old1, old2 = Game.Paused, Game.Paused2
 		Game.CurrentScreen = const.Screens.SimpleMessage
-		evt.Question(LastMessage(text), 0, 0)
+		evt.Question(LastMessage(text, true), 0, 0)
 		if not old1 then
 			mem.call(offsets.ResumeTime, 1, offsets.TimeStruct1)
 		end
@@ -104,7 +104,7 @@ function Question(text, qtext)
 			mem.call(offsets.ResumeTime, 1, offsets.TimeStruct2)
 		end
 	else
-		evt.Question(LastMessage(text), 0, 0)
+		evt.Question(LastMessage(text, true), 0, 0)
 	end
 	return Game.StatusMessage
 end
