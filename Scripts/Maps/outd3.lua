@@ -83,7 +83,6 @@ evt.map[9] = function() StdQuestsFunctions.CheckPrices(471, 1522) end
 ----------------------------------------
 -- Bandits
 
-local QuestionPlaceholder = Game.NPCText[499]
 Game.MapEvtLines:RemoveEvent(210)
 evt.house[210] = ""
 evt.map[210] = function()
@@ -94,8 +93,7 @@ evt.map[210] = function()
 		Message(evt.str[7])
 		Message(evt.str[12])
 
-		Game.NPCText[499] = evt.str[8]
-		local Answer = string.lower(Question(""))
+		local Answer = string.lower(Question(evt.str[8]))
 		if Answer == string.lower(evt.str[9]) then
 
 			if Party.Gold >= 100 then
@@ -113,8 +111,6 @@ evt.map[210] = function()
 			Message(evt.str[11])
 			evt.MoveToMap{4856, 10288, 0, 500, 0, 0, 0, 0, "0"}
 		end
-		Game.NPCText[499] = QuestionPlaceholder
-
 	end
 
 end

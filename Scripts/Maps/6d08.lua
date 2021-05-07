@@ -1,16 +1,11 @@
-local QuestionPlaceholder = Game.NPCText[499]
 
 local function TellPassword(Text, QText, An1, An2, Door)
-
-	Game.NPCText[499] = evt.str[Text] .. "\n" .. evt.str[QText]
-	local Answer = string.lower(Question(""))
+	local Answer = string.lower(Question(evt.str[Text] .. "\n" .. evt.str[QText]))
 	if Answer == string.lower(evt.str[An1]) or Answer == string.lower(evt.str[An2]) then
 		evt.SetDoorState{Door, 1}
 	else
 		Game.ShowStatusText(evt.str[22])
 	end
-	Game.NPCText[499] = QuestionPlaceholder
-
 end
 
 Game.MapEvtLines:RemoveEvent(61)
