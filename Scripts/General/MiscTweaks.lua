@@ -711,11 +711,88 @@
 	-- Repair Town hall's bounty hunt topic:
 	BountyHuntFunctions = {}
 	local BountyText = ""
+
+	--[[
 	local function CheckMon(MonId, MaxLevel)
 		MaxLevel = MaxLevel or Party[0].LevelBase + 20
 		return not Game.Bolster.MonstersSource[MonId].NoArena and Game.MonstersTxt[MonId].Level <= MaxLevel and not evt.CheckMonstersKilled{2, MonId - 1, 1}
 	end
 	BountyHuntFunctions.CheckMon = CheckMon
+
+	local function old_MonstersForBountyHunt(MaxLevel)
+		local MonId = random(1, Game.MonstersTxt.count - 1)
+		local lim = 30
+		local MaxLevel = Party[0].LevelBase + 20
+		while not CheckMon(MonId, MaxLevel) and lim > 0 do
+			MonId = random(1, Game.MonstersTxt.count - 1)
+			lim = lim - 1
+		end
+		return MonId
+	end
+	BountyHuntFunctions.old_MonstersForBountyHunt = old_MonstersForBountyHunt
+	]]
+
+	local function MonstersForBountyHunt(MaxLevel)
+		local list = {}
+		local append = table.insert
+		local MExtra = Game.Bolster.MonstersSource
+		MaxLevel = MaxLevel or Party[0].LevelBase + 20
+		for i, v in Game.MonstersTxt do
+			if v.Level > MaxLevel or MExtra[i].NoArena or evt.CheckMonstersKilled{2, i - 1, 1} then
+				-- skip
+			else
+				append(list, i)
+			end
+		end
+		return list
+	end
+	BountyHuntFunctions.MonstersForBountyHunt = MonstersForBountyHunt
+
+	local function NewBHSpawnPoint()
+		local random = math.random
+		local FacetIds, X, Y, Z
+		local append = table.insert
+		if Map.IsIndoor() and Map.Facets.count > 0 then
+			local Facet, RoomsWFloors, RoomsWWalls = nil, {}, {}
+			for i, Room in Map.Rooms do
+				if Room.Floors.count > 0 then
+					append(RoomsWFloors, Room)
+				end
+				if Room.Walls.count > 0 then
+					append(RoomsWWalls, Room)
+				end
+			end
+
+			if #RoomsWFloors > 0 then
+				FacetIds = RoomsWFloors[random(1, #RoomsWFloors)].Floors
+			elseif #RoomsWWalls > 0 then
+				FacetIds = RoomsWWalls[random(1, #RoomsWFloors)].Walls
+			else
+				return random(-15000, 15000), random(-15000, 15000), 1000
+			end
+
+			Facet = Map.Facets[FacetIds[random(FacetIds.count-1)]]
+			return Facet.MinX + (Facet.MaxX - Facet.MinX)/2, Facet.MinY + (Facet.MaxY - Facet.MinY)/2, Facet.MaxZ
+
+		elseif Map.IsOutdoor() then
+			X, Y, Z = random(-15000, 15000), random(-15000, 15000), 1000
+
+			local Tile = Game.CurrentTileBin[Map.TileMap[(64 - Y / 0x200):floor()][(64 + X / 0x200):floor()]]
+			local Cnt = 5
+			while Cnt > 0 do
+				if not Tile.Water then
+					break
+				end
+				X, Y, Z = random(-15000, 15000), random(-15000, 15000), 1000
+				Tile = Game.CurrentTileBin[Map.TileMap[(64 - Y / 0x200):floor()][(64 + X / 0x200):floor()]]
+				Cnt = Cnt - 1
+			end
+		else
+			X, Y, Z = random(-15000, 15000), random(-15000, 15000), 1000
+		end
+		return X, Y, Z
+	end
+	BountyHuntFunctions.NewBHSpawnPoint = NewBHSpawnPoint
 
 	local function SetCurrentHunt()
 		vars.BountyHunt = vars.BountyHunt or {}
@@ -724,6 +801,7 @@
 		local random = math.random
 
 		if vars.BountyHunt[Map.Name] and Game.Month == vars.BountyHunt[Map.Name].Month then
+			-- If bounty hunt quest have laready been chosen for this month.
 			MonId = vars.BountyHunt[Map.Name].MonId
 			if not MonId then
 				vars.BountyHunt[Map.Name] = nil
@@ -756,61 +834,31 @@
 			end
 
 		else
-			MonId = random(1, Game.MonstersTxt.count - 1)
-			local lim = 30
-			local MaxLevel = Party[0].LevelBase + 20
-			while not CheckMon(MonId, MaxLevel) and lim > 0 do
-				MonId = random(1, Game.MonstersTxt.count - 1)
-				lim = lim - 1
-			end
-			vars.BountyHunt[Map.Name] = {}
-			BountyHunt = vars.BountyHunt[Map.Name]
+			-- Choose monster for new hunt.
+			local Mons = BountyHuntFunctions.MonstersForBountyHunt()
+			MonId = Mons[random(1, #Mons)]
+
+			-- Create entry in list of bounty hunts.
 			BountyText = string.replace(Game.NPCText[133], "%lu", tostring(Game.MonstersTxt[MonId].Level * 100))
 			BountyText = string.format(BountyText, Game.MonstersTxt[MonId].Name)
+			vars.BountyHunt[Map.Name] = {MonId = MonId, Month = Game.Month, Claimed = false, Done = false}
 
-			local X, Y, Z
-			if Map.IsIndoor() and Map.Facets.count > 0 then
-				local Room = Map.Rooms[random(Map.Rooms.count-1)]
-				local Facet
-				if Room.Floors.count == 0 then
-					Facet = Map.Facets[Room.Walls[random(Room.Walls.count-1)]]
-				else
-					Facet = Map.Facets[Room.Floors[random(Room.Floors.count-1)]]
-				end
-				X, Y, Z = Facet.MinX + (Facet.MaxX - Facet.MinX)/2, Facet.MinY + (Facet.MaxY - Facet.MinY)/2, Facet.MaxZ
-			elseif Map.IsOutdoor() then
-				X, Y, Z = random(-15000, 15000), random(-15000, 15000), 1000
-
-				local Tile = Game.CurrentTileBin[Map.TileMap[(64 - Y / 0x200):floor()][(64 + X / 0x200):floor()]]
-				local Cnt = 5
-				while Cnt > 0 do
-					if not Tile.Water then
-						break
-					end
-					X, Y, Z = random(-15000, 15000), random(-15000, 15000), 1000
-					Tile = Game.CurrentTileBin[Map.TileMap[(64 - Y / 0x200):floor()][(64 + X / 0x200):floor()]]
-					Cnt = Cnt - 1
-				end
-			else
-				X, Y, Z = random(-15000, 15000), random(-15000, 15000), 1000
-			end
-
+			-- Summon monster
+			local X, Y, Z = BountyHuntFunctions.NewBHSpawnPoint()
 			local mon = SummonMonster(MonId, X, Y, Z)
 			mon.Group = 39
 			mon.Hostile = true
 			mon.HostileType = 4
 
+			-- Make monster berserk to encourage it to fight everything around (peasants, guards, player)
 			local MonBuff = mon.SpellBuffs[const.MonsterBuff.Berserk]
 			MonBuff.ExpireTime = Game.Time + const.Month
 			MonBuff.Power = 4
 			MonBuff.Skill = 4
 			MonBuff.Caster = -1
-
-			vars.BountyHunt[Map.Name] = {MonId = MonId, Month = Game.Month, Claimed = false, Done = false}
 		end
 
 		return BountyText
-
 	end
 	BountyHuntFunctions.SetCurrentHunt = SetCurrentHunt
 
