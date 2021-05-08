@@ -342,8 +342,10 @@ end
 -- Effect immunities
 function events.DoBadThingToPlayer(t)
 	local PLT = PlayerEffects[t.Player]
-	if PLT and PLT.EffectImmunities[t.Thing] then
-		t.Allow = false
+	if PLT then
+		if PLT.EffectImmunities[t.Thing] then
+			t.Allow = false
+		end
 	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
 		StoreEffects(t.Player)
 	end
