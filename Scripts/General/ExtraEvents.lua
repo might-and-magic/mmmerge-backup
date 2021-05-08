@@ -509,3 +509,25 @@ function events.GameInitialized2()
 
 end
 
+---------------------------------------
+-- On Enter Shop
+-- Allow to forbid entrance
+NewCode = mem.asmpatch(0x443205, [[
+mov [eax], ebx
+mov [eax+4], ebx
+mov eax, [ebp-0x14]
+nop
+nop
+nop
+nop
+nop
+test eax, eax
+jnz absolute 0x4431F2
+]])
+
+mem.hook(NewCode + 8, function(d)
+	local t = {HouseId = d.eax, Banned = 0}
+	events.call("OnEnterShop", t)
+	d.eax = t.Banned
+end)
+

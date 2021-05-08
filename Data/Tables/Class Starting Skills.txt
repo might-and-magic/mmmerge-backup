@@ -1,6 +1,6 @@
 	Archer	WarriorMage	Cleric	Priest	DarkElf	Dragon	Druid	GreatDruid	Knight	Cavalier	Minotaur	Monk	Initiate	Paladin	Crusader	Ranger	Hunter	Thief	Rogue	Troll	Vampire	Sorcerer	Necromancer	n/u	Peasant	High Priest / Master Wizard	n/u	n/u	n/u	n/u
 Staff	-	-	C	C	-	-	-	-	-	-	C	C	C	-	-	-	-	-	-	C	-	F	F	F	-	-	-	-	-	-
-Sword	C	C	-	-	C	-	-	-	F	F	-	C	C	C	C	C	C	C	C	C	F	-	-	-	-	-	-	-	-	-
+Sword	C	C	-	-	C	-	-	-	F	F	-	C	C	C	C	C	C	-	C	C	F	-	-	-	-	-	-	-	-	-
 Dagger	-	-	-	-	C	-	F	F	-	-	-	C	C	C	C	C	C	F	F	-	C	C	C	C	-	-	-	-	-	-
 Axe	C	C	-	-	-	-	-	-	C	C	F	-	-	C	C	F	F	-	-	C	C	-	-	-	-	-	-	-	-	-
 Spear	C	C	-	-	-	-	-	-	C	C	C	C	C	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
@@ -8,7 +8,7 @@ Bow	F	F	-	-	F	-	-	-	C	C	-	-	-	-	-	C	C	C	C	C	-	-	-	-	C	C	C	C	C	C
 Mace	-	-	F	F	-	-	C	C	-	-	C	-	-	F	F	-	-	-	-	F	-	-	-	-	-	-	-	-	-	-
 Blaster	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
 Shield	-	-	C	C	-	-	-	-	C	C	-	-	-	C	C	-	-	-	-	-	C	-	-	-	-	-	-	-	-	-
-Leather	C	C	C	C	C	-	C	C	F	F	C	C	C	C	C	C	C	F	F	C	C	C	C	C	F	C	F	F	F	F
+Leather	C	C	C	C	C	-	C	C	F	F	C	C	C	C	C	C	C	C	F	C	C	C	C	C	F	C	F	F	F	F
 Chain	-	-	-	-	-	-	-	-	C	C	C	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
 Plate	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
 Fire	C	C	-	-	C	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	F	C	C	-	-	-	-	-	-
@@ -35,6 +35,6 @@ Dodging	-	-	-	-	-	-	-	-	-	-	-	F	F	-	-	C	C	C	C	-	-	-	-	-	-	-	-	-	-	-
 Unarmed	-	-	-	-	-	-	-	-	-	-	-	F	F	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
 IdentifyMonster	-	-	-	-	-	C	-	-	-	-	-	C	C	-	-	C	C	-	-	C	C	C	C	C	-	-	-	-	-	-
 Armsmaster	C	C	-	-	-	-	-	-	C	C	C	C	C	C	C	C	C	-	-	C	-	-	-	-	-	-	-	-	-	-
-Stealing	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+Stealing	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	F	-	-	-	-	-	-	-	-	-	-	-	-
 Alchemy	-	-	-	-	-	-	C	C	-	-	-	-	-	-	-	-	-	C	C	-	C	C	C	C	-	-	-	-	-	-
 Learning	C	C	C	C	-	C	C	C	-	-	-	-	-	-	-	-	-	C	C	-	-	-	C	C	C	C	C	C	C	C
