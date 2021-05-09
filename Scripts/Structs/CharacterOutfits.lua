@@ -4,7 +4,7 @@ local random, sqrt = math.random, math.sqrt
 local OldVoiceCount, NewVoiceCount = 30, nil
 local ItemSize = 2
 local VoiceSetSize = 100
-local VoiceTypes = 3
+local VoiceTypes = 6
 
 local OldGame = structs.f.GameStructure
 function structs.f.GameStructure(define)
@@ -234,8 +234,12 @@ local function ProcessVoicesTable()
 			return false
 		end
 
-		if Portrait.Race == 5 then
+		if Player.Face == 67 or Player.Face == 68 then
+			return Game.CharacterVoices.Avail[Voice][5]
+		elseif Portrait.Race == 5 then
 			return Game.CharacterVoices.Avail[Voice][2]
+		elseif Portrait.Race == 6 or Portrait.Race == 10 then
+			return Game.CharacterVoices.Avail[Voice][Sex + 3]
 		else
 			return Game.CharacterVoices.Avail[Voice][Sex]
 		end
