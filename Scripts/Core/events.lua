@@ -994,12 +994,45 @@ mem.hookfunction(mmv(0x482DC0, 0x48EA13, 0x48E18E), 0, 1, function(d, def, val)
 end)
 
 -- MonsterKilled
+-- cthscr: fix killer data
+if mmver == 8 then
+	-- damageMonsterFromParty
+	mem.asmpatch(0x4375F4, [[
+	mov edx, dword ptr [ebp-0x30]
+	]])
+	-- damage monster from monster
+	mem.asmpatch(0x438F35, [[
+	mov edx, dword ptr [ebp-0x4]
+	call absolute 0x402E78
+	]])
+	-- damage monster from object
+	mem.asmpatch(0x438D0E, [[
+	mov edx, dword ptr [ebp-0x4]
+	call absolute 0x402E78
+	]])
+end
+-- ~cthscr
+
 mem.hookfunction(mmv(0x403050, 0x402D6E, 0x402E78), 1, 0, function(d, def, index)
 	local function callDef()
 		def = def and def(index) and nil
 	end
 	--!(mon:structs.MapMonster, monIndex, defaultHandler)
-	events.cocall("MonsterKilled", Map.Monsters[index], index, callDef)
+	--events.cocall("MonsterKilled", Map.Monsters[index], index, callDef)
+	-- cthscr: add killer info
+	local killer = {
+		Type = d.edx % 8,
+		Index = math.floor(d.edx / 8),
+	}
+	if killer.Type == 4 then
+		killer.Player = Party.PlayersArray[killer.Index]
+	elseif killer.Type == 3 then
+		killer.Monster = Map.Monsters[killer.Index]
+	elseif killer.Type == 2 then
+		killer.Object = Map.Objects[killer.Index]
+	end
+	events.cocall("MonsterKilled", Map.Monsters[index], index, callDef, killer)
+	-- ~cthscr
 	callDef()
 end)
 

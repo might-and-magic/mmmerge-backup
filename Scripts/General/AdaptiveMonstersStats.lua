@@ -723,7 +723,7 @@ local function Init()
 			Kind = 3 - i % 3
 			if not (Kind < MinKind or Kind > MaxKind) then
 				MonLevel = MonstersTxt[i].Level
-				if not (MonLevel < MinLevel or MonLevel > MaxLevel) and Game.IsMonsterOfKind(i, 8) == 0 then
+				if not (MonLevel < MinLevel or MonLevel > MaxLevel) and Game.IsMonsterOfKind(i, const.MonsterKind.NoArena) == 0 then
 					table.insert(List, i)
 				end
 			end

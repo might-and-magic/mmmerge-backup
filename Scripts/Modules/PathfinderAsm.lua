@@ -2875,6 +2875,7 @@ local function StartQueueHandler()
 	u4[QueueFlag] = 1
 	if ThreadHandler == 0 then
 		ThreadHandler = mem.dll["kernel32"].CreateThread(nil, 0, HandlerAsm, QueueFlag, 0, nil)
+		mem.dll["kernel32"].SetThreadPriority(ThreadHandler, -2)
 	end
 	return ThreadHandler
 end

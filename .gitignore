@@ -1,2 +1,3 @@
 # Ignore .vs directory
 /.vs/
+/Scripts/General/VisibleGauntletsRefactored.lua

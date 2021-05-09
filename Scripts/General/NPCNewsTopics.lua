@@ -35,7 +35,8 @@ local TypeRaceCons = {
 	[const.Bolster.MonsterType.DarkElf]		= const.Race.DarkElf,
 	[const.Bolster.MonsterType.Lizardman]	= -1,
 	[const.Bolster.MonsterType.Ogre]		= -1,
-	[const.Bolster.MonsterType.Minotaur]	= const.Race.Minotaur
+	[const.Bolster.MonsterType.Minotaur]	= const.Race.Minotaur,
+	[const.Bolster.MonsterType.Troll]	= const.Race.Troll
 }
 
 local function FindMonApp(i)
@@ -52,7 +53,7 @@ local function FindMonApp(i)
 			Counter = Counter + 1
 		end
 
-		return {Mid = i, Gender = T.Gender, Pid = Pid, Race = TypeRaceCons[T.Type]}
+		return {Mid = i, Gender = T.Gender, Pid = Pid, Race = TypeRaceCons[T.Type] or -1}
 	end
 
 	return nil

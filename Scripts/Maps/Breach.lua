@@ -16,7 +16,6 @@ end
 
 -- Breach effect
 local Delay = 0
-local QuestionPlaceholder = Game.NPCText[499]
 evt.map[81] = function()
 	if not (Delay > Game.Time) then
 		if not mapvars.TelelocatorSet then
@@ -24,9 +23,7 @@ evt.map[81] = function()
 			TownPortalControls.GenDimDoor()
 			CastSpellDirect(31, 10, 4)
 		else
-			Game.NPCText[499] = evt.str[1]
-			local Answer = Question(Game.NPCText[499])
-			Game.NPCText[499] = QuestionPlaceholder
+			local Answer = Question(evt.str[1])
 			if string.lower(Answer) == "y" then
 				local MapsToStart = {"out01.odm", "7out01.odm", "oute3.odm"}
 				evt.Add{"Experience", 0}

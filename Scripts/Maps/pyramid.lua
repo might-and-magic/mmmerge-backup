@@ -1,5 +1,3 @@
-local QuestionPlaceholder = Game.NPCText[499]
-
 -- VARN codes.
 
 Game.MapEvtLines:RemoveEvent(1)
@@ -8,8 +6,7 @@ evt.Map[1] = function()
 	evt.Set{"MapVar0", 0}
 	if evt.Cmp{"Inventory", 2157} then
 		if evt.Cmp{"MapVar27", 1} then
-			Game.NPCText[499] = evt.str[44]
-			local Answer = string.lower(Question(""))
+			local Answer = string.lower(Question(evt.str[44]))
 			if Answer == string.lower(evt.str[43]) then
 				evt.Set{"MapVar15", 1}
 				evt.Subtract{"Inventory", 2157}
@@ -21,7 +18,6 @@ evt.Map[1] = function()
 				evt.Subtract{"HP", 5}
 				evt.FaceExpression{"Current", 44}
 			end
-			Game.NPCText[499] = QuestionPlaceholder
 		else
 			Game.ShowStatusText(evt.str[46])
 			evt.Subtract{"HP", 25}
@@ -33,11 +29,8 @@ end
 local function SetCode(ItemId, CodeId, TextId, QuestionId, AnswerId, QBit, FaceExpr)
 	evt.Set{"MapVar0", 0}
 	if evt.Cmp{"Inventory", ItemId} then
-		Game.NPCText[499] = evt.str[TextId] -- .. "\n" .. evt.str[AnswerId]
-
-		local Answer = string.lower(Question(""))
+		local Answer = string.lower(Question(evt.str[TextId]))
 		if Answer == string.lower(evt.str[AnswerId]) then
-
 			evt.Set{"MapVar" .. CodeId, 1}
 			local AllVars = true
 			for i = 10, 14 do
@@ -55,14 +48,11 @@ local function SetCode(ItemId, CodeId, TextId, QuestionId, AnswerId, QBit, FaceE
 			evt.Subtract{"QBits", QBit}
 
 		else
-
 			Game.ShowStatusText(evt.str[45])
 			evt.FaceExpression{"Current", FaceExpr}
 			evt.Subtract{"HP", 5}
 
 		end
-
-		Game.NPCText[499] = QuestionPlaceholder
 	end
 end
 

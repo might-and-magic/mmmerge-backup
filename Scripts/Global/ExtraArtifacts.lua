@@ -3,6 +3,17 @@ local PlayerEffects		= {}
 local ArtifactBonuses	= {}
 local SpecialBonuses	= {}
 local StoreEffects
+local AdvInnScreen = const.Screens.AdventurersInn
+
+local function PlayerInParty(Player)
+	-- Player - Player struct from PlayersArray
+	for i, pl in Party do
+		if pl == Party then
+			return i
+		end
+	end
+	return false
+end
 
 ------------------------------------------------
 ----			Base events					----
@@ -11,8 +22,18 @@ local StoreEffects
 ------------------------------------------------
 -- Make artifacts unique
 
+local PlacedArtifacts = {
+	-- MM8
+	501,502,503,504,508,509,516,519,523,539,540,541,
+	-- MM7
+	1333,1334,1335,1336,1337,1338,
+	-- MM6
+	2020,2023,2032,2033,2034
+}
+
+
 vars.GotArtifact = vars.GotArtifact or {}
-for k,v in pairs({501,502,503,504,508,509,516,519,523,539,540,541}) do
+for k,v in pairs(PlacedArtifacts) do
 	vars.GotArtifact[v] = true
 end
 
@@ -55,7 +76,7 @@ local function RecountFoundArtifacts()
 	for ItemId,v in pairs(vars.GotArtifact) do
 		vars.GotArtifact[ItemId] = RosterHaveItem(ItemId)
 	end
-	for k,v in pairs({501,502,503,504,508,509,516,519,523,539,540,541}) do
+	for k,v in pairs(PlacedArtifacts) do
 		vars.GotArtifact[v] = true
 	end
 end
@@ -95,6 +116,7 @@ function events.AfterLoadMap()
 end
 
 -- Check chests
+--[[
 function events.OpenChest(i)
 	local ItemId, TxtItem, cArts
 	local Chest = Map.Chests[i]
@@ -123,6 +145,7 @@ function events.OpenChest(i)
 		end
 	end
 end
+]]
 
 ------------------------------------------------
 -- Can wear conditions
@@ -142,7 +165,7 @@ function events.CalcStatBonusByItems(t)
 	local PLT = PlayerEffects[t.Player]
 	if PLT then
 		t.Result = t.Result + (PLT.Stats[t.Stat] or 0)
-	else
+	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
 		StoreEffects(t.Player)
 	end
 end
@@ -155,7 +178,7 @@ function events.GetSkill(t)
 		local Skill, Mas = SplitSkill(t.Result)
 		Skill = Skill + (PLT.Skills[t.Skill] or 0)
 		t.Result = JoinSkill(Skill, Mas)
-	else
+	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
 		StoreEffects(t.Player)
 	end
 end
@@ -290,7 +313,7 @@ function events.GetAttackDelay(t)
 		else
 			t.Result = max(t.Result, 30)
 		end
-	else
+	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
 		StoreEffects(Pl)
 	end
 end
@@ -317,12 +340,13 @@ function events.ItemAdditionalDamage(t)
 end
 
 -- Effect immunities
-
 function events.DoBadThingToPlayer(t)
 	local PLT = PlayerEffects[t.Player]
-	if PLT and PLT.EffectImmunities[t.Thing] then
-		t.Allow = false
-	else
+	if PLT then
+		if PLT.EffectImmunities[t.Thing] then
+			t.Allow = false
+		end
+	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
 		StoreEffects(t.Player)
 	end
 end
@@ -370,7 +394,9 @@ StoreEffects = function(Player)
 	PLT.HPSPRegen.SP = 0
 
 	for i,v in Player.EquippedItems do
-		if v > 0 then
+		if v > Player.Items.limit then
+			Player.EquippedItems[i] = 0
+		elseif v > 0 then
 			local Item = Player.Items[v]
 			if not Item.Broken then
 

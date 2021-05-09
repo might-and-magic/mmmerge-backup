@@ -622,12 +622,8 @@ NPCTopic{
 
 local function TelelocateItem()
 
-	local QuestionPlaceholder = Game.NPCText[499]
 	local Answer, Found, FoundId
-
-	Game.NPCText[499] = "Enter the data."
-	Answer = Question(Game.NPCText[499])
-	Game.NPCText[499] = QuestionPlaceholder
+	Answer = Question("Enter the data.")
 
 	if string.len(Answer) < 3 then
 		Message("Re-record: enter the data.")
@@ -757,12 +753,8 @@ end
 
 local function TelelocateNPC()
 
-	local QuestionPlaceholder = Game.NPCText[499]
 	local Answer, Found, FoundId
-
-	Game.NPCText[499] = "Enter the data."
-	Answer = Question(Game.NPCText[499])
-	Game.NPCText[499] = QuestionPlaceholder
+	Answer = Question("Enter the data.")
 
 	if string.len(Answer) < 3 then
 		Message("Re-record: enter the data.")
@@ -802,12 +794,8 @@ end
 
 local function TelelocateMon()
 
-	local QuestionPlaceholder = Game.NPCText[499]
 	local Answer, Found, FoundId
-
-	Game.NPCText[499] = "Enter the data."
-	Answer = Question(Game.NPCText[499])
-	Game.NPCText[499] = QuestionPlaceholder
+	Answer = Question("Enter the data.")
 
 	if string.len(Answer) < 3 then
 		Message("Re-record: enter the data.")
