@@ -65,43 +65,43 @@
 64	0	Hatchling
 65	0	Soldier of Fortune
 66	0	Chaos Guardian
-67	0	Angel
-68	0	Archer
+67	4001	Angel
+68	4002	Archer
 69	0	Giant Bat
 70	0	Young Behemoth
 71	0	Floating Eye
-72	0	Acolyte of the Moon
-73	0	Acolyte of the Sun
-74	0	Devil Worker
+72	4010	Acolyte of the Moon
+73	4011	Acolyte of the Sun
+74	4017	Devil Worker
 75	0	Green Dragon
 76	0	Dragonfly
-77	0	Dwarven Soldier
-78	0	Tempest
-79	0	Clay Elemental
-80	0	Warden of Fire
+77	4005	Dwarven Soldier
+78	4035	Tempest
+79	4006	Clay Elemental
+80	4009	Warden of Fire
 81	0	Lesser Light Elemental
-82	0	Sprite
-83	0	Elven Archer
-84	0	Elven Warrior
-85	0	Conscript
-86	0	Robber
-87	0	Initiate of the Sword
+82	4032	Sprite
+83	4007	Elven Archer
+84	4008	Elven Warrior
+85	4026	Conscript
+86	4024	Robber
+87	4016	Initiate of the Sword
 88	0	Stone Gargoyle
-89	0	Djinni
-90	0	Shade
-91	0	Goblin
+89	4012	Djinni
+90	4033	Shade
+91	4013	Goblin
 92	0	Gogling
 93	0	Bronze Golem
 94	0	Griffin
-95	0	Harpy
-96	0	Fire Hydra
-97	0	Lich
-98	0	Sorcerer
+95	4014	Harpy
+96	4015	Fire Hydra
+97	4018	Lich
+98	4019	Sorcerer
 99	0	Minicore
 100	0	Medusa
-101	0	Minotaur
-102	0	Monk
-103	0	Necromancer
+101	4020	Minotaur
+102	4021	Monk
+103	4022	Necromancer
 104	0	Emerald Ooze
 105	708,709,710,711,712,713,714,715,716,717,719,720,721,722,723,724,725,726,727	Peasant
 106	708,709,710,711,712,713,714,715,716,717,719,720,721,722,723,724,725,726,727	Peasant
@@ -128,31 +128,31 @@
 127	789, 790, 791, 792, 793, 796, 798, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 834	Peasant
 128	789, 790, 791, 792, 793, 796, 798, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 834	Peasant
 129	0	Giant Rat
-130	0	Seeker Droid
+130	4025	Seeker Droid
 131	0	Roc
 132	0	Giant Shark
 133	0	Skeleton
 134	0	Giant Spider
-135	0	Swordsman
-136	0	Thief
-137	0	Titan
+135	4027	Swordsman
+136	4028	Thief
+137	4029	Titan
 138	0	Troglodyte Drone
 139	0	Minion Vampire
-140	0	Fire Warlock
+140	4031	Fire Warlock
 141	0	Wight
 142	0	Wyvern
-143	0	Rotted Corpse
+143	4034	Rotted Corpse
 144	542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 556, 599, 600, 601, 602, 603, 604, 605, 607, 608, 609, 611, 612, 613	peasant
 145	542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 556, 599, 600, 601, 602, 603, 604, 605, 607, 608, 609, 611, 612, 613	peasant
 146	542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 556, 599, 600, 601, 602, 603, 604, 605, 607, 608, 609, 611, 612, 613	peasant
 147	620, 621, 622, 623, 624, 626, 627, 628, 269, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640	peasant
 148	620, 621, 622, 623, 624, 626, 627, 628, 269, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640	peasant
 149	620, 621, 622, 623, 624, 626, 627, 628, 269, 630, 631, 632, 633, 634, 635, 636, 637, 638, 639, 640	peasant
-150	0	Swamp Troll
+150	4030	Swamp Troll
 151	0	Tree
 152	0	Ghast
-153	0	Tolberti
-154	0	Mega-Dragon
+153	4004	Tolberti
+154	4023	Mega-Dragon
 155	0	Cat A
 156	0	Chicken A
 157	0	Dog A
