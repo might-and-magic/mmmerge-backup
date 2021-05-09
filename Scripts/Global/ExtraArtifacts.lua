@@ -589,13 +589,18 @@ end
 
 -- Eclipse
 WearItemConditions[516] = function(PlayerId)
-	return Party[PlayerId].Class >= 4 and Party[PlayerId].Class <= 7
+	return Game.ClassesExtra[Party[PlayerId].Class].Kind == 2
 end
 
 -- Lightning crossbow
 WearItemConditions[532] = function(PlayerId)
 	local Race = GetRace(Party[PlayerId])
 	return Race == const.Race.DarkElf or Race == const.Race.Elf
+end
+
+--Elfbane
+WearItemConditions[1333] = function(PlayerId)
+	return GetRace(Party[PlayerId]) == const.Race.Goblin
 end
 
 -- Elven chainmail
