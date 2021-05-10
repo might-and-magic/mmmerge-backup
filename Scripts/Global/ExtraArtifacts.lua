@@ -5,11 +5,10 @@ local SpecialBonuses	= {}
 local StoreEffects
 local AdvInnScreen = const.Screens.AdventurersInn
 
-local function PlayerInParty(Player)
-	-- Player - Player struct from PlayersArray
-	for i, pl in Party do
-		if pl == Party then
-			return i
+local function PlayerInParty(PlayerIndex)
+	for _, i in Party.PlayersIndexes do
+		if i == PlayerIndex then
+			return true
 		end
 	end
 	return false
@@ -165,7 +164,7 @@ function events.CalcStatBonusByItems(t)
 	local PLT = PlayerEffects[t.Player]
 	if PLT then
 		t.Result = t.Result + (PLT.Stats[t.Stat] or 0)
-	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
+	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.PlayerIndex) then
 		StoreEffects(t.Player)
 	end
 end
@@ -178,7 +177,7 @@ function events.GetSkill(t)
 		local Skill, Mas = SplitSkill(t.Result)
 		Skill = Skill + (PLT.Skills[t.Skill] or 0)
 		t.Result = JoinSkill(Skill, Mas)
-	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
+	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.PlayerIndex) then
 		StoreEffects(t.Player)
 	end
 end
@@ -313,7 +312,7 @@ function events.GetAttackDelay(t)
 		else
 			t.Result = max(t.Result, 30)
 		end
-	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
+	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.PlayerIndex) then
 		StoreEffects(Pl)
 	end
 end
@@ -346,7 +345,7 @@ function events.DoBadThingToPlayer(t)
 		if PLT.EffectImmunities[t.Thing] then
 			t.Allow = false
 		end
-	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.Player) then
+	elseif Game.CurrentScreen == AdvInnScreen or PlayerInParty(t.PlayerIndex) then
 		StoreEffects(t.Player)
 	end
 end
@@ -479,8 +478,6 @@ StoreEffects = function(Player)
 			end
 		end
 	end
-
-	collectgarbage("collect")
 
 end
 Game.CountItemBonuses = StoreEffects
