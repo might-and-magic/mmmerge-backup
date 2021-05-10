@@ -66,10 +66,13 @@
 64	4	16	64	1	x	43	43	0	0	7backdoll	7pc16bod	7pc16brd	7pc16LHd	7pc16LHu	7pc16LHo	7pc16RHb	none	7pc16lhu	7pc16RHd	7pc16RHu	PC16	0	0	7024	9	Dwarf F 2
 65	4	45	26	0	-	43	43	0	0	7backdoll	7pc21bod	7pc21brd	7pc21LHd	7pc21LHu	7pc21LHo	7pc21RHb	none	7pc21lhu	7pc21RHd	7pc21RHu	pc27-	0	0	1038	6	Lich dwarf male
 66	4	45	27	1	-	43	43	0	0	7backdoll	7pc22bod	7pc22brd	7pc22LHd	7pc22LHu	7pc22LHo	7pc22RHb	none	7pc22lhu	7pc22RHd	7pc22RHu	pc28-	0	0	439	6	Lich dwarf female
-67	5	10	24	0	-	0	0	0	0	pc37bod	pc37bod	none	none	none	none	none	none	none	none	none	pc37-	0	137	7027	6	Lich Dragon
-68	5	10	24	0	-	0	0	0	0	pc38bod	pc38bod	none	none	none	none	none	none	none	none	none	pc38-	0	137	7028	10	Dragon Ghost (conditional portrait)
-69	2	45	59	0	-	48	54	0	0	backdol3	LMinbod	none	LMinLhd	LMinlhu	LMinlho	LMinrhb	none	LMinlhu	LMinrhd	LMinrhu	LMin-	0	0	7030	6	Minotaur Lich
-70	2	16	59	0	-	48	54	0	0	backdol3	ZMinbod	none	ZMinLhd	ZMinlhu	ZMinlho	ZMinrhb	none	ZMinlhu	ZMinrhd	ZMinrhu	ZMin-	0	0	7029	10	Minotaur zombie (conditional portrait)
-71	5	10	25	0	-	0	0	0	0	pc39bod	pc39bod	none	none	none	none	none	none	none	none	none	pc39-	0	137	7031	5	Black dragon
+67	5	10	28	0	-	0	0	0	0	pc37bod	pc37bod	none	none	none	none	none	none	none	none	none	pc37-	0	137	8037	6	Lich Dragon
+68	5	10	65	0	-	0	0	0	0	pc38bod	pc38bod	none	none	none	none	none	none	none	none	none	pc38-	0	137	8038	10	Dragon Ghost (conditional portrait)
+69	2	45	67	0	-	48	54	0	0	backdol3	LMinbod	none	LMinLhd	LMinlhu	LMinlho	LMinrhb	none	LMinlhu	LMinrhd	LMinrhu	LMin-	0	0	7030	6	Minotaur Lich
+70	2	16	70	0	-	48	54	0	0	backdol3	ZMinbod	none	ZMinLhd	ZMinlhu	ZMinlho	ZMinrhb	none	ZMinlhu	ZMinrhd	ZMinrhu	ZMin-	0	0	7029	10	Minotaur zombie (conditional portrait)
+71	5	10	25	0	-	0	0	0	0	pc39bod	pc39bod	none	none	none	none	none	none	none	none	none	pc39-	0	137	8039	5	Black dragon
 72	4	16	59	0	-	31	46	0	0	7backdoll	dzmalbod	none	dzmalLHo	dzmalLHu	dzmalLHd	dzmalrhb	none	dzmallhu	dzmalrhd	dzmalrhu	7pc24-	0	0	7025	10	Dwarf zombie (conditional portrait)
 73	4	16	60	1	-	43	43	0	0	7backdoll	dzfembod	none	dzfemLHd	dzfemLHu	dzfemLHo	dzfemRHb	none	dzfemlhu	dzfemRHd	dzfemRHu	7pc25-	0	0	7026	10	Dwarf zombie (conditional portrait)
+74	5	10	24	0	-	0	0	0	0	pc40bod	pc40bod	none	none	none	none	none	none	none	none	none	pc40-	0	137	8040	5	Gold Dragon
+75	3	38	72	0	-	41	51	0	0	backdol4	pc41bod	none	pc41LHd	pc41LHu	pc41LHo	pc41RHb	pc07lwp1	pc41lhu	pc41RHd	pc41RHu	pc41-	0	0	8041	6	Lich Troll 1
+76	3	38	73	0	-	43	43	0	0	backdol4	pc42bod	none	pc42LHd	pc42LHu	pc42LHo	pc42RHb	pc07lwp1	pc42lhu	pc42RHd	pc42RHu	pc42-	0	0	8042	10	Zombie Troll 1

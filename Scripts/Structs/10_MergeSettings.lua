@@ -44,7 +44,7 @@ local function InitializeMergeSettings()
 		.. Merge.PackVersion .. " Pack"
 	-- SaveGame compatibility. Raise when SaveGame format is changed.
 	-- Version format: YYMMDDxx
-	Merge.SaveGameFormatVersion = Merge.SaveGameFormatVersion or 20113000
+	--Merge.SaveGameFormatVersion = Merge.SaveGameFormatVersion or 20113000
 
 	------------ Logging settings ------------
 

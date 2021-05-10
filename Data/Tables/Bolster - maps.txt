@@ -206,3 +206,4 @@
 204	Breach	4	LowerToEqual	x	x	-	0		
 205	BrAlvar	4	LowerToEqual	x	x	-	0		sunsetclouds
 206	BrBase	4	LowerToEqual	x	x	-	0		
+207	The Strange Temple	2	LowerToEqual	x	-	-	0	0	

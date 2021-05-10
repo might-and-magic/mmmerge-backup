@@ -97,7 +97,7 @@ function events.GameInitialized2()
 		[const.Race.Vampire	] = {[0] = 59, [1] = 60},
 		[const.Race.DarkElf	] = {[0] = 59, [1] = 60},
 		[const.Race.Minotaur] = {[0] = 70, [1] = 70},
-		[const.Race.Troll	] = {[0] = 59, [1] = 60},
+		[const.Race.Troll	] = {[0] = 76, [1] = 76},
 		[const.Race.Dragon	] = {[0] = 68, [1] = 68},
 		[const.Race.Undead	] = {},
 		[const.Race.Elf		] = {[0] = 59, [1] = 60},

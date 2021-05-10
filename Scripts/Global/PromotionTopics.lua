@@ -16,9 +16,10 @@ end
 --------------------------------------------
 ---- Base functions
 local LichAppearance = {
-[const.Race.Dwarf]		= {[0] = {Portrait = 65, Voice = 65}, [1] = {Portrait = 66, Voice = 66}},
-[const.Race.Dragon]		= {[0] = {Portrait = 67, Voice = 24}, [1] = {Portrait = 67, Voice = 24}},
-[const.Race.Minotaur]	= {[0] = {Portrait = 69, Voice = 59}, [1] = {Portrait = 69, Voice = 59}},
+[const.Race.Dwarf]		= {[0] = {Portrait = 65, Voice = 26}, [1] = {Portrait = 66, Voice = 27}},
+[const.Race.Dragon]		= {[0] = {Portrait = 67, Voice = 28}, [1] = {Portrait = 67, Voice = 28}},
+[const.Race.Minotaur]	= {[0] = {Portrait = 69, Voice = 67}, [1] = {Portrait = 69, Voice = 67}},
+[const.Race.Troll]	= {[0] = {Portrait = 75, Voice = 72}, [1] = {Portrait = 75, Voice = 72}},
 default					= {[0] = {Portrait = 26, Voice = 26}, [1] = {Portrait = 27, Voice = 27}}
 }
 

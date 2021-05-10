@@ -1,9 +1,10 @@
-
-local sqrt = math.sqrt
+local u2 = mem.u2
+local random, sqrt = math.random, math.sqrt
 
 local OldVoiceCount, NewVoiceCount = 30, nil
 local ItemSize = 2
 local VoiceSetSize = 100
+local VoiceTypes = 6
 
 local OldGame = structs.f.GameStructure
 function structs.f.GameStructure(define)
@@ -17,7 +18,7 @@ end
 function structs.f.CharacterVoices(define)
 	define
 	[0x4fcb78].array(0).array(100).u2 'Sounds'
-	[0x4fcb78].array(0).array(3).u1 'Avail'
+	[0x4fcb78].array(0).array(VoiceTypes).u1 'Avail'
 end
 
 function structs.f.CharacterPortrait(define)
@@ -175,7 +176,7 @@ local function ProcessVoicesTable()
 	end
 
 	local VoiceTableSize = VoiceSetSize*(NewVoiceCount+1)*ItemSize
-	local VoiceTablePtr = mem.StaticAlloc(VoiceTableSize + (NewVoiceCount+1)*3)
+	local VoiceTablePtr = mem.StaticAlloc(VoiceTableSize + (NewVoiceCount+1)*VoiceTypes)
 	local CurSoundType = 0
 
 	-- Voice sets
@@ -202,7 +203,7 @@ local function ProcessVoicesTable()
 
 		if table.maxn(RowSet) > NewVoiceCount and RowSet[1] ~= "" and RowSet[1] ~= "Notes" then
 			for i = 0, NewVoiceCount do
-				mem.u1[VoiceTablePtr+VoiceTableSize+i*3+CurSoundType] = RowSet[i+2] == "x" and 1 or 0
+				mem.u1[VoiceTablePtr+VoiceTableSize+i*VoiceTypes+CurSoundType] = RowSet[i+2] == "x" and 1 or 0
 			end
 			CurSoundType = CurSoundType + 1
 		end
@@ -233,8 +234,12 @@ local function ProcessVoicesTable()
 			return false
 		end
 
-		if Portrait.Race == 5 then
+		if Player.Face == 67 or Player.Face == 68 then
+			return Game.CharacterVoices.Avail[Voice][5]
+		elseif Portrait.Race == 5 then
 			return Game.CharacterVoices.Avail[Voice][2]
+		elseif Portrait.Race == 6 or Portrait.Race == 10 then
+			return Game.CharacterVoices.Avail[Voice][Sex + 3]
 		else
 			return Game.CharacterVoices.Avail[Voice][Sex]
 		end
@@ -265,25 +270,27 @@ local function ProcessVoicesTable()
 	mem.asmpatch(0x492c71, "inc edi")
 
 	local CurPtr = mem.asmpatch(0x492c8c, [[
-	cmp edx, 0x2
-	jge @nrnd
-	nop
-	nop
-	nop
-	nop
-	nop
-
-	@nrnd:
 	mov eax, dword [ds:ebp-0x8]
 	mov eax, dword [ds:eax+0x1be4]
 	imul eax, eax, ]] .. VoiceSetSize .. [[;
 	lea eax, dword [ds:eax+esi*2]
-	lea eax, dword [ds:eax+edx-2]
+	lea eax, dword [ds:eax-2]
 	imul eax, eax, ]] .. ItemSize .. [[;
+	nop
+	nop
+	nop
+	nop
+	nop
 	movzx esi, word [ds:eax+]] .. VoiceTablePtr .. [[];]])
 
-	mem.hook(CurPtr + 5, function(d)
-		d.edx = math.random(0,1)
+	mem.hook(CurPtr + 19 + (VoiceSetSize < 128 and 3 or 6), function(d)
+		if d.edx < 2 then
+			d.edx = random(0,1)
+			if u2[VoiceTablePtr + d.eax + d.edx * ItemSize] == 0 then
+				d.edx = 1 - d.edx
+			end
+		end
+		d.eax = d.eax + d.edx * ItemSize
 	end)
 
 	mem.asmpatch(0x490a71, [[
