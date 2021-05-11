@@ -235,6 +235,8 @@ function events.GameInitialized2()
 			for k,v in pairs(VarsToStore) do
 				Game[v] = (ExSet[v] == nil) and true or ExSet[v]
 			end
+
+			BolAmText.Text = tostring(Game.BolsterAmount) .. "%"
 		end
 	end
 
