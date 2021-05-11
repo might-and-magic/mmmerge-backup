@@ -95,6 +95,9 @@ end
 function events.GameInitialized2()
 
 	-- new quick spell buttons
+	local baseY = 380
+	-- Reserved for incoming MMPatch with additional quick spell mechanic.
+	-- local baseY = 330
 	for i = 1, ExtraQuickSpells.SlotsAmount do
 		CustomUI.CreateButton{
 			IconUp = "stssu",
@@ -102,7 +105,7 @@ function events.GameInitialized2()
 			Screen = 8,
 			Layer = 1,
 			X =	0,
-			Y =	380 - i*50,
+			Y =	baseY - i*50,
 			Masked = true,
 			Action = function() SetSlotSpell(Game.CurrentPlayer, i, GetSelectedSpellId()) end,
 			MouseOverAction = function() ShowSlotSpellName(i) end
@@ -117,7 +120,7 @@ function events.GameInitialized2()
 			Screen = 8,
 			Layer = 0,
 			X = 17,
-			Y = 382 - i*50,
+			Y = baseY + 2 - i*50,
 			Text = " " .. tostring(i)}
 
 	end
