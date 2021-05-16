@@ -30,7 +30,6 @@ local PlacedArtifacts = {
 	2020,2023,2032,2033,2034
 }
 
-
 vars.GotArtifact = vars.GotArtifact or {}
 for k,v in pairs(PlacedArtifacts) do
 	vars.GotArtifact[v] = true
@@ -600,6 +599,11 @@ WearItemConditions[1333] = function(PlayerId)
 	return GetRace(Party[PlayerId]) == const.Race.Goblin
 end
 
+-- Mind's Eye
+WearItemConditions[1334] = function(PlayerId)
+	return GetRace(Party[PlayerId]) == const.Race.Human
+end
+
 -- Elven chainmail
 WearItemConditions[1335] = function(PlayerId)
 	local Race = GetRace(Party[PlayerId])
@@ -686,13 +690,15 @@ GetBonusList(1306).Stats = {[const.Stats.Might] 		= 10,
 GetBonusList(1307).Stats = {[const.Stats.Endurance] 	= 25}
 -- Ullyses
 GetBonusList(1312).Stats = {[const.Stats.Accuracy] = 50}
+-- Seven League Boots
+GetBonusList(1314).Stats = {[const.Stats.Speed] = 40}
 -- Mash
 GetBonusList(1316).Stats = {[const.Stats.Might] 		= 150,
 							[const.Stats.Intellect] 	= -40,
 							[const.Stats.Personality] 	= -40,
 							[const.Stats.Speed] 		= -40}
 -- Hareck's Leather
-GetBonusList(1318).Stats = {	[const.Stats.Luck]				= 50,
+GetBonusList(1318).Stats = {[const.Stats.Luck]				= 50,
 							[const.Stats.FireResistance] 	= -10,
 							[const.Stats.AirResistance] 	= -10,
 							[const.Stats.WaterResistance] 	= -10,
@@ -701,15 +707,38 @@ GetBonusList(1318).Stats = {	[const.Stats.Luck]				= 50,
 							[const.Stats.BodyResistance] 	= -10,
 							[const.Stats.SpiritResistance] 	= -10}
 -- Amuck
-GetBonusList(1320).Stats = {	[const.Stats.Might] 		= 100,
+GetBonusList(1320).Stats = {[const.Stats.Might] 		= 100,
 							[const.Stats.Endurance] 	= 100,
 							[const.Stats.ArmorClass] 	= -15}
 -- Glory shield
-GetBonusList(1321).Stats = {	[const.Stats.BodyResistance] = -10,
+GetBonusList(1321).Stats = {[const.Stats.BodyResistance] = -10,
 							[const.Stats.MindResistance] = -10}
 -- Kelebrim
 GetBonusList(1322).Stats = {[const.Stats.Endurance] = 50,
 							[const.Stats.EarthResistance] = -30}
+-- Taledon's Helm
+GetBonusList(1323).Stats = {[const.Stats.Might] = 15,
+							[const.Stats.Personality] = 15,
+							[const.Stats.Luck] = -40}
+-- Scholar's cap
+GetBonusList(1324).Stats = {[const.Stats.Endurance] = -50}
+-- Phynaxian Crown
+GetBonusList(1325).Stats = {[const.Stats.WaterResistance] = 50,
+							[const.Stats.Personality] = 30,
+							[const.Stats.ArmorClass] = -20}
+-- Titan's belt
+GetBonusList(1326).Stats = {[const.Stats.Might] = 75,
+							[const.Stats.Speed] = -40}
+-- Twilight
+GetBonusList(1327).Stats = {[const.Stats.Speed] = 50,
+							[const.Stats.Luck] = 50,
+							[const.Stats.FireResistance] 	= -15,
+							[const.Stats.AirResistance] 	= -15,
+							[const.Stats.WaterResistance] 	= -15,
+							[const.Stats.EarthResistance] 	= -15,
+							[const.Stats.MindResistance] 	= -15,
+							[const.Stats.BodyResistance] 	= -15,
+							[const.Stats.SpiritResistance] 	= -15}
 -- Ania Selving
 GetBonusList(1328).Stats = {[const.Stats.ArmorClass] = -25,
 							[const.Stats.Accuracy] = 150}
@@ -718,35 +747,51 @@ GetBonusList(1329).Stats = {[const.Stats.Speed] = -40}
 -- Mekorig's hammer
 GetBonusList(1330).Stats = {[const.Stats.Might] = 75,
 							[const.Stats.AirResistance] = -50}
+-- Mind's Eye
+GetBonusList(1334).Stats = {[const.Stats.Intellect] = 15,
+							[const.Stats.Personality] = 15}
 -- Elven Chainmail
-GetBonusList(1335).Stats = { [const.Stats.Speed] = 15,
-							 [const.Stats.Accuracy] = 15}
+GetBonusList(1335).Stats = {[const.Stats.Speed] = 15,
+							[const.Stats.Accuracy] = 15}
 -- Thor
-GetBonusList(2021).Stats = { [const.Stats.Might] = 75}
+GetBonusList(2021).Stats = {[const.Stats.Might] = 75}
 -- Conan
-GetBonusList(2022).Stats = { [const.Stats.Might] = 75}
+GetBonusList(2022).Stats = {[const.Stats.Might] = 75}
 -- Excalibur
-GetBonusList(2023).Stats = { [const.Stats.Might] = 30}
+GetBonusList(2023).Stats = {[const.Stats.Might] = 30}
 -- Merlin
-GetBonusList(2024).Stats = { [const.Stats.SP] = 40}
+GetBonusList(2024).Stats = {[const.Stats.SP] = 40}
 -- Percival
-GetBonusList(2025).Stats = { [const.Stats.Speed] = 40}
+GetBonusList(2025).Stats = {[const.Stats.Speed] = 40}
 -- Galahad
-GetBonusList(2026).Stats = { [const.Stats.HP] = 25}
+GetBonusList(2026).Stats = {[const.Stats.HP] = 25}
 -- Pellinore
-GetBonusList(2027).Stats = { [const.Stats.Endurance] = 30}
+GetBonusList(2027).Stats = {[const.Stats.Endurance] = 30}
 -- Percival
-GetBonusList(2028).Stats = { [const.Stats.Accuracy] = 30}
+GetBonusList(2028).Stats = {[const.Stats.Accuracy] = 30}
+-- Arthur
+GetBonusList(2029).Stats = {[const.Stats.SP] = 25,
+							[const.Stats.Might] 		= 10,
+							[const.Stats.Intellect] 	= 10,
+							[const.Stats.Personality] 	= 10,
+							[const.Stats.Speed] 		= 10,
+							[const.Stats.Accuracy]		= 10,
+							[const.Stats.Endurance] 	= 10,
+							[const.Stats.Luck]			= 10}
+-- Pendragon
+GetBonusList(2030).Stats = {[const.Stats.Luck] = 30}
+-- Lucius
+GetBonusList(2031).Stats = {[const.Stats.Speed] = 30}
 -- Guinevere
-GetBonusList(2032).Stats = { [const.Stats.SP] = 30}
+GetBonusList(2032).Stats = {[const.Stats.SP] = 30}
 -- Igraine
-GetBonusList(2033).Stats = { [const.Stats.SP] = 25}
+GetBonusList(2033).Stats = {[const.Stats.SP] = 25}
 -- Morgan
-GetBonusList(2034).Stats = { [const.Stats.SP] = 20}
+GetBonusList(2034).Stats = {[const.Stats.SP] = 20}
 -- Hades
-GetBonusList(2035).Stats = { [const.Stats.Luck] = 20}
+GetBonusList(2035).Stats = {[const.Stats.Luck] = 20}
 -- Ares
-GetBonusList(2036).Stats = { [const.Stats.FireResistance] = 25}
+GetBonusList(2036).Stats = {[const.Stats.FireResistance] = 25}
 -- Poseidon
 GetBonusList(2037).Stats = {[const.Stats.Might] 	 = 20,
 							[const.Stats.Endurance]  = 20,
@@ -766,7 +811,7 @@ GetBonusList(2040).Stats = {[const.Stats.FireResistance] 	= -10,
 							[const.Stats.WaterResistance] 	= -10,
 							[const.Stats.EarthResistance] 	= -10}
 -- Apollo
-GetBonusList(2041).Stats = {	[const.Stats.Endurance]			= -30,
+GetBonusList(2041).Stats = {[const.Stats.Endurance]			= -30,
 							[const.Stats.FireResistance] 	= 20,
 							[const.Stats.AirResistance] 	= 20,
 							[const.Stats.WaterResistance] 	= 20,
@@ -776,30 +821,42 @@ GetBonusList(2041).Stats = {	[const.Stats.Endurance]			= -30,
 							[const.Stats.SpiritResistance] 	= 20,
 							[const.Stats.Luck]				= 20}
 -- Zeus
-GetBonusList(2042).Stats = {	[const.Stats.HP] 		= 50,
+GetBonusList(2042).Stats = {[const.Stats.HP] 		= 50,
 							[const.Stats.SP] 		= 50,
 							[const.Stats.Luck] 		= 50,
 							[const.Stats.Intellect] = -50}
 -- Aegis
-GetBonusList(2043).Stats = { [const.Stats.Speed] = -20,
+GetBonusList(2043).Stats = {[const.Stats.Speed] = -20,
 							[const.Stats.Luck] 	= 20}
+-- Odin
+GetBonusList(2041).Stats = {[const.Stats.FireResistance] 	= 50,
+							[const.Stats.AirResistance] 	= 50,
+							[const.Stats.WaterResistance] 	= 50,
+							[const.Stats.EarthResistance] 	= 50,
+							[const.Stats.Speed]				= -40}
+-- Odin
+GetBonusList(2045).Stats = {[const.Stats.Might] 	= 100,
+							[const.Stats.Speed]		= -40}
+-- Hermes
+GetBonusList(2046).Stats = {[const.Stats.Speed] 	= 100,
+							[const.Stats.Accuracy]	= -40}
 -- Aphrodite
-GetBonusList(2047).Stats = { [const.Stats.Personality] = 100,
+GetBonusList(2047).Stats = {[const.Stats.Personality] = 100,
 							[const.Stats.Luck] 	= -40}
 -- Athena
-GetBonusList(2048).Stats = { [const.Stats.Intellect] = 100,
+GetBonusList(2048).Stats = {[const.Stats.Intellect] = 100,
 							[const.Stats.Might] 	= -40}
 -- Hera
-GetBonusList(2049).Stats = { [const.Stats.HP] = 50,
+GetBonusList(2049).Stats = {[const.Stats.HP] = 50,
 							[const.Stats.SP] = 50,
 							[const.Stats.Luck] = 50,
 							[const.Stats.Personality] = -50}
 -- Hermes's Sandals
-GetBonusList(1331).Stats = { [const.Stats.Speed] = 100,
+GetBonusList(1331).Stats = {[const.Stats.Speed] = 100,
 							[const.Stats.Accuracy] = 50,
 							[const.Stats.AirResistance] = 50}
 -- Cloak of the sheep
-GetBonusList(1332).Stats = { [const.Stats.Intellect] 	= -20,
+GetBonusList(1332).Stats = {[const.Stats.Intellect] 	= -20,
 							[const.Stats.Personality] 	= -20}
 
 --------------------------------
@@ -814,7 +871,6 @@ GetBonusList(1305).Skills =	{	[const.Skills.DisarmTraps] = 10}
 -- Hands of the Master
 GetBonusList(1313).Skills =	{	[const.Skills.Unarmed] = 10,
 								[const.Skills.Dodging] = 10}
-
 -- Ethric's Staff
 GetBonusList(1317).Skills =	{	[const.Skills.Meditation] = 15}
 -- Hareck's Leather
@@ -824,6 +880,8 @@ GetBonusList(1318).Skills =	{	[const.Skills.DisarmTraps] = 5,
 GetBonusList(1319).Skills =	{	[const.Skills.DisarmTraps] = 5}
 -- Glory shield
 GetBonusList(1321).Skills =	{	[const.Skills.Shield] = 5}
+-- Scholar's cap
+GetBonusList(1324).Skills =	{	[const.Skills.Learning] = 15}
 -- Ania Selving
 GetBonusList(1328).Skills =	{	[const.Skills.Bow] = 5}
 -- Faerie ring
@@ -831,6 +889,8 @@ GetBonusList(1347).Skills =	{	[const.Skills.Fire] = 5,
 								[const.Skills.Air] = 5,
 								[const.Skills.Water] = 5,
 								[const.Skills.Earth] = 5}
+-- Pendragon
+GetBonusList(2030).Skills =	{	[const.Skills.Stealing] = 10}
 -- Hades
 GetBonusList(2035).Skills =	{	[const.Skills.DisarmTraps] = 10}
 
@@ -838,26 +898,32 @@ GetBonusList(2035).Skills =	{	[const.Skills.DisarmTraps] = 10}
 ---- Spell bonuses
 
 -- Eclipse
-GetBonusList(516).SpellBonus  =	{[const.Skills.Spirit] = true, [const.Skills.Body] = true, [const.Skills.Mind] = true}
+GetBonusList(516).SpellBonus =	{[const.Skills.Spirit] = true, [const.Skills.Body] = true, [const.Skills.Mind] = true}
 -- Crown of final Dominion
-GetBonusList(521).SpellBonus	 =	{[const.Skills.Dark] = true}
+GetBonusList(521).SpellBonus =	{[const.Skills.Dark] = true}
 -- Staff of Elements
 GetBonusList(530).SpellBonus =	{[const.Skills.Fire] = true, [const.Skills.Air] = true, [const.Skills.Water] = true, [const.Skills.Earth] = true}
 -- Staff of Elements
 GetBonusList(535).SpellBonus =	{[const.Skills.Water] = true}
 -- Ruler's ring
 GetBonusList(1315).SpellBonus =	{[const.Skills.Mind] = true, [const.Skills.Dark] = true}
+-- Seven League Boots
+GetBonusList(1314).SpellBonus = {[const.Skills.Water] = true}
 -- Ethric's Staff
 GetBonusList(1317).SpellBonus =	{[const.Skills.Dark] = true}
 -- Glory shield
 GetBonusList(1321).SpellBonus =	{[const.Skills.Spirit] = true}
+-- Taledon's Helm
+GetBonusList(1323).SpellBonus =	{[const.Skills.Light] = true}
+-- Phynaxian Crown
+GetBonusList(1325).SpellBonus =	{[const.Skills.Fire] = true}
 -- Justice
-GetBonusList(1329).SpellBonus =	{	[const.Skills.Mind] = true,
-								[const.Skills.Body] = true}
+GetBonusList(1329).SpellBonus =	{[const.Skills.Mind] = true,
+								 [const.Skills.Body] = true}
 -- Mekorig's hammer
-GetBonusList(1330).SpellBonus =	{	[const.Skills.Spirit] = true}
+GetBonusList(1330).SpellBonus =	{[const.Skills.Spirit] = true}
 -- Ghost ring
-GetBonusList(1347).SpellBonus =	{	[const.Skills.Spirit] = true}
+GetBonusList(1347).SpellBonus =	{[const.Skills.Spirit] = true}
 -- Guinevere
 GetBonusList(2032).SpellBonus =	{[const.Skills.Light] = true, [const.Skills.Dark] = true}
 -- Igraine
@@ -925,6 +991,11 @@ GetBonusList(1332).EffectImmunities = {	[const.MonsterBonus.Insane] 	= true,
 							[const.MonsterBonus.Asleep] 	= true}
 -- Medusa's mirror
 GetBonusList(1341).EffectImmunities = {[const.MonsterBonus.Stone] = true}
+-- Pendragon
+GetBonusList(2032).EffectImmunities = {
+							[const.MonsterBonus.Poison1] 	= true,
+							[const.MonsterBonus.Poison2] 	= true,
+							[const.MonsterBonus.Poison3] 	= true}
 -- Aegis
 GetBonusList(2043).EffectImmunities = {[const.MonsterBonus.Stone] = true}
 
@@ -943,6 +1014,8 @@ GetBonusList(2024).ModAttackDelay = -20
 --------------------------------
 ---- HP/SP regen
 
+-- Mind's Eye
+GetBonusList(1334).HPSPRegen = {SP = 3}
 -- Hero's belt
 GetBonusList(1337).HPSPRegen = {HP = 3}
 -- Merlin
