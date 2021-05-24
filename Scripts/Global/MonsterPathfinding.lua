@@ -727,18 +727,20 @@ end
 Pathfinder.BuildWayUsingMapData = BuildWayUsingMapData
 
 local function MakeMonWay(cMonWay, cMonId, cTarget)
+	local WayMap
+	local TooFar = false
+	local Monster = Map.Monsters[cMonId]
+	local FromArea, ToArea = AreaOfTarget(Monster), AreaOfTarget(cTarget)
+
 	cMonWay.InProcess = true
 	cMonWay.NeedRebuild = false
 	cMonWay.X = cTarget.X
 	cMonWay.Y = cTarget.Y
 	cMonWay.Z = cTarget.Z
+	cMonWay.TargetArea = ToArea
 	coyield()
 
 	cMonWay.HoldMonster = true
-	local WayMap
-	local Monster = Map.Monsters[cMonId]
-	local TooFar = false
-	local FromArea, ToArea = AreaOfTarget(Monster), AreaOfTarget(cTarget)
 
 	WayMap = BuildWayUsingMapData(FromArea, ToArea, cMonId, Monster, cTarget, true)
 
@@ -753,7 +755,6 @@ local function MakeMonWay(cMonWay, cMonId, cTarget)
 	Monster.AIState = 6
 	cMonWay.WayMap = WayMap
 	cMonWay.Step = 1
-	cMonWay.TargetArea = ToArea
 	cMonWay.Size = #cMonWay.WayMap
 	cMonWay.HoldMonster = false
 	cMonWay.InProcess = false

@@ -1299,9 +1299,9 @@ local TraceLineAsm = mem.asmproc([[
 		; check for Invisible & Untouchable
 		mov edx, dword [ds:eax+0x2c]
 		bt edx, 0xd
-		jne @visible
+		jnc @visible
 		bt edx, 0x1d
-		je @rep
+		jc @rep
 
 		@visible:
 
@@ -1517,7 +1517,7 @@ local AltGetFloorLevelAsm = mem.asmproc([[
 	pop edi
 	mov esp, ebp
 	pop ebp
-	retn]])
+	retn 0xC]])
 
 Pathfinder.AltGetFloorLevelAsm = AltGetFloorLevelAsm
 
@@ -1848,8 +1848,7 @@ local TraceMonWayLines = mem.asmproc([[
 Pathfinder.TraceMonWayLines = TraceMonWayLines
 
 -- Takes MonId, Radius, FromX, FromY, FromZ, ToX, ToY, ToZ
--- returns 1 in eax, if monster can reach point, 0 - otherwise
-
+-- returns 1 in eax, if monster can reach point, 0 - otherwise, and actual target Z level in ecx.
 -- Uses approximation (faster, less accurate, does not use actual monster, does not crash game, when executed in separate thread).
 -- mem.call(Pathfinder.TraceAsm, 0, 0, 30, Party.X, Party.Y, Party.Z, Party.X, Party.Y, Party.Z)
 local TraceAsm = mem.asmproc([[
@@ -1869,6 +1868,35 @@ local TraceAsm = mem.asmproc([[
 	call absolute ]] .. CheckNeighboursAsm .. [[;
 	mov dword [ss:ebp - 0xC], eax
 	mov dword [ss:ebp - 0x10], ecx
+
+; if Z levels are almost same, trace lines beforehand,
+; if no obstacles on the way - no need to check each step.
+	push dword [ss:ebp + 0x24]
+	add dword [ss:esp], 0x28
+	push dword [ss:ebp + 0x20]
+	push dword [ss:ebp + 0x1c]
+	call absolute ]] .. AltGetFloorLevelAsm .. [[;
+	mov dword [ss:ebp + 0x24], eax
+
+	sub eax, dword [ss:ebp + 0x18]
+	call absolute ]] .. absAsm .. [[;
+	cmp eax, 10
+	jg @skipTL
+
+	push dword [ss:ebp + 0x24]
+	push dword [ss:ebp + 0x20]
+	push dword [ss:ebp + 0x1c]
+	push dword [ss:ebp + 0x18]
+	push dword [ss:ebp + 0x14]
+	push dword [ss:ebp + 0x10]
+	push dword [ss:ebp - 0x10]
+	push dword [ss:ebp - 0xC]
+	call absolute ]] .. TraceMonWayLines .. [[;
+	mov ecx, dword [ss:ebp + 0x24]
+	test eax, eax
+	jne @TLsuccess
+
+	@skipTL:
 
 ; calc limit
 	push dword [ss:ebp + 0x10]
@@ -1955,7 +1983,6 @@ local TraceAsm = mem.asmproc([[
 		push dword [ss:ebp + 0x20]
 		push dword [ss:ebp + 0x1c]
 		call absolute ]] .. AltGetFloorLevelAsm .. [[;
-		add esp, 0xC
 		cmp eax, -29000
 		jle @fault
 
@@ -2354,8 +2381,8 @@ local AStarWayAsm = mem.asmproc([[
 
 		@repdirs:
 			; check if handler have to be stopped
-			cmp dword [ds:]] .. QueueFlag .. [[], 1
-			jne @overflow
+			cmp dword [ds:]] .. QueueFlag .. [[], 3
+			je @overflow
 
 			; 2. calc neighbour coords
 			dec dword [ds:]] .. AStarWayParams + 36 .. [[]
@@ -2402,7 +2429,6 @@ local AStarWayAsm = mem.asmproc([[
 			push dword [ds:]] .. AStarWayParams + 24  .. [[]
 			push dword [ds:]] .. AStarWayParams + 20  .. [[]
 			call absolute ]] .. AltGetFloorLevelAsm .. [[;
-			add esp, 0xC
 			cmp eax, -29000
 			jle @fixZfault
 			mov dword [ds:]] .. AStarWayParams + 28  .. [[], eax
