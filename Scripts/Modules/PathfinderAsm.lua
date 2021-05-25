@@ -78,7 +78,7 @@ end
 Pathfinder.GetWinVersion = GetWinVersion
 
 local function WinVersionCompatible()
-	return GetWinVersion() > 4
+	return true -- function temporary saved for backward compatibility.
 end
 Pathfinder.WinVersionCompatible = WinVersionCompatible
 
@@ -2284,7 +2284,33 @@ local FacetInAllowedRoom = mem.asmproc([[
 	@exit:
 	retn]])
 
-local AStarWayParams = mem.StaticAlloc(48)
+local ProcessorNumbers = mem.StaticAlloc(8)
+Pathfinder.ProcessorNumbers = ProcessorNumbers
+-- print(mem.u4[Pathfinder.ProcessorNumbers], mem.u4[Pathfinder.ProcessorNumbers+4])
+local AStarWayParams = mem.StaticAlloc(52)
+local MaxExecTime = 12
+local CheckExecTime = mem.asmproc([[
+	; if pathfinder thread nesting on different logical processor than
+	; main thread - skip time check.
+	mov eax, dword [ds:]] .. ProcessorNumbers .. [[]
+	cmp eax, dword [ds:]] .. ProcessorNumbers + 4 .. [[]
+	jne @end
+
+	; if pathfinder thread active longer than max allowed time,
+	; and it share processor with main thread, suspend it, to negate fps drops.
+	call absolute ]] .. mem.GetProcAddress(mem.dll["kernel32"]["?ptr"], "GetTickCount") .. [[;
+	sub eax, dword [ds:]] .. AStarWayParams + 48 .. [[]
+	cmp eax, ]] .. MaxExecTime .. [[;
+	jl @end
+
+	push 0x8
+	call absolute ]] .. mem.GetProcAddress(mem.dll["kernel32"]["?ptr"], "Sleep") .. [[;
+	call absolute ]] .. mem.GetProcAddress(mem.dll["kernel32"]["?ptr"], "GetTickCount") .. [[;
+	mov dword [ds:]] .. AStarWayParams + 48 .. [[], eax
+
+	@end:
+	retn
+]])
 
 -- takes MonId, X, Y, Z of target, X, Y, Z of start, output ptr, returns ptr to way table in eax or 0 in eax if way have not been found.
 local AStarWayAsm = mem.asmproc([[
@@ -2292,6 +2318,10 @@ local AStarWayAsm = mem.asmproc([[
 	mov ebp, esp
 	push edi
 	push esi
+
+	; store start time
+	call absolute ]] .. mem.GetProcAddress(mem.dll["kernel32"]["?ptr"], "GetTickCount") .. [[;
+	mov dword [ds:]] .. AStarWayParams + 48 .. [[], eax
 
 	; clear cells table
 	call absolute ]] .. ClearAllCellsAsm .. [[;
@@ -2321,6 +2351,8 @@ local AStarWayAsm = mem.asmproc([[
 
 	; start tracing
 	@rep:
+		call absolute ]] .. CheckExecTime .. [[;
+
 		; get next reachable cell
 		call absolute ]] .. ReachableSize .. [[;
 		test eax, eax
@@ -2702,6 +2734,7 @@ local function SetQueueItem(MonId, ToX, ToY, ToZ, FromX, FromY, FromZ, OutputPtr
 
 	return QItemId
 end
+
 --~ require("PathfinderAsm")
 --~ test = Pathfinder.AStarWayAsm{MonId = 0, ToX = Party.X, ToY = Party.Y, ToZ = Party.Z}
 --~ print(#test)
@@ -2729,6 +2762,8 @@ local function AStarWay(t)
 			u1[AvAreasPtr+i] = AvAreas[i] and 1 or 0
 		end
 	end
+
+	u4[ProcessorNumbers] = mem.dll['kernel32'].GetCurrentProcessorNumber()
 
 	local result
 	if t.Async then
@@ -2857,6 +2892,10 @@ local HandlerAsm = mem.asmproc([[
 	@Sleep:
 	push 0x20
 	call absolute ]] .. mem.GetProcAddress(mem.dll["kernel32"]["?ptr"], "Sleep") .. [[;
+
+	call absolute ]] .. mem.GetProcAddress(mem.dll["kernel32"]["?ptr"], "GetCurrentProcessorNumber") .. [[;
+	mov dword [ds:]] .. ProcessorNumbers + 4 .. [[], eax
+
 	xor ecx, ecx
 	xor edx, edx
 	jmp @rep
