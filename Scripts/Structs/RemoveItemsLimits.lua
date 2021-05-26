@@ -2454,6 +2454,9 @@ local function SetupItemPicsHandler()
 	]])
 	mem.asmpatch(0x43a21b, "jmp absolute " .. NewCode)
 	mem.nop(0x43a213, 3)
+
+	-- Minotaurs and Trolls use their own cloak icons now
+	mem.nop2(0x43A236, 0x43A240)
 	----
 
 	-- Setup templates
