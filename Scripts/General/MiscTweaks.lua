@@ -40,6 +40,17 @@
 	-- Ring of fusion
 	mem.asmpatch(0x48e8f3, "jmp absolute 0x48e8fc")
 
+	-- Workaround for crash caused by exceed amount of loaded icons (>1000)
+	-- Draw pending icon for items, which's icons could not be loaded.
+	-- Need to find proper solution for this case.
+	mem.asmpatch(0x410e06, "jmp absolute 0x410ec8")
+	mem.asmpatch(0x410d76, [[
+	xor eax, eax
+	cmp dword [ds:ecx+0x11B7C], 0x3e7
+	jge absolute 0x410ed1
+	xor edi, edi
+	cmp dword [ss:ebp+8], edi]])
+
 	-- Reduce traveling cost from arena to four days and zero food.
 	mem.asmpatch(0x446ee6, "push 0x0")
 	mem.asmpatch(0x446f3c, "push 0x0")
