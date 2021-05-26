@@ -117,7 +117,18 @@ local function RemoveBitsLimits()
 
 	local Ctr = math.ceil((NewQBitsCount+NewABitsCount)/32)
 
-	function events.BeforeLoadMap(WasInGame)
+	events.AddFirst('NewGameMap', function()
+		for i = 0, Ctr do
+			mem.u4[i * 4 + NewQBitsPtr] = 0
+		end
+		NewGameStarted = true
+	end)
+
+	events.AddFirst("BeforeLoadMap", function(WasInGame)
+		if NewGameStarted then
+			NewGameStarted = false
+			return
+		end
 		if not WasInGame then
 			if vars.ExtendedBits then
 				for i = 0, Ctr do
@@ -130,7 +141,7 @@ local function RemoveBitsLimits()
 				end
 			end
 		end
-	end
+	end)
 
 	function events.BeforeSaveGame()
 		vars.ExtendedBits = vars.ExtendedBits or {}

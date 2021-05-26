@@ -185,7 +185,10 @@ end
 local TextBuffer = internal.TextBuffer
 
 local function GetHouseHint(id)
-	if id and id < 600 then
+	-- cthscr: update from GrayFace's repo
+	--if id and id < 600 then
+	if id and id ~= 600 and id ~= 601 then
+	-- ~cthscr
 		return Game.Houses[id].Name
 	end
 end
