@@ -48,7 +48,65 @@ mem.asmpatch(0x4c8098, [[
 push dword [ds:]] .. UISetsParams + 2 ..[[]
 add eax, dword[ds:]] .. UISetsParams + 6 ..[[];]])
 
+mem.asmpatch(0x4c80ea, [[
+push dword [ds:]] .. UISetsParams + 2 ..[[]
+add eax, dword[ds:]] .. UISetsParams + 6 ..[[];]])
+
 mem.u2[UISetsParams + 2] = 0x1ca
+
+-- Keep showing status icon, despite current phase in turn-based mode.
+mem.asmpatch(0x4c7fcd, [[
+
+; If status indicator behaivor overriden:
+	mov eax, dword [ds:0x509C9C]
+	cmp byte [ds:]] .. UISetsParams .. [[], 1
+	jne @default
+
+	; fetch blank status icon pointer.
+	mov eax, dword [ds:0x519118]
+	mov edx, eax
+	inc edx
+	neg edx
+	sbb edx, edx
+	lea eax, dword [ds:eax+eax*8]
+	lea eax, dword [ds:0x70D624+eax*8]
+	and edx, eax
+	push edx
+
+	; setup counter
+	xor ecx, ecx
+	push ecx
+
+@loop:
+	movsx eax, word [ds:ecx*2+0x4FD9D0]
+	add eax, dword[ds:]] .. UISetsParams + 6 ..[[]
+	sub eax, 8
+
+	; show status icon for each character
+	push 0
+	push edx
+	push dword [ds:]] .. UISetsParams + 2 ..[[]
+	push eax
+	mov ecx, 0xec1980
+	call absolute 0x4A419B
+
+	pop ecx
+	pop edx
+	inc ecx
+	push edx
+	push ecx
+	cmp ecx, dword [ds:0xB7CA60]
+	jl @loop
+
+	pop eax
+	pop eax
+
+@default:
+	cmp dword [ds:0x509C9C], 0x1
+	je absolute 0x4c7fd3
+
+@end:
+]])
 
 -- selring position
 
