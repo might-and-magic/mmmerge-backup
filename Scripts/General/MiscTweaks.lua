@@ -503,41 +503,35 @@
 	end
 	mem.nop(0x44dd82, 7)
 	mem.nop(0x4541b4, 7)
-
-	-- Fix GM staff usage with Unarmed skill (Damage bonus).
-	local UNARMED = const.Skills.Unarmed
-	function events.CalcStatBonusBySkills(t)
-		if t.Stat == const.Stats.MeleeDamageBase
-			or t.Stat == const.Stats.MeleeDamageMin
-			or t.Stat == const.Stats.MeleeDamageMax then
-
-			if t.Player.ItemMainHand > 0 and t.Player.Skills[UNARMED] > 0 then
-				local Item = t.Player.Items[t.Player.ItemMainHand]
-				if Item.Broken then
-					return
-				end
-
-				local ItemSkill = Game.ItemsTxt[Item.Number].Skill
-				if ItemSkill == 0 then
-					local US, UM = SplitSkill(t.Player:GetSkill(UNARMED))
-
-					if UM > 1 then
-						local SS, SM = SplitSkill(t.Player:GetSkill(const.Skills.Staff))
-
-						if SM > 3 then
-							local bonus = 0
-							if UM == 2 then
-								bonus = US
-							elseif UM > 2 then
-								bonus = US*2
-							end
-							t.Result = t.Result + math.max(bonus, SS)
-						end
-					end
-				end
-			end
-		end
-	end
+    
+    -- Fix GM staff usage with Unarmed skill (Damage bonus).
+    local UNARMED = const.Skills.Unarmed
+    function events.CalcStatBonusBySkills(t)
+        if (t.Stat ~= const.Stats.MeleeDamageBase
+            and t.Stat ~= const.Stats.MeleeDamageMin
+            and t.Stat ~= const.Stats.MeleeDamageMax
+            or t.Player.ItemMainHand == 0
+            or t.Player.Skills[UNARMED] == 0)
+        then
+            return
+        end
+ 
+        local Item = t.Player.Items[t.Player.ItemMainHand]
+        local ItemSkill = Game.ItemsTxt[Item.Number].Skill
+        if Item.Broken or ItemSkill ~= 0 then return end
+ 
+        local US, UM = SplitSkill(t.Player:GetSkill(UNARMED))
+        local SS, SM = SplitSkill(t.Player:GetSkill(const.Skills.Staff))
+        if UM < 2 or SM < 3 then return end
+ 
+        local u_bonus = US
+        if UM > 2 then
+            u_bonus = US * 2
+        end
+        if u_bonus > SS then
+            t.Result = t.Result + u_bonus - SS
+        end
+    end
 
 	-- Repair unarmed skill dodge chance
 	function events.GetArmorClass(t)

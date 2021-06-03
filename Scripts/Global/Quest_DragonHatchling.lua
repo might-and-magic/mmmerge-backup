@@ -160,3 +160,25 @@ NPCTopic{
 		end
 	end}
 
+-- Restore the original functionality of the dragon familiar as long as
+-- he's sitting in the hireling slot.
+
+function events.GetSkill(t)
+    if  Game.NPC[DragonNPC].Hired
+		and Game.ClassesExtra[t.Player.Class].Kind == 5 -- Druid class line
+        and const.Skills.Fire <= t.Skill
+        and t.Skill < const.Skills.Light
+    then
+        local s, m = SplitSkill(t.Result)
+        t.Result = JoinSkill(s + 3, m)
+    end
+end
+
+function events.RegenTick(Player)
+    if Game.NPC[DragonNPC].Hired
+		and Game.ClassesExtra[Player.Class].Kind == 5 -- Druid class line
+    then
+        Player.SP = math.min(Player:GetFullSP(), Player.SP + 1)
+    end
+end
+
