@@ -513,6 +513,8 @@ local MakeVec3D = mem.asmproc([[
 
 	retn 0xC]])
 
+Pathfinder.MakeVec3D = MakeVec3D
+
 -- Ignores Z coordinate
 local MakeVec2D = mem.asmproc([[
 	push ecx
@@ -2464,7 +2466,6 @@ local AStarWayAsm = mem.asmproc([[
 			cmp eax, -29000
 			jle @fixZfault
 			mov dword [ds:]] .. AStarWayParams + 28  .. [[], eax
-			@fixZfault:
 
 			; check if area is allowed for tracing
 			mov eax, ecx
@@ -2483,6 +2484,8 @@ local AStarWayAsm = mem.asmproc([[
 			movsx ecx, word [ds:ecx+0x5A]; MaxZ
 			sub ecx, eax
 			mov dword [ds:]] .. AStarWayParams + 40  .. [[], ecx
+
+			@fixZfault:
 
 			; 3. check if cell was explored before
 			push dword [ds:]] .. AStarWayParams + 28  .. [[]
@@ -2677,7 +2680,7 @@ Pathfinder.AddReachableAsm = AddReachableAsm
 Pathfinder.RemoveReachableAsm = RemoveReachableAsm
 Pathfinder.ReachableSize = ReachableSize
 Pathfinder.GetCheapestCell = GetCheapestCell
-Pathfinder.GetFloorLevelAsm = GetFloorLevelAsm
+Pathfinder.GetFloorLevelAsm = AltGetFloorLevelAsm
 Pathfinder.AStarWayAsm = AStarWayAsm
 
 ffi.cdef([[typedef struct {
