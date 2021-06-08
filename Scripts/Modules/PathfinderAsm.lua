@@ -2458,6 +2458,7 @@ local AStarWayAsm = mem.asmproc([[
 			mov dword [ds:]] .. AStarWayParams + 28  .. [[], eax; Neighbour Z
 
 			; fix Z level
+			mov dword [ds:]] .. AStarWayParams + 40  .. [[], 0; reset height difference
 			push dword [ds:]] .. AStarWayParams + 28  .. [[]
 			add dword [ss:esp], 0x64
 			push dword [ds:]] .. AStarWayParams + 24  .. [[]
