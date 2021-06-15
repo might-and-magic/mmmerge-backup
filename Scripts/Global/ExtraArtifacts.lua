@@ -151,6 +151,10 @@ end
 local WearItemConditions = {}
 
 function events.CanWearItem(t)
+	if not t.Available then
+		return
+	end
+
 	local Cond = WearItemConditions[t.ItemId]
 	if Cond then
 		t.Available = Cond(t.PlayerId)
@@ -541,6 +545,11 @@ end
 --------------------------------
 ---- Can wear conditions
 
+-- Forge Gauntlets
+WearItemConditions[1336] = function(PlayerId)
+	return GetRace(Party[PlayerId]) == const.Race.Dwarf
+end
+
 -- Hero's belt
 WearItemConditions[1337] = function(PlayerId)
 	local Gender = Game.CharacterPortraits[Party[PlayerId].Face].DefSex
@@ -753,6 +762,10 @@ GetBonusList(1334).Stats = {[const.Stats.Intellect] = 15,
 -- Elven Chainmail
 GetBonusList(1335).Stats = {[const.Stats.Speed] = 15,
 							[const.Stats.Accuracy] = 15}
+-- Forge Gauntlets
+GetBonusList(1336).Stats = {[const.Stats.FireResistance] = 30,
+							[const.Stats.Might] = 15,
+							[const.Stats.Endurance] = 15}
 -- Thor
 GetBonusList(2021).Stats = {[const.Stats.Might] = 75}
 -- Conan
@@ -767,7 +780,7 @@ GetBonusList(2025).Stats = {[const.Stats.Speed] = 40}
 GetBonusList(2026).Stats = {[const.Stats.HP] = 25}
 -- Pellinore
 GetBonusList(2027).Stats = {[const.Stats.Endurance] = 30}
--- Percival
+-- Valeria
 GetBonusList(2028).Stats = {[const.Stats.Accuracy] = 30}
 -- Arthur
 GetBonusList(2029).Stats = {[const.Stats.SP] = 25,
@@ -890,7 +903,8 @@ GetBonusList(1347).Skills =	{	[const.Skills.Fire] = 5,
 								[const.Skills.Water] = 5,
 								[const.Skills.Earth] = 5}
 -- Pendragon
-GetBonusList(2030).Skills =	{	[const.Skills.Stealing] = 10}
+GetBonusList(2030).Skills =	{	[const.Skills.Stealing] = 10,
+								[const.Skills.DisarmTraps] = 10}
 -- Hades
 GetBonusList(2035).Skills =	{	[const.Skills.DisarmTraps] = 10}
 
@@ -992,7 +1006,7 @@ GetBonusList(1332).EffectImmunities = {	[const.MonsterBonus.Insane] 	= true,
 -- Medusa's mirror
 GetBonusList(1341).EffectImmunities = {[const.MonsterBonus.Stone] = true}
 -- Pendragon
-GetBonusList(2032).EffectImmunities = {
+GetBonusList(2030).EffectImmunities = {
 							[const.MonsterBonus.Poison1] 	= true,
 							[const.MonsterBonus.Poison2] 	= true,
 							[const.MonsterBonus.Poison3] 	= true}
