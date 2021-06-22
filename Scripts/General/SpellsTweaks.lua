@@ -101,6 +101,15 @@ local function GetDist(t,x,y,z)
 	return math.sqrt((px-x)^2 + (py-y)^2 + (pz-z)^2)
 end
 
+local function MonCanBeHealed(Mon, ByMon)
+	if Mon.Active and Mon.HP > 0 and Mon.HP < Mon.FullHP then
+		if (Mon.Group == ByMon.Group or Mon.Ally == ByMon.Ally or Game.HostileTxt[ceil(Mon.Id/3)][ceil(ByMon.Id/3)] == 0) and GetDist(Mon, XYZ(ByMon)) < 2000 then
+			return true
+		end
+	end
+	return false
+end
+
 function events.MonsterCastSpell(t)
 	if t.Spell == 77 then
 		local Skill, Mas = SplitSkill(t.Monster.Spell == t.Spell and t.Monster.SpellSkill or t.Monster.Spell2Skill)
@@ -109,7 +118,7 @@ function events.MonsterCastSpell(t)
 		local Mon = t.Monster
 		local count = 0
 		for i,v in Map.Monsters do
-			if (v.Group == Mon.Group or v.Ally == Mon.Ally or Game.HostileTxt[ceil(v.Id/3)][ceil(Mon.Id/3)] == 0) and GetDist(v,x,y,z) < 2000 then
+			if MonCanBeHealed(v, Mon) then
 				v.HP = math.min(v.HP + Heal, v.FullHP)
 				Game.ShowMonsterBuffAnim(i)
 				count = count + 1
@@ -126,7 +135,7 @@ function events.MonsterCanCastSpell(t)
 		local x,y,z = XYZ(t.Monster)
 		local Mon = t.Monster
 		for i,v in Map.Monsters do
-			if (v.Group == Mon.Group or v.Ally == Mon.Ally or Game.HostileTxt[ceil(v.Id/3)][ceil(Mon.Id/3)] == 0) and GetDist(v,x,y,z) < 2000 and v.HP < v.FullHP then
+			if MonCanBeHealed(v, Mon) then
 				t.Result = 1
 				break
 			end

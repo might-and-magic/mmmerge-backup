@@ -12,8 +12,9 @@ local AllCellsPtr = mem.StaticAlloc(CellItemSize*(CellsAmount+2))
 local ReachableAsm = mem.StaticAlloc(CellsAmount*2)
 local QueueFlag = mem.StaticAlloc(4)
 local ThreadHandler = 0
-local DataPointers = mem.StaticAlloc(20)
+local DataPointers = mem.StaticAlloc(32)
 local MapVertexesPtr, MapFacetsPtr, MapRoomsPtr, SpacePtr, SpaceSizePtr = DataPointers, DataPointers + 4, DataPointers + 8, DataPointers + 12, DataPointers + 16
+local MapVertexesCnt, MapFacetsCnt, MapRoomsCnt = DataPointers + 20, DataPointers + 24, DataPointers + 28
 local OutdoorBoundaries = {MinX = -27648, MaxX = 27648, MinY = -27648, MaxY = 27648, AreaSize = 1024} -- Z is fixed: 0 - 4096
 local AllowedDirections = {
 {X =  0, 	Y =  1,		Z = 0},
@@ -1269,6 +1270,10 @@ local TraceLineAsm = mem.asmproc([[
 		shl eax, 1
 		movzx eax, word [ds:edx+eax]
 
+		; Need to inspect: wrong facet ids in outdoor maps.
+		cmp eax, dword [ds:]] .. MapFacetsCnt .. [[];
+		jge @rep
+
 		imul eax, eax, 96; Facet size
 		add eax, dword [ds:]] .. MapFacetsPtr .. [[]; MapFacets ptr, indoor - 0x6f3c84, outdoor - custom
 		cmp byte [ds:eax+0x5d], 3; VertexesCount
@@ -1429,10 +1434,15 @@ local AltGetFloorLevelAsm = mem.asmproc([[
 	@rep:
 		sub esi, 2
 		dec ecx
-		cmp ecx, 0
+		test ecx, ecx
 		jl @con2
 
 		movzx eax, word [ds:esi]; Facet id
+
+		; Need to inspect: wrong facet ids in outdoor maps.
+		cmp eax, dword [ds:]] .. MapFacetsCnt .. [[];
+		jge @rep
+
 		imul eax, eax, 96; Facet size
 		add eax, dword [ds:]] .. MapFacetsPtr .. [[]; MapFacets ptr, indoor - 0x6f3c84, outdoor - custom
 		cmp byte [ds:eax+0x5d], 3; VertexesCount
@@ -2269,6 +2279,10 @@ local FacetInAllowedRoom = mem.asmproc([[
 	test ecx, ecx
 	je @end
 
+	; Need to inspect: wrong facet ids in outdoor maps.
+	cmp eax, dword [ds:]] .. MapFacetsCnt .. [[];
+	jge @nequ
+
 	imul eax, eax, 96; Facet size
 	add eax, dword [ds:]] .. MapFacetsPtr .. [[]; MapFacets ptr, indoor - 0x6f3c84, outdoor - custom
 	movsx eax, word [ds:eax+0x4c]
@@ -2913,9 +2927,16 @@ local HandlerAsm = mem.asmproc([[
 
 local function UpdatePointers()
 	if Map.IsIndoor() then
-		u4[MapVertexesPtr], u4[MapFacetsPtr], u4[MapRoomsPtr] = u4[0x6f3c7c], u4[0x6f3c84], u4[0x6f3c94]
+		u4[MapVertexesPtr] = Map.Vertexes["?ptr"]
+		u4[MapFacetsPtr] = Map.Facets["?ptr"]
+		u4[MapRoomsPtr] = Map.Rooms["?ptr"]
+		u4[MapVertexesCnt] = Map.Vertexes.count
+		u4[MapFacetsCnt] = Map.Facets.count
+		u4[MapRoomsCnt] = Map.Rooms.count
 	else
-		u4[MapVertexesPtr], u4[MapFacetsPtr], u4[MapRoomsPtr] = Pathfinder.LoadMapDataBin()
+		local a,b,c,d,e,f = Pathfinder.LoadMapDataBin()
+		u4[MapVertexesPtr], u4[MapFacetsPtr], u4[MapRoomsPtr] = a, b, c
+		u4[MapVertexesCnt], u4[MapFacetsCnt], u4[MapRoomsCnt] = d, e, f
 	end
 	return u4[MapVertexesPtr] ~= 0
 end
@@ -3494,8 +3515,10 @@ local function LoadMapDataBin()
 
 	local ExtraPtr = GeneralPtr + GeneralSize
 	local Pointers = {}
+	local Counts = {}
 	local DataType = {[0] = "V", [1] = "F", [2] = "R"}
 	local pos = GeneralPtr
+	local count = 0
 	local ItemType, CurSize, CurConverter, CurItemPtr, prop
 
 	local subTProps = {
@@ -3508,6 +3531,8 @@ local function LoadMapDataBin()
 		CurSize, CurConverter = u4[buff], u1[buff+4]
 		ItemType = DataType[CurConverter] or "Z"
 		Pointers[ItemType] = Pointers[ItemType] or pos
+		count = Counts[ItemType] or 0
+		Counts[ItemType] = count + 1
 
 		if CurConverter == 0 then -- straight copy
 			mem.copy(pos, ReadNext(CurSize, true))
@@ -3542,7 +3567,7 @@ local function LoadMapDataBin()
 		end
 	end
 
-	return Pointers.V, Pointers.F, Pointers.R
+	return Pointers.V, Pointers.F, Pointers.R, Counts.V, Counts.F, Counts.R
 
 end
 
