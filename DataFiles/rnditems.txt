@@ -1,0 +1,2213 @@
+Random Item Generation By Treasure Level 1 - 6								
+								
+Item #	Pic File	1	2	3	4	5	6	
+								
+1	item001	8	2	0	0	0	0	Longsword
+2	item002	0	10	5	2	0	0	Trollish War Sword
+3	item003	0	0	5	7	3	0	Dark Elven Longsword
+4	item004	0	0	0	5	7	3	Templar's Sword
+5	item005	0	0	0	0	10	6	Champion's Sword
+6	item006	8	2	0	0	0	0	Two-Handed Sword
+7	item007	0	5	7	3	0	0	Dark Elven Bastard Sword
+8	item008	0	0	5	7	3	0	Minotaur Battlesword
+9	item009	0	0	0	0	10	10	Dragonning Blade
+10	item010	0	0	0	0	0	5	Headsman's Reaver
+11	item011	8	2	0	0	0	0	Iron Broadsword
+12	item012	0	10	5	2	0	0	Trollish Claymore
+13	item013	0	0	5	7	3	0	Lizardman Broadsword
+14	item014	0	0	0	10	5	0	Knightly Broadsword
+15	item015	0	0	0	0	0	5	Archangel Broadsword
+16	item016	8	2	0	0	0	0	Rusty Cutlass
+17	item017	0	10	5	2	0	0	Goblin Scimitar
+18	item018	0	0	5	7	3	0	Regnan Cutlass
+19	item019	0	0	0	10	5	0	Regnan Falchion
+20	item020	0	0	0	0	10	10	Captain's Cutlass
+21	item021	5	5	2	0	0	0	Crude Dagger
+22	item022	0	5	7	3	0	0	Crystal Dagger
+23	item023	0	0	10	5	2	0	Merchantman's Dagger
+24	item024	0	0	2	8	4	0	Master's Dagger
+25	item025	0	0	0	0	0	5	Fanged Blade
+26	item026	5	5	2	0	0	0	Long Dagger
+27	item027	0	10	5	2	0	0	Alvarian Poignard
+28	item028	0	0	5	7	3	0	Regnan Fighting Knife
+29	item030	0	0	0	10	5	0	Twilight Kris
+30	item029	0	0	0	0	10	10	Dueling Long Dagger
+31	item031	8	2	0	0	0	0	Stone Axe
+32	item032	0	10	5	2	0	0	Battle Hatchet
+33	item033	0	0	10	5	2	0	Battleaxe
+34	item034	0	0	0	10	5	2	Dwarven Battleaxe
+35	item035	0	0	0	2	6	7	Minotaur Battleaxe
+36	item036	8	2	0	0	0	0	Two-Handed Axe
+37	item038	0	10	5	2	0	0	Footman's Axe
+38	item037	0	0	5	7	3	0	Minotaur War Axe
+39	item039	0	0	0	5	7	5	Elite Minotaur Axe
+40	item040	0	0	0	0	0	5	Minotaur Herdsman Axe
+41	item041	8	2	0	0	0	0	Ogre Fighting Stick
+42	item042	0	5	7	3	0	0	Steel Spear
+43	item043	0	0	5	7	3	0	Elven Long Spear
+44	item044	0	0	0	5	7	3	War Spear
+45	item045	0	0	0	2	6	7	Dragon Harpoon
+46	item046	8	2	0	0	0	0	Improvised Voulge
+47	item048	0	10	5	2	0	0	Halberd
+48	item047	0	0	5	7	3	0	Beaked Halberd
+49	item049	0	0	0	5	7	5	Minotaur Campaign Pole-axe
+50	item050	0	0	0	0	0	5	Labyrinth Grapple
+51	item051	5	5	2	0	0	0	Hayfork
+52	item052	0	10	5	2	0	0	Infantry Fork
+53	item053	0	0	10	5	2	0	Lizardman Trident
+54	item054	0	0	0	10	5	0	Regnan Trident
+55	item055	0	0	0	0	0	5	Triton Trident
+56	item056	5	5	2	0	0	0	Hunting Bow
+57	item057	0	5	7	3	0	0	Recurve Bow
+58	item058	0	0	10	5	2	0	Snakewood Bow
+59	item059	0	0	0	5	7	3	Elven Warbow
+60	item060	0	0	0	2	6	7	Devilbone Bow
+61	item061	2	7	3	0	0	0	Light Crossbow
+62	item062	0	0	10	5	2	0	Blood Drop Crossbow
+63	item063	0	0	5	7	3	0	Hunting Crossbow
+64	item064	0	0	0	5	7	5	Caravaner's Crossbow
+65	item065	0	0	0	0	0	5	Regnan Crossbow
+66	item066	3	7	3	0	0	0	Mace
+67	item067	0	5	7	3	0	0	Flail
+68	item068	0	0	5	7	3	0	Temple Mace
+69	item069	0	0	0	5	7	3	Reverend Sceptre
+70	item070	0	0	0	0	10	6	Trollish War Mace
+71	item071	2	7	3	0	0	0	Sledgehammer
+72	item072	0	0	10	5	2	0	Field Hammer
+73	item073	0	0	5	7	3	0	Warhammer
+74	item074	0	0	0	5	7	5	Sun Hammer
+75	item075	0	0	0	0	0	5	Trollish Maul
+76	item076	8	3	2	0	0	0	Club
+77	item077	3	2	3	3	0	0	Thornbark Club
+78	item078	0	0	5	5	10	0	Overlord's Club
+79	item079	2	7	3	0	0	0	Journey Staff
+80	item080	0	10	5	2	0	0	Orb Staff
+81	item081	0	0	5	7	3	0	Priestly Staff
+82	item082	0	0	0	10	5	0	Serpent Staff
+83	item083	0	0	0	0	0	5	Bone Staff
+84	item084	20	32	0	0	0	0	Leather Jerkin
+85	item085	0	25	35	25	0	0	Hardened Leather Vest
+86	item086	0	0	28	25	20	0	Caravaner's Leather
+87	item087	0	0	0	20	32	30	Regnan Leather
+88	item088	0	0	0	0	0	5	Alvarian Leather
+89	item089	8	10	15	0	0	0	Rusty Mail Vest
+90	item090	0	10	25	10	0	0	Steel Chainmail
+91	item091	0	0	15	20	5	0	Minotaur Chainmail
+92	item092	0	0	0	5	20	15	Siertal Chainmail
+93	item093	0	0	0	0	10	35	Erudine Chainmail
+94	item094	2	8	12	20	5	0	Rusty Breastplate
+95	item095	0	0	5	10	15	5	Banded Plate
+96	item096	0	0	0	10	25	10	Minotaur Plate
+97	item097	0	0	0	5	35	20	Dark Knight Plate
+98	item098	0	0	0	0	0	5	Dragoning Plate
+99	item099	10	10	5	0	0	0	Trollish Shield
+100	item100	5	10	5	0	0	0	Thornbark Shield
+101	item101	0	0	8	7	0	0	Regnan Tournament Shield
+102	item102	0	0	5	10	10	5	Veteran Shield
+103	item103	0	0	0	0	0	5	Dragon Hunter's Shield
+104	item104	10	13	7	0	0	0	Wooden Buckler
+105	item105	2	7	7	0	0	0	Caravaner's Small Shield
+106	item106	0	0	8	7	0	0	Calvary Shield
+107	item107	0	0	2	8	13	12	Death Head Shield
+108	item108	0	0	0	0	10	20	Eldritch Shield
+109	item109	8	13	7	0	0	0	Helm
+110	item110	2	8	13	8	0	0	Lizardman Helm
+111	item111	0	5	10	15	5	0	Full Helm
+112	item112	0	0	2	8	13	10	Battle Helm
+113	item113	0	0	0	5	10	20	Dragon Helm
+114	item114	2	5	12	7	3	0	Cloth Hat
+115	item257	0	0	10	10	5	0	Festival Hat
+116	item116	0	0	0	5	7	10	Merchantman's Hat
+117	item117	0	8	7	5	3	0	Leather Belt
+118	item118	0	7	8	5	4	0	Sturdy Belt
+119	item119	0	0	5	8	7	0	Wyvern Leather Belt
+120	item120	0	0	4	5	10	12	Steel Belt
+121	item121	0	0	2	5	10	20	Artificer's Belt
+122	item122	7	12	17	12	7	0	Traveler's Cloak
+123	item123	5	10	15	10	5	0	Moon Temple Cloak
+124	item124	0	2	8	13	12	0	Alvar Cloak
+125	item125	0	0	7	12	13	7	Necromancer Cloak
+126	item126	0	0	2	5	10	20	Vampire Cloak
+127	item127	7	17	2	2	1	0	Leather Gloves
+128	item128	5	12	13	8	4	0	Troll Gauntlets
+129	item131	0	5	10	15	10	0	Steel Gauntlets
+130	item129	0	2	5	10	15	10	Minotaur Gauntlets
+131	item130	0	0	2	5	10	20	Crusader's Gauntlets
+132	item132	7	13	12	7	3	0	Walking Boots
+133	item133	2	12	13	8	4	0	Hardened Leather Boots
+134	item134	0	0	5	10	15	0	Regnan Boots
+135	item135	0	0	0	7	12	10	Alvarian Boots
+136	item136	0	0	0	2	15	25	Dragonning Boots
+137	item137	14	20	10	8	0	0	Bronze Ring
+138	item138	11	15	20	10	0	0	Gold Ring
+139	item139	0	0	15	20	10	0	Pearl Ring
+140	item143	0	0	8	20	17	0	Gemstone Ring
+141	item143	0	0	8	20	18	0	Amethyst Ring
+142	item142	0	0	7	13	20	0	Necromatic Ring
+143	item141	0	0	2	5	10	20	Ruby Ring
+144	item144	0	0	2	5	8	20	Vampire's Ring
+145	item145	0	0	0	2	0	27	Sun Opal Ring
+146	item146	0	0	0	0	0	10	Focal Ring
+147	item147	0	10	10	10	4	0	Brass Charm
+148	item148	0	2	8	8	8	0	Jade Amulet
+149	item149	0	0	5	8	9	0	Blood Talisman
+150	item150	0	0	4	5	6	12	Shadow Sect Medallion
+151	item151	0	0	0	0	0	5	Locus Amulet
+152	item152	0	0	2	2	0	0	Witch's Wand of Fire
+153	item152	0	0	2	2	0	0	Witch's Wand of Sparks
+154	item152	0	0	2	2	0	0	Witch's Wand of Poison
+155	item152	0	0	2	2	0	0	Witch's Wand of Stunning
+156	item152	0	0	2	2	0	0	Witch's Wand of Harming
+157	item153	0	0	2	2	0	0	Shaman's Wand of Light
+158	item153	0	0	2	2	0	0	Shaman's Wand of Ice
+159	item153	0	0	2	2	0	0	Shaman's Wand of Lashing
+160	item153	0	0	2	2	0	0	Shaman's Wand of Mind
+161	item153	0	0	2	2	0	0	Shaman's Wand of Swarms
+162	item155	0	0	1	2	3	0	Wizard Wand of Fireballs
+163	item155	0	0	1	2	3	0	Wizard Wand of Acid
+164	item155	0	0	1	2	3	0	Wizard Wand of Lightning
+165	item155	0	0	1	2	3	0	Wizard Wand of Blades
+166	item155	0	0	1	2	3	0	Wizard Wand of Berzerking
+167	item154	0	0	0	1	2	3	Serpent Wand of Blasting
+168	item154	0	0	0	1	2	3	Serpent Wand of the Fist
+169	item154	0	0	0	1	2	3	Serpent Wand of Rocks
+170	item154	0	0	0	1	2	3	Serpent Wand of Paralysis
+171	item154	0	0	0	1	2	3	Arcane Wand of Clouds
+172	item156	0	0	0	0	2	5	Necrotic Wand of Implosion
+173	item156	0	0	0	0	2	5	Necrotic Wand of Distortion
+174	item156	0	0	0	0	2	5	Necrotic Wand of Shrapnel
+175	item156	0	0	0	0	2	5	Necrotic Wand of Shrinking
+176	item156	0	0	0	0	2	5	Necrotic Wand of Incineration
+177	item213	6	11	3	0	0	0	Zircon
+178	item218	4	9	5	0	0	0	Iolite
+179	item215	0	5	5	0	0	0	Citrine
+180	item214	0	5	7	0	0	0	Amber
+181	item220	0	5	10	5	0	0	Amethyst
+182	item221	0	3	8	7	0	0	Topaz
+183	item219	0	0	5	12	4	0	Emerald
+184	item217	0	0	3	10	7	0	Sapphire
+185	item212	0	0	0	7	10	3	Ruby
+186	item216	0	0	0	3	8	4	Diamond
+187	item204	0	0	0	0	0	0	Gold
+188	item205	0	0	0	0	0	0	Gold
+189	item206	0	0	0	0	0	0	Gold
+190	item211	0	0	0	0	5	10	Dimension door
+191	Placeholder	0	0	0	0	0	0	_misc191
+192	Placeholder	0	0	0	0	0	0	_misc192
+193	Placeholder	0	0	0	0	0	0	_misc193
+194	Placeholder	0	0	0	0	0	0	_misc194
+195	Placeholder	0	0	0	0	0	0	_misc195
+196	Placeholder	0	0	0	0	0	0	_misc196
+197	Placeholder	0	0	0	0	0	0	_misc197
+198	Placeholder	0	0	0	0	0	0	_misc198
+199	Placeholder	0	0	0	0	0	0	_misc199
+200	item158	20	0	0	0	0	0	Widowsweep Berries
+201	item161	5	10	5	0	0	0	Wolf's Eye
+202	item162	0	0	5	10	5	0	Phial of Gog Blood
+203	item163	0	0	0	0	5	10	Ruby
+204	item164	0	0	0	0	0	5	Phoenix Feather
+205	item157	20	0	0	0	0	0	Phima Root
+206	item165	5	10	5	0	0	0	Meteor Fragment
+207	item166	0	0	5	10	5	0	Will O' Wisp Heart
+208	item167	0	0	0	0	5	10	Datura
+209	item168	0	0	0	0	0	5	Dragon Turtle Fang
+210	item160	20	0	0	0	0	0	Poppy Pod
+211	item169	5	10	5	0	0	0	Thornbark
+212	item170	0	0	5	10	5	0	Sulfur
+213	item171	0	0	0	0	5	10	Garnet
+214	item172	0	0	0	0	0	5	Unicorn Horn
+215	item159	20	0	0	0	0	0	Mushroom
+216	item173	5	10	5	0	0	0	Obsidian
+217	item174	0	0	5	10	5	0	Wasp Wing
+218	item175	0	0	0	0	5	10	Mercury
+219	item176	0	0	0	0	0	5	Philosopher's Stone
+220	item198	20	0	0	0	0	0	Potion Bottle
+221	item181	10	5	0	0	0	0	Catalyst
+222	item178	10	5	0	0	0	0	Cure Wounds
+223	item177	10	5	0	0	0	0	Magic Potion
+224	item179	10	5	0	0	0	0	Cure Weakness
+225	item185	5	10	0	0	0	0	Cure Disease
+226	item183	5	10	0	0	0	0	Cure Poison
+227	item184	5	10	0	0	0	0	Awaken
+228	item186	0	0	5	0	0	0	Haste
+229	item187	0	0	5	0	0	0	Heroism
+230	item188	0	0	5	0	0	0	Bless
+231	item189	0	0	5	0	0	0	Preservation
+232	item190	0	0	5	0	0	0	Shield
+233	item191	0	0	5	0	0	0	Recharge Item
+234	item192	0	0	5	0	0	0	Stoneskin
+235	item193	0	0	5	0	0	0	Water Breathing
+236	item194	0	0	5	0	0	0	Harden Item
+237	item195	0	0	5	0	0	0	Remove Fear
+238	item196	0	0	5	0	0	0	Remove Curse
+239	item197	0	0	5	0	0	0	Cure Insanity
+240	item180	0	0	0	2	1	0	Might Boost
+241	item180	0	0	0	2	1	0	Intellect Boost
+242	item180	0	0	0	2	1	0	Personality Boost
+243	item180	0	0	0	2	1	0	Endurance Boost
+244	item180	0	0	0	2	1	0	Speed Boost
+245	item180	0	0	0	2	1	0	Accuracy Boost
+246	item180	0	0	0	2	1	0	Flaming Potion
+247	item180	0	0	0	2	1	0	Freezing Potion
+248	item180	0	0	0	2	1	0	Noxious Potion
+249	item180	0	0	0	2	1	0	Shocking Potion
+250	item180	0	0	0	2	1	0	Swift Potion
+251	item180	0	0	0	2	1	0	Cure Paralysis
+252	item180	0	0	0	2	1	0	Divine Restoration
+253	item180	0	0	0	2	1	0	Divine Cure
+254	item180	0	0	0	2	1	0	Divine Power
+255	item180	0	0	0	2	1	0	Luck Boost
+256	item180	0	0	0	2	1	0	Fire Resistance
+257	item180	0	0	0	2	1	0	Air Resistance
+258	item180	0	0	0	2	1	0	Water Resistance
+259	item180	0	0	0	2	1	0	Earth Resistance
+260	item180	0	0	0	2	1	0	Mind Resistance
+261	item180	0	0	0	2	1	0	Body Resistance
+262	item182	0	0	0	0	2	1	Stone to Flesh
+263	item182	0	0	0	0	2	1	Slaying Potion
+264	item182	0	0	0	0	2	1	Pure Luck
+265	item182	0	0	0	0	2	1	Pure Speed
+266	item182	0	0	0	0	2	1	Pure Intellect
+267	item182	0	0	0	0	2	1	Pure Endurance
+268	item182	0	0	0	0	2	1	Pure Personality
+269	item182	0	0	0	0	2	1	Pure Accuracy
+270	item182	0	0	0	0	2	1	Pure Might
+271	item182	0	0	0	0	2	1	Rejuvenation
+272	item180	0	0	0	2	1	0	Essence of Might
+273	item180	0	0	0	2	1	0	Essence of Intellect
+274	item180	0	0	0	2	1	0	Essence of Personality
+275	item180	0	0	0	2	1	0	Essence of Endurance
+276	item180	0	0	0	2	1	0	Essence of Accuracy
+277	item180	0	0	0	2	1	0	Essence of Speed
+278	item180	0	0	0	2	1	0	Essence of Luck
+279	item180	0	0	0	2	1	0	Potion of Doom 
+280	item182	0	0	0	0	2	1	Divine Boost 
+281	item182	0	0	0	0	2	1	Divine Protection
+282	item182	0	0	0	0	2	1	Divine Transcendence
+283	item182	0	0	0	0	2	1	Potion of the Gods 
+284	item182	0	0	0	0	2	1	Pure Fire Resistance
+285	item182	0	0	0	0	2	1	Pure Air Resistance
+286	item182	0	0	0	0	2	1	Pure Water Resistance
+287	item182	0	0	0	0	2	1	Pure Earth Resistance
+288	item182	0	0	0	0	2	1	Pure Mind Resistance
+289	item182	0	0	0	0	2	1	Pure Body Resistance
+290	Placeholder	0	0	0	0	0	0	_potion/reagent290
+291	Placeholder	0	0	0	0	0	0	_potion/reagent291
+292	Placeholder	0	0	0	0	0	0	_potion/reagent292
+293	Placeholder	0	0	0	0	0	0	_potion/reagent293
+294	Placeholder	0	0	0	0	0	0	_potion/reagent294
+295	Placeholder	0	0	0	0	0	0	_potion/reagent295
+296	Placeholder	0	0	0	0	0	0	_potion/reagent296
+297	Placeholder	0	0	0	0	0	0	_potion/reagent297
+298	Placeholder	0	0	0	0	0	0	_potion/reagent298
+299	Placeholder	0	0	0	0	0	0	_potion/reagent299
+300	item199	2	2	0	0	0	0	Torch Light
+301	item199	2	2	0	0	0	0	Fire Bolt
+302	item199	2	2	0	0	0	0	Fire Resistance
+303	item199	2	2	0	0	0	0	Fire Aura
+304	item200	0	2	2	0	0	0	Haste
+305	item200	0	2	2	0	0	0	Fireball
+306	item200	0	2	2	0	0	0	Fire Spike
+307	item202	0	0	2	1	0	0	Immolation
+308	item202	0	0	2	1	0	0	Meteor Shower
+309	item202	0	0	2	1	0	0	Inferno
+310	item201	0	0	0	1	1	0	Incinerate
+311	item199	2	2	0	0	0	0	Wizard Eye
+312	item199	2	2	0	0	0	0	Feather Fall
+313	item199	2	2	0	0	0	0	Air Resistance
+314	item199	2	2	0	0	0	0	Sparks
+315	item200	0	2	2	0	0	0	Jump
+316	item200	0	2	2	0	0	0	Shield
+317	item200	0	2	2	0	0	0	Lightning Bolt
+318	item202	0	0	2	1	0	0	Invisibility
+319	item202	0	0	2	1	0	0	Implosion
+320	item202	0	0	2	1	0	0	Fly
+321	item201	0	0	0	1	1	0	Starburst
+322	item199	2	2	0	0	0	0	Awaken
+323	item199	2	2	0	0	0	0	Poison Spray
+324	item199	2	2	0	0	0	0	Water Resistance
+325	item199	2	2	0	0	0	0	Ice Bolt
+326	item200	0	2	2	0	0	0	Water Walk
+327	item200	0	2	2	0	0	0	Recharge Item
+328	item200	0	2	2	0	0	0	Acid Burst
+329	item202	0	0	2	1	0	0	Enchant Item
+330	item202	0	0	2	1	0	0	Town Portal
+331	item202	0	0	2	1	0	0	Ice Blast
+332	item201	0	0	0	1	1	0	Lloyd's Beacon
+333	item199	2	2	0	0	0	0	Stun
+334	item199	2	2	0	0	0	0	Slow
+335	item199	2	2	0	0	0	0	Earth Resistance
+336	item199	2	2	0	0	0	0	Deadly Swarm
+337	item200	0	2	2	0	0	0	Stone Skin
+338	item200	0	2	2	0	0	0	Blades
+339	item200	0	2	2	0	0	0	Stone to Flesh
+340	item202	0	0	2	1	0	0	Rock Blast
+341	item202	0	0	2	1	0	0	Telekinesis
+342	item202	0	0	2	1	0	0	Death Blossom
+343	item201	0	0	0	1	1	0	Mass Distortion
+344	item199	2	2	0	0	0	0	Detect Life
+345	item199	2	2	0	0	0	0	Bless
+346	item199	2	2	0	0	0	0	Fate
+347	item199	2	2	0	0	0	0	Turn Undead
+348	item200	0	2	2	0	0	0	Remove Curse
+349	item200	0	2	2	0	0	0	Preservation
+350	item200	0	2	2	0	0	0	Heroism
+351	item202	0	0	2	1	0	0	Spirit Lash
+352	item202	0	0	2	1	0	0	Raise Dead
+353	item202	0	0	2	1	0	0	Shared Life
+354	item201	0	0	0	1	1	0	Resurrection
+355	item199	2	2	0	0	0	0	Telepathy
+356	item199	2	2	0	0	0	0	Remove Fear
+357	item199	2	2	0	0	0	0	Mind Resistance
+358	item199	2	2	0	0	0	0	Mind Blast
+359	item200	0	2	2	0	0	0	Charm
+360	item200	0	2	2	0	0	0	Cure Paralysis
+361	item200	0	2	2	0	0	0	Berserk
+362	item202	0	0	2	1	0	0	Mass Fear
+363	item202	0	0	2	1	0	0	Cure Insanity
+364	item202	0	0	2	1	0	0	Psychic Shock
+365	item201	0	0	0	1	1	0	Enslave
+366	item199	2	2	0	0	0	0	Cure Weakness
+367	item199	2	2	0	0	0	0	Heal
+368	item199	2	2	0	0	0	0	Body Resistance
+369	item199	2	2	0	0	0	0	Harm
+370	item200	0	2	2	0	0	0	Regeneration
+371	item200	0	2	2	0	0	0	Cure Poison
+372	item200	0	2	2	0	0	0	Hammerhands
+373	item202	0	0	2	1	0	0	Cure Disease
+374	item202	0	0	2	1	0	0	Protection from Magic
+375	item202	0	0	2	1	0	0	Flying Fist
+376	item201	0	0	0	1	1	0	Power Cure
+377	item199	0	0	1	2	0	0	Light Bolt
+378	item199	0	0	1	2	0	0	Destroy Undead
+379	item199	0	0	1	2	0	0	Dispel Magic
+380	item199	0	0	1	2	0	0	Paralyze
+381	item200	0	0	0	2	1	0	Summon Wisp
+382	item200	0	0	0	2	1	0	Day of the Gods
+383	item200	0	0	0	2	1	0	Prismatic Light
+384	item202	0	0	0	0	2	1	Day of Protection
+385	item202	0	0	0	0	2	1	Hour of Power
+386	item202	0	0	0	0	2	1	Sunray
+387	item201	0	0	0	0	0	2	Divine Intervention
+388	item199	0	0	1	2	0	0	Reanimate
+389	item199	0	0	1	2	0	0	Toxic Cloud
+390	item199	0	0	1	2	0	0	Vampiric Weapon
+391	item199	0	0	1	2	0	0	Shrinking Ray
+392	item200	0	0	0	2	1	0	Shrapmetal
+393	item200	0	0	0	2	1	0	Control Undead
+394	item200	0	0	0	2	1	0	Pain Reflection
+395	item202	0	0	0	0	2	1	Dark Grasp
+396	item202	0	0	0	0	2	1	Dragon Breath
+397	item202	0	0	0	0	2	1	Armageddon
+398	item201	0	0	0	0	0	2	Souldrinker
+399	null	0	0	0	0	0	0	null
+400	item207	0	0	0	0	0	0	Torch Light
+401	item207	0	0	0	0	0	0	Fire Bolt
+402	item207	0	0	0	0	0	0	Fire Resistance
+403	item207	0	0	0	0	0	0	Fire Aura
+404	item208	0	0	2	0	0	0	Haste
+405	item208	0	0	2	0	0	0	Fireball
+406	item208	0	0	2	0	0	0	Fire Spike
+407	item210	0	0	0	1	0	0	Immolation
+408	item210	0	0	0	1	0	0	Meteor Shower
+409	item210	0	0	0	1	0	0	Inferno
+410	item209	0	0	0	0	1	0	Incinerate
+411	item207	0	0	0	0	0	0	Wizard Eye
+412	item207	0	0	0	0	0	0	Feather Fall
+413	item207	0	0	0	0	0	0	Air Resistance
+414	item207	0	0	0	0	0	0	Sparks
+415	item208	0	0	2	0	0	0	Jump
+416	item208	0	0	2	0	0	0	Shield
+417	item208	0	0	2	0	0	0	Lightning Bolt
+418	item210	0	0	0	1	0	0	Invisibility
+419	item210	0	0	0	1	0	0	Implosion
+420	item210	0	0	0	1	0	0	Fly
+421	item209	0	0	0	0	1	0	Starburst
+422	item207	0	0	0	0	0	0	Awaken
+423	item207	0	0	0	0	0	0	Poison Spray
+424	item207	0	0	0	0	0	0	Water Resistance
+425	item207	0	0	0	0	0	0	Ice Bolt
+426	item208	0	0	2	0	0	0	Water Walk
+427	item208	0	0	2	0	0	0	Recharge Item
+428	item208	0	0	2	0	0	0	Acid Burst
+429	item210	0	0	0	1	0	0	Enchant Item
+430	item210	0	0	0	1	0	0	Town Portal
+431	item210	0	0	0	1	0	0	Ice Blast
+432	item209	0	0	0	0	1	0	Lloyd's Beacon
+433	item207	0	0	0	0	0	0	Stun
+434	item207	0	0	0	0	0	0	Slow
+435	item207	0	0	0	0	0	0	Earth Resistance
+436	item207	0	0	0	0	0	0	Deadly Swarm
+437	item208	0	0	2	0	0	0	Stone Skin
+438	item208	0	0	2	0	0	0	Blades
+439	item208	0	0	2	0	0	0	Stone to Flesh
+440	item210	0	0	0	1	0	0	Rock Blast
+441	item210	0	0	0	1	0	0	Telekinesis
+442	item210	0	0	0	1	0	0	Death Blossom
+443	item209	0	0	0	0	1	0	Mass Distortion
+444	item207	0	0	0	0	0	0	Detect Life
+445	item207	0	0	0	0	0	0	Bless
+446	item207	0	0	0	0	0	0	Fate
+447	item207	0	0	0	0	0	0	Turn Undead
+448	item208	0	0	2	0	0	0	Remove Curse
+449	item208	0	0	2	0	0	0	Preservation
+450	item208	0	0	2	0	0	0	Heroism
+451	item210	0	0	0	1	0	0	Spirit Lash
+452	item210	0	0	0	1	0	0	Raise Dead
+453	item210	0	0	0	1	0	0	Shared Life
+454	item209	0	0	0	0	1	0	Resurrection
+455	item207	0	0	0	0	0	0	Telepathy
+456	item207	0	0	0	0	0	0	Remove Fear
+457	item207	0	0	0	0	0	0	Mind Resistance
+458	item207	0	0	0	0	0	0	Mind Blast
+459	item208	0	0	2	0	0	0	Charm
+460	item208	0	0	2	0	0	0	Cure Paralysis
+461	item208	0	0	2	0	0	0	Berserk
+462	item210	0	0	0	1	0	0	Mass Fear
+463	item210	0	0	0	1	0	0	Cure Insanity
+464	item210	0	0	0	1	0	0	Psychic Shock
+465	item209	0	0	0	0	1	0	Enslave
+466	item207	0	0	0	0	0	0	Cure Weakness
+467	item207	0	0	0	0	0	0	Heal
+468	item207	0	0	0	0	0	0	Body Resistance
+469	item207	0	0	0	0	0	0	Harm
+470	item208	0	0	2	0	0	0	Regeneration
+471	item208	0	0	2	0	0	0	Cure Poison
+472	item208	0	0	2	0	0	0	Hammerhands
+473	item210	0	0	0	1	0	0	Cure Disease
+474	item210	0	0	0	1	0	0	Protection from Magic
+475	item210	0	0	0	1	0	0	Flying Fist
+476	item209	0	0	0	0	1	0	Power Cure
+477	item207	0	0	0	1	0	0	Light Bolt
+478	item207	0	0	0	1	0	0	Destroy Undead
+479	item207	0	0	0	0	1	0	Dispel Magic
+480	item207	0	0	0	0	1	0	Paralyze
+481	item208	0	0	0	0	1	0	Summon Wisp
+482	item208	0	0	0	0	1	0	Day of the Gods
+483	item208	0	0	0	0	0	1	Prismatic Light
+484	item210	0	0	0	0	0	1	Day of Protection
+485	item210	0	0	0	0	0	1	Hour of Power
+486	item210	0	0	0	0	0	1	Sunray
+487	item209	0	0	0	0	0	1	Divine Intervention
+488	item207	0	0	0	1	0	0	Reanimate
+489	item207	0	0	0	1	0	0	Toxic Cloud
+490	item207	0	0	0	0	1	0	Vampiric Weapon
+491	item207	0	0	0	0	1	0	Shrinking Ray
+492	item208	0	0	0	0	1	0	Shrapmetal
+493	item208	0	0	0	0	1	0	Control Undead
+494	item208	0	0	0	0	0	1	Pain Reflection
+495	item210	0	0	0	0	0	1	Dark Grasp
+496	item210	0	0	0	0	0	1	Dragon Breath
+497	item210	0	0	0	0	0	1	Armageddon
+498	item209	0	0	0	0	0	1	Souldrinker
+499	Placeholder	0	0	0	0	0	0	book 499
+500	item235	0	0	0	0	0	1	Elsenrail
+501	item296	0	0	0	0	0	1	Glomenthal
+502	item236	0	0	0	0	0	1	Terminus
+503	item237	0	0	0	0	0	1	Judicious Measure
+504	item240	0	0	0	0	0	1	Elderaxe
+505	item241	0	0	0	0	0	1	Volcano
+506	item045	0	0	0	0	0	1	Wyrm Spitter
+507	item243	0	0	0	0	0	1	Guardian
+508	item239	0	0	0	0	0	1	Foulfang
+509	item249	0	0	0	0	0	1	Scepter of Kings
+510	item247	0	0	0	0	0	1	Breaker
+511	item250	0	0	0	0	0	1	Staff of the Swamp
+512	item245	0	0	0	0	0	1	Longseeker
+513	item251	0	0	0	0	0	1	Serendine's Preservation
+514	item252	0	0	0	0	0	1	Glomenmail
+515	item253	0	0	0	0	0	1	Supreme Plate
+516	item254	0	0	0	0	0	0	Eclipse
+517	item261	0	0	0	0	0	1	Fleetfingers
+518	item262	0	0	0	0	0	1	Herald's Boots
+519	item140	0	0	0	0	0	1	Ring of Planes
+520	item256	0	0	0	0	0	1	Drogg's Helm
+521	item258	0	0	0	0	0	1	Crown of Final Dominion
+522	item260	0	0	0	0	0	1	Archangel Wings
+523	item234	0	0	0	0	0	1	Snake
+524	item004	0	0	0	0	0	1	Havoc
+525	item010	0	0	0	0	0	1	Finality
+526	item248	0	0	0	0	0	1	Hell's Cleaver
+527	item242	0	0	0	0	0	1	Spiritslayer
+528	item244	0	0	0	0	0	1	Trident of Rulership
+529	item238	0	0	0	0	0	1	Blade of Mercy
+530	item083	0	0	0	0	0	1	Staff of Elements
+531	item059	0	0	0	0	0	1	Tournament Bow
+532	item246	0	0	0	0	0	1	Lightning Crossbow
+533	item251	0	0	0	0	0	1	Last Stage Cuirass
+534	item255	0	0	0	0	0	1	Herondale's Lost Shield
+535	item141	0	0	0	0	0	1	Ring of Fusion
+536	item115	0	0	0	0	0	1	Lucky Hat
+537	item121	0	0	0	0	0	1	Berserker Belt
+538	item068	0	0	0	0	0	0	Mace of the Sun
+539	item045	0	0	0	0	0	0	Ebonest
+540	item010	0	0	0	0	0	0	Sword of Whistlebone
+541	item040	0	0	0	0	0	0	Axe of Balthazar
+542	item060	0	0	0	0	0	0	Noblebone Bow
+543	Placeholder	0	0	0	0	0	0	artifact 543
+544	Placeholder	0	0	0	0	0	0	artifact 544
+545	Placeholder	0	0	0	0	0	0	artifact 545
+546	Placeholder	0	0	0	0	0	0	artifact 546
+547	Placeholder	0	0	0	0	0	0	artifact 547
+548	Placeholder	0	0	0	0	0	0	artifact 548
+549	Placeholder	0	0	0	0	0	0	artifact 549
+550	Placeholder	0	0	0	0	0	0	artifact 550
+551	Placeholder	0	0	0	0	0	0	artifact 551
+552	Placeholder	0	0	0	0	0	0	artifact 552
+553	Placeholder	0	0	0	0	0	0	artifact 553
+554	Placeholder	0	0	0	0	0	0	artifact 554
+555	Placeholder	0	0	0	0	0	0	artifact 555
+556	Placeholder	0	0	0	0	0	0	artifact 556
+557	Placeholder	0	0	0	0	0	0	artifact 557
+558	Placeholder	0	0	0	0	0	0	artifact 558
+559	Placeholder	0	0	0	0	0	0	artifact 559
+560	Placeholder	0	0	0	0	0	0	artifact 560
+561	Placeholder	0	0	0	0	0	0	artifact 561
+562	Placeholder	0	0	0	0	0	0	artifact 562
+563	Placeholder	0	0	0	0	0	0	artifact 563
+564	Placeholder	0	0	0	0	0	0	artifact 564
+565	Placeholder	0	0	0	0	0	0	artifact 565
+566	Placeholder	0	0	0	0	0	0	artifact 566
+567	Placeholder	0	0	0	0	0	0	artifact 567
+568	Placeholder	0	0	0	0	0	0	artifact 568
+569	Placeholder	0	0	0	0	0	0	artifact 569
+570	Placeholder	0	0	0	0	0	0	artifact 570
+571	Placeholder	0	0	0	0	0	0	artifact 571
+572	Placeholder	0	0	0	0	0	0	artifact 572
+573	Placeholder	0	0	0	0	0	0	artifact 573
+574	Placeholder	0	0	0	0	0	0	artifact 574
+575	Placeholder	0	0	0	0	0	0	artifact 575
+576	Placeholder	0	0	0	0	0	0	artifact 576
+577	Placeholder	0	0	0	0	0	0	artifact 577
+578	Placeholder	0	0	0	0	0	0	artifact 578
+579	Placeholder	0	0	0	0	0	0	artifact 579
+580	Placeholder	0	0	0	0	0	0	artifact 580
+581	Placeholder	0	0	0	0	0	0	artifact 581
+582	Placeholder	0	0	0	0	0	0	artifact 582
+583	Placeholder	0	0	0	0	0	0	artifact 583
+584	Placeholder	0	0	0	0	0	0	artifact 584
+585	Placeholder	0	0	0	0	0	0	artifact 585
+586	Placeholder	0	0	0	0	0	0	artifact 586
+587	Placeholder	0	0	0	0	0	0	artifact 587
+588	Placeholder	0	0	0	0	0	0	artifact 588
+589	Placeholder	0	0	0	0	0	0	artifact 589
+590	Placeholder	0	0	0	0	0	0	artifact 590
+591	Placeholder	0	0	0	0	0	0	artifact 591
+592	Placeholder	0	0	0	0	0	0	artifact 592
+593	Placeholder	0	0	0	0	0	0	artifact 593
+594	Placeholder	0	0	0	0	0	0	artifact 594
+595	Placeholder	0	0	0	0	0	0	artifact 595
+596	Placeholder	0	0	0	0	0	0	artifact 596
+597	Placeholder	0	0	0	0	0	0	artifact 597
+598	Placeholder	0	0	0	0	0	0	artifact 598
+599	Placeholder	0	0	0	0	0	0	artifact 599
+600	Placeholder	0	0	0	0	0	0	quest item 600
+601	Placeholder	0	0	0	0	0	0	quest item 601
+602	item266	0	0	0	0	0	0	False Report
+603	item267	0	0	0	0	0	0	Urn of Ashes
+604	item268	0	0	0	0	0	0	Nightshade Brazier
+605	item269	0	0	0	0	0	0	Dragon Leader's Egg
+606	item270	0	0	0	0	0	0	Heart of Fire
+607	item271	0	0	0	0	0	0	Heart of Water
+608	item272	0	0	0	0	0	0	Heart of Air
+609	item273	0	0	0	0	0	0	Heart of Earth
+610	item274	0	0	0	0	0	0	Conflux Key
+611	item275	0	0	0	0	0	0	Lost Book of Kehl
+612	item276	0	0	0	0	0	0	Sarcophagus of Korbu
+613	item277	0	0	0	0	0	0	Puzzle Box
+614	item278	0	0	0	0	0	0	Vial of Grave Earth
+615	item279	0	0	0	0	0	0	Drum of Victory
+616	item280	0	0	0	0	0	0	Anointed Herb Potion
+617	item281	0	0	0	0	0	0	Power Stone
+618	item297	0	0	0	0	0	0	Power Stone
+619	item224	0	0	0	0	0	0	Pirate Leader's Key
+620	item232	0	0	0	0	0	0	Prison Key
+621	item233	0	0	0	0	0	0	Prison Key
+622	Placeholder	0	0	0	0	0	0	quest item 622
+623	item212	0	0	0	0	0	0	Gem of Restoration
+624	Placeholder	0	0	0	0	0	0	quest item 624
+625	Placeholder	0	0	0	0	0	0	quest item 625
+626	item207	0	0	0	0	0	0	Prophecies of the Sun
+627	item293	0	0	0	0	0	0	Remains of Korbu
+628	item294	0	0	0	0	0	0	Lich Jar
+629	item295	0	0	0	0	0	0	Ring of Keys
+630	item298	0	0	0	0	0	0	Idol of the Snake
+631	item299	0	0	0	0	0	0	Big Brass Ring
+632	item300	0	0	0	0	0	0	Naga Hide
+633	item301	0	0	0	0	0	0	Dire Wolf Pelt
+634	item302	0	0	0	0	0	0	Flute
+635	item303	0	0	0	0	0	0	Royal Wasp Jelly
+636	item304	0	0	0	0	0	0	Dragonbane Flower
+637	item305	0	0	0	0	0	0	Bone of Doom
+638	item306	0	0	0	0	0	0	Druid Circlet of Power
+639	item307	0	0	0	0	0	0	Arcane Key
+640	item308	0	0	0	0	0	0	Wyvern Horn
+641	item309	0	0	0	0	0	0	Ogre Key
+642	item310	0	0	0	0	0	0	Pirate Hat
+643	item311	0	0	0	0	0	0	Tobersk Fruit
+644	item312	0	0	0	0	0	0	Tobersk Pulp
+645	item313	0	0	0	0	0	0	Tobersk Brandy
+646	item314	0	0	0	0	0	0	Heartwood of Jadame
+647	item315	0	0	0	0	0	0	Flawed Amulets
+648	item316	0	0	0	0	0	0	Dried Sunfish
+649	item317	0	0	0	0	0	0	Silver Dust of the Sea
+650	item318	0	0	0	0	0	0	Forged Vouchers
+651	item319	0	0	0	0	0	0	Ground Wyvern Horn
+652	item320	0	0	0	0	0	0	Prophecies of the Snake
+653	item321	0	0	0	0	0	0	Ogre Ear
+654	item322	0	0	0	0	0	0	Wasp Stingers
+655	item329	0	0	0	0	0	0	Green Apple
+656	item326	0	0	0	0	0	0	Horseshoe
+657	item327	0	0	0	0	0	0	Enchanted Amulet
+658	item323	0	0	0	0	0	0	Wheel of Frelandeau
+659	item324	0	0	0	0	0	0	Log of Eldenbrie
+660	item325	0	0	0	0	0	0	Ball of Dunduck
+661	item230	0	0	0	0	0	0	Emperor Thorn's Key
+662	item376	0	0	0	0	0	0	Cannonball of Dominion
+663	Placeholder	0	0	0	0	0	0	quest item 663
+664	Placeholder	0	0	0	0	0	0	quest item 664
+665	Placeholder	0	0	0	0	0	0	quest item 665
+666	Placeholder	0	0	0	0	0	0	quest item 666
+667	Placeholder	0	0	0	0	0	0	quest item 667
+668	Placeholder	0	0	0	0	0	0	quest item 668
+669	Placeholder	0	0	0	0	0	0	quest item 669
+670	Placeholder	0	0	0	0	0	0	quest item 670
+671	Placeholder	0	0	0	0	0	0	quest item 671
+672	Placeholder	0	0	0	0	0	0	quest item 672
+673	Placeholder	0	0	0	0	0	0	quest item 673
+674	Placeholder	0	0	0	0	0	0	quest item 674
+675	Placeholder	0	0	0	0	0	0	quest item 675
+676	Placeholder	0	0	0	0	0	0	quest item 676
+677	Placeholder	0	0	0	0	0	0	quest item 677
+678	Placeholder	0	0	0	0	0	0	quest item 678
+679	Placeholder	0	0	0	0	0	0	quest item 679
+680	Placeholder	0	0	0	0	0	0	quest item 680
+681	Placeholder	0	0	0	0	0	0	quest item 681
+682	Placeholder	0	0	0	0	0	0	quest item 682
+683	Placeholder	0	0	0	0	0	0	quest item 683
+684	Placeholder	0	0	0	0	0	0	quest item 684
+685	Placeholder	0	0	0	0	0	0	quest item 685
+686	item353	0	0	0	0	0	0	Iron-laced ore
+687	item354	0	0	0	0	0	0	Siertal-laced ore
+688	item355	0	0	0	0	0	0	Phylt-laced ore
+689	item356	0	0	0	0	0	0	Kergar-laced ore
+690	item357	0	0	0	0	0	0	Erudine-laced ore
+691	item358	0	0	0	0	0	0	Stalt-laced ore
+692	Placeholder	0	0	0	0	0	0	quest item 692
+693	Placeholder	0	0	0	0	0	0	quest item 693
+694	Placeholder	0	0	0	0	0	0	quest item 694
+695	Placeholder	0	0	0	0	0	0	quest item 695
+696	Placeholder	0	0	0	0	0	0	quest item 696
+697	Placeholder	0	0	0	0	0	0	quest item 697
+698	Placeholder	0	0	0	0	0	0	quest item 698
+699	Placeholder	0	0	0	0	0	0	quest item 699
+700	item199	0	0	1	1	1	2	Rejuvenation Recipe
+701	item199	0	0	1	1	1	2	Pure Might Recipe
+702	item199	0	0	1	1	1	2	Pure Accuracy Recipe
+703	item199	0	0	1	1	1	2	Pure Personality Recipe
+704	item199	0	0	1	1	1	2	Pure Endurance Recipe
+705	item199	0	0	1	1	1	2	Pure Intellect Recipe
+706	item199	0	0	1	1	1	2	Pure Speed Recipe
+707	item199	0	0	1	1	1	2	Pure Luck Recipe
+708	item199	0	0	1	1	1	2	Slaying Potion Recipe
+709	item199	0	0	1	1	1	2	Stone To Flesh Recipe
+710	item199	0	0	1	1	1	2	Might Boost Recipe
+711	item199	0	0	1	1	1	2	Intellect Boost Recipe
+712	item199	0	0	1	1	1	2	Personality Boost Recipe
+713	item199	0	0	1	1	1	2	Endurance Boost Recipe
+714	item199	0	0	1	1	1	2	Speed Boost Recipe
+715	item199	0	0	1	1	1	2	Accuracy Boost Recipe
+716	item199	0	0	1	1	1	2	Flaming Potion Recipe
+717	item199	0	0	1	1	1	2	Freezing Potion Recipe
+718	item199	0	0	1	1	1	2	Noxious Potion Recipe
+719	item199	0	0	1	1	1	2	Shocking Potion Recipe
+720	item199	0	0	1	1	1	2	Swift Potion Recipe
+721	item199	0	0	1	1	1	2	Cure Paralysis Recipe
+722	item199	0	0	1	1	1	2	Divine Restoration Recipe
+723	item199	0	0	1	1	1	2	Divine Cure Recipe
+724	item199	0	0	1	1	1	2	Divine Power Recipe
+725	item199	0	0	1	1	1	2	Luck Boost Recipe
+726	item199	0	0	1	1	1	2	Fire Resistance Recipe
+727	item199	0	0	1	1	1	2	Air Resistance Recipe
+728	item199	0	0	1	1	1	2	Water Resistance Recipe
+729	item199	0	0	1	1	1	2	Earth Resistance Recipe
+730	item199	0	0	1	1	1	2	Mind Resistance Recipe
+731	item199	0	0	1	1	1	2	Body Resistance Recipe
+732	item199	0	0	0	0	0	0	Certificate of Authentication
+733	item199	0	0	0	0	0	0	Journal Scrap
+734	item199	0	0	0	0	0	0	Journal Scrap
+735	item199	0	0	0	0	0	0	Journal Scrap
+736	item199	0	0	0	0	0	0	Journal Scrap
+737	item199	0	0	0	0	0	0	Journal Scrap
+738	item199	0	0	0	0	0	0	Journal Scrap
+739	item199	0	0	0	0	0	0	Journal Scrap
+740	item199	0	0	0	0	0	0	Journal Scrap
+741	item264	0	0	0	0	0	0	Dadeross' Letter to Fellmoon
+742	item265	0	0	0	0	0	0	Blackmail Letter
+743	item199	0	0	0	0	0	0	Journal Scrap
+744	item207	0	0	0	0	0	0	History of the Vault of Time
+745	item199	0	0	0	0	0	0	Dagger Wound Oddities
+746	item265	0	0	0	0	0	0	Letter to Arion Hunter
+747	item265	0	0	0	0	0	0	Page Torn from a Book
+748	item199	0	0	0	0	0	0	Notes - Emergency Meeting
+749	item199	0	0	0	0	0	0	Cannon Design Notes
+750	item202	0	0	0	0	0	0	Old Scroll
+751	item199	0	0	1	1	1	2	Divine Boost recipe
+752	item199	0	0	1	1	1	2	Divine Protection recipe
+753	item199	0	0	1	1	1	2	Divine Transcendence recipe
+754	item199	0	0	1	1	1	2	Essence of Luck recipe
+755	item199	0	0	1	1	1	2	Potion of the Gods recipe
+756	item199	0	0	1	1	1	2	Potion of Doom recipe
+757	item199	0	0	1	1	1	2	Pure Fire Resistance recipe
+758	item199	0	0	1	1	1	2	Pure Air Resistance recipe
+759	item199	0	0	1	1	1	2	Pure Water Resistance recipe
+760	item199	0	0	1	1	1	2	Pure Earth Resistance recipe
+761	item199	0	0	1	1	1	2	Pure Mind Resistance recipe
+762	item199	0	0	1	1	1	2	Pure Body Resistance recipe
+763	item199	0	0	1	1	1	2	Essence of Might recipe
+764	item199	0	0	1	1	1	2	Essence of Intellect recipe
+765	item199	0	0	1	1	1	2	Essence of Personality recipe
+766	item199	0	0	1	1	1	2	Essence of Accuracy recipe
+767	item199	0	0	1	1	1	2	Essence of Endurance recipe
+768	item199	0	0	1	1	1	2	Essence of Speed recipe
+769	item199	0	0	1	1	1	2	Protection from Magic recipe
+770	Placeholder	0	0	0	0	0	0	message scroll 770
+771	Placeholder	0	0	0	0	0	0	message scroll 771
+772	Placeholder	0	0	0	0	0	0	message scroll 772
+773	Placeholder	0	0	0	0	0	0	message scroll 773
+774	Placeholder	0	0	0	0	0	0	message scroll 774
+775	Placeholder	0	0	0	0	0	0	message scroll 775
+776	Placeholder	0	0	0	0	0	0	message scroll 776
+777	Placeholder	0	0	0	0	0	0	message scroll 777
+778	Placeholder	0	0	0	0	0	0	message scroll 778
+779	Placeholder	0	0	0	0	0	0	message scroll 779
+780	Placeholder	0	0	0	0	0	0	message scroll 780
+781	Placeholder	0	0	0	0	0	0	message scroll 781
+782	Placeholder	0	0	0	0	0	0	message scroll 782
+783	Placeholder	0	0	0	0	0	0	message scroll 783
+784	Placeholder	0	0	0	0	0	0	message scroll 784
+785	Placeholder	0	0	0	0	0	0	message scroll 785
+786	Placeholder	0	0	0	0	0	0	message scroll 786
+787	Placeholder	0	0	0	0	0	0	message scroll 787
+788	Placeholder	0	0	0	0	0	0	message scroll 788
+789	Placeholder	0	0	0	0	0	0	message scroll 789
+790	Placeholder	0	0	0	0	0	0	message scroll 790
+791	Placeholder	0	0	0	0	0	0	message scroll 791
+792	Placeholder	0	0	0	0	0	0	message scroll 792
+793	Placeholder	0	0	0	0	0	0	message scroll 793
+794	Placeholder	0	0	0	0	0	0	message scroll 794
+795	Placeholder	0	0	0	0	0	0	message scroll 795
+796	Placeholder	0	0	0	0	0	0	message scroll 796
+797	Placeholder	0	0	0	0	0	0	message scroll 797
+798	Placeholder	0	0	0	0	0	0	message scroll 798
+799	Placeholder	0	0	0	0	0	0	message scroll 799
+800	item323	0	0	0	0	0	0	Wheel of Frelandeau
+801	item324	0	0	0	0	0	0	Log of Eldenbrie
+802	item325	0	0	0	0	0	0	Ball of Dunduck
+803	7item001	5	5	2	0	0	0	Crude Longsword
+804	7item002	2	8	4	0	0	0	Elven Saber
+805	7item003	0	2	8	4	0	0	Keen Longsword
+806	7item004	0	0	2	8	4	0	Graceful Sword
+807	7item005	0	0	0	2	6	7	Duelist Blade
+808	7item006	5	5	2	0	0	0	Two-Handed Sword
+809	7item007	0	10	5	2	0	0	Great Sword
+810	7item008	0	0	0	10	5	0	Heroic Sword
+811	7item009	5	5	2	0	0	0	Broadsword
+812	7item010	0	5	7	3	0	0	Steel Broadsword
+813	7item011	0	0	0	0	10	10	Champion Sword
+814	7item012	5	5	2	0	0	0	Cutlass
+815	7item013	0	5	7	3	0	0	Goblin Cutlass
+816	7item014	0	0	0	5	7	5	Regnan Cutlass
+817	7item015	8	2	0	0	0	0	Dagger
+818	7item016	2	8	4	0	0	0	Dwarven Dagger
+819	7item017	0	2	8	4	0	0	Sharktooth Dagger
+820	7item018	0	0	0	10	5	2	Assassin's Dagger
+821	7item019	0	0	0	0	10	6	Mage Dagger
+822	7item020	8	2	0	0	0	0	Long Dagger
+823	7item021	0	5	7	3	0	0	Erathian Long Dagger
+824	7item022	0	0	0	5	7	5	Exquisite Long Dagger
+825	7item023	5	5	2	0	0	0	Crude Axe
+826	7item024	2	8	4	0	0	0	Battle Axe
+827	7item025	0	2	8	4	0	0	Dwarven Axe
+828	7item026	0	0	0	5	7	3	Steel Axe
+829	7item027	0	0	0	0	0	5	Minotaur Axe
+830	7item028	5	5	2	0	0	0	Poleaxe
+831	7item029	0	5	7	3	0	0	Warrior's Poleaxe
+832	7item030	0	0	0	0	10	10	Headsman's Poleaxe
+833	7item031	5	5	2	0	0	0	Crude Spear
+834	7item032	2	8	4	0	0	0	Soldier's spear
+835	7item033	0	0	10	5	2	0	Elven Spear
+836	7item034	0	0	0	10	5	2	Cruel Spear
+837	7item035	0	0	0	0	0	5	Sublime Spear
+838	7item036	5	5	2	0	0	0	Halberd
+839	7item038	0	0	10	5	2	0	Weighted Halberd
+840	7item037	0	0	0	0	10	10	Mighty Halberd
+841	7item039	8	2	0	0	0	0	Trident
+842	7item040	0	5	7	3	0	0	Barbed Trident
+843	7item041	0	0	0	0	10	10	War Trident
+844	7item042	8	2	0	0	0	0	Crude Bow
+845	7item043	2	8	4	0	0	0	Longbow
+846	7item044	0	2	8	4	0	0	Elven Longbow
+847	7item045	0	0	0	10	5	2	Composite Bow
+848	7item046	0	0	0	0	10	6	Griffin Bow
+849	7item047	8	2	0	0	0	0	Crossbow
+850	7item048	0	10	5	2	0	0	Heavy Crossbow
+851	7item049	0	0	0	0	10	10	Ideal Crossbow
+852	7item050	8	2	0	0	0	0	Mace
+853	7item051	0	10	5	2	0	0	Spiked Mace
+854	7item052	0	2	8	4	0	0	Zealot Mace
+855	7item053	0	0	2	8	4	0	Dwarven Morningstar
+856	7item054	0	0	0	0	0	5	Supreme Flail
+857	7item055	8	2	0	0	0	0	Hammer
+858	7item056	0	10	5	2	0	0	War Hammer
+859	7item057	0	0	0	10	5	0	Dwarven Hammer
+860	7item058	15	8	0	0	0	0	Club
+861	7item059	7	2	2	2	0	0	Spiked Club
+862	7item060	0	3	4	4	12	0	Steel club
+863	7item061	8	2	0	0	0	0	Staff
+864	7item062	0	0	10	5	2	0	Iron Core Staff
+865	7item063	0	0	0	5	7	5	Wizard Staff
+866	7item064	0	0	0	0	0	0	Blaster
+867	7item065	0	0	0	0	0	0	Blaster Rifle
+868	7item066	28	25	0	0	0	0	Crude Leather Armor
+869	7item067	0	28	25	20	0	0	Studded Leather
+870	7item068	0	0	25	35	25	0	Officer's Leather
+871	7item069	0	0	0	28	25	20	Regnan Leather
+872	7item070	0	0	0	0	25	35	Royal Leather
+873	7item071	5	15	20	0	0	0	Disheveled Chain Mail
+874	7item072	0	5	20	15	0	0	Quality Steel Chain Mail
+875	7item073	0	0	5	20	15	0	Fine Chain Mail
+876	7item074	0	0	0	10	25	10	Resplendent Chain Mail
+877	7item235	0	0	0	0	0	5	Golden Chain Mail
+878	7item076	0	5	10	25	10	0	Plate Armor
+879	7item077	0	0	0	7	30	15	Splendid Plate Armor
+880	7item078	0	0	0	0	10	35	Noble Plate Armor
+881	7item079	10	10	5	0	0	0	Goblin Shield
+882	7item080	2	8	7	0	0	0	Wooden Shield
+883	7item081	0	0	10	5	0	0	Horseman's Shield
+884	7item082	0	0	2	8	8	10	Sterling Shield
+885	7item083	0	0	0	0	10	20	Phynaxian Shield
+886	7item084	15	15	5	0	0	0	Wooden Buckler
+887	7item085	5	10	5	0	0	0	Bronze Shield
+888	7item086	0	0	10	5	0	0	Metal Shield
+889	7item087	0	0	5	10	15	10	Alloyed Shield
+890	7item088	0	0	0	0	0	5	Majestic Shield
+891	7item089	12	17	0	0	0	0	Horned Helm
+892	7item090	7	12	11	2	0	0	Conscript's Helm
+893	7item091	0	7	12	12	2	0	Full Helm
+894	7item092	0	0	7	12	12	2	Phynaxian Helm
+895	7item093	0	0	0	7	12	15	Mogred Helm
+896	7item094	5	12	8	2	0	0	Peasant Hat
+897	7item095	0	2	12	8	4	0	Traveller's Hat
+898	7item096	0	0	7	12	8	3	Fancy Hat
+899	7item097	0	2	7	7	3	0	Crown
+900	7item098	0	0	3	12	10	0	Noble Crown
+901	7item099	0	0	0	0	0	5	Regal Crown
+902	7item100	0	10	5	5	2	0	Leather Belt
+903	7item101	0	2	8	7	5	0	Fine Belt
+904	7item102	0	0	7	8	5	0	Strong Belt
+905	7item103	0	0	5	5	10	10	Silver Belt
+906	7item104	0	0	0	0	0	5	Gilded Belt
+907	7item105	5	10	15	10	5	0	Leather Cloak
+908	7item106	2	8	13	12	7	0	Huntsman's Cloak
+909	7item107	0	5	10	15	10	0	Ranger's Cloak
+910	7item108	0	0	2	8	13	13	Elegant Cloak
+911	7item109	0	0	0	0	0	5	Glorious Cloak
+912	7item110	5	15	5	5	2	0	Gauntlets
+913	7item111	5	10	15	10	5	0	Steel Gauntlets
+914	7item112	0	7	12	13	8	0	Silver Mesh Gauntlets
+915	7item113	0	3	7	12	13	8	Dragon Hide Gauntlets
+916	7item114	0	0	3	7	12	16	Mogred Gauntlets
+917	7item115	10	15	10	5	2	0	Leather Boots
+918	7item116	0	10	15	10	5	0	Steel Plated Boots
+919	7item117	0	0	8	10	12	0	Ranger Boots
+920	7item118	0	0	0	4	12	18	Knight's Boots
+921	7item119	0	0	0	0	0	5	Paladin Boots
+922	7item120	15	22	7	5	0	0	Brass Ring
+923	7item121	12	17	17	8	0	0	Pearl Ring
+924	7item122	0	0	17	16	8	0	Platinum Ring
+925	7item123	0	0	10	20	15	0	Emerald Ring
+926	7item124	0	0	10	20	20	0	Sapphire Ring
+927	7item125	0	0	4	8	16	0	Warlock's Ring
+928	7item126	0	0	2	5	8	20	Enchanted Ring
+929	7item127	0	0	2	3	8	22	Dazzling Ring
+930	7item128	0	0	2	3	8	23	Wizard Ring
+931	7item129	0	0	0	0	20	30	Angel's Ring
+932	7item130	2	12	10	8	3	0	Eyeball Amulet
+933	7item131	0	7	11	8	6	0	Bronze Amulet
+934	7item132	0	0	7	8	9	0	Witch's Amulet
+935	7item133	0	0	2	5	7	20	Death's Head Pendant
+936	7item134	0	0	3	5	5	15	Sun Amulet
+937	7item135	0	0	2	2	0	0	Wand of Fire
+938	7item135	0	0	2	2	0	0	Wand of Sparks
+939	7item135	0	0	2	2	0	0	Wand of Poison
+940	7item135	0	0	2	2	0	0	Wand of Stunning
+941	7item135	0	0	2	2	0	0	Wand of Harm
+942	7item136	0	0	2	2	0	0	Fairy Wand of Light
+943	7item136	0	0	2	2	0	0	Fairy Wand of Ice
+944	7item136	0	0	2	2	0	0	Fairy Wand of Lashing
+945	7item136	0	0	2	2	0	0	Fairy Wand of Mind
+946	7item136	0	0	2	2	0	0	Fairy Wand of Swarms
+947	7item137	0	0	1	2	3	0	Alacorn Wand of Fireballs
+948	7item137	0	0	1	2	3	0	Alacorn Wand of Acid
+949	7item137	0	0	1	2	3	0	Alacorn Wand of Lightning
+950	7item137	0	0	1	2	3	0	Alacorn Wand of Blades
+951	7item137	0	0	1	2	3	0	Alacorn Wand of Charms
+952	7item138	0	0	0	1	2	3	Arcane Wand of Blasting
+953	7item138	0	0	0	1	2	3	Arcane Wand of The Fist
+954	7item138	0	0	0	1	2	3	Arcane Wand of Rocks
+955	7item138	0	0	0	1	2	3	Arcane Wand of Paralyzing
+956	7item138	0	0	0	1	2	3	Arcane Wand of Clouds
+957	7item139	0	0	0	0	2	5	Mystic Wand of Implosion
+958	7item139	0	0	0	0	2	5	Mystic Wand of Distortion
+959	7item139	0	0	0	0	2	5	Mystic Wand of Shrapmetal
+960	7item139	0	0	0	0	2	5	Mystic Wand of Shrinking
+961	7item139	0	0	0	0	2	5	Mystic Wand of Incineration
+962	Placeholder	0	0	0	0	0	0	_item160
+963	Placeholder	0	0	0	0	0	0	_item161
+964	Placeholder	0	0	0	0	0	0	_item162
+965	Placeholder	0	0	0	0	0	0	_item163
+966	Placeholder	0	0	0	0	0	0	_item164
+967	Placeholder	0	0	0	0	0	0	_item165
+968	Placeholder	0	0	0	0	0	0	_item166
+969	Placeholder	0	0	0	0	0	0	_item167
+970	Placeholder	0	0	0	0	0	0	_item168
+971	Placeholder	0	0	0	0	0	0	_item169
+972	Placeholder	0	0	0	0	0	0	_item170
+973	Placeholder	0	0	0	0	0	0	_item171
+974	Placeholder	0	0	0	0	0	0	_item172
+975	Placeholder	0	0	0	0	0	0	_item173
+976	Placeholder	0	0	0	0	0	0	_item174
+977	Placeholder	0	0	0	0	0	0	_item175
+978	Placeholder	0	0	0	0	0	0	_item176
+979	Placeholder	0	0	0	0	0	0	_item177
+980	Placeholder	0	0	0	0	0	0	_item178
+981	Placeholder	0	0	0	0	0	0	_item179
+982	Placeholder	0	0	0	0	0	0	_item180
+983	Placeholder	0	0	0	0	0	0	_item181
+984	Placeholder	0	0	0	0	0	0	_item182
+985	Placeholder	0	0	0	0	0	0	_item183
+986	Placeholder	0	0	0	0	0	0	_item184
+987	Placeholder	0	0	0	0	0	0	_item185
+988	7item199	7	12	2	0	0	0	Blue Quartz
+989	7item198	2	7	5	0	0	0	Topaz
+990	7item197	0	0	2	8	8	2	Emerald
+991	7item202	0	4	10	5	0	0	Sapphire
+992	7item195	0	5	10	3	0	0	Green Garnet
+993	7item203	0	6	5	0	0	0	Rose Crystal
+994	7item196	0	0	0	4	10	5	Diamond
+995	7item204	0	0	5	10	2	0	Amythest
+996	7item154	0	5	9	2	0	0	Yellow Topaz
+997	7item150	0	0	0	0	0	2	Diamond
+998	7item146	0	0	0	5	10	5	Ruby
+999	7item187	0	0	0	0	0	0	Gold
+1000	7item188	0	0	0	0	0	0	Gold
+1001	7item189	0	0	0	0	0	0	Gold
+1002	7item141	20	0	0	0	0	0	Widowsweep Berries
+1003	7item144	5	10	5	0	0	0	Crushed Rose Petals
+1004	7item145	0	0	5	10	5	0	Vial of Troll Blood
+1005	7item200	0	0	0	0	5	10	Ruby
+1006	7item147	0	0	0	0	0	5	Dragon's Eye
+1007	7item140	20	0	0	0	0	0	Phirna Root
+1008	7item148	5	10	5	0	0	0	Meteorite Fragment
+1009	7item149	0	0	5	10	5	0	Harpy Feather
+1010	7item150	0	0	0	0	5	10	Moonstone
+1011	7item151	0	0	0	0	0	5	Elvish Toadstool
+1012	7item143	20	0	0	0	0	0	Poppysnaps
+1013	7item152	5	10	5	0	0	0	Fae Dust
+1014	7item153	0	0	5	10	5	0	Sulfur
+1015	7item201	0	0	0	0	5	10	Garnet
+1016	7item155	0	0	0	0	0	5	Vial of Devil Ichor
+1017	7item142	20	0	0	0	0	0	Mushroom
+1018	7item156	5	10	5	0	0	0	Obsidian
+1019	7item157	0	0	5	10	5	0	Vial of Ooze Endoplasm
+1020	7item158	0	0	0	0	5	10	Mercury
+1021	7item159	0	0	0	0	0	5	Philosopher's Stone
+1022	7item181	0	0	0	0	0	0	Potion Bottle
+1023	7item164	0	0	0	0	0	0	Catalyst
+1024	7item166	0	0	0	0	0	0	Cure Wounds
+1025	7item160	0	0	0	0	0	0	Magic Potion
+1026	7item162	0	0	0	0	0	0	Cure Weakness
+1027	7item168	0	0	0	0	0	0	Cure Disease
+1028	7item161	0	0	0	0	0	0	Cure Poison
+1029	7item167	0	0	0	0	0	0	Awaken
+1030	7item169	0	0	0	0	0	0	Haste
+1031	7item170	0	0	0	0	0	0	Heroism
+1032	7item171	0	0	0	0	0	0	Bless
+1033	7item172	0	0	0	0	0	0	Preservation
+1034	7item173	0	0	0	0	0	0	Shield
+1035	7item174	0	0	0	0	0	0	Recharge Item
+1036	7item175	0	0	0	0	0	0	Stoneskin
+1037	7item176	0	0	0	0	0	0	Water Breathing
+1038	7item177	0	0	0	0	0	0	Harden Item
+1039	7item178	0	0	0	0	0	0	Remove Fear
+1040	7item179	0	0	0	0	0	0	Remove Curse
+1041	7item180	0	0	0	0	0	0	Cure Insanity
+1042	7item163	0	0	0	0	0	0	Might Boost
+1043	7item163	0	0	0	0	0	0	Intellect Boost
+1044	7item163	0	0	0	0	0	0	Personality Boost
+1045	7item163	0	0	0	0	0	0	Endurance Boost
+1046	7item163	0	0	0	0	0	0	Speed Boost
+1047	7item163	0	0	0	0	0	0	Accuracy Boost
+1048	7item163	0	0	0	0	0	0	Flaming Potion
+1049	7item163	0	0	0	0	0	0	Freezing Potion
+1050	7item163	0	0	0	0	0	0	Noxious Potion
+1051	7item163	0	0	0	0	0	0	Shocking Potion
+1052	7item163	0	0	0	0	0	0	Swift Potion
+1053	7item163	0	0	0	0	0	0	Cure Paralysis
+1054	7item163	0	0	0	0	0	0	Divine Restoration
+1055	7item163	0	0	0	0	0	0	Divine Cure
+1056	7item163	0	0	0	0	0	0	Divine Power
+1057	7item163	0	0	0	0	0	0	Luck Boost
+1058	7item163	0	0	0	0	0	0	Fire Resistance
+1059	7item163	0	0	0	0	0	0	Air Resistance
+1060	7item163	0	0	0	0	0	0	Water Resistance
+1061	7item163	0	0	0	0	0	0	Earth Resistance
+1062	7item163	0	0	0	0	0	0	Mind Resistance
+1063	7item163	0	0	0	0	0	0	Body Resistance
+1064	7item165	0	0	0	0	0	0	Stone to Flesh
+1065	7item165	0	0	0	0	0	0	Slaying Potion
+1066	7item165	0	0	0	0	0	0	Pure Luck
+1067	7item165	0	0	0	0	0	0	Pure Speed
+1068	7item165	0	0	0	0	0	0	Pure Intellect
+1069	7item165	0	0	0	0	0	0	Pure Endurance
+1070	7item165	0	0	0	0	0	0	Pure Personality
+1071	7item165	0	0	0	0	0	0	Pure Accuracy
+1072	7item165	0	0	0	0	0	0	Pure Might
+1073	7item165	0	0	0	0	0	0	Rejuvenation
+1074	Placeholder	0	0	0	0	0	0	_potion/reagent272
+1075	Placeholder	0	0	0	0	0	0	_potion/reagent273
+1076	Placeholder	0	0	0	0	0	0	_potion/reagent274
+1077	Placeholder	0	0	0	0	0	0	_potion/reagent275
+1078	Placeholder	0	0	0	0	0	0	_potion/reagent276
+1079	Placeholder	0	0	0	0	0	0	_potion/reagent277
+1080	Placeholder	0	0	0	0	0	0	_potion/reagent278
+1081	Placeholder	0	0	0	0	0	0	_potion/reagent279
+1082	Placeholder	0	0	0	0	0	0	_potion/reagent280
+1083	Placeholder	0	0	0	0	0	0	_potion/reagent281
+1084	Placeholder	0	0	0	0	0	0	_potion/reagent282
+1085	Placeholder	0	0	0	0	0	0	_potion/reagent283
+1086	Placeholder	0	0	0	0	0	0	_potion/reagent284
+1087	Placeholder	0	0	0	0	0	0	_potion/reagent285
+1088	Placeholder	0	0	0	0	0	0	_potion/reagent286
+1089	Placeholder	0	0	0	0	0	0	_potion/reagent287
+1090	Placeholder	0	0	0	0	0	0	_potion/reagent288
+1091	Placeholder	0	0	0	0	0	0	_potion/reagent289
+1092	Placeholder	0	0	0	0	0	0	_potion/reagent290
+1093	Placeholder	0	0	0	0	0	0	_potion/reagent291
+1094	Placeholder	0	0	0	0	0	0	_potion/reagent292
+1095	Placeholder	0	0	0	0	0	0	_potion/reagent293
+1096	Placeholder	0	0	0	0	0	0	_potion/reagent294
+1097	Placeholder	0	0	0	0	0	0	_potion/reagent295
+1098	Placeholder	0	0	0	0	0	0	_potion/reagent296
+1099	Placeholder	0	0	0	0	0	0	_potion/reagent297
+1100	Placeholder	0	0	0	0	0	0	_potion/reagent298
+1101	Placeholder	0	0	0	0	0	0	_potion/reagent299
+1102	7item184	2	2	0	0	0	0	Torch Light
+1103	7item184	2	2	0	0	0	0	Fire Bolt
+1104	7item184	2	2	0	0	0	0	Fire Resistance
+1105	7item184	2	2	0	0	0	0	Fire Aura
+1106	7item185	0	2	2	0	0	0	Haste
+1107	7item185	0	2	2	0	0	0	Fireball
+1108	7item185	0	2	2	0	0	0	Fire Spike
+1109	7item186	0	0	2	1	0	0	Immolation
+1110	7item186	0	0	2	1	0	0	Meteor Shower
+1111	7item186	0	0	2	1	0	0	Inferno
+1112	7item183	0	0	0	1	1	0	Incinerate
+1113	7item184	2	2	0	0	0	0	Wizard Eye
+1114	7item184	2	2	0	0	0	0	Feather Fall
+1115	7item184	2	2	0	0	0	0	Air Resistance
+1116	7item184	2	2	0	0	0	0	Sparks
+1117	7item185	0	2	2	0	0	0	Jump
+1118	7item185	0	2	2	0	0	0	Shield
+1119	7item185	0	2	2	0	0	0	Lightning Bolt
+1120	7item186	0	0	2	1	0	0	Invisibility
+1121	7item186	0	0	2	1	0	0	Implosion
+1122	7item186	0	0	2	1	0	0	Fly
+1123	7item183	0	0	0	1	1	0	Starburst
+1124	7item184	2	2	0	0	0	0	Awaken
+1125	7item184	2	2	0	0	0	0	Poison Spray
+1126	7item184	2	2	0	0	0	0	Water Resistance
+1127	7item184	2	2	0	0	0	0	Ice Bolt
+1128	7item185	0	2	2	0	0	0	Water Walk
+1129	7item185	0	2	2	0	0	0	Recharge Item
+1130	7item185	0	2	2	0	0	0	Acid Burst
+1131	7item186	0	0	2	1	0	0	Enchant Item
+1132	7item186	0	0	2	1	0	0	Town Portal
+1133	7item186	0	0	2	1	0	0	Ice Blast
+1134	7item183	0	0	0	1	1	0	Lloyd's Beacon
+1135	7item184	2	2	0	0	0	0	Stun
+1136	7item184	2	2	0	0	0	0	Slow
+1137	7item184	2	2	0	0	0	0	Earth Resistance
+1138	7item184	2	2	0	0	0	0	Deadly Swarm
+1139	7item185	0	2	2	0	0	0	Stone Skin
+1140	7item185	0	2	2	0	0	0	Blades
+1141	7item185	0	2	2	0	0	0	Stone to Flesh
+1142	7item186	0	0	2	1	0	0	Rock Blast
+1143	7item186	0	0	2	1	0	0	Telekinesis
+1144	7item186	0	0	2	1	0	0	Death Blossom
+1145	7item183	0	0	0	1	1	0	Mass Distortion
+1146	7item184	2	2	0	0	0	0	Detect Life
+1147	7item184	2	2	0	0	0	0	Bless
+1148	7item184	2	2	0	0	0	0	Fate
+1149	7item184	2	2	0	0	0	0	Turn Undead
+1150	7item185	0	2	2	0	0	0	Remove Curse
+1151	7item185	0	2	2	0	0	0	Preservation
+1152	7item185	0	2	2	0	0	0	Heroism
+1153	7item186	0	0	2	1	0	0	Spirit Lash
+1154	7item186	0	0	2	1	0	0	Raise Dead
+1155	7item186	0	0	2	1	0	0	Shared Life
+1156	7item183	0	0	0	1	1	0	Resurrection
+1157	7item184	2	2	0	0	0	0	Remove Fear
+1158	7item184	2	2	0	0	0	0	Mind Blast
+1159	7item184	2	2	0	0	0	0	Mind Resistance
+1160	7item184	2	2	0	0	0	0	Telepathy
+1161	7item185	0	2	2	0	0	0	Charm
+1162	7item185	0	2	2	0	0	0	Cure Paralysis
+1163	7item185	0	2	2	0	0	0	Berserk
+1164	7item186	0	0	2	1	0	0	Mass Fear
+1165	7item186	0	0	2	1	0	0	Cure Insanity
+1166	7item186	0	0	2	1	0	0	Psychic Shock
+1167	7item183	0	0	0	1	1	0	Enslave
+1168	7item184	2	2	0	0	0	0	Cure Weakness
+1169	7item184	2	2	0	0	0	0	Heal
+1170	7item184	2	2	0	0	0	0	Body Resistance
+1171	7item184	2	2	0	0	0	0	Harm
+1172	7item185	0	2	2	0	0	0	Regeneration
+1173	7item185	0	2	2	0	0	0	Cure Poison
+1174	7item185	0	2	2	0	0	0	Hammerhands
+1175	7item186	0	0	2	1	0	0	Cure Disease
+1176	7item186	0	0	2	1	0	0	Protection from Magic
+1177	7item186	0	0	2	1	0	0	Flying Fist
+1178	7item183	0	0	0	1	1	0	Power Cure
+1179	7item184	0	0	1	2	0	0	Light Bolt
+1180	7item184	0	0	1	2	0	0	Destroy Undead
+1181	7item184	0	0	1	2	0	0	Dispel Magic
+1182	7item184	0	0	1	2	0	0	Paralyze
+1183	7item185	0	0	0	2	1	0	Summon Elemental
+1184	7item185	0	0	0	2	1	0	Day of the Gods
+1185	7item185	0	0	0	2	1	0	Prismatic Light
+1186	7item186	0	0	0	0	2	1	Day of Protection
+1187	7item186	0	0	0	0	2	1	Hour of Power
+1188	7item186	0	0	0	0	2	1	Sunray
+1189	7item183	0	0	0	0	0	2	Divine Intervention
+1190	7item184	0	0	1	2	0	0	Reanimate
+1191	7item184	0	0	1	2	0	0	Toxic Cloud
+1192	7item184	0	0	1	2	0	0	Vampiric Weapon
+1193	7item184	0	0	1	2	0	0	Shrinking Ray
+1194	7item185	0	0	0	2	1	0	Shrapmetal
+1195	7item185	0	0	0	2	1	0	Control Undead
+1196	7item185	0	0	0	2	1	0	Pain Reflection
+1197	7item186	0	0	0	0	2	1	Sacrifice
+1198	7item186	0	0	0	0	2	1	Dragon Breath
+1199	7item186	0	0	0	0	2	1	Armageddon
+1200	7item183	0	0	0	0	0	2	Souldrinker
+1201	Placeholder	0	0	0	0	0	0	_scroll/book399
+1202	7item190	0	0	0	0	0	0	Torch Light
+1203	7item190	0	0	0	0	0	0	Fire Bolt
+1204	7item190	0	0	0	0	0	0	Fire Resistance
+1205	7item190	0	0	0	0	0	0	Fire Aura
+1206	7item191	0	0	2	0	0	0	Haste
+1207	7item191	0	0	2	0	0	0	Fireball
+1208	7item191	0	0	2	0	0	0	Fire Spike
+1209	7item192	0	0	0	1	0	0	Immolation
+1210	7item192	0	0	0	1	0	0	Meteor Shower
+1211	7item192	0	0	0	1	0	0	Inferno
+1212	7item193	0	0	0	0	1	0	Incinerate
+1213	7item190	0	0	0	0	0	0	Wizard Eye
+1214	7item190	0	0	0	0	0	0	Feather Fall
+1215	7item190	0	0	0	0	0	0	Air Resistance
+1216	7item190	0	0	0	0	0	0	Sparks
+1217	7item191	0	0	2	0	0	0	Jump
+1218	7item191	0	0	2	0	0	0	Shield
+1219	7item191	0	0	2	0	0	0	Lightning Bolt
+1220	7item192	0	0	0	1	0	0	Invisibility
+1221	7item192	0	0	0	1	0	0	Implosion
+1222	7item192	0	0	0	1	0	0	Fly
+1223	7item193	0	0	0	0	1	0	Starburst
+1224	7item190	0	0	0	0	0	0	Awaken
+1225	7item190	0	0	0	0	0	0	Poison Spray
+1226	7item190	0	0	0	0	0	0	Water Resistance
+1227	7item190	0	0	0	0	0	0	Ice Bolt
+1228	7item191	0	0	2	0	0	0	Water Walk
+1229	7item191	0	0	2	0	0	0	Recharge Item
+1230	7item191	0	0	2	0	0	0	Acid Burst
+1231	7item192	0	0	0	1	0	0	Enchant Item
+1232	7item192	0	0	0	1	0	0	Town Portal
+1233	7item192	0	0	0	1	0	0	Ice Blast
+1234	7item193	0	0	0	0	1	0	Lloyd's Beacon
+1235	7item190	0	0	0	0	0	0	Stun
+1236	7item190	0	0	0	0	0	0	Slow
+1237	7item190	0	0	0	0	0	0	Earth Resistance
+1238	7item190	0	0	0	0	0	0	Deadly Swarm
+1239	7item191	0	0	2	0	0	0	Stone Skin
+1240	7item191	0	0	2	0	0	0	Blades
+1241	7item191	0	0	2	0	0	0	Stone to Flesh
+1242	7item192	0	0	0	1	0	0	Rock Blast
+1243	7item192	0	0	0	1	0	0	Telekinesis
+1244	7item192	0	0	0	1	0	0	Death Blossom
+1245	7item193	0	0	0	0	1	0	Mass Distortion
+1246	7item190	0	0	0	0	0	0	Detect Life
+1247	7item190	0	0	0	0	0	0	Bless
+1248	7item190	0	0	0	0	0	0	Fate
+1249	7item190	0	0	0	0	0	0	Turn Undead
+1250	7item191	0	0	2	0	0	0	Remove Curse
+1251	7item191	0	0	2	0	0	0	Preservation
+1252	7item191	0	0	2	0	0	0	Heroism
+1253	7item192	0	0	0	1	0	0	Spirit Lash
+1254	7item192	0	0	0	1	0	0	Raise Dead
+1255	7item192	0	0	0	1	0	0	Shared Life
+1256	7item193	0	0	0	0	1	0	Resurrection
+1257	7item190	0	0	0	0	0	0	Remove Fear
+1258	7item190	0	0	0	0	0	0	Mind Blast
+1259	7item190	0	0	0	0	0	0	Mind Resistance
+1260	7item190	0	0	0	0	0	0	Telepathy
+1261	7item191	0	0	2	0	0	0	Charm
+1262	7item191	0	0	2	0	0	0	Cure Paralysis
+1263	7item191	0	0	2	0	0	0	Berserk
+1264	7item192	0	0	0	1	0	0	Mass Fear
+1265	7item192	0	0	0	1	0	0	Cure Insanity
+1266	7item192	0	0	0	1	0	0	Psychic Shock
+1267	7item193	0	0	0	0	1	0	Enslave
+1268	7item190	0	0	0	0	0	0	Cure Weakness
+1269	7item190	0	0	0	0	0	0	Heal
+1270	7item190	0	0	0	0	0	0	Body Resistance
+1271	7item190	0	0	0	0	0	0	Harm
+1272	7item191	0	0	2	0	0	0	Regeneration
+1273	7item191	0	0	2	0	0	0	Cure Poison
+1274	7item191	0	0	2	0	0	0	Hammerhands
+1275	7item192	0	0	0	1	0	0	Cure Disease
+1276	7item192	0	0	0	1	0	0	Protection from Magic
+1277	7item192	0	0	0	1	0	0	Flying Fist
+1278	7item193	0	0	0	0	1	0	Power Cure
+1279	7item190	0	0	0	1	0	0	Light Bolt
+1280	7item190	0	0	0	1	0	0	Destroy Undead
+1281	7item190	0	0	0	0	1	0	Dispel Magic
+1282	7item190	0	0	0	0	1	0	Paralyze
+1283	7item191	0	0	0	0	1	0	Summon Elemental
+1284	7item191	0	0	0	0	1	0	Day of the Gods
+1285	7item191	0	0	0	0	0	1	Prismatic Light
+1286	7item192	0	0	0	0	0	1	Day of Protection
+1287	7item192	0	0	0	0	0	1	Hour of Power
+1288	7item192	0	0	0	0	0	1	Sunray
+1289	7item193	0	0	0	0	0	0	Divine Intervention
+1290	7item190	0	0	0	1	0	0	Reanimate
+1291	7item190	0	0	0	1	0	0	Toxic Cloud
+1292	7item190	0	0	0	0	1	0	Vampiric Weapon
+1293	7item190	0	0	0	0	1	0	Shrinking Ray
+1294	7item191	0	0	0	0	1	0	Shrapmetal
+1295	7item191	0	0	0	0	1	0	Control Undead
+1296	7item191	0	0	0	0	0	1	Pain Reflection
+1297	7item192	0	0	0	0	0	1	Sacrifice
+1298	7item192	0	0	0	0	0	1	Dragon Breath
+1299	7item192	0	0	0	0	0	1	Armageddon
+1300	7item193	0	0	0	0	0	0	Souldrinker
+1301	Placeholder	0	0	0	0	0	0	_scroll/book499
+1302	7item217	0	0	0	0	0	1	Puck
+1303	7item218	0	0	0	0	0	1	Iron Feather
+1304	7item219	0	0	0	0	0	1	Wallace
+1305	7item220	0	0	0	0	0	1	Corsair
+1306	7item235	0	0	0	0	0	1	Governor's Armor
+1307	7item236	0	0	0	0	0	1	Yoruba
+1308	7item223	0	0	0	0	0	1	Splitter
+1309	7item226	0	0	0	0	0	1	Ghoulsbane
+1310	7item225	0	0	0	0	0	1	Gibbet
+1311	7item227	0	0	0	0	0	1	Charele
+1312	7item228	0	0	0	0	0	1	Ullyses
+1313	7item244	0	0	0	0	0	1	Hands of the Master
+1314	7item312	0	0	0	0	0	1	Seven League Boots
+1315	7item246	0	0	0	0	0	1	Ruler's Ring
+1316	7item232	0	0	0	0	0	1	Mash
+1317	7item233	0	0	0	0	0	1	Ethric's Staff
+1318	7item234	0	0	0	0	0	1	Hareck's Leather
+1319	7item221	0	0	0	0	0	1	Old Nick
+1320	7item224	0	0	0	0	0	1	Amuck
+1321	7item237	0	0	0	0	0	1	Glory Shield
+1322	7item238	0	0	0	0	0	1	Kelebrim
+1323	7item239	0	0	0	0	0	1	Taledon's Helm
+1324	7item240	0	0	0	0	0	1	Scholar's Cap
+1325	7item241	0	0	0	0	0	1	Phynaxian Crown
+1326	7item324	0	0	0	0	0	1	Titan's Belt
+1327	7item325	0	0	0	0	0	1	Twilight
+1328	7item229	0	0	0	0	0	1	Ania Selving
+1329	7item230	0	0	0	0	0	1	Justice
+1330	7item231	0	0	0	0	0	1	Mekorig's Hammer
+1331	7item281	0	0	0	0	0	0	Hermes' Sandals
+1332	7item330	0	0	0	0	0	0	Cloak of the Sheep
+1333	7item008	0	0	0	0	0	0	Elfbane
+1334	7item093	0	0	0	0	0	0	Mind's Eye
+1335	7item073	0	0	0	0	0	0	Elven Chainmail
+1336	7item113	0	0	0	0	0	0	Forge Gauntlets
+1337	7item104	0	0	0	0	0	0	Hero's Belt
+1338	7item129	0	0	0	0	0	0	Lady's Escort
+1339	7item134	0	0	0	0	0	0	Clanker's Amulet
+1340	7item013	0	0	0	0	0	0	Lieutenant's Cutlass
+1341	7item133	0	0	0	0	0	0	Medusa's Mirror
+1342	7item019	0	0	0	0	0	0	Lady Carmine's Dagger
+1343	7item005	0	0	0	0	0	0	Villain's Blade
+1344	7item045	0	0	0	0	0	0	The Perfect Bow
+1345	7item045	0	0	0	0	0	0	The Perfect Bow
+1346	item344	0	0	0	0	0	0	Shadow's Mask
+1347	7item128	0	0	0	0	0	0	Ghost Ring
+1348	7item127	0	0	0	0	0	0	Faerie Ring
+1349	7item347	0	0	0	0	0	0	Sun Cloak
+1350	7item348	0	0	0	0	0	0	Moon Cloak
+1351	7item030	0	0	0	0	0	0	Zokarr's Axe
+1352	7item350	0	0	0	0	0	0	Vampire's Cape
+1353	7item027	0	0	0	0	0	0	Minotaur's Axe
+1354	7item013	0	0	0	0	0	0	Grognard's Cutlass
+1355	Placeholder	0	0	0	0	0	0	_artifact553
+1356	Placeholder	0	0	0	0	0	0	_artifact554
+1357	Placeholder	0	0	0	0	0	0	_artifact555
+1358	Placeholder	0	0	0	0	0	0	_artifact556
+1359	Placeholder	0	0	0	0	0	0	_artifact557
+1360	Placeholder	0	0	0	0	0	0	_artifact558
+1361	Placeholder	0	0	0	0	0	0	_artifact559
+1362	Placeholder	0	0	0	0	0	0	_artifact560
+1363	Placeholder	0	0	0	0	0	0	_artifact561
+1364	Placeholder	0	0	0	0	0	0	_artifact562
+1365	Placeholder	0	0	0	0	0	0	_artifact563
+1366	Placeholder	0	0	0	0	0	0	_artifact564
+1367	Placeholder	0	0	0	0	0	0	_artifact565
+1368	Placeholder	0	0	0	0	0	0	_artifact566
+1369	Placeholder	0	0	0	0	0	0	_artifact567
+1370	Placeholder	0	0	0	0	0	0	_artifact568
+1371	Placeholder	0	0	0	0	0	0	_artifact569
+1372	7item007	0	0	0	0	0	0	The DeathBlade
+1373	Placeholder	0	0	0	0	0	0	_artifact571
+1374	Placeholder	0	0	0	0	0	0	_artifact572
+1375	Placeholder	0	0	0	0	0	0	_artifact573
+1376	Placeholder	0	0	0	0	0	0	_artifact574
+1377	Placeholder	0	0	0	0	0	0	_artifact575
+1378	Placeholder	0	0	0	0	0	0	_artifact576
+1379	Placeholder	0	0	0	0	0	0	_artifact577
+1380	Placeholder	0	0	0	0	0	0	_artifact578
+1381	Placeholder	0	0	0	0	0	0	_artifact579
+1382	Placeholder	0	0	0	0	0	0	_artifact580
+1383	Placeholder	0	0	0	0	0	0	_artifact581
+1384	Placeholder	0	0	0	0	0	0	_artifact582
+1385	Placeholder	0	0	0	0	0	0	_artifact583
+1386	Placeholder	0	0	0	0	0	0	_artifact584
+1387	Placeholder	0	0	0	0	0	0	_artifact585
+1388	Placeholder	0	0	0	0	0	0	_artifact586
+1389	Placeholder	0	0	0	0	0	0	_artifact587
+1390	Placeholder	0	0	0	0	0	0	_artifact588
+1391	Placeholder	0	0	0	0	0	0	_artifact589
+1392	Placeholder	0	0	0	0	0	0	_artifact590
+1393	Placeholder	0	0	0	0	0	0	_artifact591
+1394	Placeholder	0	0	0	0	0	0	_artifact592
+1395	Placeholder	0	0	0	0	0	0	_artifact593
+1396	Placeholder	0	0	0	0	0	0	_artifact594
+1397	Placeholder	0	0	0	0	0	0	_artifact595
+1398	Placeholder	0	0	0	0	0	0	_artifact596
+1399	Placeholder	0	0	0	0	0	0	_artifact597
+1400	Placeholder	0	0	0	0	0	0	_artifact598
+1401	Placeholder	0	0	0	0	0	0	_artifact599
+1402	7item297	0	0	0	0	0	0	Heart of the Wood
+1403	7item259	0	0	0	0	0	0	Lich Jar
+1404	7item351	0	0	0	0	0	0	Case of Soul Jars
+1405	7item247	0	0	0	0	0	0	Parson's Quill
+1406	7item299	0	0	0	0	0	0	Wetsuit
+1407	7item362	0	0	0	0	0	0	Oscillation Overthruster
+1408	7item250	0	0	0	0	0	0	Signet Ring
+1409	7item251	0	0	0	0	0	0	Letter from Johann Kerrid to the Faerie King
+1410	7item252	0	0	0	0	0	0	Sealed Letter 2
+1411	7item253	0	0	0	0	0	0	Sealed Letter 3
+1412	7item254	0	0	0	0	0	0	Sealed Letter 4
+1413	7item255	0	0	0	0	0	0	Sealed Letter 5
+1414	7item256	0	0	0	0	0	0	Sealed Letter 6
+1415	7item257	0	0	0	0	0	0	Sealed Letter 7
+1416	7item258	0	0	0	0	0	0	Letter from Norbert Thrush to Lord Markham
+1417	7item294	0	0	0	0	0	0	Lich Jar
+1418	7item260	0	0	0	0	0	0	Genie Lamp
+1419	7item261	0	0	0	0	0	0	Knight Statuette
+1420	7item262	0	0	0	0	0	0	Eagle Statuette
+1421	item263	0	0	0	0	0	0	Angel Statuette
+1422	7item365	0	0	0	0	0	0	Big Tapestry
+1423	7item265	0	0	0	0	0	0	Angel Statue Painting
+1424	7item266	0	0	0	0	0	0	Archibald Ironfist Painting
+1425	7item267	0	0	0	0	0	0	Roland Ironfist Painting
+1426	7item268	0	0	0	0	0	0	Vase
+1427	7item269	0	0	0	0	0	0	Flower (Rose)
+1428	7item270	0	0	0	0	0	0	Zokarr IV's Skull
+1429	7item271	0	0	0	0	0	0	Thigh Bone
+1430	7item272	0	0	0	0	0	0	Haldar's Remains
+1431	7item273	0	0	0	0	0	0	Elixir
+1432	7item274	0	0	0	0	0	0	Red Apple
+1433	7item275	0	0	0	0	0	0	Wealthy Hat
+1434	7item277	0	0	0	0	0	0	Lute
+1435	7item276	0	0	0	0	0	0	Faerie Pipes
+1436	7item278	0	0	0	0	0	0	Gryphonheart's Trumpet
+1437	7item279	0	0	0	0	0	0	Seashell
+1438	7item280	0	0	0	0	0	0	Floor Tile (w/ moon insignia)
+1439	7item281	0	0	0	0	0	0	Winged Sandals
+1440	item282	0	0	0	0	0	0	Season's Stole
+1441	item368	0	0	0	0	0	0	Golem chest
+1442	item369	0	0	0	0	0	0	Abbey Normal Golem Head
+1443	item370	0	0	0	0	0	0	Golem head
+1444	item371	0	0	0	0	0	0	Golem left leg
+1445	item372	0	0	0	0	0	0	Golem right leg
+1446	item373	0	0	0	0	0	0	Golem right arm
+1447	item374	0	0	0	0	0	0	Golem left arm
+1448	item290	0	0	0	0	0	0	Horseshoe
+1449	item291	0	0	0	0	0	0	Dragon Egg
+1450	item292	0	0	0	0	0	0	Lantern of Light
+1451	7item293	0	0	0	0	0	0	Worn Belt
+1452	item288	0	0	0	0	0	0	Temple in a Bottle
+1453	7item295	0	0	0	0	0	0	Arcomage Deck
+1454	7item209	0	0	0	0	0	0	West Pillar Key
+1455	7item205	0	0	0	0	0	0	Central Pillar Key
+1456	7item210	0	0	0	0	0	0	East Pillar Key
+1457	7item208	0	0	0	0	0	0	Barrow Key
+1458	7item208	0	0	0	0	0	0	Barrow Key
+1459	7item208	0	0	0	0	0	0	Barrow Key
+1460	7item080	0	0	0	0	0	0	Contestant's Shield
+1461	7item205	0	0	0	0	0	0	William's Tower Key
+1462	7item206	0	0	0	0	0	0	Catherine's Key
+1463	7item207	0	0	0	0	0	0	Colony Zod Key
+1464	7item208	0	0	0	0	0	0	Faerie Key
+1465	7item211	0	0	0	0	0	0	Sewer Key
+1466	7item210	0	0	0	0	0	0	Newname Key
+1467	7item211	0	0	0	0	0	0	Newname Key
+1468	7item212	0	0	0	0	0	0	Newname Key
+1469	7item213	0	0	0	0	0	0	Newname Key
+1470	7item214	0	0	0	0	0	0	Newname Key
+1471	7item215	0	0	0	0	0	0	Newname Key
+1472	7item216	0	0	0	0	0	0	Newname Key
+1473	Placeholder	0	0	0	0	0	0	Snergle's Axe
+1474	Placeholder	0	0	0	0	0	0	Lord Kilburn's Shield
+1475	7item182	0	0	0	0	0	0	Lich Jar Placeholder
+1476	7item182	0	0	0	0	0	0	Elixir Placeholder
+1477	7item361	0	0	0	0	0	0	Control Cube
+1478	7item363	0	0	0	0	0	0	Altar Piece
+1479	7item364	0	0	0	0	0	0	Altar Piece
+1480	7item182	0	0	0	0	0	0	Final Part Placeholder
+1481	7item182	0	0	0	0	0	0	Level Design Placeholder
+1482	7item182	0	0	0	0	0	0	Artifact Placeholder (Elf vs. Human)
+1483	7item182	0	0	0	0	0	0	Riverstride Plans Placeholder
+1484	7item182	0	0	0	0	0	0	False Plans Placeholder
+1485	7item182	0	0	0	0	0	0	Map to Evenmorn Island
+1486	7item182	0	0	0	0	0	0	Neutral Bow Placeholder
+1487	7item182	0	0	0	0	0	0	Elf/Human Artifact Placeholder
+1488	7item353	0	0	0	0	0	0	Iron-laced ore
+1489	7item354	0	0	0	0	0	0	Siertal-laced ore
+1490	7item355	0	0	0	0	0	0	Phylt-laced ore
+1491	7item356	0	0	0	0	0	0	Kergar-laced ore
+1492	7item357	0	0	0	0	0	0	Erudine-laced ore
+1493	7item358	0	0	0	0	0	0	Stalt-laced ore
+1494	item400	0	0	0	0	0	0	Crate of Arrowheads
+1495	item401	0	0	0	0	0	0	Crate of Griffin Feathers
+1496	item402	0	0	0	0	0	0	Crate of Tularean Wood
+1497	item403	0	0	0	0	0	0	Crate of Sand
+1498	item404	0	0	0	0	0	0	Crate of Glass Bottles
+1499	item405	0	0	0	0	0	0	Crate of Enrothian Wine
+1500	7item182	0	0	0	0	0	0	Orders from Snergle
+1501	7item182	0	0	0	0	0	0	Name of Message
+1502	7item182	0	0	0	0	0	0	Message from Erathia
+1503	7item182	0	0	0	0	0	0	Cipher
+1504	7item182	0	0	0	0	0	0	Scroll of Waves
+1505	7item182	0	0	0	0	0	0	Basic Cryptography
+1506	7item182	0	0	0	0	0	0	Message from Mr. Stantley
+1507	7item182	0	0	0	0	0	0	Riverstride Plans
+1508	7item182	0	0	0	0	0	0	False Riverstride Plans
+1509	7item182	0	0	0	0	0	0	Fragment of Soldier's Diary
+1510	7item182	0	0	0	0	0	0	Letter from Mr. Stantley
+1511	7item182	0	0	0	0	0	0	Torn Page
+1512	7item182	0	0	0	0	0	0	Remains of a Journal
+1513	7item182	0	0	0	0	0	0	Journal Excerpt
+1514	7item182	0	0	0	0	0	0	Letter from Archibald
+1515	7item182	0	0	0	0	0	0	Letter from Malwick
+1516	7item182	0	0	0	0	0	0	Letter from Gavin Magnus
+1517	7item182	0	0	0	0	0	0	Journal Fragment
+1518	7item182	0	0	0	0	0	0	Letter to Hairbaugh
+1519	7item182	0	0	0	0	0	0	Letter from Mr. Stantley
+1520	7item182	0	0	0	0	0	0	"Journal Entry, 23rd April"
+1521	7item182	0	0	0	0	0	0	"Journal Entry, 30th June"
+1522	7item182	0	0	0	0	0	0	Excerpt from a Diary
+1523	7item182	0	0	0	0	0	0	Letter
+1524	7item182	0	0	0	0	0	0	"Journal Entry, 11th December"
+1525	7item182	0	0	0	0	0	0	Orders from Steadwick
+1526	7item182	0	0	0	0	0	0	"Journal Entry, 2nd January"
+1527	7item182	0	0	0	0	0	0	"Journal Entry, 19th September"
+1528	7item182	0	0	0	0	0	0	Journal Entry
+1529	7item182	0	0	0	0	0	0	Empty Message Scroll
+1530	7item182	0	0	0	0	0	0	Bill of Sale
+1531	7item182	0	0	0	0	0	0	Empty Message Scroll
+1532	7item182	0	0	0	0	0	0	Empty Message Scroll
+1533	7item182	0	0	0	0	0	0	Empty Message Scroll
+1534	7item182	0	0	0	0	0	0	Empty Message Scroll
+1535	7item182	0	0	0	0	0	0	Empty Message Scroll
+1536	7item182	0	0	0	0	0	0	Letter from Xenofex
+1537	7item182	0	0	0	0	0	0	Empty Message Scroll
+1538	7item182	0	0	0	0	0	0	Empty Message Scroll
+1539	7item182	0	0	0	0	0	0	Empty Message Scroll
+1540	7item182	0	0	0	0	0	0	Empty Message Scroll
+1541	7item182	0	0	0	0	0	0	Empty Message Scroll
+1542	7item182	0	0	0	0	0	0	Rejuvenation Recipe
+1543	7item182	0	0	0	0	0	0	Pure Might Recipe
+1544	7item182	0	0	0	0	0	0	Pure Accuracy Recipe
+1545	7item182	0	0	0	0	0	0	Pure Personality Recipe
+1546	7item182	0	0	0	0	0	0	Pure Endurance Recipe
+1547	7item182	0	0	0	0	0	0	Pure Intellect Recipe
+1548	7item182	0	0	0	0	0	0	Pure Speed Recipe
+1549	7item182	0	0	0	0	0	0	Pure Luck Recipe
+1550	7item182	0	0	0	0	0	0	Slaying Potion Recipe
+1551	7item182	0	0	0	0	0	0	Stone To Flesh Recipe
+1552	7item182	0	0	0	0	0	0	Might Boost Recipe
+1553	7item182	0	0	0	0	0	0	Intellect Boost Recipe
+1554	7item182	0	0	0	0	0	0	Personality Boost Recipe
+1555	7item182	0	0	0	0	0	0	Endurance Boost Recipe
+1556	7item182	0	0	0	0	0	0	Speed Boost Recipe
+1557	7item182	0	0	0	0	0	0	Accuracy Boost Recipe
+1558	7item182	0	0	0	0	0	0	Flaming Potion Recipe
+1559	7item182	0	0	0	0	0	0	Freezing Potion Recipe
+1560	7item182	0	0	0	0	0	0	Noxious Potion Recipe
+1561	7item182	0	0	0	0	0	0	Shocking Potion Recipe
+1562	7item182	0	0	0	0	0	0	Swift Potion Recipe
+1563	7item182	0	0	0	0	0	0	Cure Paralysis Recipe
+1564	7item182	0	0	0	0	0	0	Divine Restoration Recipe
+1565	7item182	0	0	0	0	0	0	Divine Cure Recipe
+1566	7item182	0	0	0	0	0	0	Divine Power Recipe
+1567	7item182	0	0	0	0	0	0	Luck Boost Recipe
+1568	7item182	0	0	0	0	0	0	Fire Resistance Recipe
+1569	7item182	0	0	0	0	0	0	Air Resistance Recipe
+1570	7item182	0	0	0	0	0	0	Water Resistance Recipe
+1571	7item182	0	0	0	0	0	0	Earth Resistance Recipe
+1572	7item182	0	0	0	0	0	0	Mind Resistance Recipe
+1573	7item182	0	0	0	0	0	0	Body Resistance Recipe
+1574	7item182	0	0	0	0	0	0	Empty Message Scroll
+1575	7item182	0	0	0	0	0	0	Empty Message Scroll
+1576	7item182	0	0	0	0	0	0	Empty Message Scroll
+1577	7item182	0	0	0	0	0	0	Empty Message Scroll
+1578	7item182	0	0	0	0	0	0	Empty Message Scroll
+1579	7item182	0	0	0	0	0	0	Empty Message Scroll
+1580	7item182	0	0	0	0	0	0	Empty Message Scroll
+1581	7item182	0	0	0	0	0	0	Empty Message Scroll
+1582	7item182	0	0	0	0	0	0	Empty Message Scroll
+1583	Placeholder	0	0	0	0	0	0	_quest/misc781
+1584	Placeholder	0	0	0	0	0	0	_quest/misc782
+1585	Placeholder	0	0	0	0	0	0	_quest/misc783
+1586	Placeholder	0	0	0	0	0	0	_quest/misc784
+1587	Placeholder	0	0	0	0	0	0	_quest/misc785
+1588	Placeholder	0	0	0	0	0	0	_quest/misc786
+1589	Placeholder	0	0	0	0	0	0	_quest/misc787
+1590	Placeholder	0	0	0	0	0	0	_quest/misc788
+1591	Placeholder	0	0	0	0	0	0	_quest/misc789
+1592	Placeholder	0	0	0	0	0	0	_quest/misc790
+1593	Placeholder	0	0	0	0	0	0	_quest/misc791
+1594	Placeholder	0	0	0	0	0	0	_quest/misc792
+1595	Placeholder	0	0	0	0	0	0	_quest/misc793
+1596	Placeholder	0	0	0	0	0	0	_quest/misc794
+1597	Placeholder	0	0	0	0	0	0	_quest/misc795
+1598	Placeholder	0	0	0	0	0	0	_quest/misc796
+1599	Placeholder	0	0	0	0	0	0	_quest/misc797
+1600	Placeholder	0	0	0	0	0	0	_quest/misc798
+1601	Placeholder	0	0	0	0	0	0	_quest/misc799
+1602	Placeholder	0	0	0	0	0	0	
+1603	lsword1	3	7	3	0	0	0	Longsword
+1604	lsword2	0	5	7	3	0	0	Warrior Sword
+1605	lsword3	0	0	10	5	2	0	Crusader Sword
+1606	lsword4	0	0	0	10	5	2	Champion Sword
+1607	lsword5	0	0	0	0	0	5	Lionheart Sword
+1608	2hsword1	2	7	3	0	0	0	Two-Handed Sword
+1609	2hsword2	0	0	10	5	2	0	Great Sword
+1610	2hsword3	0	0	0	5	7	5	Heroic Sword
+1611	brsword1	2	7	3	0	0	0	Broadsword
+1612	brsword2	0	0	10	5	2	0	Steel Broadsword
+1613	brsword3	0	0	0	5	7	5	Mighty Broadsword
+1614	cutlass1	2	7	3	0	0	0	Cutlass
+1615	cutlass2	0	0	10	5	2	0	Pirate Cutlass
+1616	cutlass3	0	0	0	0	0	5	Master Cutlass
+1617	dagger1	3	7	3	0	0	0	Dagger
+1618	dagger2	0	10	5	2	0	0	Blood Dagger
+1619	dagger3	0	0	5	7	3	0	Shadow Dagger
+1620	dagger4	0	0	0	5	7	3	Mage Dagger
+1621	dagger5	0	0	0	2	6	7	Jeweled Dagger
+1622	ldagger1	2	7	3	0	0	0	Long Dagger
+1623	ldagger2	0	0	10	5	2	0	Piercing Dagger
+1624	ldagger3	0	0	0	0	0	5	Divine Dagger
+1625	axe1	3	7	3	0	0	0	Hand Axe
+1626	axe2	0	5	7	3	0	0	Battle Axe
+1627	axe3	0	0	5	7	3	0	War Axe
+1628	axe4	0	0	2	8	4	0	Dwarven Axe
+1629	axe5	0	0	0	0	10	6	Supreme Axe
+1630	2haxe1	2	7	3	0	0	0	Poleax
+1631	2haxe2	0	0	10	5	2	0	Heavy Poleax
+1632	2haxe3	0	0	0	10	5	0	Grand Poleax
+1633	spear1	3	7	3	0	0	0	Spear
+1634	spear2	0	10	5	2	0	0	Stout Spear
+1635	spear3	0	2	8	4	0	0	Serpent Spear
+1636	spear4	0	0	2	8	4	0	Savage Spear
+1637	spear5	0	0	0	0	10	6	Sacred Spear
+1638	halberd1	2	7	3	0	0	0	Halberd
+1639	halberd3	0	5	7	3	0	0	Massive Halberd
+1640	halberd2	0	0	0	10	5	0	Elite Halberd
+1641	trident1	2	7	3	0	0	0	Trident
+1642	trident2	0	0	5	7	3	0	Ornate Trident
+1643	trident3	0	0	0	5	7	5	Titanic Trident
+1644	bow1	3	7	3	0	0	0	Longbow
+1645	bow2	0	10	5	2	0	0	Elven Bow
+1646	bow3	0	0	5	7	3	0	Precision Bow
+1647	bow4	0	0	2	8	4	0	Magic Bow
+1648	bow5	0	0	0	0	0	5	Stellar Bow
+1649	crsbow1	5	5	2	0	0	0	Crossbow
+1650	crsbow2	0	5	7	3	0	0	Accurate Crossbow
+1651	crsbow3	0	0	0	10	5	0	True Crossbow
+1652	mace1	5	5	2	0	0	0	Mace
+1653	mace2	2	8	4	0	0	0	Wicked Mace
+1654	mace3	0	0	10	5	2	0	Thunder Mace
+1655	mace4	0	0	10	5	2	0	Wonder Mace
+1656	mace5	0	0	0	2	6	7	Death Mace
+1657	hammer1	5	5	2	0	0	0	Hammer
+1658	hammer2	0	5	7	3	0	0	Dark Hammer
+1659	hammer3	0	0	0	0	10	10	Holy Hammer
+1660	club1	10	5	2	0	0	0	Club
+1661	club2	5	0	2	2	0	0	Spiked Club
+1662	club3	0	5	5	5	10	0	Killer Club
+1663	staff1	5	5	2	0	0	0	Staff
+1664	staff2	0	5	7	3	0	0	Emerald Staff
+1665	staff3	0	0	0	0	10	10	Power Staff
+1666	raygun1	0	0	0	0	0	0	Blaster
+1667	raygun2	0	0	0	0	0	0	Blaster Rifle
+1668	6leather1	25	35	0	0	0	0	Leather Armor
+1669	6leather2	0	20	32	28	0	0	Studded Leather
+1670	6leather3	0	0	20	32	28	0	Enchanted Leather
+1671	6leather4	0	0	0	25	35	25	Dragon Leather
+1672	6leather5	0	0	0	0	28	25	Imperial Leather
+1673	6chain1	2	20	25	0	0	0	Chain Mail
+1674	6chain2	0	15	20	5	0	0	Steel Chain Mail
+1675	6chain3	0	0	10	25	10	0	Noble Chain Mail
+1676	6chain4	0	0	0	15	20	5	Royal Chain Mail
+1677	chn5icon	0	0	0	0	15	30	Majestic Chain Mail
+1678	6plate1	0	2	7	18	12	0	Plate Armor
+1679	6plate2	0	0	0	10	20	8	Steel Plate Armor
+1680	6plate3	0	0	0	0	22	28	Golden Plate Armor
+1681	lshield1	9	12	7	0	0	0	Kite Shield
+1682	lshield2	7	12	7	0	0	0	Tower Shield
+1683	lshield3	0	0	8	2	0	0	Castle Shield
+1684	lshield4	0	0	7	8	8	2	Celestial Shield
+1685	lshield5	0	0	0	0	8	16	Olympian Shield
+1686	sshield1	18	12	2	0	0	0	Wooden Shield
+1687	sshield2	7	12	7	0	0	0	Bronze Shield
+1688	sshield3	0	0	8	2	0	0	Steel Shield
+1689	sshield4	0	0	7	8	10	7	Spirit Shield
+1690	sshield5	0	0	0	0	12	16	Astral Shield
+1691	6helm1	10	15	2	0	0	0	Wooden Helm
+1692	6helm2	5	10	15	5	0	0	Steel Helm
+1693	6helm3	0	0	8	13	8	0	Guardian Helm
+1694	6helm4	0	0	5	10	15	5	Defender Helm
+1695	6helm5	0	0	0	0	0	5	Angelic Helm
+1696	6hat1	3	10	10	5	2	0	Cloth Hat
+1697	6hat2	0	0	8	12	7	0	Dandy Hat
+1698	6hat3	0	0	5	10	10	5	Wizard Cap
+1699	6crown1	0	5	10	5	2	0	Wreath Crown
+1700	6crown2	0	0	5	10	5	0	Regal Crown
+1701	6crown3	0	0	2	10	15	20	Almighty Crown
+1702	belt1a	2	8	3	2	0	0	Leather Belt
+1703	belt2a	0	5	10	5	5	0	Mercenary Belt
+1704	belt3a	0	0	5	10	5	0	Vanguard Belt
+1705	belt4a	0	0	5	7	8	7	Warlord Belt
+1706	belt5a	0	0	3	5	10	15	Sovereign Belt
+1707	6cape1	5	10	15	10	5	0	Leather Cloak
+1708	6cape2	5	10	15	10	5	0	Phantom Cloak
+1709	6cape3	0	7	12	31	8	0	Elven Cloak
+1710	6cape4	0	0	5	10	15	10	Cardinal Cloak
+1711	6cape5	0	0	2	7	12	17	Doom's Day Cloak
+1712	gontlet1	5	13	9	7	3	0	Gauntlets
+1713	gontlet2	2	8	13	12	7	0	Knight Gauntlets
+1714	gontlet3	0	4	8	13	12	0	Paladin Gauntlets
+1715	gontlet4	0	1	4	8	13	12	Cavalier Gauntlets
+1716	gontlet5	0	0	0	0	0	5	Ultimate Gauntlets
+1717	6boots1	12	10	5	2	0	0	Leather Boots
+1718	6boots2	0	8	12	10	8	0	Steel Boots
+1719	6boots3	0	0	2	8	13	0	Armored Boots
+1720	6boots4	0	0	0	5	10	15	Sterling Boots
+1721	6boots5	0	0	0	3	13	22	Ultimate Boots
+1722	ring1	13	18	13	10	0	0	Fine Ring
+1723	ring2	10	12	18	13	0	0	Sparkling Ring
+1724	ring9	0	0	13	20	12	0	Lunar Ring
+1725	ring4	0	0	12	20	13	0	Witch Ring
+1726	ring8	0	0	8	16	20	0	Blessed Ring
+1727	ring3	0	0	5	10	20	0	Valuable Ring
+1728	ring5	0	0	3	7	13	18	Precious Ring
+1729	ring6	0	0	2	5	10	20	Ethereal Ring
+1730	ring7	0	0	2	5	10	25	Exquisite Ring
+1731	ring10	0	0	0	0	0	15	Scarab Ring
+1732	amulet1	0	8	12	8	5	0	Turquoise Amulet
+1733	amulet2	0	5	10	7	7	0	Gothic Amulet
+1734	amulet3	0	0	5	10	10	0	Claw Amulet
+1735	amulet4	0	0	5	7	8	7	Ancient Amulet
+1736	amulet5	0	0	2	5	4	25	Ruby Star Amulet
+1737	wand1	0	2	2	2	0	0	Wand of Flame
+1738	wand1	0	2	2	2	0	0	Wand of Static
+1739	wand1	0	2	2	2	0	0	Wand of Cold
+1740	wand1	0	2	2	2	0	0	Wand of Stunning
+1741	wand1	0	2	2	2	0	0	Wand of Arrows
+1742	wand2	0	1	2	2	0	0	Fairy Wand of Fire
+1743	wand2	0	1	2	2	0	0	Fairy Wand of Sparks
+1744	wand2	0	1	2	2	0	0	Fairy Wand of Poison
+1745	wand2	0	1	2	2	0	0	Fairy Wand of Mind
+1746	wand2	0	1	2	2	0	0	Fairy Wand of Harm
+1747	wand3	0	0	1	2	3	0	Alacorn Wand of Fireballs
+1748	wand3	0	0	1	2	3	0	Alacorn Wand of Ice
+1749	wand3	0	0	1	2	3	0	Alacorn Wand of Swarms
+1750	wand3	0	0	1	2	3	0	Alacorn Wand of Blades
+1751	wand3	0	0	1	2	3	0	Alacorn Wand of Charms
+1752	wand4	0	0	0	1	2	3	Arcane Wand of Blasting
+1753	wand4	0	0	0	1	2	3	Arcane Wand of Lightning
+1754	wand4	0	0	0	1	2	3	Arcane Wand of Rocks
+1755	wand4	0	0	0	1	2	3	Arcane Wand of Paralyzing
+1756	wand4	0	0	0	1	2	3	Arcane Wand of Clouds
+1757	wand5	0	0	0	0	2	5	Mystic Wand of Implosion
+1758	wand5	0	0	0	0	2	5	Mystic Wand of Distortion
+1759	wand5	0	0	0	0	2	5	Mystic Wand of Shrapmetal
+1760	wand5	0	0	0	0	2	5	Mystic Wand of Shrinking
+1761	wand5	0	0	0	0	2	5	Mystic Wand of Death
+1762	herb01	20	0	0	0	0	0	Poppysnaps
+1763	herb02	20	0	0	0	0	0	Phirna Root
+1764	herb03	20	0	0	0	0	0	Widoweeps Berries
+1765	bottle30	0	0	0	0	0	0	Potion Bottle
+1766	bottle26	0	0	0	0	0	0	Cure Wounds
+1767	bottle23	0	0	0	0	0	0	Magic Potion
+1768	bottle28	0	0	0	0	0	0	Energy
+1769	bottle25	0	0	0	0	0	0	Protection
+1770	bottle24	0	0	0	0	0	0	Resistance
+1771	bottle29	0	0	0	0	0	0	Cure Poison
+1772	bottle27	0	0	0	0	0	0	Supreme Protection
+1773	bottle27	0	0	0	0	0	0	Restoration
+1774	bottle27	0	0	0	0	0	0	Extreme Energy
+1775	bottle27	0	0	0	0	0	0	Super Resistance
+1776	bottle27	0	0	0	0	0	0	Heroism
+1777	bottle27	0	0	0	0	0	0	Haste
+1778	bottle27	0	0	0	0	0	0	Stone Skin
+1779	bottle27	0	0	0	0	0	0	Bless
+1780	bottle22	0	0	0	0	0	0	Divine Power
+1781	bottle22	0	0	0	0	0	0	Divine Cure
+1782	bottle22	0	0	0	0	0	0	Divine Magic
+1783	bottle22	0	0	0	0	0	0	Essence of Might
+1784	bottle22	0	0	0	0	0	0	Essence of Intellect
+1785	bottle22	0	0	0	0	0	0	Essence of Personality
+1786	bottle22	0	0	0	0	0	0	Essence of Endurance
+1787	bottle22	0	0	0	0	0	0	Essence of Accuracy
+1788	bottle22	0	0	0	0	0	0	Essence of Speed
+1789	bottle22	0	0	0	0	0	0	Essence of Luck
+1790	bottle22	0	0	0	0	0	0	Rejuvenation
+1791	bottle30	0	0	0	0	0	0	Potion Bottle
+1792	bottle30	0	0	0	0	0	0	Potion Bottle
+1793	bottle30	0	0	0	0	0	0	Potion Bottle
+1794	bottle30	0	0	0	0	0	0	Potion Bottle
+1795	bottle30	0	0	0	0	0	0	Potion Bottle
+1796	bottle30	0	0	0	0	0	0	Potion Bottle
+1797	bottle30	0	0	0	0	0	0	Potion Bottle
+1798	bottle30	0	0	0	0	0	0	Potion Bottle
+1799	6coinsm	0	0	0	0	0	0	Gold
+1800	6coinmid	0	0	0	0	0	0	Gold
+1801	6coinlg	0	0	0	0	0	0	Gold
+1802	scroll1	2	2	0	0	0	0	Torch Light
+1803	scroll1	2	2	0	0	0	0	Flame Arrow
+1804	scroll2	2	2	0	0	0	0	Protection from Fire
+1805	scroll2	0	2	2	0	0	0	Fire Bolt
+1806	scroll3	0	2	2	0	0	0	Haste
+1807	scroll3	0	2	2	0	0	0	Fireball
+1808	scroll3	0	0	2	1	0	0	Ring of Fire
+1809	scroll4	0	0	2	1	0	0	Fire Blast
+1810	scroll4	0	0	0	1	0	0	Meteor Shower
+1811	scroll4	0	0	0	1	0	0	Inferno
+1812	scroll4	0	0	0	1	0	0	Incinerate
+1813	scroll1	2	2	0	0	0	0	Wizard Eye
+1814	scroll1	2	2	0	0	0	0	Static Charge
+1815	scroll2	2	2	0	0	0	0	Protection from Elec
+1816	scroll2	0	2	2	0	0	0	Sparks
+1817	scroll3	0	2	2	0	0	0	Feather Fall
+1818	scroll3	0	2	2	0	0	0	Shield
+1819	scroll3	0	0	2	1	0	0	Lightning Bolt
+1820	scroll4	0	0	2	1	0	0	Jump
+1821	scroll4	0	0	0	1	0	0	Implosion
+1822	scroll4	0	0	0	1	0	0	Fly
+1823	scroll4	0	0	0	1	0	0	Starburst
+1824	scroll1	2	2	0	0	0	0	Awaken
+1825	scroll1	2	2	0	0	0	0	Cold Beam
+1826	scroll2	2	2	0	0	0	0	Protection from Cold
+1827	scroll2	0	2	2	0	0	0	Poison Spray
+1828	scroll3	0	2	2	0	0	0	Water Walk
+1829	scroll3	0	2	2	0	0	0	Ice Bolt
+1830	scroll3	0	0	2	1	0	0	Enchant Item
+1831	scroll4	0	0	2	1	0	0	Acid Burst
+1832	scroll4	0	0	0	1	0	0	Town Portal
+1833	scroll4	0	0	0	1	0	0	Ice Blast
+1834	scroll4	0	0	0	1	0	0	Lloyd's Beacon
+1835	scroll1	2	2	0	0	0	0	Stun
+1836	scroll1	2	2	0	0	0	0	Magic Arrow
+1837	scroll2	2	2	0	0	0	0	Protection from Magic
+1838	scroll2	0	2	2	0	0	0	Deadly Swarm
+1839	scroll3	0	2	2	0	0	0	Stone Skin
+1840	scroll3	0	2	2	0	0	0	Blades
+1841	scroll3	0	0	2	1	0	0	Stone to Flesh
+1842	scroll4	0	0	2	1	0	0	Rock Blast
+1843	scroll4	0	0	0	1	0	0	Turn to Stone
+1844	scroll4	0	0	0	1	0	0	Death Blossom
+1845	scroll4	0	0	0	1	0	0	Mass Distortion
+1846	scroll1	2	2	0	0	0	0	Spirit Arrow
+1847	scroll1	2	2	0	0	0	0	Bless
+1848	scroll2	2	2	0	0	0	0	Healing Touch
+1849	scroll2	0	2	2	0	0	0	Lucky Day
+1850	scroll3	0	2	2	0	0	0	Remove Curse
+1851	scroll3	0	2	2	0	0	0	Guardian Angel
+1852	scroll3	0	0	2	1	0	0	Heroism
+1853	scroll4	0	0	2	1	0	0	Turn Undead
+1854	scroll4	0	0	0	1	0	0	Raise Dead
+1855	scroll4	0	0	0	1	0	0	Shared Life
+1856	scroll4	0	0	0	1	0	0	Resurrection
+1857	scroll1	2	2	0	0	0	0	Meditation
+1858	scroll1	2	2	0	0	0	0	Remove Fear
+1859	scroll2	2	2	0	0	0	0	Mind Blast
+1860	scroll2	0	2	2	0	0	0	Precision
+1861	scroll3	0	2	2	0	0	0	Cure Paralysis
+1862	scroll3	0	2	2	0	0	0	Charm
+1863	scroll3	0	0	2	1	0	0	Mass Fear
+1864	scroll4	0	0	2	1	0	0	Feeblemind
+1865	scroll4	0	0	0	1	0	0	Cure Insanity
+1866	scroll4	0	0	0	1	0	0	Psychic Shock
+1867	scroll4	0	0	0	1	0	0	Telekinesis
+1868	scroll1	2	2	0	0	0	0	Cure Weakness
+1869	scroll1	2	2	0	0	0	0	First Aid
+1870	scroll2	2	2	0	0	0	0	Protection from Poison
+1871	scroll2	0	2	2	0	0	0	Harm
+1872	scroll3	0	2	2	0	0	0	Cure Wounds
+1873	scroll3	0	2	2	0	0	0	Cure Poison
+1874	scroll3	0	0	2	1	0	0	Speed
+1875	scroll4	0	0	2	1	0	0	Cure Disease
+1876	scroll4	0	0	0	1	0	0	Power
+1877	scroll4	0	0	0	1	0	0	Flying Fist
+1878	scroll4	0	0	0	1	0	0	Power Cure
+1879	scroll1	0	0	1	1	0	0	Create Food
+1880	scroll1	0	0	1	1	0	0	Golden Touch
+1881	scroll2	0	0	1	1	0	0	Dispel Magic
+1882	scroll2	0	0	1	1	0	0	Slow
+1883	scroll3	0	0	1	1	0	0	Destroy Undead
+1884	scroll3	0	0	1	1	0	0	Day of the Gods
+1885	scroll3	0	0	0	1	0	0	Prismatic Light
+1886	scroll4	0	0	0	1	0	0	Hour of Power
+1887	scroll4	0	0	0	1	0	0	Paralyze
+1888	scroll4	0	0	0	1	0	0	Sun Ray
+1889	scroll4	0	0	0	1	0	0	Divine Intervention
+1890	scroll1	0	0	1	1	0	0	Reanimate
+1891	scroll1	0	0	1	1	0	0	Toxic Cloud
+1892	scroll2	0	0	1	1	0	0	Mass Curse
+1893	scroll2	0	0	1	1	0	0	Shrapmetal
+1894	scroll3	0	0	1	1	0	0	Shrinking Ray
+1895	scroll3	0	0	1	1	0	0	Day of Protection
+1896	scroll3	0	0	0	1	0	0	Finger of Death
+1897	scroll4	0	0	0	1	0	0	Moon Ray
+1898	scroll4	0	0	0	1	0	0	Dragon Breath
+1899	scroll4	0	0	0	1	0	0	Armageddon
+1900	scroll4	0	0	0	0	0	0	Dark Containment
+1901	Placeholder	0	0	0	0	0	0	
+1902	book1	0	2	0	0	0	0	Torch Light
+1903	book1	0	2	0	0	0	0	Flame Arrow
+1904	6book2	0	0	2	0	0	0	Protection from Fire
+1905	6book2	0	0	2	0	0	0	Protection from Fire
+1906	6book2	0	0	2	0	0	0	Fire Bolt
+1907	6book2	0	0	2	0	0	0	Fire Bolt
+1908	book3	0	0	0	1	0	0	Haste
+1909	book3	0	0	0	1	0	0	Fireball
+1910	book4	0	0	0	0	1	0	Ring of Fire
+1911	book4	0	0	0	0	1	0	Fire Blast
+1912	book5	0	0	0	0	0	1	Meteor Shower
+1913	book5	0	0	0	0	0	1	Inferno
+1914	book5	0	0	0	0	0	1	Incinerate
+1915	book1	0	2	0	0	0	0	Wizard Eye
+1916	book1	0	2	0	0	0	0	Static Charge
+1917	6book2	0	0	2	0	0	0	Protection from Elec
+1918	6book2	0	0	2	0	0	0	Protection from Elec
+1919	6book2	0	0	2	0	0	0	Sparks
+1920	6book2	0	0	2	0	0	0	Sparks
+1921	book3	0	0	0	1	0	0	Feather Fall
+1922	book3	0	0	0	1	0	0	Shield
+1923	book4	0	0	0	0	1	0	Lightning Bolt
+1924	book4	0	0	0	0	1	0	Jump
+1925	book5	0	0	0	0	0	1	Implosion
+1926	book5	0	0	0	0	0	1	Fly
+1927	book5	0	0	0	0	0	1	Starburst
+1928	book1	0	2	0	0	0	0	Awaken
+1929	book1	0	2	0	0	0	0	Cold Beam
+1930	6book2	0	0	2	0	0	0	Protection from Cold
+1931	6book2	0	0	2	0	0	0	Protection from Cold
+1932	6book2	0	0	2	0	0	0	Poison Spray
+1933	6book2	0	0	2	0	0	0	Poison Spray
+1934	book3	0	0	0	1	0	0	Water Walk
+1935	book3	0	0	0	1	0	0	Ice Bolt
+1936	book4	0	0	0	0	1	0	Enchant Item
+1937	book4	0	0	0	0	1	0	Acid Burst
+1938	book5	0	0	0	0	0	1	Town Portal
+1939	book5	0	0	0	0	0	1	Ice Blast
+1940	book5	0	0	0	0	0	1	Lloyd's Beacon
+1941	book1	0	2	0	0	0	0	Stun
+1942	book1	0	2	0	0	0	0	Magic Arrow
+1943	6book2	0	0	2	0	0	0	Protection from Magic
+1944	6book2	0	0	2	0	0	0	Protection from Magic
+1945	6book2	0	0	2	0	0	0	Deadly Swarm
+1946	6book2	0	0	2	0	0	0	Deadly Swarm
+1947	book3	0	0	0	1	0	0	Stone Skin
+1948	book3	0	0	0	1	0	0	Blades
+1949	book4	0	0	0	0	1	0	Stone to Flesh
+1950	book4	0	0	0	0	1	0	Rock Blast
+1951	book5	0	0	0	0	0	1	Turn to Stone
+1952	book5	0	0	0	0	0	1	Death Blossom
+1953	book5	0	0	0	0	0	1	Mass Distortion
+1954	book1	0	2	0	0	0	0	Spirit Arrow
+1955	book1	0	2	0	0	0	0	Bless
+1956	6book2	0	0	2	0	0	0	Healing Touch
+1957	6book2	0	0	2	0	0	0	Healing Touch
+1958	6book2	0	0	2	0	0	0	Lucky Day
+1959	6book2	0	0	2	0	0	0	Lucky Day
+1960	book3	0	0	0	1	0	0	Remove Curse
+1961	book3	0	0	0	1	0	0	Guardian Angel
+1962	book4	0	0	0	0	1	0	Heroism
+1963	book4	0	0	0	0	1	0	Turn Undead
+1964	book5	0	0	0	0	0	1	Raise Dead
+1965	book5	0	0	0	0	0	1	Shared Life
+1966	book5	0	0	0	0	0	1	Resurrection
+1967	book1	0	2	0	0	0	0	Meditation
+1968	book1	0	2	0	0	0	0	Remove Fear
+1969	6book2	0	0	2	0	0	0	Mind Blast
+1970	6book2	0	0	2	0	0	0	Mind Blast
+1971	6book2	0	0	2	0	0	0	Precision
+1972	6book2	0	0	2	0	0	0	Precision
+1973	book3	0	0	0	1	0	0	Cure Paralysis
+1974	book3	0	0	0	1	0	0	Charm
+1975	book4	0	0	0	0	1	0	Mass Fear
+1976	book4	0	0	0	0	1	0	Feeblemind
+1977	book5	0	0	0	0	0	1	Cure Insanity
+1978	book5	0	0	0	0	0	1	Psychic Shock
+1979	book5	0	0	0	0	0	1	Telekinesis
+1980	book1	0	2	0	0	0	0	Cure Weakness
+1981	book1	0	2	0	0	0	0	First Aid
+1982	6book2	0	0	2	0	0	0	Protection from Poison
+1983	6book2	0	0	2	0	0	0	Protection from Poison
+1984	6book2	0	0	2	0	0	0	Harm
+1985	6book2	0	0	2	0	0	0	Harm
+1986	book3	0	0	0	1	0	0	Cure Wounds
+1987	book3	0	0	0	1	0	0	Cure Poison
+1988	book4	0	0	0	0	1	0	Speed
+1989	book4	0	0	0	0	1	0	Cure Disease
+1990	book5	0	0	0	0	0	1	Power
+1991	book5	0	0	0	0	0	1	Flying Fist
+1992	book5	0	0	0	0	0	1	Power Cure
+1993	book1	0	0	0	1	0	0	Create Food
+1994	book1	0	0	0	1	0	0	Golden Touch
+1995	6book2	0	0	0	0	1	0	Dispel Magic
+1996	6book2	0	0	0	0	1	0	Dispel Magic
+1997	6book2	0	0	0	0	1	0	Slow
+1998	6book2	0	0	0	0	1	0	Slow
+1999	book3	0	0	0	0	1	0	Destroy Undead
+2000	book3	0	0	0	0	1	0	Day of the Gods
+2001	book4	0	0	0	0	0	1	Prismatic Light
+2002	book4	0	0	0	0	0	1	Hour of Power
+2003	book5	0	0	0	0	0	1	Paralyze
+2004	book5	0	0	0	0	0	1	Sun Ray
+2005	book5	0	0	0	0	0	1	Divine Intervention
+2006	book1	0	0	0	1	0	0	Reanimate
+2007	book1	0	0	0	1	0	0	Toxic Cloud
+2008	6book2	0	0	0	0	1	0	Mass Curse
+2009	6book2	0	0	0	0	1	0	Mass Curse
+2010	6book2	0	0	0	0	1	0	Shrapmetal
+2011	6book2	0	0	0	0	1	0	Shrapmetal
+2012	book3	0	0	0	0	1	0	Shrinking Ray
+2013	book3	0	0	0	0	1	0	Day of Protection
+2014	book4	0	0	0	0	0	1	Finger of Death
+2015	book4	0	0	0	0	0	1	Moon Ray
+2016	book5	0	0	0	0	0	1	Dragon Breath
+2017	book5	0	0	0	0	0	1	Armageddon
+2018	book5	0	0	0	0	0	0	Dark Containment
+2019	Placeholder	0	0	0	0	0	0	
+2020	ldagger3	0	0	0	0	0	1	Mordred
+2021	hammer3	0	0	0	0	0	1	Thor
+2022	2haxe3	0	0	0	0	0	1	Conan
+2023	brsword3	0	0	0	0	0	1	Excalibur
+2024	staff3	0	0	0	0	0	1	Merlin
+2025	bow5	0	0	0	0	0	1	Percival
+2026	chn5icon	0	0	0	0	0	1	Galahad
+2027	6plate3	0	0	0	0	0	1	Pellinore
+2028	sshield5	0	0	0	0	0	1	Valeria
+2029	6crown3	0	0	0	0	0	1	Arthur
+2030	6cape5	0	0	0	0	0	1	Pendragon
+2031	6boots5	0	0	0	0	0	1	Lucius
+2032	ring9	0	0	0	0	0	1	Guinevere
+2033	ring10	0	0	0	0	0	1	Igraine
+2034	amulet5	0	0	0	0	0	1	Morgan
+2035	lsword5	0	0	0	0	0	1	Hades
+2036	mace5	0	0	0	0	0	1	Ares
+2037	trident3	0	0	0	0	0	1	Poseidon
+2038	axe5	0	0	0	0	0	1	Cronos
+2039	2hsword3	0	0	0	0	0	1	Hercules
+2040	bow5	0	0	0	0	0	1	Artemis
+2041	chn5alt	0	0	0	0	0	1	Apollo
+2042	6plate5	0	0	0	0	0	1	Zeus
+2043	lshield5	0	0	0	0	0	1	Aegis
+2044	6crown3	0	0	0	0	0	1	Odin
+2045	6cape5	0	0	0	0	0	1	Atlas
+2046	6boots5	0	0	0	0	0	1	Hermes
+2047	ring9	0	0	0	0	0	1	Aphrodite
+2048	ring10	0	0	0	0	0	1	Athena
+2049	amulet5	0	0	0	0	0	1	Hera
+2050	pouch1	0	0	0	0	0	0	Leather Pouch
+2051	pouch2	0	0	0	0	0	0	Leather Pouch
+2052	pouch3	0	0	0	0	0	0	Leather Pouch
+2053	6hglass	0	0	0	0	0	0	Hourglass of Time
+2054	chalice	0	0	0	0	0	0	Sacred Chalice
+2055	horn	0	0	0	0	0	0	Horn of Ros
+2056	gem1	0	0	0	2	7	3	Diamond
+2057	gem2	5	10	4	0	0	0	Moonstone
+2058	gem3	3	8	5	0	0	0	Topaz
+2059	gem4	0	0	5	10	3	0	Ruby
+2060	gem5	0	5	6	0	0	0	Amethyst
+2061	gem6	0	5	8	0	0	0	Emerald
+2062	gem7	0	5	10	4	0	0	Purple Topaz
+2063	gem8	0	2	7	8	0	0	Sunstone
+2064	gem9	0	0	4	10	5	0	Emerald
+2065	gem10	0	0	0	5	10	5	Sapphire
+2066	crysball	0	0	0	0	0	0	The Third Eye
+2067	tarot	0	0	0	1	2	0	Deck of Fate
+2068	ankh	0	0	0	0	0	0	Ankh
+2069	cndlabra	0	0	0	0	0	0	Candelabra
+2070	statuet1	0	0	0	0	0	0	Tiger Statuette
+2071	statuet2	0	0	0	0	0	0	Bear Statuette
+2072	statuet3	0	0	0	0	0	0	Wolf Statuette
+2073	statuet4	0	0	0	0	0	0	Eagle Statuette
+2074	statuet5	0	0	0	0	0	0	Dragon Statuette
+2075	claw	0	0	0	0	0	0	Dragon Claw
+2076	cube	0	0	0	0	0	0	Control Cube
+2077	shard	0	0	0	0	0	0	Crystal of Terrax
+2078	blkperl	0	0	0	0	0	0	Pearl of Putrescence
+2079	wytprl	0	0	0	0	0	0	Pearl of Purity
+2080	rose	0	0	0	0	0	0	Rose
+2081	bell	0	0	0	0	0	0	Tanir's Bell
+2082	gong	0	0	0	0	0	0	Temple Gong
+2083	horsshu	0	0	0	0	0	0	Magic Horseshoe
+2084	skull	0	0	0	0	0	0	Ethric's Skull
+2085	6thybone	0	0	0	0	0	0	Bone
+2086	crysskull	0	0	0	0	0	0	Crystal Skull
+2087	shovel	0	0	0	0	0	0	Shovel
+2088	lockpick	0	0	0	0	0	0	Lock Pick
+2089	rope	0	0	0	0	0	0	Rope
+2090	stone	0	0	0	0	0	0	Lodestone
+2091	quill	0	0	0	0	0	0	Harpy Feather
+2092	pyramid	0	0	0	0	0	0	Golden Pyramid
+2093	keg	0	0	0	0	0	0	Keg of Wine
+2094	egg	0	0	0	0	0	0	Cobra Egg
+2095	chime	0	0	0	0	0	0	Chime of Harmony
+2096	tooth	0	0	0	0	0	0	Tooth
+2097	clover	0	0	0	0	0	0	Four Leaf Clover
+2098	flute	0	0	0	0	0	0	Flute
+2099	harp	0	0	0	0	0	0	Harp
+2100	jewelegg	0	0	0	0	0	0	Jeweled Egg
+2101	heart	0	0	0	0	0	0	Spider Queen's Heart
+2102	amber	0	0	0	0	0	0	Amber
+2103	aladnlmp	0	0	0	0	0	0	Magic Lamp
+2104	apple	0	0	0	0	0	0	Apple
+2105	6nwcape	0	0	0	0	0	0	Cloak of Baa
+2106	keyring	0	0	0	0	0	0	Dragon Tower Keys
+2107	keys1	0	0	0	0	0	0	Key to Gharik's Laboratory
+2108	keys2	0	0	0	0	0	0	Key to Snergle's Chambers
+2109	keys3	0	0	0	0	0	0	Key to Goblinwatch
+2110	keys4	0	0	0	0	0	0	Key
+2111	keys5	0	0	0	0	0	0	Key
+2112	keys6	0	0	0	0	0	0	High Sorcerer's Key
+2113	map	0	0	0	0	0	0	Map
+2114	map	0	0	0	0	0	0	Map
+2115	map	0	0	0	0	0	0	Map
+2116	map	0	0	0	0	0	0	Map
+2117	map	0	0	0	0	0	0	Map
+2118	axe4	0	0	0	0	0	0	Snergle's Axe
+2119	lshield3	0	0	0	0	0	0	Lord Kilburn's Shield
+2120	scroll5	0	0	0	0	0	0	Name of Message
+2121	scroll5	0	0	0	0	0	0	Name of Message
+2122	scroll5	0	0	0	0	0	0	Letter from Zenofex
+2123	scroll5	0	0	0	0	0	0	Enemies List
+2124	scroll5	0	0	0	0	0	0	Orders from the Shadow Guild
+2125	scroll5	0	0	0	0	0	0	The Letter
+2126	scroll5	0	0	0	0	0	0	Devil Plans
+2127	scroll5	0	0	0	0	0	0	Missive from the Archbishop
+2128	scroll5	0	0	0	0	0	0	Discharge Papers
+2129	scroll5	0	0	0	0	0	0	Letter from Zenofex
+2130	scroll5	0	0	0	0	0	0	Letter from Cedric Druthers
+2131	scroll5	0	0	0	0	0	0	Scrap of Paper
+2132	scroll5	0	0	0	0	0	0	Letter to Snergle
+2133	scroll5	0	0	0	0	0	0	Letter from the Prince of Thieves
+2134	scroll5	0	0	0	0	0	0	Name of Message
+2135	scroll5	0	0	0	0	0	0	Elegant Letter
+2136	scroll5	0	0	0	0	0	0	Letter to the Prince of Thieves
+2137	scroll5	0	0	0	0	0	0	Name of Message
+2138	scroll5	0	0	0	0	0	0	Diary Page
+2139	scroll5	0	0	0	0	0	0	Page from Agar's Journal
+2140	scroll5	0	0	0	0	0	0	Remains of a Journal
+2141	scroll5	0	0	0	0	0	0	Letter from the Dragon Riders
+2142	scroll5	0	0	0	0	0	0	Letter from the Temple of Baa
+2143	scroll5	0	0	0	0	0	0	Magical Ritual Notes
+2144	scroll5	0	0	0	0	0	0	Name of Message
+2145	scroll5	0	0	0	0	0	0	Orders from Snergle
+2146	scroll5	0	0	0	0	0	0	Name of Message
+2147	scroll5	0	0	0	0	0	0	Page from Corlagon's Diary
+2148	scroll5	0	0	0	0	0	0	Letter to Marcus
+2149	scroll5	0	0	0	0	0	0	Scrap from Gharik's Journal
+2150	scroll5	0	0	0	0	0	0	Remnants of a Letter
+2151	scroll5	0	0	0	0	0	0	Letter to Terrax
+2152	scroll5	0	0	0	0	0	0	Loose Page
+2153	scroll5	0	0	0	0	0	0	Journal Fragment
+2154	scroll5	0	0	0	0	0	0	Letter to Agar
+2155	scroll5	0	0	0	0	0	0	Letter to Gharik
+2156	scroll5	0	0	0	0	0	0	Spiral Instructions
+2157	scroll5	0	0	0	0	0	0	Captain's Code
+2158	scroll5	0	0	0	0	0	0	First Mate's Code
+2159	scroll5	0	0	0	0	0	0	Navigator's Code
+2160	scroll5	0	0	0	0	0	0	Communication Officer's Code
+2161	scroll5	0	0	0	0	0	0	Engineer's Code
+2162	scroll5	0	0	0	0	0	0	Doctor's Code
+2163	scroll5	0	0	0	0	0	0	Goblinwatch Code
+2164	scroll5	0	0	0	0	0	0	Ritual of the Void
+2165	scroll5	0	0	0	0	0	0	Roland's Journal
+2166	scroll5	0	0	0	0	0	0	Proclamation
+2167	scroll5	0	0	0	0	0	0	Name of Message
+2168	scroll5	0	0	0	0	0	0	Name of Message
+2169	scroll5	0	0	0	0	0	0	Name of Message
+2170	memcryst	0	0	0	0	0	0	Memory Crystal Alpha
+2171	memcryst	0	0	0	0	0	0	Memory Crystal Beta
+2172	memcryst	0	0	0	0	0	0	Memory Crystal Delta
+2173	memcryst	0	0	0	0	0	0	Memory Crystal Epsilon
+2174	pouch1	0	0	0	0	0	0	Pouch of Bat Guano
+2175	keys1	0	0	0	0	0	0	Bathhouse Key
+2176	keys2	0	0	0	0	0	0	Store Room Key
+2177	keys3	0	0	0	0	0	0	Treasure Room Key
+2178	keys4	0	0	0	0	0	0	Secret Door Key
+2179	keys5	0	0	0	0	0	0	Chest Key
+2180	keys6	0	0	0	0	0	0	Guild Key
+2181	keys1	0	0	0	0	0	0	Bathhouse Key
+2182	keys2	0	0	0	0	0	0	Store Room Key
+2183	keys3	0	0	0	0	0	0	Treasure Room Key
+2184	keys4	0	0	0	0	0	0	Warlord's Key
+2185	keys5	0	0	0	0	0	0	Storage Key
+2186	keys6	0	0	0	0	0	0	Cell Key
+2187	keys1	0	0	0	0	0	0	High Cleric's Key
+2188	keys2	0	0	0	0	0	0	Treasure Room Key
+2189	keys3	0	0	0	0	0	0	Teleporter Key
+2190	keys4	0	0	0	0	0	0	Hive Sanctum Key
+2191	keys5	0	0	0	0	0	0	Storage Key
+2192	keys6	0	0	0	0	0	0	Cell Key
+2193	keys1	0	0	0	0	0	0	Water Temple Key
+2194	keys2	0	0	0	0	0	0	Flame Door Key
+2195	keys3	0	0	0	0	0	0	Back Door Key
+2196	keys4	0	0	0	0	0	0	Bibliotheca Chest Key
+2197	keys5	0	0	0	0	0	0	VARN Chest Key
+2198	keys6	0	0	0	0	0	0	Sewer Key
+2199	amulet5	0	0	0	0	0	0	Fire Amulet
+2200	scroll4	0	0	0	0	0	0	Dark Containment
+								
+								
+								
+								
+Bonus chance by level %		1	2	3	4	5	6	
+	Standard	0	40	40	40	40	75	
+	Special	0	0	10	15	20	25	
+Weapons	Special %	0	0	10	20	30	50	
+								
