@@ -229,32 +229,45 @@
 	local TransTexts = {
 	["7d18.blv"] = 9,
 	["7d14.blv"] = 398,
-	["mdr01.blv"] = 12,
-	["mdk03.blv"] = 12,
-	["mdr02.blv"] = 12,
 	["d01.blv"] = 392,
 	["7d16.blv"] = 412,
-	["mdr03.blv"] = 12,
-	["mdk05.blv"] = 12,
-	["mdr04.blv"] = 12,
-	["mdt01.blv"] = 12,
-	["mdr05.blv"] = 12,
-	["mdt02.blv"] = 12,
 	["zddb01.blv"] = 22,
 	["oracle.blv"] = 166,
-	["mdt09.blv"] = 8,
-	["mdt03.blv"] = 12,
 	["sci-fi.blv"] = 451,
-	["mdt10.blv"] = 15,
-	["mdt04.blv"] = 12,
-	["mdk01.blv"] = 12,
 	["7d15.blv"] = 397,
-	["mdk04.blv"] = 12,
-	["mdt05.blv"] = 12,
-	["mdk02.blv"] = 12,
 	["d43.blv"] = 806,
 	["d44.blv"] = 815,
-	["d48.blv"] = 845}
+	["d45.blv"] = 825,
+	["d46.blv"] = 835,
+	["d48.blv"] = 845,
+	["d49.blv"] = 854,
+	["mdt09.blv"] = 8,
+	["mdt10.blv"] = 15,
+
+	-- The Bandit Caves
+	["mdt14.blv"] = 10,
+
+	-- The Haunted Mansion
+	["7d37.blv"] = 11,
+
+	-- barrows
+	["mdk01.blv"] = 12,
+	["mdk02.blv"] = 12,
+	["mdk03.blv"] = 12,
+	["mdk04.blv"] = 12,
+	["mdk05.blv"] = 12,
+	["mdt01.blv"] = 12,
+	["mdt02.blv"] = 12,
+	["mdt03.blv"] = 12,
+	["mdt04.blv"] = 12,
+	["mdt05.blv"] = 12,
+	["mdr01.blv"] = 12,
+	["mdr02.blv"] = 12,
+	["mdr03.blv"] = 12,
+	["mdr04.blv"] = 12,
+	["mdr05.blv"] = 12,
+
+	}
 
 	function events.GetTransitionText(t)
 		local TextId = TransTexts[t.EnterMap]
