@@ -115,7 +115,7 @@ local function NPCInGroup(i)
 end
 NPCFollowers.NPCInGroup = NPCInGroup
 
--- Service function for NPC topics.
+-- Service functions for NPC topics.
 
 NPCFollowers.DismissNPCTopic = 1511
 NPCFollowers.HireNPCTopic = 1512
@@ -593,6 +593,14 @@ NPCFollowers.SetBTBTopics = SetBTBTopics
 NPCFollowers.HirePeasantEvent = 1510
 NPCFollowers.ShowNPCDescrEvent = 1509
 
+local function prof_text(t, key)
+	local val = t.TextFields[key]
+	if val then
+		return (type(val) == 'number') and Game.NPCText[val] or val
+	end
+	return rawget(t, key)
+end
+
 local function ProcessNPCProf()
 
 	local function SetProfNamesHook()
@@ -604,6 +612,14 @@ local function ProcessNPCProf()
 			mem.asmpatch(v, "push eax")
 			mem.autohook(v, SetProfName)
 		end
+	end
+
+	local function NPCTextId(str)
+		local num = tonumber(str)
+		if num then
+			return num
+		end
+		return nil
 	end
 
 	local TxtTable = io.open("Data/Tables/NPC professions.txt", "r")
@@ -638,6 +654,12 @@ local function ProcessNPCProf()
 	local LineIt = TxtTable:lines()
 	LineIt() -- skip header
 
+	local TextFields = {
+		Text = true,
+		Description = true}
+
+	local prof_metatable = {__index = prof_text}
+
 	local cnt = 0
 	for line in LineIt do
 
@@ -647,18 +669,22 @@ local function ProcessNPCProf()
 		Game.NPCProfessions[cnt] = ProfName and Game.GlobalTxt[ProfName] or Words[2]
 
 		NPCProf[cnt] = {
+			TextFields = TextFields,
 			Rarity	= tonumber(Words[4]) or 10,
 			Cost	= tonumber(Words[5]) or 100,
 			Personality	= const.NPCPersonality[Words[6]] or tonumber(Words[6]) or 1,
 			Topic	= tonumber(Words[7]) or 0,
 			Joins	= Words[8] == "x",
 			Recruit	= Words[9] == "x",
-			Text	= tonumber(Words[10]) and Game.NPCText[tonumber(Words[10])] or Words[10],
-			Description = tonumber(Words[11]) and Game.NPCText[tonumber(Words[11])] or Words[11]
+			TextFields = {
+				Text	= NPCTextId(Words[10]) or Words[10],
+				Description = NPCTextId(Words[11]) or Words[11]
+				}
 			}
 
-		cnt = cnt + 1
+		setmetatable(NPCProf[cnt], prof_metatable)
 
+		cnt = cnt + 1
 	end
 
 	io.close(TxtTable)
@@ -681,8 +707,10 @@ local function ProcessBTBTxt()
 
 	local function GetBTBText(str)
 		local num = tonumber(str)
-		return num and Game.NPCText[num] or str
+		return num or str
 	end
+
+	local prof_metatable = {__index = prof_text}
 
 	for line in LineIt do
 
@@ -692,7 +720,6 @@ local function ProcessBTBTxt()
 		if Num then
 
 			T[Num] = {
-
 				AcceptBeg	 = Words[2] == "x",
 				AcceptBribe	 = Words[3] == "x",
 				AcceptThreat = Words[4] == "x",
@@ -700,42 +727,46 @@ local function ProcessBTBTxt()
 				ReqFame		 = tonumber(Words[6]) or 0,
 				ReqRep		 = tonumber(Words[7]) or 0,
 
-				RepOk1 = GetBTBText(Words[8]),
-				RepOk2 = GetBTBText(Words[9]),
+				TextFields = {
+					RepOk1 = GetBTBText(Words[8]),
+					RepOk2 = GetBTBText(Words[9]),
 
-				BegRet		= GetBTBText(Words[10]),
-				BribeRet	= GetBTBText(Words[11]),
-				ThreatRet	= GetBTBText(Words[12]),
+					BegRet		= GetBTBText(Words[10]),
+					BribeRet	= GetBTBText(Words[11]),
+					ThreatRet	= GetBTBText(Words[12]),
 
-				NoFame = GetBTBText(Words[13]),
+					NoFame = GetBTBText(Words[13]),
 
-				RepNotoriousG = GetBTBText(Words[14]),
-				RepNotoriousE = GetBTBText(Words[15]),
+					RepNotoriousG = GetBTBText(Words[14]),
+					RepNotoriousE = GetBTBText(Words[15]),
 
-				RepSaintlyG = GetBTBText(Words[16]),
-				RepSaintlyE = GetBTBText(Words[17]),
+					RepSaintlyG = GetBTBText(Words[16]),
+					RepSaintlyE = GetBTBText(Words[17]),
 
-				Rep1E = GetBTBText(Words[19]),
-				Rep2E = GetBTBText(Words[23]),
-				Rep1G = GetBTBText(Words[18]),
-				Rep2G = GetBTBText(Words[22]),
+					Rep1E = GetBTBText(Words[19]),
+					Rep2E = GetBTBText(Words[23]),
+					Rep1G = GetBTBText(Words[18]),
+					Rep2G = GetBTBText(Words[22]),
 
-				LowRep1G = GetBTBText(Words[20]),
-				LowRep2G = GetBTBText(Words[24]),
+					LowRep1G = GetBTBText(Words[20]),
+					LowRep2G = GetBTBText(Words[24]),
 
-				LowRep1E = GetBTBText(Words[21]),
-				LowRep2E = GetBTBText(Words[25]),
+					LowRep1E = GetBTBText(Words[21]),
+					LowRep2E = GetBTBText(Words[25]),
 
-				BegSuccess	= GetBTBText(Words[26]),
-				BegFail		= GetBTBText(Words[27]),
+					BegSuccess	= GetBTBText(Words[26]),
+					BegFail		= GetBTBText(Words[27]),
 
-				BribeSuccess = GetBTBText(Words[28]),
-				BribeFail	 = GetBTBText(Words[29]),
+					BribeSuccess = GetBTBText(Words[28]),
+					BribeFail	 = GetBTBText(Words[29]),
 
-				ThreatSuccess	= GetBTBText(Words[30]),
-				ThreatFail		= GetBTBText(Words[31])
+					ThreatSuccess	= GetBTBText(Words[30]),
+					ThreatFail		= GetBTBText(Words[31])
+					}
 
 			}
+
+			setmetatable(T[Num], prof_metatable)
 
 		end
 	end
@@ -825,7 +856,7 @@ function events.GameInitialized2()
 	mem.asmpatch(0x4b2e83, "jmp absolute 0x4b2eaf")
 	mem.asmpatch(0x41bd27, "jmp absolute 0x41bd57")
 
-	-- Show amoutn of gold taken by followers
+	-- Show amount of gold taken by followers
 	local GoldTakenLine = Game.GlobalTxt[467]
 	local gold_taken_followers_str =
 		strgsub(strgsub(Game.GlobalTxt[466], "%%lu", "%%%%lu", 1), "([^%%])%%lu", "%1%%d")
